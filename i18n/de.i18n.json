@@ -1,0 +1,221 @@
+{
+  "welcome": "Willkommen $name",
+  "welcome2": "Willkommen bei $appName",
+  "get_started": "Loslegen",
+  "next": "Weiter",
+  "back": "Zurück",
+  "continue": "Weiter",
+  "skip": "Überspringen",
+  "logintext": "Wo jedes Wort ein neues Abenteuer ist, das darauf wartet, erzählt zu werden.",
+  "termOfService": {
+    "text1": "Durch die Anmeldung bei Swipe stimmen Sie unseren ",
+    "link1": "Nutzungsbedingungen",
+    "text2": " zu. Erfahren Sie, wie wir Ihre Daten in unserer ",
+    "link2": "Datenschutzrichtlinie",
+    "text3": " und ",
+    "link3": "Cookie-Richtlinie",
+    "text4": " verarbeiten"
+  },
+  "cookies": "Cookie-Richtlinie",
+  "privacy": "Datenschutzrichtlinie",
+  "onboarding": {},
+  "pressBackAgainToExit": "Drücken Sie erneut zurück, um zu beenden",
+  "faq": {
+    "title": "Häufig gestellte Fragen",
+    "questions": {
+      "q1": {
+        "question": "Was ist der Zweck dieser App?",
+        "answer": "Sie hilft Kindern, Englisch durch unterhaltsame Geschichten zu lernen. Wörter werden im Kontext gesehen, intuitiv gelernt und durch Wiederholungen verstärkt."
+      },
+      "q2": {
+        "question": "Was macht die KI hier?",
+        "answer": "Sie analysiert, mit welchen Wörtern das Kind Schwierigkeiten hat, bietet einfache Erklärungen an und schlägt neue Geschichten vor, die für dessen Niveau geeignet sind. Der Inhalt wird an das Lerntempo des Kindes angepasst."
+      },
+      "q3": {
+        "question": "Wie viel Zeit ist täglich ausreichend?",
+        "answer": "5–10 Minuten pro Tag sind ausreichend. Selbst eine kurze Geschichte ist effektiv für das regelmäßige Lernen."
+      },
+      "q4": {
+        "question": "Für welche Altersgruppe sind die Geschichten geeignet?",
+        "answer": "Die Geschichten werden entsprechend dem Alter und Niveau des Kindes präsentiert. Die App bestimmt zu Beginn das Niveau und passt die Schwierigkeit basierend auf dem Fortschritt an."
+      },
+      "q5": {
+        "question": "Wie lernt das Kind unbekannte Wörter?",
+        "answer": "Wenn das Kind auf ein unbekanntes Wort tippt, wird dessen Bedeutung, eine einfache Erklärung und die korrekte Aussprache angezeigt. So wird das Wort sowohl gelesen als auch gehört."
+      },
+      "q6": {
+        "question": "Ist ein Internetanschluss erforderlich?",
+        "answer": "Bereits heruntergeladene Geschichten können offline gelesen werden. Ein Internetanschluss ist für neue Inhalte und Updates erforderlich."
+      },
+      "q7": {
+        "question": "Ist die App kostenlos?",
+        "answer": "Grundlegende Geschichten sind kostenlos verfügbar. Weitere Geschichten, erweiterte Personalisierung und zusätzliche Funktionen sind im Premium-Paket enthalten."
+      },
+      "q8": {
+        "question": "Können die Geschichten angehört werden?",
+        "answer": "Ja. Die Geschichten können mit korrekter Aussprache angehört werden. So entwickeln sich sowohl Lese- als auch Hörfähigkeiten gemeinsam."
+      },
+      "q9": {
+        "question": "Können die gelernten Wörter verfolgt werden?",
+        "answer": "Ja. Die gelernten Wörter werden aufgezeichnet und sollen in bestimmten Abständen wiederholt werden. So kann das Vergessen reduziert werden."
+      },
+      "q10": {
+        "question": "Wie lange dauert es, Fortschritte zu sehen?",
+        "answer": "Mit regelmäßiger Nutzung kann Fortschritt in kurzer Zeit sichtbar werden. Mit zunehmenden Lesegewohnheiten verbessern sich Wortschatz und Verständnisfähigkeiten."
+      }
+    }
+  },
+  "good_morning": "Guten Morgen",
+  "good_afternoon": "Guten Tag",
+  "good_evening": "Guten Abend",
+  "splash": {
+    "screen1": {
+      "title": "Englisch lernen mit Geschichten",
+      "description": "Keine langweilige Auswendiglernerei. Entdecken Sie Wörter in ihrem natürlichen Fluss durch kurze und unterhaltsame Geschichten."
+    },
+    "screen2": {
+      "title": "Künstliche Intelligenz führt Sie",
+      "description": "Sie verfolgt die Wörter, mit denen Sie Schwierigkeiten haben, erklärt deren Bedeutung und schlägt neue Geschichten vor, die auf Ihr Niveau zugeschnitten sind."
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "freeVersion": "Kostenlose Version",
+    "error": "Fehler",
+    "sections": {
+      "accountSettings": "KONTOEINSTELLUNGEN",
+      "supportAndOther": "SUPPORT & SONSTIGES"
+    },
+    "menu": {
+      "editProfile": "Profil bearbeiten",
+      "notifications": "Benachrichtigungen",
+      "premium": "Premium",
+      "appLanguage": "App-Sprache",
+      "shareWithFriends": "Mit Freunden teilen",
+      "enterInviteCode": "Einladungscode eingeben",
+      "rateUs": "Bewerten Sie uns",
+      "faq": "FAQ",
+      "logout": "Abmelden"
+    },
+    "manage": "VERWALTEN",
+    "logoutDialog": {
+      "title": "Sie sind dabei, sich abzumelden",
+      "message": "Bis bald! Wir werden Ihre Atemübungen weiter verfolgen.",
+      "logoutButton": "Abmelden",
+      "cancelButton": "Abbrechen"
+    }
+  },
+  "home": {
+    "premium": "Premium!",
+    "seeMore": "Mehr sehen",
+    "premiumPlan": {
+      "title": "Premium-Plan",
+      "description": "Schalten Sie Ihren KI-Chatbot frei &\\nerhalten Sie alle Premium-Funktionen",
+      "button": "Premium erhalten",
+      "dialog": {
+        "title": "Funktion nicht verfügbar",
+        "message": "Diese Funktion ist derzeit nicht verfügbar.",
+        "button": "OK"
+      }
+    }
+  },
+  "editProfile": {
+    "title": "Profil bearbeiten",
+    "changePhoto": "Foto ändern",
+    "fullName": "Vollständiger Name",
+    "email": "E-Mail",
+    "age": "Alter",
+    "save": "Speichern",
+    "saving": "Wird gespeichert...",
+    "updateSuccess": "Profil erfolgreich aktualisiert",
+    "updateError": "Beim Aktualisieren des Profils ist ein Fehler aufgetreten",
+    "deleteAccount": "Konto löschen"
+  },
+  "notifications": {
+    "title": "Benachrichtigungen",
+    "emptyTitle": "Noch keine Benachrichtigungen",
+    "emptyDescription": "Wir benachrichtigen Sie, wenn es ein wichtiges Update zu Ihrer Lernreise gibt.",
+    "premiumBannerTitle": "Verpassen Sie nicht die\\nPremium-Vorteile!",
+    "premiumBannerDescription": "Nutzen Sie die Möglichkeiten als Premium-Abonnent."
+  },
+  "share": {
+    "title": "Mit Freunden teilen",
+    "mainTitle": "Teilen Sie den Frieden",
+    "descriptionPart1": "Laden Sie Ihre Freunde ein, gemeinsam zu atmen.\\nFür jede Einladung erhalten Sie beide ",
+    "descriptionPart2": "1 Woche Premium",
+    "descriptionPart3": "",
+    "yourReferralCode": "IHR EMPFEHLUNGSCODE",
+    "codeCopied": "Code kopiert!",
+    "copyCode": "Code kopieren"
+  },
+  "auth": {
+    "guest": "Als Gast fortfahren",
+    "google": "Weiter mit Google",
+    "facebook": "Weiter mit Facebook",
+    "apple": "Weiter mit Apple",
+    "signInFailed": "Anmeldung fehlgeschlagen: $error"
+  },
+  "cancel": "Abbrechen",
+  "deleteAccount": "Konto löschen",
+  "deleteDialogTitle": "Sind Sie sicher, dass Sie Ihr Konto löschen möchten?",
+  "deleteDialogDescription": "Diese Aktion ist irreversibel und löscht dauerhaft alle Ihre Übungshistorie und Daten.",
+  "deleteError": "Beim Löschen Ihres Kontos ist ein Fehler aufgetreten. Bitte versuchen Sie es erneut.",
+  "enterInvitationCode": "Einladungscode eingeben",
+  "inviteFriends": "Gib den Einladungscode ein, den du von einem Freund erhalten hast.\nTippe ihn in das vorgesehene Feld",
+  "twoDaysPremium": "7 Tage Premium",
+  "advantage": "\num die Vorteile zu genießen.",
+  "send": "Senden",
+  "referralCode": {
+    "inputPlaceholder": "8-stelligen Code eingeben",
+    "applying": "Code wird angewendet...",
+    "success": {
+      "title": "Erfolg!",
+      "message": "Empfehlungscode erfolgreich angewendet! Sowohl du als auch dein Freund haben 1 Woche Premium erhalten."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Code erforderlich",
+        "message": "Bitte gib einen Empfehlungscode ein, um fortzufahren."
+      },
+      "invalidFormat": {
+        "title": "Ungültiges Format",
+        "message": "Der Empfehlungscode muss genau 8 Zeichen lang sein."
+      },
+      "alreadyUsed": {
+        "title": "Bereits verwendet",
+        "message": "Du hast bereits einen Empfehlungscode verwendet. Jeder Benutzer kann nur einen Code verwenden."
+      },
+      "selfReferral": {
+        "title": "Ungültiger Code",
+        "message": "Du kannst deinen eigenen Einladungscode nicht verwenden. Bitte verwende einen Code von einem Freund."
+      },
+      "codeNotFound": {
+        "title": "Code nicht gefunden",
+        "message": "Der eingegebene Empfehlungscode existiert nicht. Bitte überprüfe ihn und versuche es erneut."
+      },
+      "genericError": {
+        "title": "Fehler",
+        "message": "Beim Anwenden des Empfehlungscodes ist ein Fehler aufgetreten. Bitte versuche es erneut."
+      }
+    }
+  },
+  "deleteNotifications": "Benachrichtigungen löschen",
+  "deleteNotificationsDescription": "Sind Sie sicher, dass Sie alle\\nIhre Benachrichtigungen löschen möchten? Diese Aktion ist irreversibel und kann nicht rückgängig gemacht werden.",
+  "deleteAll": "Alle löschen",
+  "appLanguage": "App-Sprache",
+  "selectLanguage": "Wählen Sie Ihre bevorzugte Sprache",
+  "save": "Speichern",
+  "languageOptions": {
+    "english": "Englisch",
+    "german": "Deutsch",
+    "italian": "Italienisch",
+    "french": "Französisch",
+    "japanese": "Japanisch",
+    "spanish": "Spanisch",
+    "russian": "Russisch",
+    "turkish": "Türkisch",
+    "korean": "Koreanisch",
+    "hindi": "Hindi",
+    "portuguese": "Portugiesisch"
+  }
+}

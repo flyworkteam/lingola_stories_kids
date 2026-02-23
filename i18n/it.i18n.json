@@ -1,0 +1,221 @@
+{
+  "welcome": "Benvenuto $name",
+  "welcome2": "Benvenuto a $appName",
+  "get_started": "Inizia",
+  "next": "Avanti",
+  "back": "Indietro",
+  "skip": "Salta",
+  "continue": "Continua",
+  "logintext": "Dove ogni parola è una nuova avventura che aspetta di essere raccontata.",
+  "termOfService": {
+    "text1": "Iscrivendoti a swipe, accetti i nostri ",
+    "link1": "Termini di servizio",
+    "text2": ". Scopri come elaboriamo i tuoi dati nella nostra ",
+    "link2": "Informativa sulla privacy",
+    "text3": " e ",
+    "link3": "Informativa sui cookie",
+    "text4": ""
+  },
+  "cookies": "Informativa sui cookie",
+  "privacy": "Informativa sulla privacy",
+  "onboarding": {},
+  "pressBackAgainToExit": "Premi di nuovo indietro per uscire",
+  "faq": {
+    "title": "Domande frequenti",
+    "questions": {
+      "q1": {
+        "question": "A cosa serve questa app?",
+        "answer": "Permette ai bambini di imparare l'inglese con storie divertenti. Le parole appaiono nel contesto delle frasi, il significato si apprende in modo intuitivo e si consolida con le ripetizioni."
+      },
+      "q2": {
+        "question": "Cosa fa l'intelligenza artificiale qui?",
+        "answer": "Analizza quali parole risultano difficili per il bambino, fornisce spiegazioni semplici e suggerisce nuove storie adatte al suo livello. I contenuti si adattano al ritmo di apprendimento del bambino."
+      },
+      "q3": {
+        "question": "Quanto tempo al giorno è sufficiente?",
+        "answer": "5–10 minuti al giorno sono sufficienti. Anche una breve storia è efficace se usata con regolarità."
+      },
+      "q4": {
+        "question": "Per quale fascia d'età sono adatte le storie?",
+        "answer": "Le storie sono proposte in base all'età e al livello dei bambini. L'app determina il livello iniziale e regola la difficoltà con il progresso."
+      },
+      "q5": {
+        "question": "Come impara le parole che non conosce?",
+        "answer": "Toccando una parola sconosciuta vengono mostrati il significato, una spiegazione semplice e la pronuncia corretta. Così la parola viene vista e ascoltata."
+      },
+      "q6": {
+        "question": "È necessaria la connessione a Internet?",
+        "answer": "Le storie scaricate in precedenza possono essere lette offline. È necessaria la connessione per nuovi contenuti e aggiornamenti."
+      },
+      "q7": {
+        "question": "L'app è gratuita?",
+        "answer": "L'accesso alle storie di base è gratuito. Più storie, personalizzazioni avanzate e funzionalità aggiuntive sono disponibili nel pacchetto premium."
+      },
+      "q8": {
+        "question": "È possibile ascoltare le storie?",
+        "answer": "Sì. Le storie possono essere ascoltate con pronuncia corretta. In questo modo si sviluppano insieme la lettura e la comprensione orale."
+      },
+      "q9": {
+        "question": "Le parole imparate possono essere tracciate?",
+        "answer": "Sì. Le parole imparate vengono registrate e sono previsti ripassi a intervalli regolari per ridurre l'oblio."
+      },
+      "q10": {
+        "question": "Quanto tempo per vedere i progressi?",
+        "answer": "Con un uso regolare i progressi si notano in breve tempo. Man mano che aumenta l'abitudine alla lettura, crescono il vocabolario e la comprensione."
+      }
+    }
+  },
+  "good_morning": "Buongiorno",
+  "good_afternoon": "Buon pomeriggio",
+  "good_evening": "Buonasera",
+  "splash": {
+    "screen1": {
+      "title": "Impara l'inglese con le storie",
+      "description": "Niente noiosa memorizzazione. Scopri le parole nel loro flusso naturale attraverso storie brevi e divertenti."
+    },
+    "screen2": {
+      "title": "L'intelligenza artificiale ti guida",
+      "description": "Tiene traccia delle parole con cui hai difficoltà, ne spiega il significato e suggerisce nuove storie su misura per il tuo livello."
+    }
+  },
+  "profile": {
+    "title": "Profilo",
+    "freeVersion": "Versione gratuita",
+    "error": "Errore",
+    "sections": {
+      "accountSettings": "IMPOSTAZIONI ACCOUNT",
+      "supportAndOther": "SUPPORTO E ALTRO"
+    },
+    "menu": {
+      "editProfile": "Modifica profilo",
+      "notifications": "Notifiche",
+      "premium": "Premium",
+      "appLanguage": "Lingua dell'app",
+      "shareWithFriends": "Condividi con gli amici",
+      "enterInviteCode": "Inserisci codice invito",
+      "rateUs": "Valutaci",
+      "faq": "FAQ",
+      "logout": "Esci"
+    },
+    "manage": "GESTISCI",
+    "logoutDialog": {
+      "title": "Stai per uscire",
+      "message": "Ci vediamo di nuovo! Continueremo a monitorare i tuoi esercizi di respirazione.",
+      "logoutButton": "Esci",
+      "cancelButton": "Annulla"
+    }
+  },
+  "home": {
+    "premium": "Premium!",
+    "seeMore": "Vedi altro",
+    "premiumPlan": {
+      "title": "Piano Premium",
+      "description": "Sblocca il tuo chatbot AI e\\nottieni tutte le funzionalità premium",
+      "button": "Ottieni Premium",
+      "dialog": {
+        "title": "Funzione non disponibile",
+        "message": "Questa funzione non è attualmente disponibile.",
+        "button": "OK"
+      }
+    }
+  },
+  "editProfile": {
+    "title": "Modifica profilo",
+    "changePhoto": "Cambia foto",
+    "fullName": "Nome completo",
+    "email": "E-mail",
+    "age": "Età",
+    "save": "Salva",
+    "saving": "Salvataggio...",
+    "updateSuccess": "Profilo aggiornato con successo",
+    "updateError": "Si è verificato un errore durante l'aggiornamento del profilo",
+    "deleteAccount": "Elimina account"
+  },
+  "notifications": {
+    "title": "Notifiche",
+    "emptyTitle": "Nessuna notifica ancora",
+    "emptyDescription": "Ti avviseremo quando ci sarà un aggiornamento importante sul tuo percorso di apprendimento.",
+    "premiumBannerTitle": "Non perdere i\\nvantaggi Premium!",
+    "premiumBannerDescription": "Approfitta delle opportunità come abbonato Premium."
+  },
+  "share": {
+    "title": "Condividi con gli amici",
+    "mainTitle": "Condividi la pace",
+    "descriptionPart1": "Invita i tuoi amici a respirare insieme.\\nPer ogni invito, entrambi ottenete ",
+    "descriptionPart2": "1 settimana Premium",
+    "descriptionPart3": "",
+    "yourReferralCode": "IL TUO CODICE DI RIFERIMENTO",
+    "codeCopied": "Codice copiato!",
+    "copyCode": "Copia codice"
+  },
+  "auth": {
+    "google": "Google",
+    "facebook": "Facebook",
+    "apple": "Apple",
+    "guest": "Continua come ospite",
+    "signInFailed": "Accesso non riuscito: $error"
+  },
+  "cancel": "Annulla",
+  "deleteAccount": "Elimina account",
+  "deleteDialogTitle": "Sei sicuro di voler eliminare il tuo account?",
+  "deleteDialogDescription": "Questa azione è irreversibile ed eliminerà permanentemente tutta la cronologia degli esercizi e i dati.",
+  "deleteError": "Si è verificato un errore durante l'eliminazione del tuo account. Riprova.",
+  "enterInvitationCode": "Inserisci codice invito",
+  "inviteFriends": "Inserisci il codice di invito ricevuto da un amico.\nScrivilo nel campo designato",
+  "twoDaysPremium": "7 giorni Premium",
+  "advantage": "\nper godere dei suoi benefici.",
+  "send": "Invia",
+  "referralCode": {
+    "inputPlaceholder": "Inserisci codice di 8 caratteri",
+    "applying": "Applicazione codice...",
+    "success": {
+      "title": "Successo!",
+      "message": "Codice referral applicato con successo! Sia tu che il tuo amico avete ricevuto 1 settimana di premium."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Codice richiesto",
+        "message": "Inserisci un codice referral per continuare."
+      },
+      "invalidFormat": {
+        "title": "Formato non valido",
+        "message": "Il codice referral deve essere di esattamente 8 caratteri."
+      },
+      "alreadyUsed": {
+        "title": "Già usato",
+        "message": "Hai già usato un codice referral. Ogni utente può usare un solo codice."
+      },
+      "selfReferral": {
+        "title": "Codice non valido",
+        "message": "Non puoi usare il tuo stesso codice invito. Usa un codice di un amico."
+      },
+      "codeNotFound": {
+        "title": "Codice non trovato",
+        "message": "Il codice referral inserito non esiste. Controlla e riprova."
+      },
+      "genericError": {
+        "title": "Errore",
+        "message": "Si è verificato un errore durante l'applicazione del codice referral. Riprova."
+      }
+    }
+  },
+  "deleteNotifications": "Elimina notifiche",
+  "deleteNotificationsDescription": "Sei sicuro di voler eliminare tutte\\nle tue notifiche? Questa azione è irreversibile e non può essere annullata.",
+  "deleteAll": "Elimina tutto",
+  "appLanguage": "Lingua dell'app",
+  "selectLanguage": "Seleziona la tua lingua preferita",
+  "save": "Salva",
+  "languageOptions": {
+    "english": "Inglese",
+    "german": "Tedesco",
+    "italian": "Italiano",
+    "french": "Francese",
+    "japanese": "Giapponese",
+    "spanish": "Spagnolo",
+    "russian": "Russo",
+    "turkish": "Turco",
+    "korean": "Coreano",
+    "hindi": "Hindi",
+    "portuguese": "Portoghese"
+  }
+}

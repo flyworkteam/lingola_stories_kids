@@ -1,0 +1,221 @@
+{
+  "welcome": "Bienvenue $name",
+  "welcome2": "Bienvenue à $appName",
+  "get_started": "Commencer",
+  "next": "Suivant",
+  "back": "Retour",
+  "skip": "Passer",
+  "continue": "Continuer",
+  "logintext": "Où chaque mot est une nouvelle aventure qui attend d'être racontée.",
+  "termOfService": {
+    "text1": "En vous inscrivant à swipe, vous acceptez nos ",
+    "link1": "Conditions d'utilisation",
+    "text2": ". Découvrez comment nous traitons vos données dans notre ",
+    "link2": "Politique de confidentialité",
+    "text3": " et ",
+    "link3": "Politique relative aux cookies",
+    "text4": ""
+  },
+  "cookies": "Politique relative aux cookies",
+  "privacy": "Politique de confidentialité",
+  "onboarding": {},
+  "pressBackAgainToExit": "Appuyez à nouveau sur retour pour quitter",
+  "faq": {
+    "title": "Questions fréquemment posées",
+    "questions": {
+      "q1": {
+        "question": "À quoi sert cette application ?",
+        "answer": "Elle permet aux enfants d'apprendre l'anglais grâce à des histoires ludiques. Les mots apparaissent en contexte, leur sens s'appréhende intuitivement et la répétition les ancre durablement."
+      },
+      "q2": {
+        "question": "Que fait l'intelligence artificielle ici ?",
+        "answer": "Elle analyse les mots difficiles pour l'enfant, fournit des explications simples et propose de nouvelles histoires adaptées à son niveau. Le contenu s'ajuste au rythme d'apprentissage."
+      },
+      "q3": {
+        "question": "Combien de temps faut-il l'utiliser chaque jour ?",
+        "answer": "5–10 minutes par jour suffisent. Même une courte histoire, si elle est régulière, est efficace."
+      },
+      "q4": {
+        "question": "Pour quel groupe d'âge les histoires conviennent-elles ?",
+        "answer": "Les histoires sont proposées selon l'âge et le niveau des enfants. L'application évalue le niveau au départ et adapte la difficulté au fur et à mesure."
+      },
+      "q5": {
+        "question": "Comment l'enfant apprend-il les mots qu'il ne connaît pas ?",
+        "answer": "En touchant un mot inconnu, l'enfant voit sa définition, une explication simple et la prononciation correcte. Ainsi le mot est à la fois lu et entendu."
+      },
+      "q6": {
+        "question": "Une connexion Internet est-elle nécessaire ?",
+        "answer": "Les histoires préalablement téléchargées peuvent être lues hors ligne. Une connexion est nécessaire pour de nouveaux contenus et les mises à jour."
+      },
+      "q7": {
+        "question": "L'application est-elle gratuite ?",
+        "answer": "L'accès aux histoires de base est gratuit. Plus d'histoires, une personnalisation avancée et des fonctionnalités supplémentaires sont proposées dans le pack premium."
+      },
+      "q8": {
+        "question": "Les histoires peuvent-elles être écoutées ?",
+        "answer": "Oui. Les histoires peuvent être écoutées avec une prononciation correcte, ce qui développe simultanément la lecture et la compréhension orale."
+      },
+      "q9": {
+        "question": "Est-il possible de suivre les mots appris ?",
+        "answer": "Oui. Les mots appris sont enregistrés et des révisions sont planifiées à intervalles réguliers pour réduire l'oubli."
+      },
+      "q10": {
+        "question": "Dans combien de temps voit-on des progrès ?",
+        "answer": "Avec une utilisation régulière, des progrès se remarquent rapidement. À mesure que l'habitude de lire augmente, le vocabulaire et la compréhension s'améliorent."
+      }
+    }
+  },
+  "good_morning": "Bonjour",
+  "good_afternoon": "Bon après-midi",
+  "good_evening": "Bonsoir",
+  "splash": {
+    "screen1": {
+      "title": "Apprenez l'anglais avec des histoires",
+      "description": "Pas de mémorisation ennuyeuse. Découvrez les mots dans leur flux naturel à travers des histoires courtes et amusantes."
+    },
+    "screen2": {
+      "title": "L'intelligence artificielle vous guide",
+      "description": "Elle suit les mots avec lesquels vous avez des difficultés, explique leur signification et suggère de nouvelles histoires adaptées à votre niveau."
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "freeVersion": "Version gratuite",
+    "error": "Erreur",
+    "sections": {
+      "accountSettings": "PARAMÈTRES DU COMPTE",
+      "supportAndOther": "SUPPORT ET AUTRE"
+    },
+    "menu": {
+      "editProfile": "Modifier le profil",
+      "notifications": "Notifications",
+      "premium": "Premium",
+      "appLanguage": "Langue de l'application",
+      "shareWithFriends": "Partager avec des amis",
+      "enterInviteCode": "Entrer le code d'invitation",
+      "rateUs": "Évaluez-nous",
+      "faq": "FAQ",
+      "logout": "Se déconnecter"
+    },
+    "manage": "GÉRER",
+    "logoutDialog": {
+      "title": "Vous êtes sur le point de vous déconnecter",
+      "message": "À bientôt ! Nous continuerons à suivre vos exercices de respiration.",
+      "logoutButton": "Se déconnecter",
+      "cancelButton": "Annuler"
+    }
+  },
+  "home": {
+    "premium": "Premium !",
+    "seeMore": "Voir plus",
+    "premiumPlan": {
+      "title": "Plan Premium",
+      "description": "Débloquez votre chatbot IA et\\nobtenez toutes les fonctionnalités premium",
+      "button": "Obtenir Premium",
+      "dialog": {
+        "title": "Fonctionnalité non disponible",
+        "message": "Cette fonctionnalité n'est actuellement pas disponible.",
+        "button": "OK"
+      }
+    }
+  },
+  "editProfile": {
+    "title": "Modifier le profil",
+    "changePhoto": "Changer la photo",
+    "fullName": "Nom complet",
+    "email": "E-mail",
+    "age": "Âge",
+    "save": "Enregistrer",
+    "saving": "Enregistrement...",
+    "updateSuccess": "Profil mis à jour avec succès",
+    "updateError": "Une erreur s'est produite lors de la mise à jour du profil",
+    "deleteAccount": "Supprimer le compte"
+  },
+  "notifications": {
+    "title": "Notifications",
+    "emptyTitle": "Pas encore de notifications",
+    "emptyDescription": "Nous vous informerons lorsqu'il y aura une mise à jour importante concernant votre parcours d'apprentissage.",
+    "premiumBannerTitle": "Ne manquez pas les\\navantages Premium !",
+    "premiumBannerDescription": "Profitez des opportunités en tant qu'abonné Premium."
+  },
+  "share": {
+    "title": "Partager avec des amis",
+    "mainTitle": "Partagez la paix",
+    "descriptionPart1": "Invitez vos amis à respirer ensemble.\\nPour chaque invitation, vous obtenez tous les deux ",
+    "descriptionPart2": "1 semaine Premium",
+    "descriptionPart3": "",
+    "yourReferralCode": "VOTRE CODE DE PARRAINAGE",
+    "codeCopied": "Code copié !",
+    "copyCode": "Copier le code"
+  },
+  "auth": {
+    "google": "Continuer avec Google",
+    "facebook": "Continuer avec Facebook",
+    "apple": "Continuer avec Apple",
+    "guest": "Continuer en tant qu'invité",
+    "signInFailed": "Échec de la connexion : $error"
+  },
+  "cancel": "Annuler",
+  "deleteAccount": "Supprimer le compte",
+  "deleteDialogTitle": "Êtes-vous sûr de vouloir supprimer votre compte ?",
+  "deleteDialogDescription": "Cette action est irréversible et supprimera définitivement tout votre historique d'exercices et vos données.",
+  "deleteError": "Une erreur s'est produite lors de la suppression de votre compte. Veuillez réessayer.",
+  "enterInvitationCode": "Saisir le code d'invitation",
+  "inviteFriends": "Entrez le code d'invitation reçu d'un ami.\nTapez-le dans le champ désigné",
+  "twoDaysPremium": "7 jours Premium",
+  "advantage": "\npour profiter de ses avantages.",
+  "send": "Envoyer",
+  "referralCode": {
+    "inputPlaceholder": "Entrez le code à 8 caractères",
+    "applying": "Application du code...",
+    "success": {
+      "title": "Succès !",
+      "message": "Code de parrainage appliqué avec succès ! Vous et votre ami avez reçu 1 semaine de premium."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Code requis",
+        "message": "Veuillez entrer un code de parrainage pour continuer."
+      },
+      "invalidFormat": {
+        "title": "Format invalide",
+        "message": "Le code de parrainage doit contenir exactement 8 caractères."
+      },
+      "alreadyUsed": {
+        "title": "Déjà utilisé",
+        "message": "Vous avez déjà utilisé un code de parrainage. Chaque utilisateur ne peut utiliser qu'un seul code."
+      },
+      "selfReferral": {
+        "title": "Code invalide",
+        "message": "Vous ne pouvez pas utiliser votre propre code d'invitation. Veuillez utiliser un code d'un ami."
+      },
+      "codeNotFound": {
+        "title": "Code non trouvé",
+        "message": "Le code de parrainage que vous avez saisi n'existe pas. Veuillez vérifier et réessayer."
+      },
+      "genericError": {
+        "title": "Erreur",
+        "message": "Une erreur s'est produite lors de l'application du code de parrainage. Veuillez réessayer."
+      }
+    }
+  },
+  "deleteNotifications": "Supprimer les notifications",
+  "deleteNotificationsDescription": "Êtes-vous sûr de vouloir supprimer toutes\\nvos notifications ? Cette action est irréversible et ne peut pas être annulée.",
+  "deleteAll": "Tout supprimer",
+  "appLanguage": "Langue de l'application",
+  "selectLanguage": "Sélectionnez votre langue préférée",
+  "save": "Enregistrer",
+  "languageOptions": {
+    "english": "Anglais",
+    "german": "Allemand",
+    "italian": "Italien",
+    "french": "Français",
+    "japanese": "Japonais",
+    "spanish": "Espagnol",
+    "russian": "Russe",
+    "turkish": "Turc",
+    "korean": "Coréen",
+    "hindi": "Hindi",
+    "portuguese": "Portugais"
+  }
+}

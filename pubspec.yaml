@@ -1,0 +1,80 @@
+name: lingolakidstories
+description: "A new Flutter project."
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  cross_fade: ^0.5.0
+  cupertino_icons: ^1.0.8
+  flutter_native_splash: ^2.4.7
+  flutter_hooks: ^0.21.3+1
+  hooks_riverpod: ^2.6.1
+  slang: ^4.12.0
+  slang_flutter: ^4.12.0
+  google_fonts: ^7.1.0
+  cached_network_image: ^3.4.1
+  intl: ^0.20.2
+  image_picker: ^1.1.2
+  flutter_riverpod: ^2.6.1
+  permission_handler: ^11.3.1
+  flutter_launcher_icons: ^0.14.4
+  dio: ^5.9.0
+  flutter_secure_storage: ^10.0.0
+  google_sign_in: ^7.2.0
+  sign_in_with_apple: ^7.0.1
+  flutter_local_notifications: ^20.0.0
+  onesignal_flutter: ^5.4.0
+  purchases_flutter: ^9.11.0
+  purchases_ui_flutter: ^9.11.0
+  firebase_core: ^4.4.0
+  firebase_auth: ^6.1.4
+  flutter_svg: ^2.2.3
+  flutter_tts: ^4.2.0
+  palette_generator: ^0.3.3+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^6.0.0
+  build_runner: ^2.10.5
+  slang_build_runner: ^4.12.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/app-logo.png
+    - assets/app-logo-adaptive.png
+    - assets/images/
+    - assets/icons/
+    - assets/icons/flags/
+
+flutter_native_splash:
+  color: "#E8A7F2"
+  background_image: assets/app-logo.png
+  fullscreen: true
+  android_12:
+    background_image: assets/app-logo.png
+    color: "#E8A7F2"
+  android: true
+  ios: true
+  ios_content_mode: scaleAspectFill
+  web: false
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  min_sdk_android: 21
+  image_path: "assets/app-logo.png"
+  adaptive_icon_background: "#ffffff"
+  adaptive_icon_foreground: "assets/app-logo-adaptive.png"

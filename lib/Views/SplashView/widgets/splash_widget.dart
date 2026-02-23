@@ -1,0 +1,137 @@
+import 'package:flutter/material.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
+import 'package:lingolakidstories/shared/custom_blur.dart';
+import 'package:lingolakidstories/shared/custom_button.dart';
+import 'package:lingolakidstories/theme/app_colors.dart';
+import 'package:lingolakidstories/theme/app_text_styles.dart';
+
+class SplashWidget extends StatelessWidget {
+  final String image;
+  final String title;
+  final String subtitle;
+  final VoidCallback? onGetStarted;
+  final int currentPage;
+  final int totalPages;
+
+  const SplashWidget({
+    super.key,
+    required this.image,
+    required this.title,
+    required this.subtitle,
+    this.onGetStarted,
+    required this.currentPage,
+    required this.totalPages,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final imageHeight = screenHeight * 0.5;
+
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          Container(
+            height: imageHeight,
+            width: double.infinity,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(image),
+                fit: BoxFit.cover,
+              ),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(32),
+                bottomRight: Radius.circular(32),
+              ),
+            ),
+          ),
+          SizedBox(height: 32),
+          Expanded(
+            flex: 1,
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(bottom: -190, right: -120, child: CustomBlur()),
+                Container(
+                  width: double.infinity,
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: List.generate(
+                          totalPages,
+                          (index) => AnimatedContainer(
+                            duration: const Duration(milliseconds: 300),
+                            margin: const EdgeInsets.symmetric(horizontal: 4),
+                            width: index == currentPage ? 32 : 8,
+                            height: 8,
+                            decoration: BoxDecoration(
+                              color: index == currentPage
+                                  ? AppColors.primary
+                                  : AppColors.secondary,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      const SizedBox(height: 30),
+
+                      Text(
+                        title,
+                        style: AppTextStyles.body(
+                          32,
+                          letterSpacing: 0.2,
+                          height: 1.1,
+                          weight: FontWeight.w700,
+                        ),
+                        textAlign: TextAlign.left,
+                      ),
+
+                      const SizedBox(height: 10),
+
+                      Text(
+                        subtitle,
+                        style: AppTextStyles.body(
+                          22,
+                          letterSpacing: 0.1,
+                          height: 1.3,
+                          weight: FontWeight.w300,
+                        ),
+                        textAlign: TextAlign.left,
+                        maxLines: 4,
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 30, right: 30),
+              child: CustomButton(
+                label: context.t.get_started,
+                onPressed: onGetStarted,
+                size: CustomButtonSize.large,
+                borderRadius: 50,
+                fullWidth: true,
+                backgroundColor: AppColors.primary,
+                shadow: [
+                  BoxShadow(
+                    color: AppColors.primaryShadow,
+                    blurRadius: 0,
+                    offset: const Offset(0, 5),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}

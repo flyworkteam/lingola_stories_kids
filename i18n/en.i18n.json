@@ -1,0 +1,221 @@
+{
+    "welcome": "Welcome $name",
+    "welcome2": "Welcome to $appName",
+    "get_started": "Get Started",
+    "next": "Next",
+    "back": "Back",
+    "skip": "Skip",
+    "continue": "Continue",
+    "logintext": "Where every word is a new adventure waiting to be told.",
+    "termOfService": {
+        "text1": "By signing up for swipe, you agree to our ",
+        "link1": "Terms of Service",
+        "text2": ". Learn how we process your data in our ",
+        "link2": "Privacy Policy",
+        "text3": " and ",
+        "link3": "Cookies Policy",
+        "text4": ""
+    },
+    "cookies": "Cookies Policy",
+    "privacy": "Privacy Policy",
+    "onboarding": {},
+    "pressBackAgainToExit": "Press back again to exit",
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "questions": {
+            "q1": {
+                "question": "What is the purpose of this app?",
+                "answer": "It helps children learn English through fun stories. Words are seen in context, learned intuitively, and reinforced through repetition."
+            },
+            "q2": {
+                "question": "What does the AI do here?",
+                "answer": "It analyzes which words the child struggles with, provides simple explanations, and suggests new stories appropriate for their level. The content is adapted to the child's learning pace."
+            },
+            "q3": {
+                "question": "How much time is enough to use it daily?",
+                "answer": "5–10 minutes a day is sufficient. Even a short story is effective for regular learning."
+            },
+            "q4": {
+                "question": "What age group are the stories suitable for?",
+                "answer": "The stories are presented according to the child's age and level. The app determines the level at the beginning and adjusts the difficulty based on progress."
+            },
+            "q5": {
+                "question": "How does the child learn unfamiliar words?",
+                "answer": "When the child taps on an unfamiliar word, its meaning, a simple explanation, and the correct pronunciation are shown. This way, the word is both read and heard."
+            },
+            "q6": {
+                "question": "Is an internet connection required?",
+                "answer": "Previously downloaded stories can be read offline. An internet connection is required for new content and updates."
+            },
+            "q7": {
+                "question": "Is the app free?",
+                "answer": "Basic stories are available for free. More stories, advanced personalization, and additional features are offered in the premium package."
+            },
+            "q8": {
+                "question": "Can the stories be listened to?",
+                "answer": "Yes. The stories can be listened to with correct pronunciation. This way, both reading and listening skills develop together."
+            },
+            "q9": {
+                "question": "Can the learned words be tracked?",
+                "answer": "Yes. The learned words are recorded and planned to be repeated at certain intervals. This way, forgetting can be reduced."
+            },
+            "q10": {
+                "question": "How long does it take to see progress?",
+                "answer": "With regular use, progress can be noticeable in a short time. As reading habits increase, vocabulary and comprehension skills improve."
+            }
+        }
+    },
+    "good_morning": "Good Morning",
+    "good_afternoon": "Good Afternoon",
+    "good_evening": "Good Evening",
+    "splash": {
+        "screen1": {
+            "title": "Learn English with Stories",
+            "description": "No boring memorisation. Discover words in their natural flow through short and fun stories."
+        },
+        "screen2": {
+            "title": "Artificial Intelligence Guides You",
+            "description": "It tracks the words you struggle with, explains their meaning, and suggests new stories tailored to your level."
+        }
+    },
+    "profile": {
+        "title": "Profile",
+        "freeVersion": "Free Version",
+        "error": "Error",
+        "sections": {
+            "accountSettings": "ACCOUNT SETTINGS",
+            "supportAndOther": "SUPPORT & OTHER"
+        },
+        "menu": {
+            "editProfile": "Edit Profile",
+            "notifications": "Notifications",
+            "premium": "Premium",
+            "appLanguage": "App Language",
+            "shareWithFriends": "Share with Friends",
+            "enterInviteCode": "Enter Invite Code",
+            "rateUs": "Rate Us",
+            "faq": "FAQ",
+            "logout": "Logout"
+        },
+        "manage": "MANAGE",
+        "logoutDialog": {
+            "title": "You are about to log out",
+            "message": "See you again! We will keep tracking your breath exercises.",
+            "logoutButton": "Log Out",
+            "cancelButton": "Cancel"
+        }
+    },
+    "home": {
+        "premium": "Premium!",
+        "seeMore": "See More",
+        "premiumPlan": {
+            "title": "Premium Plan",
+            "description": "Unlock your ai chatbot & get \nall premium features",
+            "button": "Get Premium",
+            "dialog": {
+                "title": "Feature Not Available",
+                "message": "This feature is currently not available.",
+                "button": "OK"
+            }
+        }
+    },
+    "editProfile": {
+        "title": "Edit Profile",
+        "changePhoto": "Change Photo",
+        "fullName": "Full Name",
+        "email": "E-mail",
+        "age": "Age",
+        "save": "Save",
+        "saving": "Saving...",
+        "updateSuccess": "Profile updated successfully",
+        "updateError": "An error occurred while updating profile",
+        "deleteAccount": "Delete Account"
+    },
+    "notifications": {
+        "title": "Notifications",
+        "emptyTitle": "No notifications yet",
+        "emptyDescription": "We'll notify you when there's an important update about your learning journey.",
+        "premiumBannerTitle": "Don't miss out on\nPremium benefits!",
+        "premiumBannerDescription": "Grab the opportunities as a Premium subscriber."
+    },
+    "share": {
+        "title": "Share with Friends",
+        "mainTitle": "Share the Peace",
+        "descriptionPart1": "Invite your friends to breathe together.\nFor every invite, you both get ",
+        "descriptionPart2": "1 week Premium",
+        "descriptionPart3": "",
+        "yourReferralCode": "YOUR REFERRAL CODE",
+        "codeCopied": "Code copied!",
+        "copyCode": "Copy Code"
+    },
+    "auth": {
+        "google": "Continue with Google",
+        "facebook": "Continue with Facebook",
+        "apple": "Continue with Apple",
+        "guest": "Continue as Guest",
+        "signInFailed": "Sign-in failed: $error"
+    },
+    "cancel": "Cancel",
+    "deleteAccount": "Delete Account",
+    "deleteDialogTitle": "Are you sure you want to delete your account?",
+    "deleteDialogDescription": "This action is irreversible and will permanently delete all your exercise history and data.",
+    "deleteError": "An error occurred while deleting your account. Please try again.",
+    "enterInvitationCode": "Enter Invitation Code",
+    "inviteFriends": "Enter the invitation code you received from a friend.\nType it into the designated field",
+    "twoDaysPremium": "7-Day Premium",
+    "advantage": "\nto enjoy its benefits.",
+    "send": "Send",
+    "referralCode": {
+        "inputPlaceholder": "Enter 8-character code",
+        "applying": "Applying code...",
+        "success": {
+            "title": "Success!",
+            "message": "Referral code applied successfully! Both you and your friend received 1 week of premium."
+        },
+        "errors": {
+            "missingCode": {
+                "title": "Code Required",
+                "message": "Please enter a referral code to continue."
+            },
+            "invalidFormat": {
+                "title": "Invalid Format",
+                "message": "Referral code must be exactly 8 characters long."
+            },
+            "alreadyUsed": {
+                "title": "Already Used",
+                "message": "You have already used a referral code. Each user can only use one code."
+            },
+            "selfReferral": {
+                "title": "Invalid Code",
+                "message": "You cannot use your own invitation code. Please use a code from a friend."
+            },
+            "codeNotFound": {
+                "title": "Code Not Found",
+                "message": "The referral code you entered does not exist. Please double-check and try again."
+            },
+            "genericError": {
+                "title": "Error",
+                "message": "An error occurred while applying the referral code. Please try again."
+            }
+        }
+    },
+    "deleteNotifications": "Delete Notifications",
+    "deleteNotificationsDescription": "Are you sure you want to delete all \nyour notifications? This action is irreversible and cannot be undone.",
+    "deleteAll": "Delete All",
+    "appLanguage": "App Language",
+    "selectLanguage": "Select Your Preferred Language",
+    "save": "Save",
+    "languageOptions": {
+        "english": "English",
+        "german": "German",
+        "italian": "Italian",
+        "french": "French",
+        "japanese": "Japanese",
+        "spanish": "Spanish",
+        "russian": "Russian",
+        "turkish": "Turkish",
+        "korean": "Korean",
+        "hindi": "Hindi",
+        "portuguese": "Portuguese"
+    }
+}

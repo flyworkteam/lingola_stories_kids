@@ -1,0 +1,221 @@
+{
+    "welcome": "환영합니다 $name",
+    "welcome2": "$appName에 오신 것을 환영합니다",
+    "get_started": "시작하기",
+    "next": "다음",
+    "back": "뒤로",
+    "skip": "건너뛰기",
+    "continue": "계속",
+    "logintext": "모든 단어가 이야기되기를 기다리는 새로운 모험입니다.",
+    "termOfService": {
+        "text1": "swipe에 가입하면 당사의 ",
+        "link1": "서비스 약관",
+        "text2": "에 동의하는 것입니다. ",
+        "link2": "개인정보 처리방침",
+        "text3": " 및 ",
+        "link3": "쿠키 정책",
+        "text4": "에서 데이터를 처리하는 방법을 알아보세요"
+    },
+    "cookies": "쿠키 정책",
+    "privacy": "개인정보 처리방침",
+    "onboarding": {},
+    "pressBackAgainToExit": "종료하려면 뒤로 버튼을 다시 누르세요",
+    "faq": {
+        "title": "자주 묻는 질문",
+        "questions": {
+            "q1": {
+                "question": "이 앱은 무엇을 하나요?",
+                "answer": "아이들이 재미있는 이야기로 영어를 배우도록 돕습니다. 단어는 문맥 속에서 나타나고, 의미는 직관적으로 학습되며 반복을 통해 강화됩니다."
+            },
+            "q2": {
+                "question": "인공지능은 여기서 무엇을 하나요?",
+                "answer": "아이들이 어떤 단어에 어려움을 겪고 있는지 분석하고, 간단한 설명을 제공하며, 수준에 맞는 새로운 이야기를 제안합니다. 콘텐츠는 아이의 학습 속도에 맞춰 조정됩니다."
+            },
+            "q3": {
+                "question": "하루에 얼마나 사용해야 하나요?",
+                "answer": "하루에 5~10분이면 충분합니다. 짧은 이야기라도 정기적으로 사용하면 효과적입니다."
+            },
+            "q4": {
+                "question": "이야기는 어떤 연령대에 적합한가요?",
+                "answer": "이야기는 아이들의 나이와 수준에 맞춰 제공됩니다. 앱은 처음에 수준을 결정하고 진행에 따라 난이도를 조정합니다."
+            },
+            "q5": {
+                "question": "모르는 단어는 어떻게 배우나요?",
+                "answer": "모르는 단어에 터치하면 의미, 간단한 설명, 올바른 발음이 표시됩니다. 이렇게 단어는 읽히고 들립니다."
+            },
+            "q6": {
+                "question": "인터넷 연결이 필요합니까?",
+                "answer": "이전에 다운로드한 이야기는 오프라인에서 읽을 수 있습니다. 새로운 콘텐츠와 업데이트에는 인터넷 연결이 필요합니다."
+            },
+            "q7": {
+                "question": "앱은 무료인가요?",
+                "answer": "기본 이야기에는 무료로 접근할 수 있습니다. 더 많은 이야기, 고급 개인화 및 추가 기능은 프리미엄 패키지에서 제공됩니다."
+            },
+            "q8": {
+                "question": "이야기는 음성으로 들을 수 있나요?",
+                "answer": "네. 이야기는 올바른 발음으로 들을 수 있습니다. 이를 통해 읽기와 듣기 능력이 함께 향상됩니다."
+            },
+            "q9": {
+                "question": "학습한 단어는 추적할 수 있나요?",
+                "answer": "네. 학습한 단어는 기록되며 정기적으로 복습될 예정입니다. 이를 통해 망각을 줄일 수 있습니다."
+            },
+            "q10": {
+                "question": "어느 정도의 시간 안에 발전이 보이나요?",
+                "answer": "정기적으로 사용하면 짧은 시간 안에 발전이 보입니다. 독서 습관이 생기면 어휘력과 이해력이 향상됩니다."
+            }
+        }
+    },
+    "good_morning": "좋은 아침입니다",
+    "good_afternoon": "좋은 오후입니다",
+    "good_evening": "좋은 저녁입니다",
+    "splash": {
+        "screen1": {
+            "title": "이야기로 영어 배우기",
+            "description": "지루한 암기는 없습니다. 짧고 재미있는 이야기를 통해 자연스러운 흐름에서 단어를 발견하세요."
+        },
+        "screen2": {
+            "title": "인공지능이 당신을 안내합니다",
+            "description": "당신이 어려워하는 단어를 추적하고, 그 의미를 설명하며, 당신의 수준에 맞는 새로운 이야기를 제안합니다."
+        }
+    },
+    "profile": {
+        "title": "프로필",
+        "freeVersion": "무료 버전",
+        "error": "오류",
+        "sections": {
+            "accountSettings": "계정 설정",
+            "supportAndOther": "지원 & 기타"
+        },
+        "menu": {
+            "editProfile": "프로필 편집",
+            "notifications": "알림",
+            "premium": "프리미엄",
+            "appLanguage": "앱 언어",
+            "shareWithFriends": "친구와 공유",
+            "enterInviteCode": "초대 코드 입력",
+            "rateUs": "평가하기",
+            "faq": "자주 묻는 질문",
+            "logout": "로그아웃"
+        },
+        "manage": "관리",
+        "logoutDialog": {
+            "title": "로그아웃하려고 합니다",
+            "message": "또 만나요! 호흡 운동을 계속 추적하겠습니다.",
+            "logoutButton": "로그아웃",
+            "cancelButton": "취소"
+        }
+    },
+    "home": {
+        "premium": "프리미엄!",
+        "seeMore": "더 보기",
+        "premiumPlan": {
+            "title": "프리미엄 플랜",
+            "description": "AI 챗봇 잠금 해제 &\\n모든 프리미엄 기능 받기",
+            "button": "프리미엄 받기",
+            "dialog": {
+                "title": "기능 사용 불가",
+                "message": "이 기능은 현재 사용할 수 없습니다.",
+                "button": "확인"
+            }
+        }
+    },
+    "editProfile": {
+        "title": "프로필 편집",
+        "changePhoto": "사진 변경",
+        "fullName": "성명",
+        "email": "이메일",
+        "age": "나이",
+        "save": "저장",
+        "saving": "저장 중...",
+        "updateSuccess": "프로필이 성공적으로 업데이트되었습니다",
+        "updateError": "프로필 업데이트 중 오류가 발생했습니다",
+        "deleteAccount": "계정 삭제"
+    },
+    "notifications": {
+        "title": "알림",
+        "emptyTitle": "아직 알림 없음",
+        "emptyDescription": "학습 여정에 대한 중요한 업데이트가 있을 때 알려드리겠습니다.",
+        "premiumBannerTitle": "프리미엄 혜택을\\n놓치지 마세요!",
+        "premiumBannerDescription": "프리미엄 구독자로서 기회를 잡으세요."
+    },
+    "share": {
+        "title": "친구와 공유",
+        "mainTitle": "평화를 공유하세요",
+        "descriptionPart1": "친구를 초대하여 함께 호흡하세요.\\n초대할 때마다 두 분 모두 ",
+        "descriptionPart2": "1주일 프리미엄",
+        "descriptionPart3": "을 받습니다",
+        "yourReferralCode": "귀하의 추천 코드",
+        "codeCopied": "코드 복사됨!",
+        "copyCode": "코드 복사"
+    },
+    "auth": {
+        "google": "Google",
+        "facebook": "Facebook",
+        "apple": "Apple",
+        "guest": "게스트로 계속",
+        "signInFailed": "로그인 실패: $error"
+    },
+    "cancel": "취소",
+    "deleteAccount": "계정 삭제",
+    "deleteDialogTitle": "계정을 삭제하시겠습니까?",
+    "deleteDialogDescription": "이 작업은 되돌릴 수 없으며 모든 운동 기록과 데이터가 영구적으로 삭제됩니다.",
+    "deleteError": "계정을 삭제하는 중 오류가 발생했습니다. 다시 시도해 주세요.",
+    "enterInvitationCode": "초대 코드 입력",
+    "inviteFriends": "친구에게 받은 초대 코드를 입력하세요.\n지정된 필드에 입력하세요",
+    "twoDaysPremium": "7일 프리미엄",
+    "advantage": "\n혜택을 누리세요.",
+    "send": "보내기",
+    "referralCode": {
+        "inputPlaceholder": "8자리 코드 입력",
+        "applying": "코드 적용 중...",
+        "success": {
+            "title": "성공!",
+            "message": "추천 코드가 성공적으로 적용되었습니다! 귀하와 친구 분 모두 1주일 프리미엄을 받았습니다."
+        },
+        "errors": {
+            "missingCode": {
+                "title": "코드 필요",
+                "message": "계속하려면 추천 코드를 입력하세요."
+            },
+            "invalidFormat": {
+                "title": "잘못된 형식",
+                "message": "추천 코드는 정확히 8자여야 합니다."
+            },
+            "alreadyUsed": {
+                "title": "이미 사용됨",
+                "message": "이미 추천 코드를 사용했습니다. 각 사용자는 하나의 코드만 사용할 수 있습니다."
+            },
+            "selfReferral": {
+                "title": "잘못된 코드",
+                "message": "자신의 초대 코드는 사용할 수 없습니다. 친구의 코드를 사용해 주세요."
+            },
+            "codeNotFound": {
+                "title": "코드를 찾을 수 없음",
+                "message": "입력한 추천 코드가 존재하지 않습니다. 확인 후 다시 시도해 주세요."
+            },
+            "genericError": {
+                "title": "오류",
+                "message": "추천 코드를 적용하는 중 오류가 발생했습니다. 다시 시도해 주세요."
+            }
+        }
+    },
+    "deleteNotifications": "알림 삭제",
+    "deleteNotificationsDescription": "모든 알림을 삭제하시겠습니까?\\n이 작업은 되돌릴 수 없으며 실행 취소할 수 없습니다.",
+    "deleteAll": "모두 삭제",
+    "appLanguage": "앱 언어",
+    "selectLanguage": "선호하는 언어를 선택하세요",
+    "save": "저장",
+    "languageOptions": {
+        "english": "영어",
+        "german": "독일어",
+        "italian": "이탈리아어",
+        "french": "프랑스어",
+        "japanese": "일본어",
+        "spanish": "스페인어",
+        "russian": "러시아어",
+        "turkish": "터키어",
+        "korean": "한국어",
+        "hindi": "힌디어",
+        "portuguese": "포르투갈어"
+    }
+}

@@ -1,0 +1,221 @@
+{
+  "welcome": "ようこそ $name",
+  "welcome2": "ようこそ $appName",
+  "get_started": "始める",
+  "next": "次へ",
+  "back": "戻る",
+  "skip": "スキップ",
+  "continue": "続ける",
+  "logintext": "すべての言葉が語られるのを待っている新しい冒険です。",
+  "termOfService": {
+    "text1": "swipeに登録することで、",
+    "link1": "利用規約",
+    "text2": "に同意したことになります。",
+    "link2": "プライバシーポリシー",
+    "text3": "および",
+    "link3": "クッキーポリシー",
+    "text4": "でデータの処理方法をご確認ください"
+  },
+  "cookies": "クッキーポリシー",
+  "privacy": "プライバシーポリシー",
+  "onboarding": {},
+  "pressBackAgainToExit": "もう一度戻るを押して終了",
+  "faq": {
+    "title": "よくある質問",
+    "questions": {
+      "q1": {
+        "question": "このアプリは何のためにありますか？",
+        "answer": "子供たちが楽しい物語を通じて英語を学ぶことを可能にします。単語は文の中で見られ、意味は直感的に学ばれ、繰り返しによって定着します。"
+      },
+      "q2": {
+        "question": "ここでAIは何をしていますか？",
+        "answer": "子供がどの単語に苦労しているかを分析し、簡単な説明を提供し、レベルに合った新しい物語を提案します。コンテンツは子供の学習速度に合わせて調整されます。"
+      },
+      "q3": {
+        "question": "1日にどれくらいの時間を使えば十分ですか？",
+        "answer": "1日に5〜10分で十分です。短い物語でも定期的に使用すれば効果的です。"
+      },
+      "q4": {
+        "question": "物語はどの年齢層に適していますか？",
+        "answer": "物語は子供の年齢とレベルに応じて提供されます。アプリは最初にレベルを決定し、進行に応じて難易度を調整します。"
+      },
+      "q5": {
+        "question": "知らない単語はどうやって学ぶの？",
+        "answer": "知らない単語に触れると、その意味、簡単な説明、正しい発音が表示されます。こうして単語は見られ、聞かれます。"
+      },
+      "q6": {
+        "question": "インターネット接続は必要ですか？",
+        "answer": "以前にダウンロードしたストーリーはオフラインで読むことができます。新しいコンテンツや更新にはインターネット接続が必要です。"
+      },
+      "q7": {
+        "question": "アプリは無料ですか？",
+        "answer": "基本的なストーリーには無料でアクセスできます。より多くのストーリー、高度なカスタマイズ、追加機能はプレミアムパッケージで提供されます。"
+      },
+      "q8": {
+        "question": "物語は音声で聞くことができますか？",
+        "answer": "はい。物語は正しい発音で聞くことができます。これにより、読解力とリスニング力が同時に向上します。"
+      },
+      "q9": {
+        "question": "学習した単語は追跡できますか？",
+        "answer": "はい。学習した単語は記録され、定期的に復習される予定です。これにより、忘却を減らすことができます。"
+      },
+      "q10": {
+        "question": "どのくらいの期間で進捗が見られますか？",
+        "answer": "定期的に使用することで、短期間で進捗が見られます。読書習慣が身につくにつれて、語彙力と理解力が向上します。"
+      }
+    }
+  },
+  "good_morning": "おはようございます",
+  "good_afternoon": "こんにちは",
+  "good_evening": "こんばんは",
+  "splash": {
+    "screen1": {
+      "title": "ストーリーで英語を学ぶ",
+      "description": "退屈な暗記はありません。短くて楽しいストーリーを通じて、言葉を自然な流れの中で発見しましょう。"
+    },
+    "screen2": {
+      "title": "人工知能があなたを導く",
+      "description": "あなたが苦労している単語を追跡し、その意味を説明し、あなたのレベルに合わせた新しいストーリーを提案します。"
+    }
+  },
+  "profile": {
+    "title": "プロフィール",
+    "freeVersion": "無料版",
+    "error": "エラー",
+    "sections": {
+      "accountSettings": "アカウント設定",
+      "supportAndOther": "サポートとその他"
+    },
+    "menu": {
+      "editProfile": "プロフィールを編集",
+      "notifications": "通知",
+      "premium": "プレミアム",
+      "appLanguage": "アプリの言語",
+      "shareWithFriends": "友達と共有",
+      "enterInviteCode": "招待コードを入力",
+      "rateUs": "評価する",
+      "faq": "FAQ",
+      "logout": "ログアウト"
+    },
+    "manage": "管理",
+    "logoutDialog": {
+      "title": "ログアウトしようとしています",
+      "message": "またお会いしましょう！呼吸エクササイズを追跡し続けます。",
+      "logoutButton": "ログアウト",
+      "cancelButton": "キャンセル"
+    }
+  },
+  "home": {
+    "premium": "プレミアム！",
+    "seeMore": "もっと見る",
+    "premiumPlan": {
+      "title": "プレミアムプラン",
+      "description": "AIチャットボットのロックを解除し、\\nすべてのプレミアム機能を取得",
+      "button": "プレミアムを取得",
+      "dialog": {
+        "title": "機能は利用できません",
+        "message": "この機能は現在利用できません。",
+        "button": "OK"
+      }
+    }
+  },
+  "editProfile": {
+    "title": "プロフィールを編集",
+    "changePhoto": "写真を変更",
+    "fullName": "フルネーム",
+    "email": "メール",
+    "age": "年齢",
+    "save": "保存",
+    "saving": "保存中...",
+    "updateSuccess": "プロフィールが正常に更新されました",
+    "updateError": "プロフィールの更新中にエラーが発生しました",
+    "deleteAccount": "アカウントを削除"
+  },
+  "notifications": {
+    "title": "通知",
+    "emptyTitle": "まだ通知はありません",
+    "emptyDescription": "学習の旅に関する重要な更新があるときにお知らせします。",
+    "premiumBannerTitle": "プレミアム特典を\\nお見逃しなく！",
+    "premiumBannerDescription": "プレミアム購読者として機会をつかみましょう。"
+  },
+  "share": {
+    "title": "友達と共有",
+    "mainTitle": "平和を共有する",
+    "descriptionPart1": "友達を招待して一緒に呼吸しましょう。\\n招待ごとに、両方が ",
+    "descriptionPart2": "1週間プレミアム",
+    "descriptionPart3": "を取得",
+    "yourReferralCode": "あなたの紹介コード",
+    "codeCopied": "コードがコピーされました！",
+    "copyCode": "コードをコピー"
+  },
+  "auth": {
+    "google": "Google",
+    "facebook": "Facebook",
+    "apple": "Apple",
+    "guest": "ゲストとして続行",
+    "signInFailed": "サインインに失敗しました：$error"
+  },
+  "cancel": "キャンセル",
+  "deleteAccount": "アカウントを削除",
+  "deleteDialogTitle": "アカウントを削除してもよろしいですか？",
+  "deleteDialogDescription": "このアクションは元に戻せず、すべてのエクササイズ履歴とデータが永久に削除されます。",
+  "deleteError": "アカウントの削除中にエラーが発生しました。もう一度お試しください。",
+  "enterInvitationCode": "招待コードを入力",
+  "inviteFriends": "友達から受け取った招待コードを入力してください。\n指定されたフィールドに入力してください",
+  "twoDaysPremium": "7日間プレミアム",
+  "advantage": "\nその利点を享受するために。",
+  "send": "送信",
+  "referralCode": {
+    "inputPlaceholder": "8桁のコードを入力",
+    "applying": "コードを適用中...",
+    "success": {
+      "title": "成功！",
+      "message": "紹介コードが正常に適用されました！あなたとあなたの友人は1週間のプレミアムを受け取りました。"
+    },
+    "errors": {
+      "missingCode": {
+        "title": "コードが必要です",
+        "message": "続行するには紹介コードを入力してください。"
+      },
+      "invalidFormat": {
+        "title": "無効な形式",
+        "message": "紹介コードは正確に8文字である必要があります。"
+      },
+      "alreadyUsed": {
+        "title": "既に使用済み",
+        "message": "すでに紹介コードを使用しています。各ユーザーは1つのコードのみを使用できます。"
+      },
+      "selfReferral": {
+        "title": "無効なコード",
+        "message": "自分の招待コードは使用できません。友人のコードを使用してください。"
+      },
+      "codeNotFound": {
+        "title": "コードが見つかりません",
+        "message": "入力された紹介コードは存在しません。確認してもう一度お試しください。"
+      },
+      "genericError": {
+        "title": "エラー",
+        "message": "紹介コードの適用中にエラーが発生しました。もう一度お試しください。"
+      }
+    }
+  },
+  "deleteNotifications": "通知を削除",
+  "deleteNotificationsDescription": "すべての通知を削除してもよろしいですか？\\nこのアクションは元に戻せず、取り消すことはできません。",
+  "deleteAll": "すべて削除",
+  "appLanguage": "アプリの言語",
+  "selectLanguage": "希望する言語を選択してください",
+  "save": "保存",
+  "languageOptions": {
+    "english": "英語",
+    "german": "ドイツ語",
+    "italian": "イタリア語",
+    "french": "フランス語",
+    "japanese": "日本語",
+    "spanish": "スペイン語",
+    "russian": "ロシア語",
+    "turkish": "トルコ語",
+    "korean": "韓国語",
+    "hindi": "ヒンディー語",
+    "portuguese": "ポルトガル語"
+  }
+}
