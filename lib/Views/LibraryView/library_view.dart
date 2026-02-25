@@ -27,7 +27,7 @@ class LibraryView extends StatelessWidget {
           ),
           Positioned(bottom: -250, right: -200, child: CustomBlur()),
           SingleChildScrollView(
-            padding: const EdgeInsets.only(bottom: 50),
+            padding: const EdgeInsets.only(bottom: kBottomNavigationBarHeight),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -83,6 +83,10 @@ class LibraryView extends StatelessWidget {
 
                 // ── All Words Grid ───────────────────────────────────────
                 const LibraryWordGrid(),
+
+                const SizedBox(height: AppSpacing.xxl),
+                const SizedBox(height: AppSpacing.xxl),
+                const SizedBox(height: AppSpacing.xxl),
               ],
             ),
           ),
