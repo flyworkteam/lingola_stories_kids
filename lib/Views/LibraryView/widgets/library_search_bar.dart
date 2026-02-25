@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
@@ -21,9 +22,9 @@ class LibrarySearchBar extends StatelessWidget {
         borderRadius: AppBorderRadius.lgRadius,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
+            color: Color(0xffCCDBE8),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -33,7 +34,8 @@ class LibrarySearchBar extends StatelessWidget {
         textAlignVertical: TextAlignVertical.center,
         style: AppTextStyles.body(14, color: Colors.black87),
         decoration: InputDecoration(
-          hintText: 'Please enter word…',
+          hintText: context.t.library.searchHint,
+
           hintStyle: AppTextStyles.body(14, color: Colors.black38),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg,
@@ -48,17 +50,16 @@ class LibrarySearchBar extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: AppColors.primary,
                 shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryShadow,
+                    blurRadius: 0,
+                    offset: Offset(0, 3),
+                  ),
+                ],
               ),
               child: Center(
-                child: SvgPicture.asset(
-                  AppIcons.search,
-                  width: 18,
-                  height: 18,
-                  colorFilter: const ColorFilter.mode(
-                    Colors.white,
-                    BlendMode.srcIn,
-                  ),
-                ),
+                child: SvgPicture.asset(AppIcons.search, width: 18, height: 18),
               ),
             ),
           ),

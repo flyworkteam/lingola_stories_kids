@@ -60,12 +60,10 @@ flutter:
     - assets/icons/flags/
 
 flutter_native_splash:
-  color: "#E8A7F2"
-  background_image: assets/app-logo.png
+  background_image: assets/images/splashscreen1.png
   fullscreen: true
   android_12:
-    background_image: assets/app-logo.png
-    color: "#E8A7F2"
+    background_image: assets/images/splashscreen1.png
   android: true
   ios: true
   ios_content_mode: scaleAspectFill

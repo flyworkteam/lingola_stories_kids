@@ -14,34 +14,32 @@ class StoryCardMedium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final startColor = Color(
-      int.parse(story.coverGradientStart.replaceFirst('0x', ''), radix: 16),
-    );
-    final endColor = Color(
-      int.parse(story.coverGradientEnd.replaceFirst('0x', ''), radix: 16),
-    );
-
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
         width: 110,
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Expanded(
-              child: ClipRRect(
-                borderRadius: AppBorderRadius.mdRadius,
+            // Kapak görselinin boyutu sabit kalsın ve kare (1:1) kalsın
+            ClipRRect(
+              borderRadius: AppBorderRadius.mdRadius,
+              child: AspectRatio(
+                aspectRatio: 1 / 1,
                 child: Container(
                   decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [startColor, endColor],
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                    ),
                     image: story.coverImageAsset != null
                         ? DecorationImage(
                             image: AssetImage(story.coverImageAsset!),
                             fit: BoxFit.cover,
+                          )
+                        : null,
+                    gradient: story.coverImageAsset == null
+                        ? const LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            colors: [Color(0xFFEEF2FF), Color(0xFFDDE7FF)],
                           )
                         : null,
                   ),
@@ -52,11 +50,13 @@ class StoryCardMedium extends StatelessWidget {
             Text(
               story.title.replaceAll('\n', ' '),
               maxLines: 2,
+              textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,
               style: AppTextStyles.body(
-                11,
+                14,
                 weight: FontWeight.w600,
-                color: Colors.black87,
+                height: 13,
+                letterSpacing: -0.05,
               ),
             ),
           ],

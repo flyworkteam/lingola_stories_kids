@@ -1,221 +1,396 @@
 {
-    "welcome": "Hoşgeldiniz $name",
-    "welcome2": "$appName'e hoşgeldiniz",
-    "get_started": "Başlayın",
-    "next": "Sonraki",
-    "back": "Geri",
-    "skip": "Atla",
-    "continue": "Devam",
-    "logintext": "Her kelimenin anlatılmayı bekleyen yeni bir macera olduğu yer.",
-    "termOfService": {
-        "text1": "Swipe'a kaydolarak ",
-        "link1": "Hizmet Şartlarımızı",
-        "text2": " kabul etmiş olursunuz. ",
-        "link2": "Gizlilik Politikamızda",
-        "text3": " ve ",
-        "link3": "Çerez Politikamızda",
-        "text4": " verilerinizi nasıl işlediğimizi öğrenin"
+  "welcome": "Hoşgeldiniz $name",
+  "welcome2": "$appName'e hoşgeldiniz",
+  "get_started": "Başlayın",
+  "next": "Sonraki",
+  "back": "Geri",
+  "skip": "Atla",
+  "continue": "Devam",
+  "logintext": "Her kelimenin anlatılmayı bekleyen yeni bir macera olduğu yer.",
+  "termOfService": {
+    "text1": "Swipe'a kaydolarak ",
+    "link1": "Hizmet Şartlarımızı",
+    "text2": " kabul etmiş olursunuz. ",
+    "link2": "Gizlilik Politikamızda",
+    "text3": " ve ",
+    "link3": "Çerez Politikamızda",
+    "text4": " verilerinizi nasıl işlediğimizi öğrenin",
+    "privacyPolicy": {
+      "title": "Gizlilik Politikası",
+      "lastUpdated": "Son Güncelleme: 2025",
+      "intro": "Lingola Stories Kids, çocuk gizliliğini ve veri güvenliğini temel ilke olarak benimser.",
+      "section1Title": "1. TOPLANAN BİLGİLER",
+      "section1sub1Title": "1.1 Kullanıcı Tarafından Sağlanan Veriler",
+      "section1sub1Body": "Takma ad veya profil adı.\nE-posta adresi.\nYaş bilgisi.\nDil seviyesi ve öğrenilen kelimeler.\n\nNot: Sağlık analizi için kesinlikle kullanılmaz.",
+      "section1sub2Title": "1.2 Otomatik Toplanan Veriler",
+      "section1sub2Body": "Cihaz türü, işletim sistemi ve performans verileri. Kesin konum TOPLANMAZ.",
+      "section2Title": "2. VERİ İŞLEME AMAÇLARI",
+      "section2Body": "Verileriniz yalnızca şu amaçlarla kullanılır:\n\n- Yaşa uygun içerik sunmak.\n- Öğrenme deneyimini kişisel uyarlamak.\n- Uygulama performansını iyileştirmek.\n- Yasal yükümlülükleri yerine getirmek.",
+      "section3Title": "3. VERİ SAKLAMA VE SİLME",
+      "section3Body": "Hesabınız aktif olduğu sürece saklanır. Destek kayıtları en fazla 12 ay. Silinen hesaplarda veriler geri alınamaz şekilde silinir.",
+      "section4Title": "4. KULLANICI HAKLARI",
+      "section4Body": "KVKK kapsamında erişim, düzeltme, silme veya taşınabilirlik talep edebilirsiniz. support@fly-work.com",
+      "section5Title": "5. ÇOCUKLARIN GİZLİLİĞİ",
+      "section5Body": "6 yaş ve üzeri için tasarım. 13 yaş altı için ebeveyn onayı gereklidir.",
+      "section6Title": "6. İLETİŞİM",
+      "section6Body": "Sorular: support@fly-work.com"
     },
-    "cookies": "Çerez Politikası",
-    "privacy": "Gizlilik Politikası",
-    "onboarding": {},
-    "pressBackAgainToExit": "Çıkmak için bir kez daha geri tuşuna basın",
-    "faq": {
-        "title": "Sıkça Sorulan Sorular",
-        "questions": {
-            "q1": {
-                "question": "Bu uygulama ne işe yarar?",
-                "answer": "Çocukların İngilizceyi eğlenceli hikâyelerle öğrenmesini sağlar. Kelimeler cümle içinde görülür, anlamı sezilerek öğrenilir ve tekrarlarla kalıcı hale getirilir."
-            },
-            "q2": {
-                "question": "Yapay zekâ burada ne yapıyor?",
-                "answer": "Çocuğun hangi kelimelerde zorlandığını analiz eder, basit açıklamalar sunar ve seviyesine uygun yeni hikâyeler önerir. İçerik çocuğun öğrenme hızına göre uyarlanır."
-            },
-            "q3": {
-                "question": "Günde ne kadar kullanmak yeterlidir?",
-                "answer": "Günde 5–10 dakika yeterlidir. Kısa bir hikâye bile düzenli öğrenme için etkilidir."
-            },
-            "q4": {
-                "question": "Hikâyeler hangi yaş grubu için uygundur?",
-                "answer": "Hikâyeler çocukların yaş ve seviyesine göre sunulur. Uygulama başlangıçta seviyeyi belirler ve ilerlemeye göre zorluk derecesini ayarlar."
-            },
-            "q5": {
-                "question": "Bilmediği kelimeleri nasıl öğrenir?",
-                "answer": "Bilmediği kelimeye dokunduğunda anlamı, basit açıklaması ve doğru telaffuzu gösterilir. Böylece kelime hem okunur hem duyulur."
-            },
-            "q6": {
-                "question": "İnternet bağlantısı gerekli mi?",
-                "answer": "Önceden indirilen hikâyeler çevrimdışı okunabilir. Yeni içerikler ve güncellemeler için internet bağlantısı gerekir."
-            },
-            "q7": {
-                "question": "Uygulama ücretsiz mi?",
-                "answer": "Temel hikâyelere ücretsiz erişim sağlanır. Daha fazla hikâye, gelişmiş kişiselleştirme ve ek özellikler premium pakette sunulur."
-            },
-            "q8": {
-                "question": "Hikâyeler sesli dinlenebilir mi?",
-                "answer": "Evet. Hikâyeler doğru telaffuzla dinlenebilir. Bu sayede hem okuma hem dinleme becerisi birlikte gelişir."
-            },
-            "q9": {
-                "question": "Öğrenilen kelimeler takip edilebilir mi?",
-                "answer": "Evet. Öğrenilen kelimeler kaydedilir ve belirli aralıklarla tekrar edilmesi planlanır. Böylece unutma azaltılabilir."
-            },
-            "q10": {
-                "question": "Ne kadar sürede gelişim görülür?",
-                "answer": "Düzenli kullanımda ilerleme kısa sürede fark edilebilir. Okuma alışkanlığı arttıkça kelime haznesi ve anlama becerisi gelişir."
-            }
-        }
+    "termsOfService": {
+      "title": "Kullanım Koşulları",
+      "lastUpdated": "Son Güncelleme: 2025",
+      "intro": "Bu Koşullar, Lingola Stories Kids uygulamasının kullanımını yönetir.",
+      "disclaimer": "Sorumluluk Reddi: Eğitim aracıdır, resmi sertifikasyon sunmaz.",
+      "section1Title": "1. HİZMET KAPSAMI",
+      "section1Body": "Uygulama çocuklar için hikaye bazlı öğrenme sunar:\n\n- YZ destekli hikayeler.\n- Yaşa dayalı okuma:\n- Kelime ve telaffuz desteği.",
+      "section2Title": "2. KULLANIM KOŞULLARI VE YAŞ",
+      "section2Body": "En az 6 yaşında olmalı.\n18 altı ebeveyn gözetimiyle.\nHesap bilgileri doğru olmalı.",
+      "section3Title": "3. YASAKLI KULLANIM",
+      "section3Body": "İzinsiz kopyalama, tersine mühendislik ve ticari kullanım kesinlikle yasaktır.",
+      "section4Title": "4. ABONELİKLER VE ÖDEMELER",
+      "section4Body": "Premium App Store / Google Play politikalarına tabidir.",
+      "section5Title": "5. FİKRİ MÜLKİYET",
+      "section5Body": "Tüm içerikler Lingola Stories Kids'e aittir.",
+      "section6Title": "6. SORUMLULUGUN SINIRLANMASI",
+      "section6Body": "Uygulama oldugu gibi sunulmaktadır.",
+      "section7Title": "7. UYGULANACAK HUKUK",
+      "section7Body": "Türkiye Cumhuriyeti kanunlarına tabidir. İstanbul Mahkemeleri yetkilidir.",
+      "section8Title": "8. İLETİŞİM",
+      "section8Body": "Sorular: support@fly-work.com"
     },
-    "good_morning": "Günaydın",
-    "good_afternoon": "İyi günler",
-    "good_evening": "İyi akşamlar",
-    "splash": {
-        "screen1": {
-            "title": "Learn English with Stories",
-            "description": "No boring memorisation. Discover words in their natural flow through short and fun stories."
-        },
-        "screen2": {
-            "title": "Artificial Intelligence Guides You",
-            "description": "It tracks the words you struggle with, explains their meaning, and suggests new stories tailored to your level."
-        }
-    },
-    "profile": {
-        "title": "Profil",
-        "freeVersion": "Ücretsiz Versiyon",
-        "error": "Hata",
-        "sections": {
-            "accountSettings": "HESAP AYARLARI",
-            "supportAndOther": "DESTEK & DİĞER"
-        },
-        "menu": {
-            "editProfile": "Profil Düzenle",
-            "notifications": "Bildirimler",
-            "premium": "Premium",
-            "appLanguage": "Uygulama Dili",
-            "shareWithFriends": "Arkadaşlarınla Paylaş",
-            "enterInviteCode": "Davet Kodu Gir",
-            "rateUs": "Bizi Değerlendir",
-            "faq": "SSS",
-            "logout": "Çıkış Yap"
-        },
-        "manage": "YÖNET",
-        "logoutDialog": {
-            "title": "Çıkış yapmak üzeresiniz",
-            "message": "Tekrar görüşmek üzere! Nefes egzersizlerinizi izleyeceğiz.",
-            "logoutButton": "Çıkış Yap",
-            "cancelButton": "Vazgeç"
-        }
-    },
-    "home": {
-        "premium": "Premium!",
-        "seeMore": "Daha Fazla",
-        "premiumPlan": {
-            "title": "Premium Plan",
-            "description": "AI asistanının kilidini aç &\ntüm premium özellikleri edin",
-            "button": "Premium Al",
-            "dialog": {
-                "title": "Özellik Aktif Değil",
-                "message": "Bu özellik şu anda kullanıma açık değildir.",
-                "button": "Tamam"
-            }
-        }
-    },
-    "editProfile": {
-        "title": "Profil Düzenle",
-        "changePhoto": "Fotoğrafı Değiştir",
-        "fullName": "Ad Soyad",
-        "email": "E-posta",
-        "age": "Yaş",
-        "save": "Kaydet",
-        "saving": "Kaydediliyor...",
-        "updateSuccess": "Profil başarıyla güncellendi",
-        "updateError": "Profil güncellenirken bir hata oluştu",
-        "deleteAccount": "Hesabı Sil"
-    },
-    "notifications": {
-        "title": "Bildirimler",
-        "emptyTitle": "Henüz bildirim yok",
-        "emptyDescription": "Öğrenme yolculuğunla ilgili önemli bir gelişme olduğunda sana haber vereceğiz.",
-        "premiumBannerTitle": "Premium avantajlarını\nkaçırma!",
-        "premiumBannerDescription": "Premium abonesi olarak fırsatları yakala."
-    },
-    "share": {
-        "title": "Arkadaşlarınla Paylaş",
-        "mainTitle": "Huzuru Paylaş",
-        "descriptionPart1": "Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ",
-        "descriptionPart2": "1 hafta Premium\n",
-        "descriptionPart3": " kazanın",
-        "yourReferralCode": "REFERANS KODUN",
-        "codeCopied": "Kod kopyalandı!",
-        "copyCode": "Kodu Kopyala"
-    },
-    "auth": {
-        "google": "Google",
-        "facebook": "Facebook",
-        "apple": "Apple",
-        "guest": "Misafir Olarak Devam Et",
-        "signInFailed": "Giriş başarısız: $error"
-    },
-    "cancel": "İptal",
-    "deleteAccount": "Hesabı Sil",
-    "deleteDialogTitle": "Hesabınızı silmek istediğinize emin misiniz?",
-    "deleteDialogDescription": "Bu işlem geri alınamaz ve tüm egzersiz geçmişinizi ve verilerinizi kalıcı olarak silecektir.",
-    "deleteError": "Hesabınızı silerken bir hata oluştu. Lütfen tekrar deneyin.",
-    "enterInvitationCode": "Davet Kodu Gir",
-    "inviteFriends": "Arkadaşınızdan aldığınız davet kodunu.\nİlgili alana yazarak",
-    "twoDaysPremium": "7 Günlük Premium",
-    "advantage": "\navantajlarından yararlanabilirsiniz.",
-    "send": "Gönder",
-    "referralCode": {
-        "inputPlaceholder": "8 karakterli kodu girin",
-        "applying": "Kod uygulanıyor...",
-        "success": {
-            "title": "Başarılı!",
-            "message": "Referans kodu başarıyla uygulandı! Hem siz hem de arkadaşınız 1 hafta premium kazandınız."
-        },
-        "errors": {
-            "missingCode": {
-                "title": "Kod Gerekli",
-                "message": "Devam etmek için lütfen bir referans kodu girin."
-            },
-            "invalidFormat": {
-                "title": "Geçersiz Format",
-                "message": "Referans kodu tam olarak 8 karakter uzunluğunda olmalıdır."
-            },
-            "alreadyUsed": {
-                "title": "Zaten Kullanıldı",
-                "message": "Zaten bir referans kodu kullandınız. Her kullanıcı yalnızca bir kod kullanabilir."
-            },
-            "selfReferral": {
-                "title": "Geçersiz Kod",
-                "message": "Kendi davet kodunuzu kullanamazsınız. Lütfen bir arkadaşınızın kodunu kullanın."
-            },
-            "codeNotFound": {
-                "title": "Kod Bulunamadı",
-                "message": "Girdiğiniz referans kodu mevcut değil. Lütfen kontrol edip tekrar deneyin."
-            },
-            "genericError": {
-                "title": "Hata",
-                "message": "Referans kodu uygulanırken bir hata oluştu. Lütfen tekrar deneyin."
-            }
-        }
-    },
-    "deleteNotifications": "Bildirimleri Sil",
-    "deleteNotificationsDescription": "Tüm bildirimlerinizi silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve kalıcı olarak silinecektir.",
-    "deleteAll": "Tümünü Sil",
-    "appLanguage": "Uygulama Dili",
-    "selectLanguage": "Tercih Ettiğiniz Dili Seçin",
-    "save": "Kaydet",
-    "languageOptions": {
-        "english": "İngilizce",
-        "german": "Almanca",
-        "italian": "İtalyanca",
-        "french": "Fransızca",
-        "japanese": "Japonca",
-        "spanish": "İspanyolca",
-        "russian": "Rusça",
-        "turkish": "Türkçe",
-        "korean": "Korece",
-        "hindi": "Hintçe",
-        "portuguese": "Portekizce"
+    "cookiePolicy": {
+      "title": "Çerez Politikası",
+      "lastUpdated": "Son Güncelleme: 2025",
+      "intro": "Bu politika, uygulamayı kullandığınızda hangi dijital teknolojilerin kullanıldığını açıklar.",
+      "important": "ÖNEMLİ: Çocuk gizliliği temel ilkemizdir. 6 yaş ve üzeri için tasarım.",
+      "section1Title": "1. ÇEREZLER NELİKTİR?",
+      "section1Body": "Cookies and similar technologies (SDKs, identifiers) are small digital components that help the app function correctly. They do not directly identify you.",
+      "section2Title": "2. HANGİ TEKNOLOJİLERİ KULLANIYORUZ?",
+      "section2Body": "Strictly Necessary: For session management and security.\n\nPerformance and Analytics: Understand which stories are read, data evaluated anonymously.\n\nPersonalization: Remembers language preference and reading level.",
+      "section3Title": "3. NEDEN KULLANIYORUZ?",
+      "section3Body": "- To ensure the app runs safely.\n- To make the reading experience more fluid.\n- To remember settings.\n- To identify features for future development.",
+      "section4Title": "4. ÜÇÜNCÜ TARAF TEKNOLOJİLER",
+      "section4Body": "We apply minimum data usage when working with third-party partners.",
+      "section5Title": "5. KONTROL VE YÖNETİM",
+      "section5Body": "Parents can limit these technologies via device settings. Disabling necessary technologies may affect functionality.",
+      "section6Title": "6. İLETİŞİM",
+      "section6Body": "Sorular: support@fly-work.com"
     }
+  },
+  "cookies": "Çerez Politikası",
+  "privacy": "Gizlilik Politikası",
+  "onboarding": {
+    "step1": {
+      "title": "Hangi dili\nöğrenmek istiyorsunuz?",
+      "subtitle": "Lütfen öğrenmek istediğiniz\ndil veya dilleri seçin."
+    },
+    "step2": {
+      "title": "Ne tür hikayeleri\nseversiniz?",
+      "subtitle": "Lütfen tercihinizi belirtin.",
+      "categories": {
+        "space": "🚀 Uzay Maceraları",
+        "magic": "🦄 Büyülü Dünyalar",
+        "detectives": "🕵️ Küçük Dedektifler",
+        "animals": "🐾 Sevimli Dostlar",
+        "dinosaurs": "🦖 Dinozorlar Çağı",
+        "superhero": "🦸 Süper Kahramanlar",
+        "underwater": "🌊 Su Altı Krallığı",
+        "fairytale": "🏰 Prens ve Prenses Masalları"
+      }
+    },
+    "loading": {
+      "titlePart1": "Kişisel hesabınız\n",
+      "titlePart2": "oluşturuluyor",
+      "subtitle": "Sizin için harika hikayeler oluşturuyoruz",
+      "optimization": "Optimizasyon"
+    }
+  },
+  "pressBackAgainToExit": "Çıkmak için bir kez daha geri tuşuna basın",
+  "faq": {
+    "title": "Sıkça Sorulan Sorular",
+    "questions": {
+      "q1": {
+        "question": "Bu uygulama ne işe yarar?",
+        "answer": "Çocukların İngilizceyi eğlenceli hikâyelerle öğrenmesini sağlar. Kelimeler cümle içinde görülür, anlamı sezilerek öğrenilir ve tekrarlarla kalıcı hale getirilir."
+      },
+      "q2": {
+        "question": "Yapay zekâ burada ne yapıyor?",
+        "answer": "Çocuğun hangi kelimelerde zorlandığını analiz eder, basit açıklamalar sunar ve seviyesine uygun yeni hikâyeler önerir. İçerik çocuğun öğrenme hızına göre uyarlanır."
+      },
+      "q3": {
+        "question": "Günde ne kadar kullanmak yeterlidir?",
+        "answer": "Günde 5–10 dakika yeterlidir. Kısa bir hikâye bile düzenli öğrenme için etkilidir."
+      },
+      "q4": {
+        "question": "Hikâyeler hangi yaş grubu için uygundur?",
+        "answer": "Hikâyeler çocukların yaş ve seviyesine göre sunulur. Uygulama başlangıçta seviyeyi belirler ve ilerlemeye göre zorluk derecesini ayarlar."
+      },
+      "q5": {
+        "question": "Bilmediği kelimeleri nasıl öğrenir?",
+        "answer": "Bilmediği kelimeye dokunduğunda anlamı, basit açıklaması ve doğru telaffuzu gösterilir. Böylece kelime hem okunur hem duyulur."
+      },
+      "q6": {
+        "question": "İnternet bağlantısı gerekli mi?",
+        "answer": "Önceden indirilen hikâyeler çevrimdışı okunabilir. Yeni içerikler ve güncellemeler için internet bağlantısı gerekir."
+      },
+      "q7": {
+        "question": "Uygulama ücretsiz mi?",
+        "answer": "Temel hikâyelere ücretsiz erişim sağlanır. Daha fazla hikâye, gelişmiş kişiselleştirme ve ek özellikler premium pakette sunulur."
+      },
+      "q8": {
+        "question": "Hikâyeler sesli dinlenebilir mi?",
+        "answer": "Evet. Hikâyeler doğru telaffuzla dinlenebilir. Bu sayede hem okuma hem dinleme becerisi birlikte gelişir."
+      },
+      "q9": {
+        "question": "Öğrenilen kelimeler takip edilebilir mi?",
+        "answer": "Evet. Öğrenilen kelimeler kaydedilir ve belirli aralıklarla tekrar edilmesi planlanır. Böylece unutma azaltılabilir."
+      },
+      "q10": {
+        "question": "Ne kadar sürede gelişim görülür?",
+        "answer": "Düzenli kullanımda ilerleme kısa sürede fark edilebilir. Okuma alışkanlığı arttıkça kelime haznesi ve anlama becerisi gelişir."
+      }
+    }
+  },
+  "good_morning": "Günaydın",
+  "good_afternoon": "İyi günler",
+  "good_evening": "İyi akşamlar",
+  "splash": {
+    "screen1": {
+      "title": "Learn English with Stories",
+      "description": "No boring memorisation. Discover words in their natural flow through short and fun stories."
+    },
+    "screen2": {
+      "title": "Artificial Intelligence Guides You",
+      "description": "It tracks the words you struggle with, explains their meaning, and suggests new stories tailored to your level."
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "freeVersion": "Ücretsiz Versiyon",
+    "error": "Hata",
+    "passive": "Pasif",
+    "sections": {
+      "accountSettings": "HESAP AYARLARI",
+      "general": "GENEL"
+    },
+    "menu": {
+      "editProfile": "Profil Düzenle",
+      "notifications": "Bildirimler",
+      "premium": "Premium",
+      "appLanguage": "Uygulama Dili",
+      "shareWithFriends": "Arkadaşlarınla Paylaş",
+      "enterInviteCode": "Davet Kodu Gir",
+      "rateUs": "Bizi Değerlendir",
+      "faq": "SSS",
+      "logout": "Çıkış Yap"
+    },
+    "manage": "YÖNET",
+    "logoutDialog": {
+      "title": "Çıkış yapmak üzeresiniz",
+      "message": "Tekrar görüşmek üzere! Nefes egzersizlerinizi izleyeceğiz.",
+      "logoutButton": "Çıkış Yap",
+      "cancelButton": "Vazgeç"
+    }
+  },
+  "home": {
+    "premium": "Premium!",
+    "seeMore": "Daha Fazla",
+    "pickUpWhereYouLeftOff": "Kaldığın yerden devam et",
+    "premiumSection": "Premium",
+    "history": "Geçmiş",
+    "librarySection": "Kütüphane",
+    "libraryDescription": "Kaydettiğiniz kelimeler burada görünecek.",
+    "upgradeToPremium": "Premium'a yükselt",
+    "unlimitedStories": "Sınırsız hikaye ve reklamsız deneyim",
+    "premiumPlan": {
+      "title": "Premium Plan",
+      "description": "AI asistanının kilidini aç &\ntüm premium özellikleri edin",
+      "button": "Premium Al",
+      "dialog": {
+        "title": "Özellik Aktif Değil",
+        "message": "Bu özellik şu anda kullanıma açık değildir.",
+        "button": "Tamam"
+      }
+    }
+  },
+  "allStories": {
+    "title": "Tüm Hikayeler",
+    "noStoriesFound": "Hikaye bulunamadı",
+    "selectFilter": "Filtre Seç",
+    "category": "Kategori",
+    "categorySubtitle": "Lütfen okumak istediğiniz kategoriyi seçin",
+    "apply": "Uygula"
+  },
+  "stories": {
+    "title": "Hikayeler",
+    "popularStories": "Popüler Hikayeler",
+    "recommendForYou": "Size Özel Öneriler",
+    "allStories": "Tüm Hikayeler",
+    "seeAll": "Tümünü gör"
+  },
+  "library": {
+    "title": "Kütüphane",
+    "wordCount": "${count} Kelime",
+    "popularWords": "Popüler Kelimeler",
+    "allWords": "Tüm Kelimeler",
+    "searchWord": "Kelime Ara",
+    "searchHint": "Lütfen kelime girin…"
+  },
+  "bottomNav": {
+    "home": "Ana Sayfa",
+    "stories": "Hikayeler",
+    "library": "Kütüphane",
+    "profile": "Profil"
+  },
+  "dayStreak": {
+    "title": "Günlük seri!",
+    "days": {
+      "su": "Pa",
+      "mo": "Pt",
+      "tu": "Sa",
+      "we": "Ça",
+      "th": "Pe",
+      "fr": "Cu",
+      "sa": "Ct"
+    }
+  },
+  "storyDetails": {
+    "introduction": "Giriş",
+    "saved": "Kaydedildi",
+    "removed": "Kaldırıldı",
+    "storyAddedToLibrary": "Hikaye kütüphanenize eklendi.",
+    "storyRemovedFromLibrary": "Hikaye kütüphaneden kaldırıldı.",
+    "wordAddedToLibrary": "Kelime kütüphaneye eklendi. Geri al",
+    "successfully": "Başarıyla",
+    "ratingSubmitted": "Puanınız başarıyla gönderildi.",
+    "warning": "Uyarı",
+    "fillAllFields": "Lütfen tüm alanları doldurun.",
+    "messageSent": "Mesajınız başarıyla gönderildi.",
+    "translate": "Çevir",
+    "speak": "Konuş",
+    "like": "Beğen",
+    "save": "Kaydet",
+    "feedback": "Geri Bildirim",
+    "rating": "Puan",
+    "stop": "Durdur",
+    "start": "Başlat",
+    "listen": "Dinle",
+    "translation": "Çeviri",
+    "translating": "Çevriliyor...",
+    "saveToLibrary": "Kütüphaneye kaydet",
+    "rateThisStory": "Bu hikayeyi puanla",
+    "enjoyStory": "Bu hikayeden ne kadar keyif aldınız?",
+    "send": "Gönder",
+    "subject": "Konu",
+    "feedbackSubjects": {
+      "bugReport": "Hata Bildirimi",
+      "storyContent": "Hikaye İçeriği",
+      "audioIssue": "Ses Sorunu",
+      "suggestion": "Öneri",
+      "other": "Diğer"
+    }
+  },
+  "share": {
+    "title": "Arkadaşlarınla Paylaş",
+    "mainTitle": "Huzuru Paylaş",
+    "descriptionPart1": "Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ",
+    "descriptionPart2": "1 hafta Premium\n",
+    "descriptionPart3": " kazanın",
+    "yourReferralCode": "REFERANS KODUN",
+    "codeCopied": "Kod kopyalandı!",
+    "copyCode": "Kodu Kopyala",
+    "inviteDescription": "Arkadaşlarını davet et ve\nbirlikte öğren",
+    "linkCopied": "Kopyalandı",
+    "linkCopiedMessage": "Bağlantı panoya kopyalandı."
+  },
+  "delete": "Sil",
+  "editProfile": {
+    "title": "Profil Düzenle",
+    "changePhoto": "Avatar Değiştir",
+    "learnLanguage": "Öğrenilecek Dili Seç",
+    "fullName": "Ad Soyad",
+    "email": "E-posta",
+    "age": "Yaş",
+    "save": "Kaydet",
+    "saving": "Kaydediliyor...",
+    "updateSuccess": "Profil başarıyla güncellendi",
+    "updateError": "Profil güncellenirken bir hata oluştu",
+    "deleteAccount": "Hesabı Sil"
+  },
+  "notifications": {
+    "title": "Bildirimler",
+    "emptyTitle": "Henüz bildirim yok",
+    "emptyDescription": "Öğrenme yolculuğunla ilgili önemli bir gelişme olduğunda sana haber vereceğiz.",
+    "premiumBannerTitle": "Premium avantajlarını\nkaçırma!",
+    "premiumBannerDescription": "Premium abonesi olarak fırsatları yakala."
+  },
+  "auth": {
+    "google": "Google",
+    "facebook": "Facebook",
+    "apple": "Apple",
+    "guest": "Misafir Olarak Devam Et",
+    "signInFailed": "Giriş başarısız: $error"
+  },
+  "cancel": "İptal",
+  "deleteAccount": "Hesabı Sil",
+  "deleteDialogTitle": "Hesabınızı silmek istediğinize emin misiniz?",
+  "deleteDialogDescription": "Bu işlem geri alınamaz ve tüm egzersiz geçmişinizi ve verilerinizi kalıcı olarak silecektir.",
+  "deleteError": "Hesabınızı silerken bir hata oluştu. Lütfen tekrar deneyin.",
+  "enterInvitationCode": "Davet Kodu Gir",
+  "inviteFriends": "Arkadaşınızdan aldığınız davet kodunu.\nİlgili alana yazarak",
+  "twoDaysPremium": "7 Günlük Premium",
+  "advantage": "\navantajlarından yararlanabilirsiniz.",
+  "send": "Gönder",
+  "referralCode": {
+    "inputPlaceholder": "8 karakterli kodu girin",
+    "applying": "Kod uygulanıyor...",
+    "success": {
+      "title": "Başarılı!",
+      "message": "Referans kodu başarıyla uygulandı! Hem siz hem de arkadaşınız 1 hafta premium kazandınız."
+    },
+    "errors": {
+      "missingCode": {
+        "title": "Kod Gerekli",
+        "message": "Devam etmek için lütfen bir referans kodu girin."
+      },
+      "invalidFormat": {
+        "title": "Geçersiz Format",
+        "message": "Referans kodu tam olarak 8 karakter uzunluğunda olmalıdır."
+      },
+      "alreadyUsed": {
+        "title": "Zaten Kullanıldı",
+        "message": "Zaten bir referans kodu kullandınız. Her kullanıcı yalnızca bir kod kullanabilir."
+      },
+      "selfReferral": {
+        "title": "Geçersiz Kod",
+        "message": "Kendi davet kodunuzu kullanamazsınız. Lütfen bir arkadaşınızın kodunu kullanın."
+      },
+      "codeNotFound": {
+        "title": "Kod Bulunamadı",
+        "message": "Girdiğiniz referans kodu mevcut değil. Lütfen kontrol edip tekrar deneyin."
+      },
+      "genericError": {
+        "title": "Hata",
+        "message": "Referans kodu uygulanırken bir hata oluştu. Lütfen tekrar deneyin."
+      }
+    }
+  },
+  "deleteNotifications": "Bildirimleri Sil",
+  "deleteNotificationsDescription": "Tüm bildirimlerinizi silmek istediğinize emin misiniz? Bu işlem geri alınamaz ve kalıcı olarak silinecektir.",
+  "deleteAll": "Tümünü Sil",
+  "appLanguage": "Uygulama Dili",
+  "selectLanguage": "Tercih Ettiğiniz Dili Seçin",
+  "save": "Kaydet",
+  "languageOptions": {
+    "english": "İngilizce",
+    "german": "Almanca",
+    "italian": "İtalyanca",
+    "french": "Fransızca",
+    "japanese": "Japonca",
+    "spanish": "İspanyolca",
+    "russian": "Rusça",
+    "turkish": "Türkçe",
+    "korean": "Korece",
+    "hindi": "Hintçe",
+    "portuguese": "Portekizce"
+  }
 }

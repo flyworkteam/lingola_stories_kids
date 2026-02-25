@@ -7,7 +7,10 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lingolakidstories/Views/SplashView/models/splash_info_model.dart';
 import 'package:lingolakidstories/Views/SplashView/widgets/splash_widget.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
+import 'package:lingolakidstories/shared/custom_blur.dart';
+import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
+import 'package:lingolakidstories/utils/constants.dart';
 
 class SplashView extends HookConsumerWidget {
   const SplashView({super.key});
@@ -86,13 +89,45 @@ class SplashView extends HookConsumerWidget {
         builder: (context, isInitialSplash) {
           if (isInitialSplash) {
             return Container(
-              width: double.infinity,
-              height: double.infinity,
               decoration: const BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(AppImages.splashscreen1),
-                  fit: BoxFit.cover,
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFFFFF3E8),
+                    Color(0xFFFFFFFF),
+                    Color(0xFFFFF0F5),
+                  ],
+                  stops: [0.0, 0.5, 1.0],
                 ),
+              ),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Positioned(
+                    top: -250,
+                    left: -200,
+                    child: CustomBlur(color: Color(0xFFFFB256)),
+                  ),
+                  Positioned(bottom: -250, right: -200, child: CustomBlur()),
+                  Center(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Image.asset(AppAssets.logo, width: 120, height: 120),
+                        const SizedBox(height: 24),
+                        Text(
+                          Constants.appName,
+                          style: AppTextStyles.body(
+                            32,
+                            weight: FontWeight.bold,
+                            letterSpacing: -0.05,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             );
           } else {

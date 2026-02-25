@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
@@ -57,11 +58,11 @@ class SectionLabel extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
       child: Text(
         label,
-        style: AppTextStyles.body(
-          12,
-          weight: FontWeight.w600,
-          letterSpacing: 0.6,
-          color: const Color(0xFF9E9E9E),
+        style: GoogleFonts.lato(
+          fontSize: 14,
+          fontWeight: FontWeight.w700,
+          letterSpacing: -0.05,
+          color: const Color(0xFF5F8486),
         ),
       ),
     );

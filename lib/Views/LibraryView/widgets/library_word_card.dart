@@ -25,15 +25,14 @@ class LibraryWordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(AppSpacing.lg),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: AppBorderRadius.lgRadius,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.05),
-            blurRadius: 10,
-            offset: const Offset(0, 3),
+            color: const Color(0xffCCDBE8),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -44,26 +43,24 @@ class LibraryWordCard extends StatelessWidget {
             onTap: onSpeakTap,
             child: AnimatedContainer(
               duration: const Duration(milliseconds: 200),
-              width: 48,
-              height: 48,
+              width: 31,
+              height: 31,
               decoration: BoxDecoration(
                 color: isSpeaking ? AppColors.primaryShadow : AppColors.primary,
                 shape: BoxShape.circle,
-                boxShadow: isSpeaking
-                    ? [
-                        BoxShadow(
-                          color: AppColors.primary.withValues(alpha: 0.45),
-                          blurRadius: 12,
-                          spreadRadius: 2,
-                        ),
-                      ]
-                    : [],
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryShadow,
+                    blurRadius: 0,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
               child: Center(
                 child: SvgPicture.asset(
                   isSpeaking ? AppIcons.stop : AppIcons.speaker,
-                  width: 22,
-                  height: 22,
+                  width: 20,
+                  height: 20,
                   colorFilter: const ColorFilter.mode(
                     Colors.white,
                     BlendMode.srcIn,
@@ -76,9 +73,10 @@ class LibraryWordCard extends StatelessWidget {
           Text(
             word,
             style: AppTextStyles.heading(
-              15,
-              FontWeight.w700,
+              18,
+              FontWeight.w600,
               color: Colors.black,
+              letterSpacing: -0.05,
             ),
             textAlign: TextAlign.center,
           ),
@@ -87,7 +85,11 @@ class LibraryWordCard extends StatelessWidget {
               ? const SizedBox(width: 60, height: 12, child: _ShimmerBox())
               : Text(
                   translation ?? word,
-                  style: AppTextStyles.body(12, color: Colors.black54),
+                  style: AppTextStyles.body(
+                    14,
+                    color: Color(0xffb2b2b2),
+                    letterSpacing: -0.05,
+                  ),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 2,

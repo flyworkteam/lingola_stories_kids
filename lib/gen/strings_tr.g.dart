@@ -48,6 +48,7 @@ class TranslationsTr with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _TranslationsTermOfServiceTr termOfService = _TranslationsTermOfServiceTr._(_root);
 	@override String get cookies => 'Çerez Politikası';
 	@override String get privacy => 'Gizlilik Politikası';
+	@override late final _TranslationsOnboardingTr onboarding = _TranslationsOnboardingTr._(_root);
 	@override String get pressBackAgainToExit => 'Çıkmak için bir kez daha geri tuşuna basın';
 	@override late final _TranslationsFaqTr faq = _TranslationsFaqTr._(_root);
 	@override String get good_morning => 'Günaydın';
@@ -56,9 +57,16 @@ class TranslationsTr with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _TranslationsSplashTr splash = _TranslationsSplashTr._(_root);
 	@override late final _TranslationsProfileTr profile = _TranslationsProfileTr._(_root);
 	@override late final _TranslationsHomeTr home = _TranslationsHomeTr._(_root);
+	@override late final _TranslationsAllStoriesTr allStories = _TranslationsAllStoriesTr._(_root);
+	@override late final _TranslationsStoriesTr stories = _TranslationsStoriesTr._(_root);
+	@override late final _TranslationsLibraryTr library = _TranslationsLibraryTr._(_root);
+	@override late final _TranslationsBottomNavTr bottomNav = _TranslationsBottomNavTr._(_root);
+	@override late final _TranslationsDayStreakTr dayStreak = _TranslationsDayStreakTr._(_root);
+	@override late final _TranslationsStoryDetailsTr storyDetails = _TranslationsStoryDetailsTr._(_root);
+	@override late final _TranslationsShareTr share = _TranslationsShareTr._(_root);
+	@override String get delete => 'Sil';
 	@override late final _TranslationsEditProfileTr editProfile = _TranslationsEditProfileTr._(_root);
 	@override late final _TranslationsNotificationsTr notifications = _TranslationsNotificationsTr._(_root);
-	@override late final _TranslationsShareTr share = _TranslationsShareTr._(_root);
 	@override late final _TranslationsAuthTr auth = _TranslationsAuthTr._(_root);
 	@override String get cancel => 'İptal';
 	@override String get deleteAccount => 'Hesabı Sil';
@@ -94,6 +102,21 @@ class _TranslationsTermOfServiceTr implements TranslationsTermOfServiceEn {
 	@override String get text3 => ' ve ';
 	@override String get link3 => 'Çerez Politikamızda';
 	@override String get text4 => ' verilerinizi nasıl işlediğimizi öğrenin';
+	@override late final _TranslationsTermOfServicePrivacyPolicyTr privacyPolicy = _TranslationsTermOfServicePrivacyPolicyTr._(_root);
+	@override late final _TranslationsTermOfServiceTermsOfServiceTr termsOfService = _TranslationsTermOfServiceTermsOfServiceTr._(_root);
+	@override late final _TranslationsTermOfServiceCookiePolicyTr cookiePolicy = _TranslationsTermOfServiceCookiePolicyTr._(_root);
+}
+
+// Path: onboarding
+class _TranslationsOnboardingTr implements TranslationsOnboardingEn {
+	_TranslationsOnboardingTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsOnboardingStep1Tr step1 = _TranslationsOnboardingStep1Tr._(_root);
+	@override late final _TranslationsOnboardingStep2Tr step2 = _TranslationsOnboardingStep2Tr._(_root);
+	@override late final _TranslationsOnboardingLoadingTr loading = _TranslationsOnboardingLoadingTr._(_root);
 }
 
 // Path: faq
@@ -128,6 +151,7 @@ class _TranslationsProfileTr implements TranslationsProfileEn {
 	@override String get title => 'Profil';
 	@override String get freeVersion => 'Ücretsiz Versiyon';
 	@override String get error => 'Hata';
+	@override String get passive => 'Pasif';
 	@override late final _TranslationsProfileSectionsTr sections = _TranslationsProfileSectionsTr._(_root);
 	@override late final _TranslationsProfileMenuTr menu = _TranslationsProfileMenuTr._(_root);
 	@override String get manage => 'YÖNET';
@@ -143,7 +167,139 @@ class _TranslationsHomeTr implements TranslationsHomeEn {
 	// Translations
 	@override String get premium => 'Premium!';
 	@override String get seeMore => 'Daha Fazla';
+	@override String get pickUpWhereYouLeftOff => 'Kaldığın yerden devam et';
+	@override String get premiumSection => 'Premium';
+	@override String get history => 'Geçmiş';
+	@override String get librarySection => 'Kütüphane';
+	@override String get libraryDescription => 'Kaydettiğiniz kelimeler burada görünecek.';
+	@override String get upgradeToPremium => 'Premium\'a yükselt';
+	@override String get unlimitedStories => 'Sınırsız hikaye ve reklamsız deneyim';
 	@override late final _TranslationsHomePremiumPlanTr premiumPlan = _TranslationsHomePremiumPlanTr._(_root);
+}
+
+// Path: allStories
+class _TranslationsAllStoriesTr implements TranslationsAllStoriesEn {
+	_TranslationsAllStoriesTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Tüm Hikayeler';
+	@override String get noStoriesFound => 'Hikaye bulunamadı';
+	@override String get selectFilter => 'Filtre Seç';
+	@override String get category => 'Kategori';
+	@override String get categorySubtitle => 'Lütfen okumak istediğiniz kategoriyi seçin';
+	@override String get apply => 'Uygula';
+}
+
+// Path: stories
+class _TranslationsStoriesTr implements TranslationsStoriesEn {
+	_TranslationsStoriesTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hikayeler';
+	@override String get popularStories => 'Popüler Hikayeler';
+	@override String get recommendForYou => 'Size Özel Öneriler';
+	@override String get allStories => 'Tüm Hikayeler';
+	@override String get seeAll => 'Tümünü gör';
+}
+
+// Path: library
+class _TranslationsLibraryTr implements TranslationsLibraryEn {
+	_TranslationsLibraryTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Kütüphane';
+	@override String wordCount({required Object count}) => '${count} Kelime';
+	@override String get popularWords => 'Popüler Kelimeler';
+	@override String get allWords => 'Tüm Kelimeler';
+	@override String get searchWord => 'Kelime Ara';
+	@override String get searchHint => 'Lütfen kelime girin…';
+}
+
+// Path: bottomNav
+class _TranslationsBottomNavTr implements TranslationsBottomNavEn {
+	_TranslationsBottomNavTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'Ana Sayfa';
+	@override String get stories => 'Hikayeler';
+	@override String get library => 'Kütüphane';
+	@override String get profile => 'Profil';
+}
+
+// Path: dayStreak
+class _TranslationsDayStreakTr implements TranslationsDayStreakEn {
+	_TranslationsDayStreakTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Günlük seri!';
+	@override late final _TranslationsDayStreakDaysTr days = _TranslationsDayStreakDaysTr._(_root);
+}
+
+// Path: storyDetails
+class _TranslationsStoryDetailsTr implements TranslationsStoryDetailsEn {
+	_TranslationsStoryDetailsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get introduction => 'Giriş';
+	@override String get saved => 'Kaydedildi';
+	@override String get removed => 'Kaldırıldı';
+	@override String get storyAddedToLibrary => 'Hikaye kütüphanenize eklendi.';
+	@override String get storyRemovedFromLibrary => 'Hikaye kütüphaneden kaldırıldı.';
+	@override String get wordAddedToLibrary => 'Kelime kütüphaneye eklendi. Geri al';
+	@override String get successfully => 'Başarıyla';
+	@override String get ratingSubmitted => 'Puanınız başarıyla gönderildi.';
+	@override String get warning => 'Uyarı';
+	@override String get fillAllFields => 'Lütfen tüm alanları doldurun.';
+	@override String get messageSent => 'Mesajınız başarıyla gönderildi.';
+	@override String get translate => 'Çevir';
+	@override String get speak => 'Konuş';
+	@override String get like => 'Beğen';
+	@override String get save => 'Kaydet';
+	@override String get feedback => 'Geri Bildirim';
+	@override String get rating => 'Puan';
+	@override String get stop => 'Durdur';
+	@override String get start => 'Başlat';
+	@override String get listen => 'Dinle';
+	@override String get translation => 'Çeviri';
+	@override String get translating => 'Çevriliyor...';
+	@override String get saveToLibrary => 'Kütüphaneye kaydet';
+	@override String get rateThisStory => 'Bu hikayeyi puanla';
+	@override String get enjoyStory => 'Bu hikayeden ne kadar keyif aldınız?';
+	@override String get send => 'Gönder';
+	@override String get subject => 'Konu';
+	@override late final _TranslationsStoryDetailsFeedbackSubjectsTr feedbackSubjects = _TranslationsStoryDetailsFeedbackSubjectsTr._(_root);
+}
+
+// Path: share
+class _TranslationsShareTr implements TranslationsShareEn {
+	_TranslationsShareTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Arkadaşlarınla Paylaş';
+	@override String get mainTitle => 'Huzuru Paylaş';
+	@override String get descriptionPart1 => 'Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ';
+	@override String get descriptionPart2 => '1 hafta Premium\n';
+	@override String get descriptionPart3 => ' kazanın';
+	@override String get yourReferralCode => 'REFERANS KODUN';
+	@override String get codeCopied => 'Kod kopyalandı!';
+	@override String get copyCode => 'Kodu Kopyala';
+	@override String get inviteDescription => 'Arkadaşlarını davet et ve\nbirlikte öğren';
+	@override String get linkCopied => 'Kopyalandı';
+	@override String get linkCopiedMessage => 'Bağlantı panoya kopyalandı.';
 }
 
 // Path: editProfile
@@ -154,7 +310,8 @@ class _TranslationsEditProfileTr implements TranslationsEditProfileEn {
 
 	// Translations
 	@override String get title => 'Profil Düzenle';
-	@override String get changePhoto => 'Fotoğrafı Değiştir';
+	@override String get changePhoto => 'Avatar Değiştir';
+	@override String get learnLanguage => 'Öğrenilecek Dili Seç';
 	@override String get fullName => 'Ad Soyad';
 	@override String get email => 'E-posta';
 	@override String get age => 'Yaş';
@@ -177,23 +334,6 @@ class _TranslationsNotificationsTr implements TranslationsNotificationsEn {
 	@override String get emptyDescription => 'Öğrenme yolculuğunla ilgili önemli bir gelişme olduğunda sana haber vereceğiz.';
 	@override String get premiumBannerTitle => 'Premium avantajlarını\nkaçırma!';
 	@override String get premiumBannerDescription => 'Premium abonesi olarak fırsatları yakala.';
-}
-
-// Path: share
-class _TranslationsShareTr implements TranslationsShareEn {
-	_TranslationsShareTr._(this._root);
-
-	final TranslationsTr _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Arkadaşlarınla Paylaş';
-	@override String get mainTitle => 'Huzuru Paylaş';
-	@override String get descriptionPart1 => 'Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ';
-	@override String get descriptionPart2 => '1 hafta Premium\n';
-	@override String get descriptionPart3 => ' kazanın';
-	@override String get yourReferralCode => 'REFERANS KODUN';
-	@override String get codeCopied => 'Kod kopyalandı!';
-	@override String get copyCode => 'Kodu Kopyala';
 }
 
 // Path: auth
@@ -241,6 +381,123 @@ class _TranslationsLanguageOptionsTr implements TranslationsLanguageOptionsEn {
 	@override String get korean => 'Korece';
 	@override String get hindi => 'Hintçe';
 	@override String get portuguese => 'Portekizce';
+}
+
+// Path: termOfService.privacyPolicy
+class _TranslationsTermOfServicePrivacyPolicyTr implements TranslationsTermOfServicePrivacyPolicyEn {
+	_TranslationsTermOfServicePrivacyPolicyTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Gizlilik Politikası';
+	@override String get lastUpdated => 'Son Güncelleme: 2025';
+	@override String get intro => 'Lingola Stories Kids, çocuk gizliliğini ve veri güvenliğini temel ilke olarak benimser.';
+	@override String get section1Title => '1. TOPLANAN BİLGİLER';
+	@override String get section1sub1Title => '1.1 Kullanıcı Tarafından Sağlanan Veriler';
+	@override String get section1sub1Body => 'Takma ad veya profil adı.\nE-posta adresi.\nYaş bilgisi.\nDil seviyesi ve öğrenilen kelimeler.\n\nNot: Sağlık analizi için kesinlikle kullanılmaz.';
+	@override String get section1sub2Title => '1.2 Otomatik Toplanan Veriler';
+	@override String get section1sub2Body => 'Cihaz türü, işletim sistemi ve performans verileri. Kesin konum TOPLANMAZ.';
+	@override String get section2Title => '2. VERİ İŞLEME AMAÇLARI';
+	@override String get section2Body => 'Verileriniz yalnızca şu amaçlarla kullanılır:\n\n- Yaşa uygun içerik sunmak.\n- Öğrenme deneyimini kişisel uyarlamak.\n- Uygulama performansını iyileştirmek.\n- Yasal yükümlülükleri yerine getirmek.';
+	@override String get section3Title => '3. VERİ SAKLAMA VE SİLME';
+	@override String get section3Body => 'Hesabınız aktif olduğu sürece saklanır. Destek kayıtları en fazla 12 ay. Silinen hesaplarda veriler geri alınamaz şekilde silinir.';
+	@override String get section4Title => '4. KULLANICI HAKLARI';
+	@override String get section4Body => 'KVKK kapsamında erişim, düzeltme, silme veya taşınabilirlik talep edebilirsiniz. support@fly-work.com';
+	@override String get section5Title => '5. ÇOCUKLARIN GİZLİLİĞİ';
+	@override String get section5Body => '6 yaş ve üzeri için tasarım. 13 yaş altı için ebeveyn onayı gereklidir.';
+	@override String get section6Title => '6. İLETİŞİM';
+	@override String get section6Body => 'Sorular: support@fly-work.com';
+}
+
+// Path: termOfService.termsOfService
+class _TranslationsTermOfServiceTermsOfServiceTr implements TranslationsTermOfServiceTermsOfServiceEn {
+	_TranslationsTermOfServiceTermsOfServiceTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Kullanım Koşulları';
+	@override String get lastUpdated => 'Son Güncelleme: 2025';
+	@override String get intro => 'Bu Koşullar, Lingola Stories Kids uygulamasının kullanımını yönetir.';
+	@override String get disclaimer => 'Sorumluluk Reddi: Eğitim aracıdır, resmi sertifikasyon sunmaz.';
+	@override String get section1Title => '1. HİZMET KAPSAMI';
+	@override String get section1Body => 'Uygulama çocuklar için hikaye bazlı öğrenme sunar:\n\n- YZ destekli hikayeler.\n- Yaşa dayalı okuma:\n- Kelime ve telaffuz desteği.';
+	@override String get section2Title => '2. KULLANIM KOŞULLARI VE YAŞ';
+	@override String get section2Body => 'En az 6 yaşında olmalı.\n18 altı ebeveyn gözetimiyle.\nHesap bilgileri doğru olmalı.';
+	@override String get section3Title => '3. YASAKLI KULLANIM';
+	@override String get section3Body => 'İzinsiz kopyalama, tersine mühendislik ve ticari kullanım kesinlikle yasaktır.';
+	@override String get section4Title => '4. ABONELİKLER VE ÖDEMELER';
+	@override String get section4Body => 'Premium App Store / Google Play politikalarına tabidir.';
+	@override String get section5Title => '5. FİKRİ MÜLKİYET';
+	@override String get section5Body => 'Tüm içerikler Lingola Stories Kids\'e aittir.';
+	@override String get section6Title => '6. SORUMLULUGUN SINIRLANMASI';
+	@override String get section6Body => 'Uygulama oldugu gibi sunulmaktadır.';
+	@override String get section7Title => '7. UYGULANACAK HUKUK';
+	@override String get section7Body => 'Türkiye Cumhuriyeti kanunlarına tabidir. İstanbul Mahkemeleri yetkilidir.';
+	@override String get section8Title => '8. İLETİŞİM';
+	@override String get section8Body => 'Sorular: support@fly-work.com';
+}
+
+// Path: termOfService.cookiePolicy
+class _TranslationsTermOfServiceCookiePolicyTr implements TranslationsTermOfServiceCookiePolicyEn {
+	_TranslationsTermOfServiceCookiePolicyTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Çerez Politikası';
+	@override String get lastUpdated => 'Son Güncelleme: 2025';
+	@override String get intro => 'Bu politika, uygulamayı kullandığınızda hangi dijital teknolojilerin kullanıldığını açıklar.';
+	@override String get important => 'ÖNEMLİ: Çocuk gizliliği temel ilkemizdir. 6 yaş ve üzeri için tasarım.';
+	@override String get section1Title => '1. ÇEREZLER NELİKTİR?';
+	@override String get section1Body => 'Cookies and similar technologies (SDKs, identifiers) are small digital components that help the app function correctly. They do not directly identify you.';
+	@override String get section2Title => '2. HANGİ TEKNOLOJİLERİ KULLANIYORUZ?';
+	@override String get section2Body => 'Strictly Necessary: For session management and security.\n\nPerformance and Analytics: Understand which stories are read, data evaluated anonymously.\n\nPersonalization: Remembers language preference and reading level.';
+	@override String get section3Title => '3. NEDEN KULLANIYORUZ?';
+	@override String get section3Body => '- To ensure the app runs safely.\n- To make the reading experience more fluid.\n- To remember settings.\n- To identify features for future development.';
+	@override String get section4Title => '4. ÜÇÜNCÜ TARAF TEKNOLOJİLER';
+	@override String get section4Body => 'We apply minimum data usage when working with third-party partners.';
+	@override String get section5Title => '5. KONTROL VE YÖNETİM';
+	@override String get section5Body => 'Parents can limit these technologies via device settings. Disabling necessary technologies may affect functionality.';
+	@override String get section6Title => '6. İLETİŞİM';
+	@override String get section6Body => 'Sorular: support@fly-work.com';
+}
+
+// Path: onboarding.step1
+class _TranslationsOnboardingStep1Tr implements TranslationsOnboardingStep1En {
+	_TranslationsOnboardingStep1Tr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Hangi dili\nöğrenmek istiyorsunuz?';
+	@override String get subtitle => 'Lütfen öğrenmek istediğiniz\ndil veya dilleri seçin.';
+}
+
+// Path: onboarding.step2
+class _TranslationsOnboardingStep2Tr implements TranslationsOnboardingStep2En {
+	_TranslationsOnboardingStep2Tr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Ne tür hikayeleri\nseversiniz?';
+	@override String get subtitle => 'Lütfen tercihinizi belirtin.';
+	@override late final _TranslationsOnboardingStep2CategoriesTr categories = _TranslationsOnboardingStep2CategoriesTr._(_root);
+}
+
+// Path: onboarding.loading
+class _TranslationsOnboardingLoadingTr implements TranslationsOnboardingLoadingEn {
+	_TranslationsOnboardingLoadingTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get titlePart1 => 'Kişisel hesabınız\n';
+	@override String get titlePart2 => 'oluşturuluyor';
+	@override String get subtitle => 'Sizin için harika hikayeler oluşturuyoruz';
+	@override String get optimization => 'Optimizasyon';
 }
 
 // Path: faq.questions
@@ -292,7 +549,7 @@ class _TranslationsProfileSectionsTr implements TranslationsProfileSectionsEn {
 
 	// Translations
 	@override String get accountSettings => 'HESAP AYARLARI';
-	@override String get supportAndOther => 'DESTEK & DİĞER';
+	@override String get general => 'GENEL';
 }
 
 // Path: profile.menu
@@ -339,6 +596,36 @@ class _TranslationsHomePremiumPlanTr implements TranslationsHomePremiumPlanEn {
 	@override late final _TranslationsHomePremiumPlanDialogTr dialog = _TranslationsHomePremiumPlanDialogTr._(_root);
 }
 
+// Path: dayStreak.days
+class _TranslationsDayStreakDaysTr implements TranslationsDayStreakDaysEn {
+	_TranslationsDayStreakDaysTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get su => 'Pa';
+	@override String get mo => 'Pt';
+	@override String get tu => 'Sa';
+	@override String get we => 'Ça';
+	@override String get th => 'Pe';
+	@override String get fr => 'Cu';
+	@override String get sa => 'Ct';
+}
+
+// Path: storyDetails.feedbackSubjects
+class _TranslationsStoryDetailsFeedbackSubjectsTr implements TranslationsStoryDetailsFeedbackSubjectsEn {
+	_TranslationsStoryDetailsFeedbackSubjectsTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get bugReport => 'Hata Bildirimi';
+	@override String get storyContent => 'Hikaye İçeriği';
+	@override String get audioIssue => 'Ses Sorunu';
+	@override String get suggestion => 'Öneri';
+	@override String get other => 'Diğer';
+}
+
 // Path: referralCode.success
 class _TranslationsReferralCodeSuccessTr implements TranslationsReferralCodeSuccessEn {
 	_TranslationsReferralCodeSuccessTr._(this._root);
@@ -363,6 +650,23 @@ class _TranslationsReferralCodeErrorsTr implements TranslationsReferralCodeError
 	@override late final _TranslationsReferralCodeErrorsSelfReferralTr selfReferral = _TranslationsReferralCodeErrorsSelfReferralTr._(_root);
 	@override late final _TranslationsReferralCodeErrorsCodeNotFoundTr codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundTr._(_root);
 	@override late final _TranslationsReferralCodeErrorsGenericErrorTr genericError = _TranslationsReferralCodeErrorsGenericErrorTr._(_root);
+}
+
+// Path: onboarding.step2.categories
+class _TranslationsOnboardingStep2CategoriesTr implements TranslationsOnboardingStep2CategoriesEn {
+	_TranslationsOnboardingStep2CategoriesTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get space => '🚀 Uzay Maceraları';
+	@override String get magic => '🦄 Büyülü Dünyalar';
+	@override String get detectives => '🕵️ Küçük Dedektifler';
+	@override String get animals => '🐾 Sevimli Dostlar';
+	@override String get dinosaurs => '🦖 Dinozorlar Çağı';
+	@override String get superhero => '🦸 Süper Kahramanlar';
+	@override String get underwater => '🌊 Su Altı Krallığı';
+	@override String get fairytale => '🏰 Prens ve Prenses Masalları';
 }
 
 // Path: faq.questions.q1
@@ -576,8 +880,78 @@ extension on TranslationsTr {
 			'termOfService.text3' => ' ve ',
 			'termOfService.link3' => 'Çerez Politikamızda',
 			'termOfService.text4' => ' verilerinizi nasıl işlediğimizi öğrenin',
+			'termOfService.privacyPolicy.title' => 'Gizlilik Politikası',
+			'termOfService.privacyPolicy.lastUpdated' => 'Son Güncelleme: 2025',
+			'termOfService.privacyPolicy.intro' => 'Lingola Stories Kids, çocuk gizliliğini ve veri güvenliğini temel ilke olarak benimser.',
+			'termOfService.privacyPolicy.section1Title' => '1. TOPLANAN BİLGİLER',
+			'termOfService.privacyPolicy.section1sub1Title' => '1.1 Kullanıcı Tarafından Sağlanan Veriler',
+			'termOfService.privacyPolicy.section1sub1Body' => 'Takma ad veya profil adı.\nE-posta adresi.\nYaş bilgisi.\nDil seviyesi ve öğrenilen kelimeler.\n\nNot: Sağlık analizi için kesinlikle kullanılmaz.',
+			'termOfService.privacyPolicy.section1sub2Title' => '1.2 Otomatik Toplanan Veriler',
+			'termOfService.privacyPolicy.section1sub2Body' => 'Cihaz türü, işletim sistemi ve performans verileri. Kesin konum TOPLANMAZ.',
+			'termOfService.privacyPolicy.section2Title' => '2. VERİ İŞLEME AMAÇLARI',
+			'termOfService.privacyPolicy.section2Body' => 'Verileriniz yalnızca şu amaçlarla kullanılır:\n\n- Yaşa uygun içerik sunmak.\n- Öğrenme deneyimini kişisel uyarlamak.\n- Uygulama performansını iyileştirmek.\n- Yasal yükümlülükleri yerine getirmek.',
+			'termOfService.privacyPolicy.section3Title' => '3. VERİ SAKLAMA VE SİLME',
+			'termOfService.privacyPolicy.section3Body' => 'Hesabınız aktif olduğu sürece saklanır. Destek kayıtları en fazla 12 ay. Silinen hesaplarda veriler geri alınamaz şekilde silinir.',
+			'termOfService.privacyPolicy.section4Title' => '4. KULLANICI HAKLARI',
+			'termOfService.privacyPolicy.section4Body' => 'KVKK kapsamında erişim, düzeltme, silme veya taşınabilirlik talep edebilirsiniz. support@fly-work.com',
+			'termOfService.privacyPolicy.section5Title' => '5. ÇOCUKLARIN GİZLİLİĞİ',
+			'termOfService.privacyPolicy.section5Body' => '6 yaş ve üzeri için tasarım. 13 yaş altı için ebeveyn onayı gereklidir.',
+			'termOfService.privacyPolicy.section6Title' => '6. İLETİŞİM',
+			'termOfService.privacyPolicy.section6Body' => 'Sorular: support@fly-work.com',
+			'termOfService.termsOfService.title' => 'Kullanım Koşulları',
+			'termOfService.termsOfService.lastUpdated' => 'Son Güncelleme: 2025',
+			'termOfService.termsOfService.intro' => 'Bu Koşullar, Lingola Stories Kids uygulamasının kullanımını yönetir.',
+			'termOfService.termsOfService.disclaimer' => 'Sorumluluk Reddi: Eğitim aracıdır, resmi sertifikasyon sunmaz.',
+			'termOfService.termsOfService.section1Title' => '1. HİZMET KAPSAMI',
+			'termOfService.termsOfService.section1Body' => 'Uygulama çocuklar için hikaye bazlı öğrenme sunar:\n\n- YZ destekli hikayeler.\n- Yaşa dayalı okuma:\n- Kelime ve telaffuz desteği.',
+			'termOfService.termsOfService.section2Title' => '2. KULLANIM KOŞULLARI VE YAŞ',
+			'termOfService.termsOfService.section2Body' => 'En az 6 yaşında olmalı.\n18 altı ebeveyn gözetimiyle.\nHesap bilgileri doğru olmalı.',
+			'termOfService.termsOfService.section3Title' => '3. YASAKLI KULLANIM',
+			'termOfService.termsOfService.section3Body' => 'İzinsiz kopyalama, tersine mühendislik ve ticari kullanım kesinlikle yasaktır.',
+			'termOfService.termsOfService.section4Title' => '4. ABONELİKLER VE ÖDEMELER',
+			'termOfService.termsOfService.section4Body' => 'Premium App Store / Google Play politikalarına tabidir.',
+			'termOfService.termsOfService.section5Title' => '5. FİKRİ MÜLKİYET',
+			'termOfService.termsOfService.section5Body' => 'Tüm içerikler Lingola Stories Kids\'e aittir.',
+			'termOfService.termsOfService.section6Title' => '6. SORUMLULUGUN SINIRLANMASI',
+			'termOfService.termsOfService.section6Body' => 'Uygulama oldugu gibi sunulmaktadır.',
+			'termOfService.termsOfService.section7Title' => '7. UYGULANACAK HUKUK',
+			'termOfService.termsOfService.section7Body' => 'Türkiye Cumhuriyeti kanunlarına tabidir. İstanbul Mahkemeleri yetkilidir.',
+			'termOfService.termsOfService.section8Title' => '8. İLETİŞİM',
+			'termOfService.termsOfService.section8Body' => 'Sorular: support@fly-work.com',
+			'termOfService.cookiePolicy.title' => 'Çerez Politikası',
+			'termOfService.cookiePolicy.lastUpdated' => 'Son Güncelleme: 2025',
+			'termOfService.cookiePolicy.intro' => 'Bu politika, uygulamayı kullandığınızda hangi dijital teknolojilerin kullanıldığını açıklar.',
+			'termOfService.cookiePolicy.important' => 'ÖNEMLİ: Çocuk gizliliği temel ilkemizdir. 6 yaş ve üzeri için tasarım.',
+			'termOfService.cookiePolicy.section1Title' => '1. ÇEREZLER NELİKTİR?',
+			'termOfService.cookiePolicy.section1Body' => 'Cookies and similar technologies (SDKs, identifiers) are small digital components that help the app function correctly. They do not directly identify you.',
+			'termOfService.cookiePolicy.section2Title' => '2. HANGİ TEKNOLOJİLERİ KULLANIYORUZ?',
+			'termOfService.cookiePolicy.section2Body' => 'Strictly Necessary: For session management and security.\n\nPerformance and Analytics: Understand which stories are read, data evaluated anonymously.\n\nPersonalization: Remembers language preference and reading level.',
+			'termOfService.cookiePolicy.section3Title' => '3. NEDEN KULLANIYORUZ?',
+			'termOfService.cookiePolicy.section3Body' => '- To ensure the app runs safely.\n- To make the reading experience more fluid.\n- To remember settings.\n- To identify features for future development.',
+			'termOfService.cookiePolicy.section4Title' => '4. ÜÇÜNCÜ TARAF TEKNOLOJİLER',
+			'termOfService.cookiePolicy.section4Body' => 'We apply minimum data usage when working with third-party partners.',
+			'termOfService.cookiePolicy.section5Title' => '5. KONTROL VE YÖNETİM',
+			'termOfService.cookiePolicy.section5Body' => 'Parents can limit these technologies via device settings. Disabling necessary technologies may affect functionality.',
+			'termOfService.cookiePolicy.section6Title' => '6. İLETİŞİM',
+			'termOfService.cookiePolicy.section6Body' => 'Sorular: support@fly-work.com',
 			'cookies' => 'Çerez Politikası',
 			'privacy' => 'Gizlilik Politikası',
+			'onboarding.step1.title' => 'Hangi dili\nöğrenmek istiyorsunuz?',
+			'onboarding.step1.subtitle' => 'Lütfen öğrenmek istediğiniz\ndil veya dilleri seçin.',
+			'onboarding.step2.title' => 'Ne tür hikayeleri\nseversiniz?',
+			'onboarding.step2.subtitle' => 'Lütfen tercihinizi belirtin.',
+			'onboarding.step2.categories.space' => '🚀 Uzay Maceraları',
+			'onboarding.step2.categories.magic' => '🦄 Büyülü Dünyalar',
+			'onboarding.step2.categories.detectives' => '🕵️ Küçük Dedektifler',
+			'onboarding.step2.categories.animals' => '🐾 Sevimli Dostlar',
+			'onboarding.step2.categories.dinosaurs' => '🦖 Dinozorlar Çağı',
+			'onboarding.step2.categories.superhero' => '🦸 Süper Kahramanlar',
+			'onboarding.step2.categories.underwater' => '🌊 Su Altı Krallığı',
+			'onboarding.step2.categories.fairytale' => '🏰 Prens ve Prenses Masalları',
+			'onboarding.loading.titlePart1' => 'Kişisel hesabınız\n',
+			'onboarding.loading.titlePart2' => 'oluşturuluyor',
+			'onboarding.loading.subtitle' => 'Sizin için harika hikayeler oluşturuyoruz',
+			'onboarding.loading.optimization' => 'Optimizasyon',
 			'pressBackAgainToExit' => 'Çıkmak için bir kez daha geri tuşuna basın',
 			'faq.title' => 'Sıkça Sorulan Sorular',
 			'faq.questions.q1.question' => 'Bu uygulama ne işe yarar?',
@@ -610,8 +984,9 @@ extension on TranslationsTr {
 			'profile.title' => 'Profil',
 			'profile.freeVersion' => 'Ücretsiz Versiyon',
 			'profile.error' => 'Hata',
+			'profile.passive' => 'Pasif',
 			'profile.sections.accountSettings' => 'HESAP AYARLARI',
-			'profile.sections.supportAndOther' => 'DESTEK & DİĞER',
+			'profile.sections.general' => 'GENEL',
 			'profile.menu.editProfile' => 'Profil Düzenle',
 			'profile.menu.notifications' => 'Bildirimler',
 			'profile.menu.premium' => 'Premium',
@@ -628,14 +1003,95 @@ extension on TranslationsTr {
 			'profile.logoutDialog.cancelButton' => 'Vazgeç',
 			'home.premium' => 'Premium!',
 			'home.seeMore' => 'Daha Fazla',
+			'home.pickUpWhereYouLeftOff' => 'Kaldığın yerden devam et',
+			'home.premiumSection' => 'Premium',
+			'home.history' => 'Geçmiş',
+			'home.librarySection' => 'Kütüphane',
+			'home.libraryDescription' => 'Kaydettiğiniz kelimeler burada görünecek.',
+			'home.upgradeToPremium' => 'Premium\'a yükselt',
+			'home.unlimitedStories' => 'Sınırsız hikaye ve reklamsız deneyim',
 			'home.premiumPlan.title' => 'Premium Plan',
 			'home.premiumPlan.description' => 'AI asistanının kilidini aç &\ntüm premium özellikleri edin',
 			'home.premiumPlan.button' => 'Premium Al',
 			'home.premiumPlan.dialog.title' => 'Özellik Aktif Değil',
 			'home.premiumPlan.dialog.message' => 'Bu özellik şu anda kullanıma açık değildir.',
 			'home.premiumPlan.dialog.button' => 'Tamam',
+			'allStories.title' => 'Tüm Hikayeler',
+			'allStories.noStoriesFound' => 'Hikaye bulunamadı',
+			'allStories.selectFilter' => 'Filtre Seç',
+			'allStories.category' => 'Kategori',
+			'allStories.categorySubtitle' => 'Lütfen okumak istediğiniz kategoriyi seçin',
+			'allStories.apply' => 'Uygula',
+			'stories.title' => 'Hikayeler',
+			'stories.popularStories' => 'Popüler Hikayeler',
+			'stories.recommendForYou' => 'Size Özel Öneriler',
+			'stories.allStories' => 'Tüm Hikayeler',
+			'stories.seeAll' => 'Tümünü gör',
+			'library.title' => 'Kütüphane',
+			'library.wordCount' => ({required Object count}) => '${count} Kelime',
+			'library.popularWords' => 'Popüler Kelimeler',
+			'library.allWords' => 'Tüm Kelimeler',
+			'library.searchWord' => 'Kelime Ara',
+			'library.searchHint' => 'Lütfen kelime girin…',
+			'bottomNav.home' => 'Ana Sayfa',
+			'bottomNav.stories' => 'Hikayeler',
+			'bottomNav.library' => 'Kütüphane',
+			'bottomNav.profile' => 'Profil',
+			'dayStreak.title' => 'Günlük seri!',
+			'dayStreak.days.su' => 'Pa',
+			'dayStreak.days.mo' => 'Pt',
+			'dayStreak.days.tu' => 'Sa',
+			'dayStreak.days.we' => 'Ça',
+			'dayStreak.days.th' => 'Pe',
+			'dayStreak.days.fr' => 'Cu',
+			'dayStreak.days.sa' => 'Ct',
+			'storyDetails.introduction' => 'Giriş',
+			'storyDetails.saved' => 'Kaydedildi',
+			'storyDetails.removed' => 'Kaldırıldı',
+			'storyDetails.storyAddedToLibrary' => 'Hikaye kütüphanenize eklendi.',
+			'storyDetails.storyRemovedFromLibrary' => 'Hikaye kütüphaneden kaldırıldı.',
+			'storyDetails.wordAddedToLibrary' => 'Kelime kütüphaneye eklendi. Geri al',
+			'storyDetails.successfully' => 'Başarıyla',
+			'storyDetails.ratingSubmitted' => 'Puanınız başarıyla gönderildi.',
+			'storyDetails.warning' => 'Uyarı',
+			'storyDetails.fillAllFields' => 'Lütfen tüm alanları doldurun.',
+			'storyDetails.messageSent' => 'Mesajınız başarıyla gönderildi.',
+			'storyDetails.translate' => 'Çevir',
+			'storyDetails.speak' => 'Konuş',
+			'storyDetails.like' => 'Beğen',
+			'storyDetails.save' => 'Kaydet',
+			'storyDetails.feedback' => 'Geri Bildirim',
+			'storyDetails.rating' => 'Puan',
+			'storyDetails.stop' => 'Durdur',
+			'storyDetails.start' => 'Başlat',
+			'storyDetails.listen' => 'Dinle',
+			'storyDetails.translation' => 'Çeviri',
+			'storyDetails.translating' => 'Çevriliyor...',
+			'storyDetails.saveToLibrary' => 'Kütüphaneye kaydet',
+			'storyDetails.rateThisStory' => 'Bu hikayeyi puanla',
+			'storyDetails.enjoyStory' => 'Bu hikayeden ne kadar keyif aldınız?',
+			'storyDetails.send' => 'Gönder',
+			'storyDetails.subject' => 'Konu',
+			'storyDetails.feedbackSubjects.bugReport' => 'Hata Bildirimi',
+			'storyDetails.feedbackSubjects.storyContent' => 'Hikaye İçeriği',
+			'storyDetails.feedbackSubjects.audioIssue' => 'Ses Sorunu',
+			'storyDetails.feedbackSubjects.suggestion' => 'Öneri',
+			'storyDetails.feedbackSubjects.other' => 'Diğer',
+			'share.title' => 'Arkadaşlarınla Paylaş',
+			'share.mainTitle' => 'Huzuru Paylaş',
+			'share.descriptionPart1' => 'Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ',
+			'share.descriptionPart2' => '1 hafta Premium\n',
+			'share.descriptionPart3' => ' kazanın',
+			'share.yourReferralCode' => 'REFERANS KODUN',
+			'share.codeCopied' => 'Kod kopyalandı!',
+			'share.copyCode' => 'Kodu Kopyala',
+			'share.inviteDescription' => 'Arkadaşlarını davet et ve\nbirlikte öğren',
+			'share.linkCopied' => 'Kopyalandı',
+			'share.linkCopiedMessage' => 'Bağlantı panoya kopyalandı.',
+			'delete' => 'Sil',
 			'editProfile.title' => 'Profil Düzenle',
-			'editProfile.changePhoto' => 'Fotoğrafı Değiştir',
+			'editProfile.changePhoto' => 'Avatar Değiştir',
+			'editProfile.learnLanguage' => 'Öğrenilecek Dili Seç',
 			'editProfile.fullName' => 'Ad Soyad',
 			'editProfile.email' => 'E-posta',
 			'editProfile.age' => 'Yaş',
@@ -649,14 +1105,6 @@ extension on TranslationsTr {
 			'notifications.emptyDescription' => 'Öğrenme yolculuğunla ilgili önemli bir gelişme olduğunda sana haber vereceğiz.',
 			'notifications.premiumBannerTitle' => 'Premium avantajlarını\nkaçırma!',
 			'notifications.premiumBannerDescription' => 'Premium abonesi olarak fırsatları yakala.',
-			'share.title' => 'Arkadaşlarınla Paylaş',
-			'share.mainTitle' => 'Huzuru Paylaş',
-			'share.descriptionPart1' => 'Arkadaşlarını davet et birlikte nefes alın.\nHer davet için ikiniz de ',
-			'share.descriptionPart2' => '1 hafta Premium\n',
-			'share.descriptionPart3' => ' kazanın',
-			'share.yourReferralCode' => 'REFERANS KODUN',
-			'share.codeCopied' => 'Kod kopyalandı!',
-			'share.copyCode' => 'Kodu Kopyala',
 			'auth.google' => 'Google',
 			'auth.facebook' => 'Facebook',
 			'auth.apple' => 'Apple',

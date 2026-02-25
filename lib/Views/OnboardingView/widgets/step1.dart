@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
@@ -15,20 +16,6 @@ class _Language {
   const _Language({required this.code, required this.name, this.flagAsset});
 }
 
-const List<_Language> _languages = [
-  _Language(code: 'en', name: 'English', flagAsset: AppFlags.english),
-  _Language(code: 'tr', name: 'Turkish', flagAsset: AppFlags.turkey),
-  _Language(code: 'de', name: 'German', flagAsset: AppFlags.german),
-  _Language(code: 'it', name: 'Italian', flagAsset: AppFlags.italian),
-  _Language(code: 'fr', name: 'French', flagAsset: AppFlags.french),
-  _Language(code: 'ja', name: 'Japanese', flagAsset: AppFlags.japanese),
-  _Language(code: 'es', name: 'Spanish', flagAsset: AppFlags.spanish),
-  _Language(code: 'ru', name: 'Russian', flagAsset: AppFlags.russian),
-  _Language(code: 'ko', name: 'Korean', flagAsset: AppFlags.korean),
-  _Language(code: 'hi', name: 'Hindi', flagAsset: AppFlags.hindi),
-  _Language(code: 'pt', name: 'Portuguese', flagAsset: AppFlags.portugal),
-];
-
 class Step1 extends HookWidget {
   const Step1({super.key, this.onLanguageSelected});
 
@@ -37,42 +24,103 @@ class Step1 extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final selectedCode = useState<String?>(null);
-
+    List<_Language> languages = [
+      _Language(
+        code: 'en',
+        name: context.t.languageOptions.english,
+        flagAsset: AppFlags.english,
+      ),
+      _Language(
+        code: 'tr',
+        name: context.t.languageOptions.turkish,
+        flagAsset: AppFlags.turkey,
+      ),
+      _Language(
+        code: 'de',
+        name: context.t.languageOptions.german,
+        flagAsset: AppFlags.german,
+      ),
+      _Language(
+        code: 'it',
+        name: context.t.languageOptions.italian,
+        flagAsset: AppFlags.italian,
+      ),
+      _Language(
+        code: 'fr',
+        name: context.t.languageOptions.french,
+        flagAsset: AppFlags.french,
+      ),
+      _Language(
+        code: 'ja',
+        name: context.t.languageOptions.japanese,
+        flagAsset: AppFlags.japanese,
+      ),
+      _Language(
+        code: 'es',
+        name: context.t.languageOptions.spanish,
+        flagAsset: AppFlags.spanish,
+      ),
+      _Language(
+        code: 'ru',
+        name: context.t.languageOptions.russian,
+        flagAsset: AppFlags.russian,
+      ),
+      _Language(
+        code: 'ko',
+        name: context.t.languageOptions.korean,
+        flagAsset: AppFlags.korean,
+      ),
+      _Language(
+        code: 'hi',
+        name: context.t.languageOptions.hindi,
+        flagAsset: AppFlags.hindi,
+      ),
+      _Language(
+        code: 'pt',
+        name: context.t.languageOptions.portuguese,
+        flagAsset: AppFlags.portugal,
+      ),
+    ];
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(height: AppSpacing.xl),
         Text(
-          'Which language would you\nlike to learn?',
+          context.t.onboarding.step1.title,
           textAlign: TextAlign.center,
           style: AppTextStyles.body(
             24,
             weight: FontWeight.bold,
-            height: 30 / 24,
+            height: 30,
+            letterSpacing: -0.05,
           ),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          'Please select the language or languages\nyou wish to learn.',
+          context.t.onboarding.step1.subtitle,
           textAlign: TextAlign.center,
           style: AppTextStyles.body(
             20,
             weight: FontWeight.w300,
-            height: 25 / 20,
+            height: 25,
+            letterSpacing: -0.05,
           ),
         ),
-        const SizedBox(height: AppSpacing.xl),
         Expanded(
           child: LayoutBuilder(
             builder: (context, constraints) {
               final itemWidth = (constraints.maxWidth - AppSpacing.md) / 2;
               const itemHeight = 90.0;
               return SingleChildScrollView(
+                padding: const EdgeInsets.only(
+                  bottom: AppSpacing.xl,
+                  top: AppSpacing.xl,
+                ),
                 child: Wrap(
                   spacing: AppSpacing.md,
                   runSpacing: AppSpacing.md,
                   alignment: WrapAlignment.center,
-                  children: _languages.map((lang) {
+                  children: languages.map((lang) {
                     final isSelected = selectedCode.value == lang.code;
                     return SizedBox(
                       width: itemWidth,
@@ -140,7 +188,7 @@ class _LanguageTile extends StatelessWidget {
               style: AppTextStyles.body(
                 15,
                 weight: FontWeight.w500,
-                height: 15 / 54.7,
+                letterSpacing: -0.05,
               ),
             ),
           ],

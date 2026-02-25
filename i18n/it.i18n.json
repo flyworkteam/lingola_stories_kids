@@ -14,11 +14,96 @@
     "link2": "Informativa sulla privacy",
     "text3": " e ",
     "link3": "Informativa sui cookie",
-    "text4": ""
+    "text4": "",
+    "privacyPolicy": {
+      "title": "Informativa sulla Privacy",
+      "lastUpdated": "Ultimo aggiornamento: 2025",
+      "intro": "Lingola Stories Kids adotta la privacy dei bambini come principio fondamentale.",
+      "section1Title": "1. INFORMAZIONI RACCOLTE",
+      "section1sub1Title": "1.1 Dati forniti dall'utente",
+      "section1sub1Body": "Soprannome o nome profilo.\nEmail (account genitoriale e supporto).\nInformazioni sull'età.\nLivello lingua, storie lette e parole apprese.\n\nNota: Mai usati per analisi sanitarie.",
+      "section1sub2Title": "1.2 Dati raccolti automaticamente",
+      "section1sub2Body": "Tipo dispositivo, OS e dati prestazioni. La posizione precisa NON viene raccolta.",
+      "section2Title": "2. FINALITÀ DEL TRATTAMENTO",
+      "section2Body": "I dati vengono usati per:\n\n- Fornire contenuti sicuri per età.\n- Personalizzare l'esperienza.\n- Migliorare le prestazioni.\n- Adempiere obblighi legali.",
+      "section3Title": "3. CONSERVAZIONE E CANCELLAZIONE",
+      "section3Body": "Dati conservati finché l'account è attivo. Record supporto max 12 mesi. Alla cancellazione account i dati sono rimossi irreversibilmente.",
+      "section4Title": "4. DIRITTI UTENTE",
+      "section4Body": "Ai sensi del GDPR, i genitori possono richiedere accesso, rettifica, cancellazione. Richieste a: support@fly-work.com.",
+      "section5Title": "5. PRIVACY DEI MINORI",
+      "section5Body": "Per utenti dai 6 anni. Consenso genitoriale richiesto per under 13.",
+      "section6Title": "6. CONTATTO",
+      "section6Body": "Per info: support@fly-work.com"
+    },
+    "termsOfService": {
+      "title": "Termini di Servizio",
+      "lastUpdated": "Ultimo aggiornamento: 2025",
+      "intro": "Questi Termini regolano l'utilizzo di Lingola Stories Kids. Usando l'app, accetti questi termini.",
+      "disclaimer": "Avviso: Lingola Stories Kids è uno strumento educativo, non fornisce certificazione accademica.",
+      "section1Title": "1. AMBITO DEL SERVIZIO",
+      "section1Body": "L'app offre apprendimento basato su storie:\n\n- Storie IA e raccomandazioni.\n- Lettura per età e livello.\n- Supporto vocabolario e pronuncia.",
+      "section2Title": "2. CONDIZIONI D'USO ED ETÀ",
+      "section2Body": "Almeno 6 anni.\nUnder 18 con supervisione genitoriale.\nInformazioni account accurate e aggiornate.",
+      "section3Title": "3. USI VIETATI",
+      "section3Body": "Copia non autorizzata, reverse engineering e uso commerciale sono vietati.",
+      "section4Title": "4. ABBONAMENTI E PAGAMENTI",
+      "section4Body": "Le funzionalità premium seguono le politiche di App Store e Google Play.",
+      "section5Title": "5. PROPRIETÀ INTELLETTUALE",
+      "section5Body": "Tutto il contenuto appartiene a Lingola Stories Kids.",
+      "section6Title": "6. LIMITAZIONE DI RESPONSABILITÀ",
+      "section6Body": "L'app è fornita così com'è.",
+      "section7Title": "7. LEGGE APPLICABILE",
+      "section7Body": "Regolato dalla legge turca. Jurisdizione ai Tribunali di Istanbul.",
+      "section8Title": "8. CONTATTO",
+      "section8Body": "Per info: support@fly-work.com"
+    },
+    "cookiePolicy": {
+      "title": "Politica sui Cookie",
+      "lastUpdated": "Ultimo aggiornamento: 2025",
+      "intro": "Questa politica spiega le tecnologie digitali usate nell'app.",
+      "important": "IMPORTANTE: Privacy dei bambini è il nostro principio fondamentale. App per utenti dai 6 anni.",
+      "section1Title": "1. COSA SONO I COOKIE?",
+      "section1Body": "Cookie e tecnologie simili sono piccoli componenti digitali che aiutano l'app. Non ti identificano direttamente.",
+      "section2Title": "2. QUALI TECNOLOGIE USIAMO?",
+      "section2Body": "Necessarie: sessioni e sicurezza.\n\nPerformance e analisi: storie lette, dati anonimi.\n\nPersonalizzazione: ricorda lingua e livello.",
+      "section3Title": "3. PERCHÉ LE USIAMO?",
+      "section3Body": "- Funzionamento sicuro.\n- Lettura più fluida.\n- Ricordare impostazioni.\n- Identificare funzionalità future.",
+      "section4Title": "4. TECNOLOGIE DI TERZE PARTI",
+      "section4Body": "Applichiamo il minimo uso dei dati con partner terzi.",
+      "section5Title": "5. CONTROLLO E GESTIONE",
+      "section5Body": "I genitori possono limitare queste tecnologie dalle impostazioni del dispositivo.",
+      "section6Title": "6. CONTATTO",
+      "section6Body": "Per info: support@fly-work.com"
+    }
   },
   "cookies": "Informativa sui cookie",
   "privacy": "Informativa sulla privacy",
-  "onboarding": {},
+  "onboarding": {
+    "step1": {
+      "title": "Quale lingua vorresti\nimparare?",
+      "subtitle": "Per favore seleziona la lingua o le lingue\nche desideri imparare."
+    },
+    "step2": {
+      "title": "Che tipo di storie\nti piacciono?",
+      "subtitle": "Per favore indica la tua preferenza.",
+      "categories": {
+        "space": "🚀 Avventure Spaziali",
+        "magic": "🦄 Mondi Magici",
+        "detectives": "🕵️ Piccoli Detective",
+        "animals": "🐾 Amici Adorabili",
+        "dinosaurs": "🦖 L'Era dei Dinosauri",
+        "superhero": "🦸 Supereroi",
+        "underwater": "🌊 Regno Sottomarino",
+        "fairytale": "🏰 Fiabe di Principi e Principesse"
+      }
+    },
+    "loading": {
+      "titlePart1": "Il tuo account personale viene\n",
+      "titlePart2": "creato",
+      "subtitle": "Stiamo creando storie meravigliose per te",
+      "optimization": "Ottimizzazione"
+    }
+  },
   "pressBackAgainToExit": "Premi di nuovo indietro per uscire",
   "faq": {
     "title": "Domande frequenti",
@@ -82,9 +167,10 @@
     "title": "Profilo",
     "freeVersion": "Versione gratuita",
     "error": "Errore",
+    "passive": "Passivo",
     "sections": {
       "accountSettings": "IMPOSTAZIONI ACCOUNT",
-      "supportAndOther": "SUPPORTO E ALTRO"
+      "general": "GENERALE"
     },
     "menu": {
       "editProfile": "Modifica profilo",
@@ -108,6 +194,13 @@
   "home": {
     "premium": "Premium!",
     "seeMore": "Vedi altro",
+    "pickUpWhereYouLeftOff": "Riprendi da dove hai lasciato",
+    "premiumSection": "Premium",
+    "history": "Cronologia",
+    "librarySection": "Biblioteca",
+    "libraryDescription": "Le parole salvate appariranno qui.",
+    "upgradeToPremium": "Passa a Premium",
+    "unlimitedStories": "Storie illimitate e senza pubblicità",
     "premiumPlan": {
       "title": "Piano Premium",
       "description": "Sblocca il tuo chatbot AI e\\nottieni tutte le funzionalità premium",
@@ -119,9 +212,101 @@
       }
     }
   },
+  "allStories": {
+    "title": "Tutte le storie",
+    "noStoriesFound": "Nessuna storia trovata",
+    "selectFilter": "Seleziona filtro",
+    "category": "Categoria",
+    "categorySubtitle": "Per favore seleziona la categoria che vuoi leggere",
+    "apply": "Applica"
+  },
+  "stories": {
+    "title": "Storie",
+    "popularStories": "Storie popolari",
+    "recommendForYou": "Consigliato per te",
+    "allStories": "Tutte le storie",
+    "seeAll": "Vedi tutto"
+  },
+  "library": {
+    "title": "Biblioteca",
+    "wordCount": "${count} Parole",
+    "popularWords": "Parole popolari",
+    "allWords": "Tutte le parole",
+    "searchWord": "Cerca parola",
+    "searchHint": "Inserisci una parola…"
+  },
+  "bottomNav": {
+    "home": "Home",
+    "stories": "Storie",
+    "library": "Biblioteca",
+    "profile": "Profilo"
+  },
+  "dayStreak": {
+    "title": "Serie del giorno!",
+    "days": {
+      "su": "Do",
+      "mo": "Lu",
+      "tu": "Ma",
+      "we": "Me",
+      "th": "Gi",
+      "fr": "Ve",
+      "sa": "Sa"
+    }
+  },
+  "storyDetails": {
+    "introduction": "Introduzione",
+    "saved": "Salvato",
+    "removed": "Rimosso",
+    "storyAddedToLibrary": "La storia è stata aggiunta alla tua biblioteca.",
+    "storyRemovedFromLibrary": "La storia è stata rimossa dalla biblioteca.",
+    "wordAddedToLibrary": "La parola è stata aggiunta alla biblioteca. Annulla",
+    "successfully": "Con successo",
+    "ratingSubmitted": "La tua valutazione è stata inviata con successo.",
+    "warning": "Avviso",
+    "fillAllFields": "Per favore compila tutti i campi.",
+    "messageSent": "Il tuo messaggio è stato inviato con successo.",
+    "translate": "Traduci",
+    "speak": "Parla",
+    "like": "Mi piace",
+    "save": "Salva",
+    "feedback": "Feedback",
+    "rating": "Valutazione",
+    "stop": "Ferma",
+    "start": "Inizia",
+    "listen": "Ascolta",
+    "translation": "Traduzione",
+    "translating": "Traduzione in corso...",
+    "saveToLibrary": "Salva in biblioteca",
+    "rateThisStory": "Valuta questa storia",
+    "enjoyStory": "Quanto ti è piaciuta questa storia?",
+    "send": "Invia",
+    "subject": "Oggetto",
+    "feedbackSubjects": {
+      "bugReport": "Segnalazione bug",
+      "storyContent": "Contenuto della storia",
+      "audioIssue": "Problema audio",
+      "suggestion": "Suggerimento",
+      "other": "Altro"
+    }
+  },
+  "share": {
+    "title": "Condividi con gli amici",
+    "mainTitle": "Condividi la pace",
+    "descriptionPart1": "Invita i tuoi amici a respirare insieme.\\nPer ogni invito, entrambi ottenete ",
+    "descriptionPart2": "1 settimana Premium",
+    "descriptionPart3": "",
+    "yourReferralCode": "IL TUO CODICE DI RIFERIMENTO",
+    "codeCopied": "Codice copiato!",
+    "copyCode": "Copia codice",
+    "inviteDescription": "Invita i tuoi amici e impara\ninsieme",
+    "linkCopied": "Copiato",
+    "linkCopiedMessage": "Il link è stato copiato negli appunti."
+  },
+  "delete": "Elimina",
   "editProfile": {
     "title": "Modifica profilo",
-    "changePhoto": "Cambia foto",
+    "changePhoto": "Cambia Avatar",
+    "learnLanguage": "Seleziona lingua di apprendimento",
     "fullName": "Nome completo",
     "email": "E-mail",
     "age": "Età",
@@ -137,16 +322,6 @@
     "emptyDescription": "Ti avviseremo quando ci sarà un aggiornamento importante sul tuo percorso di apprendimento.",
     "premiumBannerTitle": "Non perdere i\\nvantaggi Premium!",
     "premiumBannerDescription": "Approfitta delle opportunità come abbonato Premium."
-  },
-  "share": {
-    "title": "Condividi con gli amici",
-    "mainTitle": "Condividi la pace",
-    "descriptionPart1": "Invita i tuoi amici a respirare insieme.\\nPer ogni invito, entrambi ottenete ",
-    "descriptionPart2": "1 settimana Premium",
-    "descriptionPart3": "",
-    "yourReferralCode": "IL TUO CODICE DI RIFERIMENTO",
-    "codeCopied": "Codice copiato!",
-    "copyCode": "Copia codice"
   },
   "auth": {
     "google": "Google",

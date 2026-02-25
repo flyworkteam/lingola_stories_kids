@@ -57,11 +57,11 @@ class OnboardingView extends HookConsumerWidget {
       body: Stack(
         children: [
           Positioned(
-            top: -80,
-            left: -80,
-            child: CustomBlur(color: Color(0xffFFB256)),
+            top: -250,
+            left: -200,
+            child: CustomBlur(color: Color(0xFFFFB256)),
           ),
-          Positioned(bottom: -80, right: -80, child: CustomBlur()),
+          Positioned(bottom: -230, right: -200, child: CustomBlur()),
           if (currentStep.value == 0)
             Positioned(
               bottom: 50,
@@ -137,39 +137,37 @@ class OnboardingView extends HookConsumerWidget {
                   ),
                 ),
 
-                const SizedBox(height: AppSpacing.lg),
-                SafeArea(
-                  top: false,
-                  child: IgnorePointer(
-                    ignoring: isLoadingScreen,
-                    child: CustomButton(
-                      label: isFinalScreen || isLoadingScreen
-                          ? context.t.get_started
-                          : context.t.kContinue,
-                      size: CustomButtonSize.large,
-                      fullWidth: true,
-                      labelStyle: AppTextStyles.body(
-                        24,
-                        weight: FontWeight.w700,
-                        color: Colors.white,
-                      ),
-                      backgroundColor: isLoadingScreen
-                          ? AppColors.secondary
-                          : AppColors.primary,
-                      shadow: [
-                        BoxShadow(
-                          color: isLoadingScreen
-                              ? AppColors.secondaryShadow
-                              : AppColors.primaryShadow,
-                          blurRadius: 0,
-                          offset: const Offset(0, 5),
-                        ),
-                      ],
-                      onPressed: handleOnPressed,
+                IgnorePointer(
+                  ignoring: isLoadingScreen,
+                  child: CustomButton(
+                    label: isFinalScreen || isLoadingScreen
+                        ? context.t.get_started
+                        : context.t.kContinue,
+                    size: CustomButtonSize.large,
+                    fullWidth: true,
+                    borderRadius: 18,
+                    labelStyle: AppTextStyles.body(
+                      24,
+                      weight: FontWeight.w700,
+                      color: Colors.white,
+                      letterSpacing: -0.05,
                     ),
+                    backgroundColor: isLoadingScreen
+                        ? AppColors.secondary
+                        : AppColors.primary,
+                    shadow: [
+                      BoxShadow(
+                        color: isLoadingScreen
+                            ? AppColors.secondaryShadow
+                            : AppColors.primaryShadow,
+                        blurRadius: 0,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                    onPressed: handleOnPressed,
                   ),
                 ),
-                const SizedBox(height: AppSpacing.lg),
+                const SizedBox(height: AppSpacing.xxxl),
               ],
             ),
           ),

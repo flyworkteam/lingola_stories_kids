@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:lingolakidstories/Views/AllStoriesView/all_stories_view.dart';
+import 'package:lingolakidstories/Views/AppLanguageView/app_language_view.dart';
 import 'package:lingolakidstories/Views/Auth/LoginView/login_view.dart';
+import 'package:lingolakidstories/Views/EditProfileView/edit_profile_view.dart';
+import 'package:lingolakidstories/Views/FaqView/faq_view.dart';
 import 'package:lingolakidstories/Views/HomeView/home_view.dart';
 import 'package:lingolakidstories/Views/LibraryView/library_view.dart';
 import 'package:lingolakidstories/Views/MainView/main_view.dart';
@@ -19,6 +22,10 @@ class AppRoutes {
   static const String stories = '/stories';
   static const String allStories = '/all-stories';
   static const String profile = '/profile';
+  static const String faq = '/faq';
+  static const String editProfile = '/edit-profile';
+  static const String appLanguage = '/app-language';
+  static const String storyDetails = '/story-details/:storyId';
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
@@ -31,6 +38,9 @@ class AppRoutes {
       stories: (context) => const StoriesView(),
       allStories: (context) => const AllStoriesView(),
       profile: (context) => const ProfileView(),
+      faq: (context) => const FaqView(),
+      editProfile: (context) => const EditProfileView(),
+      appLanguage: (context) => const AppLanguageView(),
     };
   }
 }

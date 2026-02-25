@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
@@ -41,25 +40,34 @@ class CategoryChip extends StatelessWidget {
                 borderRadius: AppBorderRadius.mdRadius,
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.06),
-                    blurRadius: 8,
+                    color: Color(0xffCCDBE8),
+                    blurRadius: 4,
                     offset: const Offset(0, 2),
                   ),
                 ],
               ),
               child: Center(
-                child: isPng
-                    ? Image.asset(icon, width: 28, height: 28)
-                    : SvgPicture.asset(icon, width: 28, height: 28),
+                child: Text(
+                  icon,
+                  style: AppTextStyles.body(
+                    25,
+                    weight: FontWeight.w500,
+                    height: 54.7,
+                    letterSpacing: -0.05,
+                  ),
+                ),
               ),
             ),
             const SizedBox(height: 4),
             Text(
               label,
               style: AppTextStyles.body(
-                11,
-                weight: isSelected ? FontWeight.w700 : FontWeight.w400,
-                color: isSelected ? AppColors.primary : Colors.black54,
+                14,
+                letterSpacing: -0.05,
+                weight: isSelected ? FontWeight.w400 : FontWeight.w400,
+                color: isSelected
+                    ? Colors.black
+                    : Colors.black.withValues(alpha: 0.6),
               ),
             ),
           ],

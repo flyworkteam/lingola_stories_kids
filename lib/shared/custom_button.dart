@@ -210,26 +210,26 @@ class CustomButton extends StatelessWidget {
     final TextStyle textStyle =
         resolvedLabelStyle ??
         switch (size) {
-          CustomButtonSize.small => AppTextStyles.button(
+          CustomButtonSize.small => AppTextStyles.body(
+            12,
             color:
                 labelColor ??
                 foregroundColor ??
                 baseStyle.foregroundColor?.resolve({}),
-            size: 12,
           ),
-          CustomButtonSize.medium => AppTextStyles.button(
+          CustomButtonSize.medium => AppTextStyles.body(
+            14,
             color:
                 labelColor ??
                 foregroundColor ??
                 baseStyle.foregroundColor?.resolve({}),
-            size: 14,
           ),
-          CustomButtonSize.large => AppTextStyles.button(
+          CustomButtonSize.large => AppTextStyles.body(
+            16,
             color:
                 labelColor ??
                 foregroundColor ??
                 baseStyle.foregroundColor?.resolve({}),
-            size: 16,
           ),
         };
 

@@ -14,11 +14,96 @@
     "link2": "プライバシーポリシー",
     "text3": "および",
     "link3": "クッキーポリシー",
-    "text4": "でデータの処理方法をご確認ください"
+    "text4": "でデータの処理方法をご確認ください",
+    "privacyPolicy": {
+      "title": "プライバシーポリシー",
+      "lastUpdated": "最終更新：2025年",
+      "intro": "Lingola Stories Kidsは子どものプライバシーとデータセキュリティを基本原則としています。",
+      "section1Title": "1. 収集する情報",
+      "section1sub1Title": "1.1 ユーザーが提供するデータ",
+      "section1sub1Body": "ニックネームまたはプロフィール名。\nメールアドレス（保護者アカウントおよびサポート用）。\n年齢情報（コンテンツ適切性のため）。\n語学レベル、読んだストーリー、学んだ単語。\n\n注意：健康・心理分析には使用しません。",
+      "section1sub2Title": "1.2 自動的に収集されるデータ",
+      "section1sub2Body": "デバイスの種類、OS、アプリパフォーマンスデータ。正確な位置情報は収集しません。",
+      "section2Title": "2. データ処理の目的",
+      "section2Body": "データは以下の目的のみに使用されます：\n\n- 安全で年齢に適したコンテンツ提供。\n- 学習体験のパーソナライズ。\n- アプリのパフォーマンス改善。\n- 法的義務の履行。",
+      "section3Title": "3. データの保存と削除",
+      "section3Body": "アカウントが有効な間または法律で要求される期間保存されます。サポート記録は最長12ヶ月。アカウント削除時、個人データは取り消し不能に消去されます。",
+      "section4Title": "4. ユーザーの権利",
+      "section4Body": "GDPRおよびKVKKに基づき、保護者はアクセス、訂正、削除、移植性を請求できます。リクエストはsupport@fly-work.comへ。",
+      "section5Title": "5. 子どものプライバシー",
+      "section5Body": "6歳以上向け。13歳未満には保護者の同意が必要です。",
+      "section6Title": "6. お問い合わせ",
+      "section6Body": "📩 問い合わせ：support@fly-work.com"
+    },
+    "termsOfService": {
+      "title": "利用規約",
+      "lastUpdated": "最終更新：2025年",
+      "intro": "本利用規約はLingola Stories Kidsアプリの使用を規定します。アプリを使用することで規約に同意します。",
+      "disclaimer": "免責事項：Lingola Stories Kidsは教育ツールです。公式教育や学術認定は提供しません。",
+      "section1Title": "1. サービスの範囲",
+      "section1Body": "アプリは子ども向けストーリー学習を提供します：\n\n- AI搭載のストーリーと推薦。\n- 年齢・レベルに基づく読書体験。\n- 語彙と発音のサポート。",
+      "section2Title": "2. 利用条件と年齢",
+      "section2Body": "6歳以上のユーザー。\n18歳未満は保護者の監督のもとで利用を推奨。\nアカウント情報は正確に。",
+      "section3Title": "3. 禁止事項",
+      "section3Body": "無断複製、リバースエンジニアリング、AI操作、無断商業利用は禁止。",
+      "section4Title": "4. サブスクリプションと支払い",
+      "section4Body": "プレミアム機能はApp Store・Google Playのポリシーに準拠。",
+      "section5Title": "5. 知的財産権",
+      "section5Body": "すべてのコンテンツはLingola Stories Kidsに帰属します。",
+      "section6Title": "6. 責任の制限",
+      "section6Body": "アプリは現状のまま提供されます。",
+      "section7Title": "7. 準拠法",
+      "section7Body": "トルコ共和国の法律に準拠。イスタンブール中央裁判所が管轄。",
+      "section8Title": "8. お問い合わせ",
+      "section8Body": "📩 問い合わせ：support@fly-work.com"
+    },
+    "cookiePolicy": {
+      "title": "クッキーポリシー",
+      "lastUpdated": "最終更新：2025年",
+      "intro": "このポリシーはアプリ使用時に使われるデジタル技術を説明します。",
+      "important": "重要：子どものプライバシーが基本原則です。アプリは6歳以上向けです。",
+      "section1Title": "1. クッキーとは？",
+      "section1Body": "クッキーや類似技術はアプリが正常に機能するための小さなデジタルコンポーネントです。直接識別するものではありません。",
+      "section2Title": "2. どの技術を使用しますか？",
+      "section2Body": "必須技術：セッション管理とセキュリティ。\n\nパフォーマンスと分析：読まれた物語の把握、匿名データ。\n\nパーソナライズ：言語設定と読書レベルを記憶。",
+      "section3Title": "3. なぜ使用するのか？",
+      "section3Body": "- 安全なアプリ動作。\n- 読書体験の改善。\n- 設定の記憶。\n- 将来機能の特定。",
+      "section4Title": "4. サードパーティ技術",
+      "section4Body": "サードパーティとの連携では最小データ使用の原則を適用します。",
+      "section5Title": "5. 管理とコントロール",
+      "section5Body": "保護者はデバイス設定からこれらの技術を制限できます。",
+      "section6Title": "6. お問い合わせ",
+      "section6Body": "📩 問い合わせ：support@fly-work.com"
+    }
   },
   "cookies": "クッキーポリシー",
   "privacy": "プライバシーポリシー",
-  "onboarding": {},
+  "onboarding": {
+    "step1": {
+      "title": "どの言語を\n学びたいですか？",
+      "subtitle": "学びたい言語を\n選択してください。"
+    },
+    "step2": {
+      "title": "どんな種類の物語が\n好きですか？",
+      "subtitle": "好みを教えてください。",
+      "categories": {
+        "space": "🚀 宇宙の冒険",
+        "magic": "🦄 魔法の世界",
+        "detectives": "🕵️ 小さな探偵",
+        "animals": "🐾 かわいい友達",
+        "dinosaurs": "🦖 恐竜の時代",
+        "superhero": "🦸 スーパーヒーロー",
+        "underwater": "🌊 水中王国",
+        "fairytale": "🏰 王子と王女のおとぎ話"
+      }
+    },
+    "loading": {
+      "titlePart1": "あなたの個人アカウントは\n",
+      "titlePart2": "作成中です",
+      "subtitle": "素晴らしい物語を作っています",
+      "optimization": "最適化中"
+    }
+  },
   "pressBackAgainToExit": "もう一度戻るを押して終了",
   "faq": {
     "title": "よくある質問",
@@ -82,9 +167,10 @@
     "title": "プロフィール",
     "freeVersion": "無料版",
     "error": "エラー",
+    "passive": "非アクティブ",
     "sections": {
       "accountSettings": "アカウント設定",
-      "supportAndOther": "サポートとその他"
+      "general": "一般"
     },
     "menu": {
       "editProfile": "プロフィールを編集",
@@ -108,6 +194,13 @@
   "home": {
     "premium": "プレミアム！",
     "seeMore": "もっと見る",
+    "pickUpWhereYouLeftOff": "続きから再開する",
+    "premiumSection": "プレミアム",
+    "history": "履歴",
+    "librarySection": "ライブラリ",
+    "libraryDescription": "保存した単語がここに表示されます。",
+    "upgradeToPremium": "プレミアムにアップグレード",
+    "unlimitedStories": "無制限のストーリーと広告なし体験",
     "premiumPlan": {
       "title": "プレミアムプラン",
       "description": "AIチャットボットのロックを解除し、\\nすべてのプレミアム機能を取得",
@@ -119,9 +212,101 @@
       }
     }
   },
+  "allStories": {
+    "title": "すべての物語",
+    "noStoriesFound": "物語が見つかりません",
+    "selectFilter": "フィルターを選択",
+    "category": "カテゴリ",
+    "categorySubtitle": "読みたいカテゴリを選択してください",
+    "apply": "適用"
+  },
+  "stories": {
+    "title": "物語",
+    "popularStories": "人気の物語",
+    "recommendForYou": "あなたへのおすすめ",
+    "allStories": "すべての物語",
+    "seeAll": "すべて見る"
+  },
+  "library": {
+    "title": "ライブラリ",
+    "wordCount": "${count} 語",
+    "popularWords": "人気の単語",
+    "allWords": "すべての単語",
+    "searchWord": "単語検索",
+    "searchHint": "単語を入力してください…"
+  },
+  "bottomNav": {
+    "home": "ホーム",
+    "stories": "物語",
+    "library": "ライブラリ",
+    "profile": "プロフィール"
+  },
+  "dayStreak": {
+    "title": "連続記録！",
+    "days": {
+      "su": "日",
+      "mo": "月",
+      "tu": "火",
+      "we": "水",
+      "th": "木",
+      "fr": "金",
+      "sa": "土"
+    }
+  },
+  "storyDetails": {
+    "introduction": "はじめに",
+    "saved": "保存済み",
+    "removed": "削除済み",
+    "storyAddedToLibrary": "物語がライブラリに追加されました。",
+    "storyRemovedFromLibrary": "物語がライブラリから削除されました。",
+    "wordAddedToLibrary": "単語がライブラリに追加されました。元に戻す",
+    "successfully": "成功",
+    "ratingSubmitted": "評価が正常に送信されました。",
+    "warning": "警告",
+    "fillAllFields": "すべてのフィールドを入力してください。",
+    "messageSent": "メッセージが正常に送信されました。",
+    "translate": "翻訳",
+    "speak": "話す",
+    "like": "いいね",
+    "save": "保存",
+    "feedback": "フィードバック",
+    "rating": "評価",
+    "stop": "停止",
+    "start": "開始",
+    "listen": "聴く",
+    "translation": "翻訳",
+    "translating": "翻訳中...",
+    "saveToLibrary": "ライブラリに保存",
+    "rateThisStory": "この物語を評価する",
+    "enjoyStory": "この物語はどれくらい楽しめましたか？",
+    "send": "送信",
+    "subject": "件名",
+    "feedbackSubjects": {
+      "bugReport": "バグ報告",
+      "storyContent": "ストーリーの内容",
+      "audioIssue": "音声の問題",
+      "suggestion": "提案",
+      "other": "その他"
+    }
+  },
+  "share": {
+    "title": "友達と共有",
+    "mainTitle": "平和を共有する",
+    "descriptionPart1": "友達を招待して一緒に呼吸しましょう。\\n招待ごとに、両方が ",
+    "descriptionPart2": "1週間プレミアム",
+    "descriptionPart3": "を取得",
+    "yourReferralCode": "あなたの紹介コード",
+    "codeCopied": "コードがコピーされました！",
+    "copyCode": "コードをコピー",
+    "inviteDescription": "友達を招待して\n一緒に学ぼう",
+    "linkCopied": "コピーしました",
+    "linkCopiedMessage": "リンクがクリップボードにコピーされました。"
+  },
+  "delete": "削除",
   "editProfile": {
     "title": "プロフィールを編集",
-    "changePhoto": "写真を変更",
+    "changePhoto": "アバターを変更",
+    "learnLanguage": "学習言語を選択",
     "fullName": "フルネーム",
     "email": "メール",
     "age": "年齢",
@@ -137,16 +322,6 @@
     "emptyDescription": "学習の旅に関する重要な更新があるときにお知らせします。",
     "premiumBannerTitle": "プレミアム特典を\\nお見逃しなく！",
     "premiumBannerDescription": "プレミアム購読者として機会をつかみましょう。"
-  },
-  "share": {
-    "title": "友達と共有",
-    "mainTitle": "平和を共有する",
-    "descriptionPart1": "友達を招待して一緒に呼吸しましょう。\\n招待ごとに、両方が ",
-    "descriptionPart2": "1週間プレミアム",
-    "descriptionPart3": "を取得",
-    "yourReferralCode": "あなたの紹介コード",
-    "codeCopied": "コードがコピーされました！",
-    "copyCode": "コードをコピー"
   },
   "auth": {
     "google": "Google",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
@@ -32,8 +33,10 @@ class ProfileSettingsCard extends StatelessWidget {
             trailingLabel: items[i].trailingLabel,
             trailingLabelColor: items[i].trailingLabelColor,
             onTap: items[i].onTap,
+            iconColor: items[i].iconColor,
             showArrow: items[i].showArrow,
             showDivider: i < items.length - 1,
+            iconBackgroundColor: items[i].iconBackgroundColor,
           );
         }),
       ),
@@ -45,6 +48,8 @@ class ProfileSettingsItem extends StatelessWidget {
   const ProfileSettingsItem({
     super.key,
     required this.icon,
+    this.iconColor,
+    required this.iconBackgroundColor,
     required this.label,
     this.trailing,
     this.trailingLabel,
@@ -55,6 +60,8 @@ class ProfileSettingsItem extends StatelessWidget {
   });
 
   final String icon;
+  final Color? iconColor;
+  final Color iconBackgroundColor;
   final String label;
   final Widget? trailing;
   final String? trailingLabel;
@@ -86,13 +93,20 @@ class ProfileSettingsItem extends StatelessWidget {
                   width: 36,
                   height: 36,
                   decoration: BoxDecoration(
-                    color: const Color(0xFFF2F5FC),
-                    borderRadius: AppBorderRadius.smRadius,
+                    color: iconBackgroundColor,
+                    borderRadius: AppBorderRadius.xsRadius,
                   ),
                   child: Center(
                     child: isSvg
-                        ? SvgPicture.asset(icon, width: 20, height: 20)
-                        : Image.asset(icon, width: 20, height: 20),
+                        ? SvgPicture.asset(
+                            icon,
+                            width: 22,
+                            height: 22,
+                            colorFilter: iconColor != null
+                                ? ColorFilter.mode(iconColor!, BlendMode.srcIn)
+                                : null,
+                          )
+                        : Image.asset(icon, width: 22, height: 22),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -100,10 +114,10 @@ class ProfileSettingsItem extends StatelessWidget {
                 Expanded(
                   child: Text(
                     label,
-                    style: AppTextStyles.body(
-                      14,
-                      weight: FontWeight.w500,
-                      height: 1.2,
+                    style: GoogleFonts.lato(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: -0.03,
                     ),
                   ),
                 ),

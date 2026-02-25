@@ -11,10 +11,7 @@ class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.xl,
-        vertical: AppSpacing.md,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
       child: Row(
         children: [
           // Avatar
@@ -23,39 +20,54 @@ class HeaderWidget extends StatelessWidget {
             height: 44,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: AppColors.primary.withValues(alpha: 0.2),
+              border: Border.all(color: AppColors.primary, width: 2),
             ),
-            child: ClipOval(
-              child: SvgPicture.asset(AppIcons.avatar1, fit: BoxFit.cover),
+            child: Align(
+              alignment: AlignmentGeometry.bottomCenter,
+              child: SvgPicture.asset(AppIcons.profileIcon, height: 30),
             ),
           ),
           const SizedBox(width: AppSpacing.md),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Hello Henry,',
-                  style: AppTextStyles.body(14, color: Colors.black54),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Hello Henry,',
+                style: AppTextStyles.body(
+                  18,
+                  color: Colors.black,
+                  weight: FontWeight.w300,
+                  letterSpacing: -0.05,
+                  height: 16,
                 ),
-                Text(
-                  'Continue to English',
-                  style: AppTextStyles.heading(
-                    16,
-                    FontWeight.w700,
-                    color: Colors.black,
-                  ),
+              ),
+              Text(
+                'Continue to English',
+                style: AppTextStyles.heading(
+                  20,
+                  FontWeight.w700,
+                  color: Colors.black,
+                  letterSpacing: -0.05,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
+          Spacer(),
           // Notification bell
           Container(
             width: 40,
             height: 40,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: AppColors.primary.withValues(alpha: 0.15),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Color(0xffCCDBE8),
+                  blurRadius: 4,
+                  offset: const Offset(0, 2),
+                ),
+              ],
             ),
             child: Center(
               child: SvgPicture.asset(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:lingolakidstories/Views/OnboardingView/widgets/floating_icon.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 
@@ -23,21 +24,21 @@ class FinalScreen extends HookWidget {
           text: TextSpan(
             children: [
               TextSpan(
-                text: 'Your Personal Account is\n',
+                text: context.t.onboarding.loading.titlePart1,
                 style: AppTextStyles.body(
                   30,
-                  letterSpacing: -0.5,
-                  height: 35 / 30,
+                  letterSpacing: -0.05,
+                  height: 35,
                   weight: FontWeight.w700,
                 ),
               ),
               TextSpan(
-                text: 'Being Created',
+                text: context.t.onboarding.loading.titlePart2,
                 style: AppTextStyles.body(
                   30,
-                  letterSpacing: -0.5,
+                  letterSpacing: -0.05,
                   weight: FontWeight.w700,
-                  height: 35 / 30,
+                  height: 35,
                   color: AppColors.primary,
                 ),
               ),
@@ -46,11 +47,12 @@ class FinalScreen extends HookWidget {
         ),
         const SizedBox(height: 3),
         Text(
-          'We create wonderful stories for you',
+          context.t.onboarding.loading.subtitle,
           style: AppTextStyles.body(
             20,
             weight: FontWeight.w300,
-            height: 25 / 20,
+            height: 25,
+            letterSpacing: -0.05,
           ),
         ),
         const SizedBox(height: 23),
@@ -58,7 +60,7 @@ class FinalScreen extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              'Optimization',
+              context.t.onboarding.loading.optimization,
               style: AppTextStyles.body(14, weight: FontWeight.w600),
             ),
             Text(

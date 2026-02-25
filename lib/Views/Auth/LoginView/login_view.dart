@@ -10,7 +10,7 @@ import 'package:lingolakidstories/Services/social_auth_service.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_blur.dart';
 import 'package:lingolakidstories/shared/custom_button.dart';
-import 'package:lingolakidstories/theme/app_colors.dart';
+import 'package:lingolakidstories/shared/policy_bottom_sheet.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
@@ -141,11 +141,11 @@ class LoginView extends ConsumerWidget {
       body: Stack(
         children: [
           Positioned(
-            top: -80,
-            left: -80,
-            child: CustomBlur(color: Color(0xffFFB256)),
+            top: -250,
+            left: -200,
+            child: CustomBlur(color: Color(0xFFFFB256)),
           ),
-          Positioned(bottom: -80, right: -80, child: CustomBlur()),
+          Positioned(bottom: -250, right: -200, child: CustomBlur()),
           Padding(
             padding: AppPaddings.horizontalPage,
             child: Column(
@@ -159,20 +159,21 @@ class LoginView extends ConsumerWidget {
                       TextSpan(
                         text: context.t.welcome2(appName: '\n'),
                         style: AppTextStyles.body(
-                          34,
+                          36,
                           weight: FontWeight.bold,
-                          height: 0.9,
-                          letterSpacing: -0.5,
+                          height: 35,
+                          letterSpacing: -0.05,
+
                           color: Colors.black,
                         ),
                       ),
                       TextSpan(
                         text: Constants.appName,
                         style: AppTextStyles.body(
-                          34,
+                          36,
                           weight: FontWeight.bold,
-                          height: 0.9,
-                          letterSpacing: -0.5,
+                          height: 35,
+                          letterSpacing: -0.05,
                           color: const Color(0xFF6ED0CF),
                         ),
                       ),
@@ -185,10 +186,10 @@ class LoginView extends ConsumerWidget {
                   context.t.logintext,
                   style: AppTextStyles.body(
                     20,
-                    weight: FontWeight.w500,
-                    color: Colors.black87,
-                    height: 1.4,
-                    letterSpacing: -0.5,
+                    weight: FontWeight.w300,
+                    color: Colors.black,
+                    height: 25,
+                    letterSpacing: -0.05,
                   ),
                   textAlign: TextAlign.center,
                 ),
@@ -206,28 +207,27 @@ class LoginView extends ConsumerWidget {
                     iconPadding: 8,
                     borderWidth: 1.0,
                     borderRadius: 50.0,
-                    labelStyle: AppTextStyles.body(18, weight: FontWeight.w400),
+                    labelStyle: AppTextStyles.body(15, weight: FontWeight.w400),
                     onPressed: () => _handleGoogleSignIn(context, ref),
                   ),
                   const SizedBox(height: 12),
-                  if (Platform.isIOS)
-                    CustomButton(
-                      label: context.t.auth.apple,
-                      type: CustomButtonType.filled,
-                      icon: SvgPicture.asset(AppIcons.apple),
-                      fullWidth: true,
-                      backgroundColor: Colors.black,
-                      foregroundColor: Colors.white,
-                      borderWidth: 1.0,
-                      iconPadding: 8,
-                      borderRadius: 50.0,
-                      labelStyle: AppTextStyles.body(
-                        16,
-                        weight: FontWeight.w400,
-                        color: Colors.white,
-                      ),
-                      onPressed: () => _handleAppleSignIn(context, ref),
+                  CustomButton(
+                    label: context.t.auth.apple,
+                    type: CustomButtonType.filled,
+                    icon: SvgPicture.asset(AppIcons.apple),
+                    fullWidth: true,
+                    backgroundColor: Colors.black,
+                    foregroundColor: Colors.white,
+                    borderWidth: 1.0,
+                    iconPadding: 8,
+                    borderRadius: 50.0,
+                    labelStyle: AppTextStyles.body(
+                      15,
+                      weight: FontWeight.w400,
+                      color: Colors.white,
                     ),
+                    onPressed: () => _handleAppleSignIn(context, ref),
+                  ),
                 ] else ...[
                   CustomButton(
                     label: context.t.auth.apple,
@@ -240,7 +240,7 @@ class LoginView extends ConsumerWidget {
                     iconPadding: 8,
                     borderRadius: 50.0,
                     labelStyle: AppTextStyles.body(
-                      16,
+                      15,
                       weight: FontWeight.w400,
                       color: Colors.white,
                     ),
@@ -259,9 +259,9 @@ class LoginView extends ConsumerWidget {
                     iconPadding: 8,
                     borderRadius: 50.0,
                     labelStyle: AppTextStyles.body(
-                      14,
+                      15,
                       weight: FontWeight.w400,
-                      color: Colors.black87,
+                      color: Colors.black,
                     ),
                     onPressed: () => _handleGoogleSignIn(context, ref),
                   ),
@@ -277,7 +277,7 @@ class LoginView extends ConsumerWidget {
                   foregroundColor: const Color(0xFF6ED0CF),
                   labelStyle: AppTextStyles.body(
                     16,
-                    weight: FontWeight.w500,
+                    weight: FontWeight.w400,
                     color: const Color(0xFF6ED0CF),
                   ),
                 ),
@@ -287,21 +287,22 @@ class LoginView extends ConsumerWidget {
                     textAlign: TextAlign.center,
                     text: TextSpan(
                       style: GoogleFonts.poppins(
-                        color: AppColors.black,
-                        fontSize: 12,
-                        fontWeight: FontWeight.w500,
+                        color: Color(0xff2B2B2B),
+                        fontSize: 11,
+                        fontWeight: FontWeight.w400,
                       ),
                       children: [
                         TextSpan(text: context.t.termOfService.text1),
                         WidgetSpan(
                           child: GestureDetector(
-                            onTap: () => {},
+                            onTap: () =>
+                                showPolicySheet(context, PolicyType.terms),
                             child: Text(
                               context.t.termOfService.link1,
                               style: GoogleFonts.poppins(
-                                color: Colors.black87,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
+                                color: Color(0xff1D1D1D),
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500,
                                 decoration: TextDecoration.underline,
                               ),
                             ),
@@ -310,13 +311,14 @@ class LoginView extends ConsumerWidget {
                         TextSpan(text: context.t.termOfService.text2),
                         WidgetSpan(
                           child: GestureDetector(
-                            onTap: () => {},
+                            onTap: () =>
+                                showPolicySheet(context, PolicyType.privacy),
                             child: Text(
                               context.t.termOfService.link2,
                               style: GoogleFonts.poppins(
-                                color: Colors.black87,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
+                                color: Color(0xff1D1D1D),
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500,
                                 decoration: TextDecoration.underline,
                               ),
                             ),
@@ -325,13 +327,14 @@ class LoginView extends ConsumerWidget {
                         TextSpan(text: context.t.termOfService.text3),
                         WidgetSpan(
                           child: GestureDetector(
-                            onTap: () => {},
+                            onTap: () =>
+                                showPolicySheet(context, PolicyType.cookies),
                             child: Text(
                               context.t.termOfService.link3,
                               style: GoogleFonts.poppins(
-                                color: Colors.black87,
-                                fontSize: 12,
-                                fontWeight: FontWeight.w600,
+                                color: Color(0xff1D1D1D),
+                                fontSize: 11,
+                                fontWeight: FontWeight.w500,
                                 decoration: TextDecoration.underline,
                               ),
                             ),

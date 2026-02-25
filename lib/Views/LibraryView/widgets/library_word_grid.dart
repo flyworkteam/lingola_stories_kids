@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lingolakidstories/Riverpod/Controllers/library_controller.dart';
 import 'package:lingolakidstories/Views/LibraryView/widgets/library_word_card.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 
@@ -23,7 +24,7 @@ class LibraryWordGrid extends ConsumerWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'All Words',
+                context.t.library.allWords,
                 style: AppTextStyles.heading(
                   22,
                   FontWeight.w800,
@@ -32,24 +33,30 @@ class LibraryWordGrid extends ConsumerWidget {
               ),
               const SizedBox(height: 2),
               Text(
-                '${words.length * 150} Words',
+                context.t.library.wordCount(count: words.length * 150),
                 style: AppTextStyles.body(13, color: Colors.black45),
               ),
+              const SizedBox(height: 12),
             ],
           ),
         ),
-        const SizedBox(height: AppSpacing.lg),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+          padding: const EdgeInsets.fromLTRB(
+            AppSpacing.xl,
+            0,
+            AppSpacing.xl,
+            0,
+          ),
           child: GridView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
+            padding: EdgeInsets.zero,
             itemCount: words.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               crossAxisSpacing: AppSpacing.md,
               mainAxisSpacing: AppSpacing.md,
-              childAspectRatio: 1.1,
+              childAspectRatio: 1.7,
             ),
             itemBuilder: (context, index) {
               final entry = words[index];

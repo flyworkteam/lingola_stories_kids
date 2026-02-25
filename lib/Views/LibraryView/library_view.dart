@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/Views/LibraryView/widgets/library_popular_words_section.dart';
 import 'package:lingolakidstories/Views/LibraryView/widgets/library_search_bar.dart';
 import 'package:lingolakidstories/Views/LibraryView/widgets/library_word_grid.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_blur.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
@@ -19,58 +20,70 @@ class LibraryView extends StatelessWidget {
       backgroundColor: const Color(0xFFFAF3EC),
       body: Stack(
         children: [
-          const Positioned(
-            top: -60,
-            left: -60,
-            child: CustomBlur(color: Color(0xffFFB256)),
+          Positioned(
+            top: -250,
+            left: -200,
+            child: CustomBlur(color: Color(0xFFFFB256)),
           ),
-          const Positioned(
-            bottom: 100,
-            right: -60,
-            child: CustomBlur(color: Color(0xffFA96BA)),
-          ),
-          SafeArea(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.only(bottom: 100),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // ── Header ──────────────────────────────────────────────
-                  _LibraryHeader(),
+          Positioned(bottom: -250, right: -200, child: CustomBlur()),
+          SingleChildScrollView(
+            padding: const EdgeInsets.only(bottom: 50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(height: kToolbarHeight),
+                // ── Header ──────────────────────────────────────────────
+                _LibraryHeader(),
 
-                  const SizedBox(height: AppSpacing.lg),
+                const SizedBox(height: AppSpacing.lg),
 
-                  // ── Search + Owl ─────────────────────────────────────────
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: AppSpacing.xl,
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        const Expanded(child: LibrarySearchBar()),
-                        const SizedBox(width: AppSpacing.sm),
-                        SvgPicture.asset(
-                          AppIcons.libraryIcon,
-                          width: 100,
-                          height: 110,
-                          fit: BoxFit.contain,
-                        ),
-                      ],
-                    ),
+                // ── Search + Owl ─────────────────────────────────────────
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.xl,
                   ),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              context.t.library.searchWord,
+                              style: AppTextStyles.body(
+                                20,
+                                weight: FontWeight.w700,
+                                letterSpacing: -0.05,
+                              ),
+                            ),
+                            const SizedBox(height: AppSpacing.sm),
+                            LibrarySearchBar(),
+                          ],
+                        ),
+                      ),
+                      const SizedBox(width: AppSpacing.lg),
+                      SvgPicture.asset(
+                        AppIcons.libraryIcon,
+                        width: 100,
+                        height: 160,
+                        fit: BoxFit.contain,
+                      ),
+                    ],
+                  ),
+                ),
 
-                  const SizedBox(height: AppSpacing.xxl),
+                const SizedBox(height: AppSpacing.xxl),
 
-                  // ── Popular Words ────────────────────────────────────────
-                  const LibraryPopularWordsSection(),
+                // ── Popular Words ────────────────────────────────────────
+                const LibraryPopularWordsSection(),
 
-                  const SizedBox(height: AppSpacing.xxl),
+                const SizedBox(height: AppSpacing.xxl),
 
-                  // ── All Words Grid ───────────────────────────────────────
-                  const LibraryWordGrid(),
-                ],
-              ),
+                // ── All Words Grid ───────────────────────────────────────
+                const LibraryWordGrid(),
+              ],
             ),
           ),
         ],
@@ -95,7 +108,7 @@ class _LibraryHeader extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            'Library',
+            context.t.library.title,
             style: AppTextStyles.heading(
               24,
               FontWeight.w800,

@@ -48,6 +48,7 @@ class TranslationsJa with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _TranslationsTermOfServiceJa termOfService = _TranslationsTermOfServiceJa._(_root);
 	@override String get cookies => 'クッキーポリシー';
 	@override String get privacy => 'プライバシーポリシー';
+	@override late final _TranslationsOnboardingJa onboarding = _TranslationsOnboardingJa._(_root);
 	@override String get pressBackAgainToExit => 'もう一度戻るを押して終了';
 	@override late final _TranslationsFaqJa faq = _TranslationsFaqJa._(_root);
 	@override String get good_morning => 'おはようございます';
@@ -56,9 +57,16 @@ class TranslationsJa with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _TranslationsSplashJa splash = _TranslationsSplashJa._(_root);
 	@override late final _TranslationsProfileJa profile = _TranslationsProfileJa._(_root);
 	@override late final _TranslationsHomeJa home = _TranslationsHomeJa._(_root);
+	@override late final _TranslationsAllStoriesJa allStories = _TranslationsAllStoriesJa._(_root);
+	@override late final _TranslationsStoriesJa stories = _TranslationsStoriesJa._(_root);
+	@override late final _TranslationsLibraryJa library = _TranslationsLibraryJa._(_root);
+	@override late final _TranslationsBottomNavJa bottomNav = _TranslationsBottomNavJa._(_root);
+	@override late final _TranslationsDayStreakJa dayStreak = _TranslationsDayStreakJa._(_root);
+	@override late final _TranslationsStoryDetailsJa storyDetails = _TranslationsStoryDetailsJa._(_root);
+	@override late final _TranslationsShareJa share = _TranslationsShareJa._(_root);
+	@override String get delete => '削除';
 	@override late final _TranslationsEditProfileJa editProfile = _TranslationsEditProfileJa._(_root);
 	@override late final _TranslationsNotificationsJa notifications = _TranslationsNotificationsJa._(_root);
-	@override late final _TranslationsShareJa share = _TranslationsShareJa._(_root);
 	@override late final _TranslationsAuthJa auth = _TranslationsAuthJa._(_root);
 	@override String get cancel => 'キャンセル';
 	@override String get deleteAccount => 'アカウントを削除';
@@ -94,6 +102,21 @@ class _TranslationsTermOfServiceJa implements TranslationsTermOfServiceEn {
 	@override String get text3 => 'および';
 	@override String get link3 => 'クッキーポリシー';
 	@override String get text4 => 'でデータの処理方法をご確認ください';
+	@override late final _TranslationsTermOfServicePrivacyPolicyJa privacyPolicy = _TranslationsTermOfServicePrivacyPolicyJa._(_root);
+	@override late final _TranslationsTermOfServiceTermsOfServiceJa termsOfService = _TranslationsTermOfServiceTermsOfServiceJa._(_root);
+	@override late final _TranslationsTermOfServiceCookiePolicyJa cookiePolicy = _TranslationsTermOfServiceCookiePolicyJa._(_root);
+}
+
+// Path: onboarding
+class _TranslationsOnboardingJa implements TranslationsOnboardingEn {
+	_TranslationsOnboardingJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsOnboardingStep1Ja step1 = _TranslationsOnboardingStep1Ja._(_root);
+	@override late final _TranslationsOnboardingStep2Ja step2 = _TranslationsOnboardingStep2Ja._(_root);
+	@override late final _TranslationsOnboardingLoadingJa loading = _TranslationsOnboardingLoadingJa._(_root);
 }
 
 // Path: faq
@@ -128,6 +151,7 @@ class _TranslationsProfileJa implements TranslationsProfileEn {
 	@override String get title => 'プロフィール';
 	@override String get freeVersion => '無料版';
 	@override String get error => 'エラー';
+	@override String get passive => '非アクティブ';
 	@override late final _TranslationsProfileSectionsJa sections = _TranslationsProfileSectionsJa._(_root);
 	@override late final _TranslationsProfileMenuJa menu = _TranslationsProfileMenuJa._(_root);
 	@override String get manage => '管理';
@@ -143,7 +167,139 @@ class _TranslationsHomeJa implements TranslationsHomeEn {
 	// Translations
 	@override String get premium => 'プレミアム！';
 	@override String get seeMore => 'もっと見る';
+	@override String get pickUpWhereYouLeftOff => '続きから再開する';
+	@override String get premiumSection => 'プレミアム';
+	@override String get history => '履歴';
+	@override String get librarySection => 'ライブラリ';
+	@override String get libraryDescription => '保存した単語がここに表示されます。';
+	@override String get upgradeToPremium => 'プレミアムにアップグレード';
+	@override String get unlimitedStories => '無制限のストーリーと広告なし体験';
 	@override late final _TranslationsHomePremiumPlanJa premiumPlan = _TranslationsHomePremiumPlanJa._(_root);
+}
+
+// Path: allStories
+class _TranslationsAllStoriesJa implements TranslationsAllStoriesEn {
+	_TranslationsAllStoriesJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'すべての物語';
+	@override String get noStoriesFound => '物語が見つかりません';
+	@override String get selectFilter => 'フィルターを選択';
+	@override String get category => 'カテゴリ';
+	@override String get categorySubtitle => '読みたいカテゴリを選択してください';
+	@override String get apply => '適用';
+}
+
+// Path: stories
+class _TranslationsStoriesJa implements TranslationsStoriesEn {
+	_TranslationsStoriesJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '物語';
+	@override String get popularStories => '人気の物語';
+	@override String get recommendForYou => 'あなたへのおすすめ';
+	@override String get allStories => 'すべての物語';
+	@override String get seeAll => 'すべて見る';
+}
+
+// Path: library
+class _TranslationsLibraryJa implements TranslationsLibraryEn {
+	_TranslationsLibraryJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'ライブラリ';
+	@override String wordCount({required Object count}) => '${count} 語';
+	@override String get popularWords => '人気の単語';
+	@override String get allWords => 'すべての単語';
+	@override String get searchWord => '単語検索';
+	@override String get searchHint => '単語を入力してください…';
+}
+
+// Path: bottomNav
+class _TranslationsBottomNavJa implements TranslationsBottomNavEn {
+	_TranslationsBottomNavJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'ホーム';
+	@override String get stories => '物語';
+	@override String get library => 'ライブラリ';
+	@override String get profile => 'プロフィール';
+}
+
+// Path: dayStreak
+class _TranslationsDayStreakJa implements TranslationsDayStreakEn {
+	_TranslationsDayStreakJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '連続記録！';
+	@override late final _TranslationsDayStreakDaysJa days = _TranslationsDayStreakDaysJa._(_root);
+}
+
+// Path: storyDetails
+class _TranslationsStoryDetailsJa implements TranslationsStoryDetailsEn {
+	_TranslationsStoryDetailsJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get introduction => 'はじめに';
+	@override String get saved => '保存済み';
+	@override String get removed => '削除済み';
+	@override String get storyAddedToLibrary => '物語がライブラリに追加されました。';
+	@override String get storyRemovedFromLibrary => '物語がライブラリから削除されました。';
+	@override String get wordAddedToLibrary => '単語がライブラリに追加されました。元に戻す';
+	@override String get successfully => '成功';
+	@override String get ratingSubmitted => '評価が正常に送信されました。';
+	@override String get warning => '警告';
+	@override String get fillAllFields => 'すべてのフィールドを入力してください。';
+	@override String get messageSent => 'メッセージが正常に送信されました。';
+	@override String get translate => '翻訳';
+	@override String get speak => '話す';
+	@override String get like => 'いいね';
+	@override String get save => '保存';
+	@override String get feedback => 'フィードバック';
+	@override String get rating => '評価';
+	@override String get stop => '停止';
+	@override String get start => '開始';
+	@override String get listen => '聴く';
+	@override String get translation => '翻訳';
+	@override String get translating => '翻訳中...';
+	@override String get saveToLibrary => 'ライブラリに保存';
+	@override String get rateThisStory => 'この物語を評価する';
+	@override String get enjoyStory => 'この物語はどれくらい楽しめましたか？';
+	@override String get send => '送信';
+	@override String get subject => '件名';
+	@override late final _TranslationsStoryDetailsFeedbackSubjectsJa feedbackSubjects = _TranslationsStoryDetailsFeedbackSubjectsJa._(_root);
+}
+
+// Path: share
+class _TranslationsShareJa implements TranslationsShareEn {
+	_TranslationsShareJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '友達と共有';
+	@override String get mainTitle => '平和を共有する';
+	@override String get descriptionPart1 => '友達を招待して一緒に呼吸しましょう。\n招待ごとに、両方が ';
+	@override String get descriptionPart2 => '1週間プレミアム';
+	@override String get descriptionPart3 => 'を取得';
+	@override String get yourReferralCode => 'あなたの紹介コード';
+	@override String get codeCopied => 'コードがコピーされました！';
+	@override String get copyCode => 'コードをコピー';
+	@override String get inviteDescription => '友達を招待して\n一緒に学ぼう';
+	@override String get linkCopied => 'コピーしました';
+	@override String get linkCopiedMessage => 'リンクがクリップボードにコピーされました。';
 }
 
 // Path: editProfile
@@ -154,7 +310,8 @@ class _TranslationsEditProfileJa implements TranslationsEditProfileEn {
 
 	// Translations
 	@override String get title => 'プロフィールを編集';
-	@override String get changePhoto => '写真を変更';
+	@override String get changePhoto => 'アバターを変更';
+	@override String get learnLanguage => '学習言語を選択';
 	@override String get fullName => 'フルネーム';
 	@override String get email => 'メール';
 	@override String get age => '年齢';
@@ -177,23 +334,6 @@ class _TranslationsNotificationsJa implements TranslationsNotificationsEn {
 	@override String get emptyDescription => '学習の旅に関する重要な更新があるときにお知らせします。';
 	@override String get premiumBannerTitle => 'プレミアム特典を\nお見逃しなく！';
 	@override String get premiumBannerDescription => 'プレミアム購読者として機会をつかみましょう。';
-}
-
-// Path: share
-class _TranslationsShareJa implements TranslationsShareEn {
-	_TranslationsShareJa._(this._root);
-
-	final TranslationsJa _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => '友達と共有';
-	@override String get mainTitle => '平和を共有する';
-	@override String get descriptionPart1 => '友達を招待して一緒に呼吸しましょう。\n招待ごとに、両方が ';
-	@override String get descriptionPart2 => '1週間プレミアム';
-	@override String get descriptionPart3 => 'を取得';
-	@override String get yourReferralCode => 'あなたの紹介コード';
-	@override String get codeCopied => 'コードがコピーされました！';
-	@override String get copyCode => 'コードをコピー';
 }
 
 // Path: auth
@@ -241,6 +381,123 @@ class _TranslationsLanguageOptionsJa implements TranslationsLanguageOptionsEn {
 	@override String get korean => '韓国語';
 	@override String get hindi => 'ヒンディー語';
 	@override String get portuguese => 'ポルトガル語';
+}
+
+// Path: termOfService.privacyPolicy
+class _TranslationsTermOfServicePrivacyPolicyJa implements TranslationsTermOfServicePrivacyPolicyEn {
+	_TranslationsTermOfServicePrivacyPolicyJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'プライバシーポリシー';
+	@override String get lastUpdated => '最終更新：2025年';
+	@override String get intro => 'Lingola Stories Kidsは子どものプライバシーとデータセキュリティを基本原則としています。';
+	@override String get section1Title => '1. 収集する情報';
+	@override String get section1sub1Title => '1.1 ユーザーが提供するデータ';
+	@override String get section1sub1Body => 'ニックネームまたはプロフィール名。\nメールアドレス（保護者アカウントおよびサポート用）。\n年齢情報（コンテンツ適切性のため）。\n語学レベル、読んだストーリー、学んだ単語。\n\n注意：健康・心理分析には使用しません。';
+	@override String get section1sub2Title => '1.2 自動的に収集されるデータ';
+	@override String get section1sub2Body => 'デバイスの種類、OS、アプリパフォーマンスデータ。正確な位置情報は収集しません。';
+	@override String get section2Title => '2. データ処理の目的';
+	@override String get section2Body => 'データは以下の目的のみに使用されます：\n\n- 安全で年齢に適したコンテンツ提供。\n- 学習体験のパーソナライズ。\n- アプリのパフォーマンス改善。\n- 法的義務の履行。';
+	@override String get section3Title => '3. データの保存と削除';
+	@override String get section3Body => 'アカウントが有効な間または法律で要求される期間保存されます。サポート記録は最長12ヶ月。アカウント削除時、個人データは取り消し不能に消去されます。';
+	@override String get section4Title => '4. ユーザーの権利';
+	@override String get section4Body => 'GDPRおよびKVKKに基づき、保護者はアクセス、訂正、削除、移植性を請求できます。リクエストはsupport@fly-work.comへ。';
+	@override String get section5Title => '5. 子どものプライバシー';
+	@override String get section5Body => '6歳以上向け。13歳未満には保護者の同意が必要です。';
+	@override String get section6Title => '6. お問い合わせ';
+	@override String get section6Body => '📩 問い合わせ：support@fly-work.com';
+}
+
+// Path: termOfService.termsOfService
+class _TranslationsTermOfServiceTermsOfServiceJa implements TranslationsTermOfServiceTermsOfServiceEn {
+	_TranslationsTermOfServiceTermsOfServiceJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => '利用規約';
+	@override String get lastUpdated => '最終更新：2025年';
+	@override String get intro => '本利用規約はLingola Stories Kidsアプリの使用を規定します。アプリを使用することで規約に同意します。';
+	@override String get disclaimer => '免責事項：Lingola Stories Kidsは教育ツールです。公式教育や学術認定は提供しません。';
+	@override String get section1Title => '1. サービスの範囲';
+	@override String get section1Body => 'アプリは子ども向けストーリー学習を提供します：\n\n- AI搭載のストーリーと推薦。\n- 年齢・レベルに基づく読書体験。\n- 語彙と発音のサポート。';
+	@override String get section2Title => '2. 利用条件と年齢';
+	@override String get section2Body => '6歳以上のユーザー。\n18歳未満は保護者の監督のもとで利用を推奨。\nアカウント情報は正確に。';
+	@override String get section3Title => '3. 禁止事項';
+	@override String get section3Body => '無断複製、リバースエンジニアリング、AI操作、無断商業利用は禁止。';
+	@override String get section4Title => '4. サブスクリプションと支払い';
+	@override String get section4Body => 'プレミアム機能はApp Store・Google Playのポリシーに準拠。';
+	@override String get section5Title => '5. 知的財産権';
+	@override String get section5Body => 'すべてのコンテンツはLingola Stories Kidsに帰属します。';
+	@override String get section6Title => '6. 責任の制限';
+	@override String get section6Body => 'アプリは現状のまま提供されます。';
+	@override String get section7Title => '7. 準拠法';
+	@override String get section7Body => 'トルコ共和国の法律に準拠。イスタンブール中央裁判所が管轄。';
+	@override String get section8Title => '8. お問い合わせ';
+	@override String get section8Body => '📩 問い合わせ：support@fly-work.com';
+}
+
+// Path: termOfService.cookiePolicy
+class _TranslationsTermOfServiceCookiePolicyJa implements TranslationsTermOfServiceCookiePolicyEn {
+	_TranslationsTermOfServiceCookiePolicyJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'クッキーポリシー';
+	@override String get lastUpdated => '最終更新：2025年';
+	@override String get intro => 'このポリシーはアプリ使用時に使われるデジタル技術を説明します。';
+	@override String get important => '重要：子どものプライバシーが基本原則です。アプリは6歳以上向けです。';
+	@override String get section1Title => '1. クッキーとは？';
+	@override String get section1Body => 'クッキーや類似技術はアプリが正常に機能するための小さなデジタルコンポーネントです。直接識別するものではありません。';
+	@override String get section2Title => '2. どの技術を使用しますか？';
+	@override String get section2Body => '必須技術：セッション管理とセキュリティ。\n\nパフォーマンスと分析：読まれた物語の把握、匿名データ。\n\nパーソナライズ：言語設定と読書レベルを記憶。';
+	@override String get section3Title => '3. なぜ使用するのか？';
+	@override String get section3Body => '- 安全なアプリ動作。\n- 読書体験の改善。\n- 設定の記憶。\n- 将来機能の特定。';
+	@override String get section4Title => '4. サードパーティ技術';
+	@override String get section4Body => 'サードパーティとの連携では最小データ使用の原則を適用します。';
+	@override String get section5Title => '5. 管理とコントロール';
+	@override String get section5Body => '保護者はデバイス設定からこれらの技術を制限できます。';
+	@override String get section6Title => '6. お問い合わせ';
+	@override String get section6Body => '📩 問い合わせ：support@fly-work.com';
+}
+
+// Path: onboarding.step1
+class _TranslationsOnboardingStep1Ja implements TranslationsOnboardingStep1En {
+	_TranslationsOnboardingStep1Ja._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'どの言語を\n学びたいですか？';
+	@override String get subtitle => '学びたい言語を\n選択してください。';
+}
+
+// Path: onboarding.step2
+class _TranslationsOnboardingStep2Ja implements TranslationsOnboardingStep2En {
+	_TranslationsOnboardingStep2Ja._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'どんな種類の物語が\n好きですか？';
+	@override String get subtitle => '好みを教えてください。';
+	@override late final _TranslationsOnboardingStep2CategoriesJa categories = _TranslationsOnboardingStep2CategoriesJa._(_root);
+}
+
+// Path: onboarding.loading
+class _TranslationsOnboardingLoadingJa implements TranslationsOnboardingLoadingEn {
+	_TranslationsOnboardingLoadingJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get titlePart1 => 'あなたの個人アカウントは\n';
+	@override String get titlePart2 => '作成中です';
+	@override String get subtitle => '素晴らしい物語を作っています';
+	@override String get optimization => '最適化中';
 }
 
 // Path: faq.questions
@@ -292,7 +549,7 @@ class _TranslationsProfileSectionsJa implements TranslationsProfileSectionsEn {
 
 	// Translations
 	@override String get accountSettings => 'アカウント設定';
-	@override String get supportAndOther => 'サポートとその他';
+	@override String get general => '一般';
 }
 
 // Path: profile.menu
@@ -339,6 +596,36 @@ class _TranslationsHomePremiumPlanJa implements TranslationsHomePremiumPlanEn {
 	@override late final _TranslationsHomePremiumPlanDialogJa dialog = _TranslationsHomePremiumPlanDialogJa._(_root);
 }
 
+// Path: dayStreak.days
+class _TranslationsDayStreakDaysJa implements TranslationsDayStreakDaysEn {
+	_TranslationsDayStreakDaysJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get su => '日';
+	@override String get mo => '月';
+	@override String get tu => '火';
+	@override String get we => '水';
+	@override String get th => '木';
+	@override String get fr => '金';
+	@override String get sa => '土';
+}
+
+// Path: storyDetails.feedbackSubjects
+class _TranslationsStoryDetailsFeedbackSubjectsJa implements TranslationsStoryDetailsFeedbackSubjectsEn {
+	_TranslationsStoryDetailsFeedbackSubjectsJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get bugReport => 'バグ報告';
+	@override String get storyContent => 'ストーリーの内容';
+	@override String get audioIssue => '音声の問題';
+	@override String get suggestion => '提案';
+	@override String get other => 'その他';
+}
+
 // Path: referralCode.success
 class _TranslationsReferralCodeSuccessJa implements TranslationsReferralCodeSuccessEn {
 	_TranslationsReferralCodeSuccessJa._(this._root);
@@ -363,6 +650,23 @@ class _TranslationsReferralCodeErrorsJa implements TranslationsReferralCodeError
 	@override late final _TranslationsReferralCodeErrorsSelfReferralJa selfReferral = _TranslationsReferralCodeErrorsSelfReferralJa._(_root);
 	@override late final _TranslationsReferralCodeErrorsCodeNotFoundJa codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundJa._(_root);
 	@override late final _TranslationsReferralCodeErrorsGenericErrorJa genericError = _TranslationsReferralCodeErrorsGenericErrorJa._(_root);
+}
+
+// Path: onboarding.step2.categories
+class _TranslationsOnboardingStep2CategoriesJa implements TranslationsOnboardingStep2CategoriesEn {
+	_TranslationsOnboardingStep2CategoriesJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get space => '🚀 宇宙の冒険';
+	@override String get magic => '🦄 魔法の世界';
+	@override String get detectives => '🕵️ 小さな探偵';
+	@override String get animals => '🐾 かわいい友達';
+	@override String get dinosaurs => '🦖 恐竜の時代';
+	@override String get superhero => '🦸 スーパーヒーロー';
+	@override String get underwater => '🌊 水中王国';
+	@override String get fairytale => '🏰 王子と王女のおとぎ話';
 }
 
 // Path: faq.questions.q1
@@ -576,8 +880,78 @@ extension on TranslationsJa {
 			'termOfService.text3' => 'および',
 			'termOfService.link3' => 'クッキーポリシー',
 			'termOfService.text4' => 'でデータの処理方法をご確認ください',
+			'termOfService.privacyPolicy.title' => 'プライバシーポリシー',
+			'termOfService.privacyPolicy.lastUpdated' => '最終更新：2025年',
+			'termOfService.privacyPolicy.intro' => 'Lingola Stories Kidsは子どものプライバシーとデータセキュリティを基本原則としています。',
+			'termOfService.privacyPolicy.section1Title' => '1. 収集する情報',
+			'termOfService.privacyPolicy.section1sub1Title' => '1.1 ユーザーが提供するデータ',
+			'termOfService.privacyPolicy.section1sub1Body' => 'ニックネームまたはプロフィール名。\nメールアドレス（保護者アカウントおよびサポート用）。\n年齢情報（コンテンツ適切性のため）。\n語学レベル、読んだストーリー、学んだ単語。\n\n注意：健康・心理分析には使用しません。',
+			'termOfService.privacyPolicy.section1sub2Title' => '1.2 自動的に収集されるデータ',
+			'termOfService.privacyPolicy.section1sub2Body' => 'デバイスの種類、OS、アプリパフォーマンスデータ。正確な位置情報は収集しません。',
+			'termOfService.privacyPolicy.section2Title' => '2. データ処理の目的',
+			'termOfService.privacyPolicy.section2Body' => 'データは以下の目的のみに使用されます：\n\n- 安全で年齢に適したコンテンツ提供。\n- 学習体験のパーソナライズ。\n- アプリのパフォーマンス改善。\n- 法的義務の履行。',
+			'termOfService.privacyPolicy.section3Title' => '3. データの保存と削除',
+			'termOfService.privacyPolicy.section3Body' => 'アカウントが有効な間または法律で要求される期間保存されます。サポート記録は最長12ヶ月。アカウント削除時、個人データは取り消し不能に消去されます。',
+			'termOfService.privacyPolicy.section4Title' => '4. ユーザーの権利',
+			'termOfService.privacyPolicy.section4Body' => 'GDPRおよびKVKKに基づき、保護者はアクセス、訂正、削除、移植性を請求できます。リクエストはsupport@fly-work.comへ。',
+			'termOfService.privacyPolicy.section5Title' => '5. 子どものプライバシー',
+			'termOfService.privacyPolicy.section5Body' => '6歳以上向け。13歳未満には保護者の同意が必要です。',
+			'termOfService.privacyPolicy.section6Title' => '6. お問い合わせ',
+			'termOfService.privacyPolicy.section6Body' => '📩 問い合わせ：support@fly-work.com',
+			'termOfService.termsOfService.title' => '利用規約',
+			'termOfService.termsOfService.lastUpdated' => '最終更新：2025年',
+			'termOfService.termsOfService.intro' => '本利用規約はLingola Stories Kidsアプリの使用を規定します。アプリを使用することで規約に同意します。',
+			'termOfService.termsOfService.disclaimer' => '免責事項：Lingola Stories Kidsは教育ツールです。公式教育や学術認定は提供しません。',
+			'termOfService.termsOfService.section1Title' => '1. サービスの範囲',
+			'termOfService.termsOfService.section1Body' => 'アプリは子ども向けストーリー学習を提供します：\n\n- AI搭載のストーリーと推薦。\n- 年齢・レベルに基づく読書体験。\n- 語彙と発音のサポート。',
+			'termOfService.termsOfService.section2Title' => '2. 利用条件と年齢',
+			'termOfService.termsOfService.section2Body' => '6歳以上のユーザー。\n18歳未満は保護者の監督のもとで利用を推奨。\nアカウント情報は正確に。',
+			'termOfService.termsOfService.section3Title' => '3. 禁止事項',
+			'termOfService.termsOfService.section3Body' => '無断複製、リバースエンジニアリング、AI操作、無断商業利用は禁止。',
+			'termOfService.termsOfService.section4Title' => '4. サブスクリプションと支払い',
+			'termOfService.termsOfService.section4Body' => 'プレミアム機能はApp Store・Google Playのポリシーに準拠。',
+			'termOfService.termsOfService.section5Title' => '5. 知的財産権',
+			'termOfService.termsOfService.section5Body' => 'すべてのコンテンツはLingola Stories Kidsに帰属します。',
+			'termOfService.termsOfService.section6Title' => '6. 責任の制限',
+			'termOfService.termsOfService.section6Body' => 'アプリは現状のまま提供されます。',
+			'termOfService.termsOfService.section7Title' => '7. 準拠法',
+			'termOfService.termsOfService.section7Body' => 'トルコ共和国の法律に準拠。イスタンブール中央裁判所が管轄。',
+			'termOfService.termsOfService.section8Title' => '8. お問い合わせ',
+			'termOfService.termsOfService.section8Body' => '📩 問い合わせ：support@fly-work.com',
+			'termOfService.cookiePolicy.title' => 'クッキーポリシー',
+			'termOfService.cookiePolicy.lastUpdated' => '最終更新：2025年',
+			'termOfService.cookiePolicy.intro' => 'このポリシーはアプリ使用時に使われるデジタル技術を説明します。',
+			'termOfService.cookiePolicy.important' => '重要：子どものプライバシーが基本原則です。アプリは6歳以上向けです。',
+			'termOfService.cookiePolicy.section1Title' => '1. クッキーとは？',
+			'termOfService.cookiePolicy.section1Body' => 'クッキーや類似技術はアプリが正常に機能するための小さなデジタルコンポーネントです。直接識別するものではありません。',
+			'termOfService.cookiePolicy.section2Title' => '2. どの技術を使用しますか？',
+			'termOfService.cookiePolicy.section2Body' => '必須技術：セッション管理とセキュリティ。\n\nパフォーマンスと分析：読まれた物語の把握、匿名データ。\n\nパーソナライズ：言語設定と読書レベルを記憶。',
+			'termOfService.cookiePolicy.section3Title' => '3. なぜ使用するのか？',
+			'termOfService.cookiePolicy.section3Body' => '- 安全なアプリ動作。\n- 読書体験の改善。\n- 設定の記憶。\n- 将来機能の特定。',
+			'termOfService.cookiePolicy.section4Title' => '4. サードパーティ技術',
+			'termOfService.cookiePolicy.section4Body' => 'サードパーティとの連携では最小データ使用の原則を適用します。',
+			'termOfService.cookiePolicy.section5Title' => '5. 管理とコントロール',
+			'termOfService.cookiePolicy.section5Body' => '保護者はデバイス設定からこれらの技術を制限できます。',
+			'termOfService.cookiePolicy.section6Title' => '6. お問い合わせ',
+			'termOfService.cookiePolicy.section6Body' => '📩 問い合わせ：support@fly-work.com',
 			'cookies' => 'クッキーポリシー',
 			'privacy' => 'プライバシーポリシー',
+			'onboarding.step1.title' => 'どの言語を\n学びたいですか？',
+			'onboarding.step1.subtitle' => '学びたい言語を\n選択してください。',
+			'onboarding.step2.title' => 'どんな種類の物語が\n好きですか？',
+			'onboarding.step2.subtitle' => '好みを教えてください。',
+			'onboarding.step2.categories.space' => '🚀 宇宙の冒険',
+			'onboarding.step2.categories.magic' => '🦄 魔法の世界',
+			'onboarding.step2.categories.detectives' => '🕵️ 小さな探偵',
+			'onboarding.step2.categories.animals' => '🐾 かわいい友達',
+			'onboarding.step2.categories.dinosaurs' => '🦖 恐竜の時代',
+			'onboarding.step2.categories.superhero' => '🦸 スーパーヒーロー',
+			'onboarding.step2.categories.underwater' => '🌊 水中王国',
+			'onboarding.step2.categories.fairytale' => '🏰 王子と王女のおとぎ話',
+			'onboarding.loading.titlePart1' => 'あなたの個人アカウントは\n',
+			'onboarding.loading.titlePart2' => '作成中です',
+			'onboarding.loading.subtitle' => '素晴らしい物語を作っています',
+			'onboarding.loading.optimization' => '最適化中',
 			'pressBackAgainToExit' => 'もう一度戻るを押して終了',
 			'faq.title' => 'よくある質問',
 			'faq.questions.q1.question' => 'このアプリは何のためにありますか？',
@@ -610,8 +984,9 @@ extension on TranslationsJa {
 			'profile.title' => 'プロフィール',
 			'profile.freeVersion' => '無料版',
 			'profile.error' => 'エラー',
+			'profile.passive' => '非アクティブ',
 			'profile.sections.accountSettings' => 'アカウント設定',
-			'profile.sections.supportAndOther' => 'サポートとその他',
+			'profile.sections.general' => '一般',
 			'profile.menu.editProfile' => 'プロフィールを編集',
 			'profile.menu.notifications' => '通知',
 			'profile.menu.premium' => 'プレミアム',
@@ -628,14 +1003,95 @@ extension on TranslationsJa {
 			'profile.logoutDialog.cancelButton' => 'キャンセル',
 			'home.premium' => 'プレミアム！',
 			'home.seeMore' => 'もっと見る',
+			'home.pickUpWhereYouLeftOff' => '続きから再開する',
+			'home.premiumSection' => 'プレミアム',
+			'home.history' => '履歴',
+			'home.librarySection' => 'ライブラリ',
+			'home.libraryDescription' => '保存した単語がここに表示されます。',
+			'home.upgradeToPremium' => 'プレミアムにアップグレード',
+			'home.unlimitedStories' => '無制限のストーリーと広告なし体験',
 			'home.premiumPlan.title' => 'プレミアムプラン',
 			'home.premiumPlan.description' => 'AIチャットボットのロックを解除し、\nすべてのプレミアム機能を取得',
 			'home.premiumPlan.button' => 'プレミアムを取得',
 			'home.premiumPlan.dialog.title' => '機能は利用できません',
 			'home.premiumPlan.dialog.message' => 'この機能は現在利用できません。',
 			'home.premiumPlan.dialog.button' => 'OK',
+			'allStories.title' => 'すべての物語',
+			'allStories.noStoriesFound' => '物語が見つかりません',
+			'allStories.selectFilter' => 'フィルターを選択',
+			'allStories.category' => 'カテゴリ',
+			'allStories.categorySubtitle' => '読みたいカテゴリを選択してください',
+			'allStories.apply' => '適用',
+			'stories.title' => '物語',
+			'stories.popularStories' => '人気の物語',
+			'stories.recommendForYou' => 'あなたへのおすすめ',
+			'stories.allStories' => 'すべての物語',
+			'stories.seeAll' => 'すべて見る',
+			'library.title' => 'ライブラリ',
+			'library.wordCount' => ({required Object count}) => '${count} 語',
+			'library.popularWords' => '人気の単語',
+			'library.allWords' => 'すべての単語',
+			'library.searchWord' => '単語検索',
+			'library.searchHint' => '単語を入力してください…',
+			'bottomNav.home' => 'ホーム',
+			'bottomNav.stories' => '物語',
+			'bottomNav.library' => 'ライブラリ',
+			'bottomNav.profile' => 'プロフィール',
+			'dayStreak.title' => '連続記録！',
+			'dayStreak.days.su' => '日',
+			'dayStreak.days.mo' => '月',
+			'dayStreak.days.tu' => '火',
+			'dayStreak.days.we' => '水',
+			'dayStreak.days.th' => '木',
+			'dayStreak.days.fr' => '金',
+			'dayStreak.days.sa' => '土',
+			'storyDetails.introduction' => 'はじめに',
+			'storyDetails.saved' => '保存済み',
+			'storyDetails.removed' => '削除済み',
+			'storyDetails.storyAddedToLibrary' => '物語がライブラリに追加されました。',
+			'storyDetails.storyRemovedFromLibrary' => '物語がライブラリから削除されました。',
+			'storyDetails.wordAddedToLibrary' => '単語がライブラリに追加されました。元に戻す',
+			'storyDetails.successfully' => '成功',
+			'storyDetails.ratingSubmitted' => '評価が正常に送信されました。',
+			'storyDetails.warning' => '警告',
+			'storyDetails.fillAllFields' => 'すべてのフィールドを入力してください。',
+			'storyDetails.messageSent' => 'メッセージが正常に送信されました。',
+			'storyDetails.translate' => '翻訳',
+			'storyDetails.speak' => '話す',
+			'storyDetails.like' => 'いいね',
+			'storyDetails.save' => '保存',
+			'storyDetails.feedback' => 'フィードバック',
+			'storyDetails.rating' => '評価',
+			'storyDetails.stop' => '停止',
+			'storyDetails.start' => '開始',
+			'storyDetails.listen' => '聴く',
+			'storyDetails.translation' => '翻訳',
+			'storyDetails.translating' => '翻訳中...',
+			'storyDetails.saveToLibrary' => 'ライブラリに保存',
+			'storyDetails.rateThisStory' => 'この物語を評価する',
+			'storyDetails.enjoyStory' => 'この物語はどれくらい楽しめましたか？',
+			'storyDetails.send' => '送信',
+			'storyDetails.subject' => '件名',
+			'storyDetails.feedbackSubjects.bugReport' => 'バグ報告',
+			'storyDetails.feedbackSubjects.storyContent' => 'ストーリーの内容',
+			'storyDetails.feedbackSubjects.audioIssue' => '音声の問題',
+			'storyDetails.feedbackSubjects.suggestion' => '提案',
+			'storyDetails.feedbackSubjects.other' => 'その他',
+			'share.title' => '友達と共有',
+			'share.mainTitle' => '平和を共有する',
+			'share.descriptionPart1' => '友達を招待して一緒に呼吸しましょう。\n招待ごとに、両方が ',
+			'share.descriptionPart2' => '1週間プレミアム',
+			'share.descriptionPart3' => 'を取得',
+			'share.yourReferralCode' => 'あなたの紹介コード',
+			'share.codeCopied' => 'コードがコピーされました！',
+			'share.copyCode' => 'コードをコピー',
+			'share.inviteDescription' => '友達を招待して\n一緒に学ぼう',
+			'share.linkCopied' => 'コピーしました',
+			'share.linkCopiedMessage' => 'リンクがクリップボードにコピーされました。',
+			'delete' => '削除',
 			'editProfile.title' => 'プロフィールを編集',
-			'editProfile.changePhoto' => '写真を変更',
+			'editProfile.changePhoto' => 'アバターを変更',
+			'editProfile.learnLanguage' => '学習言語を選択',
 			'editProfile.fullName' => 'フルネーム',
 			'editProfile.email' => 'メール',
 			'editProfile.age' => '年齢',
@@ -649,14 +1105,6 @@ extension on TranslationsJa {
 			'notifications.emptyDescription' => '学習の旅に関する重要な更新があるときにお知らせします。',
 			'notifications.premiumBannerTitle' => 'プレミアム特典を\nお見逃しなく！',
 			'notifications.premiumBannerDescription' => 'プレミアム購読者として機会をつかみましょう。',
-			'share.title' => '友達と共有',
-			'share.mainTitle' => '平和を共有する',
-			'share.descriptionPart1' => '友達を招待して一緒に呼吸しましょう。\n招待ごとに、両方が ',
-			'share.descriptionPart2' => '1週間プレミアム',
-			'share.descriptionPart3' => 'を取得',
-			'share.yourReferralCode' => 'あなたの紹介コード',
-			'share.codeCopied' => 'コードがコピーされました！',
-			'share.copyCode' => 'コードをコピー',
 			'auth.google' => 'Google',
 			'auth.facebook' => 'Facebook',
 			'auth.apple' => 'Apple',

@@ -26,7 +26,14 @@ class StoryTagDot extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 3),
-        Text(tag, style: AppTextStyles.body(size, color: Colors.white70)),
+        Text(
+          tag,
+          style: AppTextStyles.body(
+            size,
+            color: Colors.white60,
+            letterSpacing: -0.05,
+          ),
+        ),
       ],
     );
   }

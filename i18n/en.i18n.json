@@ -14,11 +14,96 @@
         "link2": "Privacy Policy",
         "text3": " and ",
         "link3": "Cookies Policy",
-        "text4": ""
+        "text4": "",
+        "privacyPolicy": {
+            "title": "Privacy Policy",
+            "lastUpdated": "Last Updated: 2025",
+            "intro": "Lingola Stories Kids adopts child privacy and data security as a core principle. This policy explains how your personal data is collected, stored, and protected.",
+            "section1Title": "1. COLLECTED INFORMATION",
+            "section1sub1Title": "1.1 Data Provided by User",
+            "section1sub1Body": "• Nickname or profile name.\n• Email address (for parent account and support).\n• Age information (for content suitability).\n• Language level, stories read, and learned words.\n\nNote: This data is never used for health or psychological analysis.",
+            "section1sub2Title": "1.2 Automatically Collected Data",
+            "section1sub2Body": "Device type, operating system, and app performance data are collected. Precise location data is NOT collected; only approximate location (country/city) is gathered.",
+            "section2Title": "2. PURPOSES OF DATA PROCESSING",
+            "section2Body": "Your data is used solely to:\n\n• Provide safe and age-appropriate content.\n• Personalize the learning experience.\n• Improve app performance.\n• Fulfill legal obligations.",
+            "section3Title": "3. DATA RETENTION AND DELETION",
+            "section3Body": "Data is stored as long as your account is active or as required by law. Support records are kept for a maximum of 12 months. When an account is deleted, personal data is irreversibly erased.",
+            "section4Title": "4. USER RIGHTS",
+            "section4Body": "Under GDPR and LPPD (KVKK), parents have the right to request access, correction, deletion, or portability of data. Please send requests to support@fly-work.com.",
+            "section5Title": "5. CHILDREN'S PRIVACY",
+            "section5Body": "Lingola Stories Kids is designed for ages 6+. Parental consent is required for users under 13. Accounts with false age declarations will be closed immediately.",
+            "section6Title": "6. CONTACT",
+            "section6Body": "📩 For inquiries: support@fly-work.com"
+        },
+        "termsOfService": {
+            "title": "Terms of Service",
+            "lastUpdated": "Last Updated: 2025",
+            "intro": "These Terms of Service govern the use of the Lingola Stories Kids application. By using the app, you agree to these terms.",
+            "disclaimer": "Disclaimer: Lingola Stories Kids is an educational tool. It does not provide official education, academic certification, or professional language training services.",
+            "section1Title": "1. SCOPE OF SERVICE",
+            "section1Body": "The app provides a story-based learning experience for children:\n\n• AI-powered stories and recommendations.\n• Age and level-based reading experience.\n• Vocabulary and pronunciation support.",
+            "section2Title": "2. CONDITIONS OF USE & AGE",
+            "section2Body": "• Users must be at least 6 years old.\n• Users under 18 are encouraged to use the app under parental supervision.\n• Account information must be accurate and up-to-date.",
+            "section3Title": "3. PROHIBITED USES",
+            "section3Body": "Unauthorized copying of content, reverse engineering, manipulation of AI systems, and unauthorized commercial use are strictly prohibited.",
+            "section4Title": "4. SUBSCRIPTIONS AND PAYMENTS",
+            "section4Body": "Premium features are subject to App Store and Google Play policies. Subscription cancellations and refunds are managed via the respective store settings.",
+            "section5Title": "5. INTELLECTUAL PROPERTY",
+            "section5Body": "All content, including design, software, stories, and AI outputs, belongs to Lingola Stories Kids and may not be reproduced without permission.",
+            "section6Title": "6. LIMITATION OF LIABILITY",
+            "section6Body": "The app is provided \"as is\". Lingola Stories Kids is not liable for individual outcomes of content use or technical issues caused by devices.",
+            "section7Title": "7. GOVERNING LAW",
+            "section7Body": "These terms are governed by the laws of the Republic of Turkey. Istanbul Central Courts shall have jurisdiction over any disputes.",
+            "section8Title": "8. CONTACT",
+            "section8Body": "📩 For inquiries: support@fly-work.com"
+        },
+        "cookiePolicy": {
+            "title": "Cookie Policy",
+            "lastUpdated": "Last Updated: 2025",
+            "intro": "Welcome to Lingola Stories Kids! This policy explains what digital helpers are used and for what purposes they are utilized when you use the app.",
+            "important": "IMPORTANT: Lingola Stories Kids adopts child privacy as a core principle. Our app is designed for users aged 6 and above.",
+            "section1Title": "1. WHAT ARE COOKIES AND SIMILAR TECHNOLOGIES?",
+            "section1Body": "Cookies and similar technologies (SDKs, identifiers) are small digital components that help the app function correctly. These technologies do not directly identify you and do not create individual profiles for advertising.",
+            "section2Title": "2. WHICH TECHNOLOGIES DO WE USE?",
+            "section2Body": "Strictly Necessary Technologies\nRequired for session management and security controls. The app may not function properly without these components.\n\nPerformance and Analytics\nHelps us understand which stories are read and which areas need improvement. Data is evaluated anonymously.\n\nPersonalization\nRemembers settings like language preference and reading level to provide a tailored experience for the child.",
+            "section3Title": "3. WHY DO WE USE THESE TECHNOLOGIES?",
+            "section3Body": "• To ensure the app runs safely and smoothly.\n• To make the reading experience more fluid.\n• To remember repetitive settings.\n• To identify features for future development.",
+            "section4Title": "4. THIRD-PARTY TECHNOLOGIES",
+            "section4Body": "We apply the \"minimum data usage\" principle when working with third-party partners. These providers are subject to their own privacy policies.",
+            "section5Title": "5. CONTROL AND MANAGEMENT",
+            "section5Body": "Parents can limit the use of these technologies via device settings. However, disabling necessary technologies may affect functionality.",
+            "section6Title": "6. CONTACT",
+            "section6Body": "📩 For inquiries: support@fly-work.com"
+        }
     },
     "cookies": "Cookies Policy",
     "privacy": "Privacy Policy",
-    "onboarding": {},
+    "onboarding": {
+        "step1": {
+            "title": "Which language would you\nlike to learn?",
+            "subtitle": "Please select the language or languages\nyou wish to learn."
+        },
+        "step2": {
+            "title": "What kind of stories\ndo you like?",
+            "subtitle": "Please indicate your preference.",
+            "categories": {
+                "space": "🚀 Space Adventures",
+                "magic": "🦄 Magical Worlds",
+                "detectives": "🕵️ Little Detectives",
+                "animals": "🐾 Lovable Friends",
+                "dinosaurs": "🦖 The Age of Dinosaurs",
+                "superhero": "🦸 Superheroes",
+                "underwater": "🌊 Underwater Kingdom",
+                "fairytale": "🏰 Prince and Princess Fairy Tales"
+            }
+        },
+        "loading": {
+            "titlePart1": "Your Personal Account is\n",
+            "titlePart2": "Being Created",
+            "subtitle": "We create wonderful stories for you",
+            "optimization": "Optimization"
+        }
+    },
     "pressBackAgainToExit": "Press back again to exit",
     "faq": {
         "title": "Frequently Asked Questions",
@@ -82,9 +167,10 @@
         "title": "Profile",
         "freeVersion": "Free Version",
         "error": "Error",
+        "passive": "Passive",
         "sections": {
             "accountSettings": "ACCOUNT SETTINGS",
-            "supportAndOther": "SUPPORT & OTHER"
+            "general": "GENERAL"
         },
         "menu": {
             "editProfile": "Edit Profile",
@@ -108,6 +194,13 @@
     "home": {
         "premium": "Premium!",
         "seeMore": "See More",
+        "pickUpWhereYouLeftOff": "Pick up where you left off",
+        "premiumSection": "Premium",
+        "history": "History",
+        "librarySection": "Library",
+        "libraryDescription": "The words you have saved will appear here.",
+        "upgradeToPremium": "Upgrade to Premium",
+        "unlimitedStories": "Unlimited stories and an ad-free experience",
         "premiumPlan": {
             "title": "Premium Plan",
             "description": "Unlock your ai chatbot & get \nall premium features",
@@ -119,9 +212,100 @@
             }
         }
     },
+    "allStories": {
+        "title": "All Stories",
+        "noStoriesFound": "No stories found",
+        "selectFilter": "Select Filter",
+        "category": "Category",
+        "categorySubtitle": "Please select the category you wish to read",
+        "apply": "Apply"
+    },
+    "stories": {
+        "title": "Stories",
+        "popularStories": "Popular Stories",
+        "recommendForYou": "Recommend For You",
+        "allStories": "All Stories",
+        "seeAll": "See all"
+    },
+    "library": {
+        "title": "Library",
+        "wordCount": "${count} Words",
+        "popularWords": "Popular Words",
+        "allWords": "All Words",
+        "searchWord": "Search Word",
+        "searchHint": "Please enter word…"
+    },
+    "bottomNav": {
+        "home": "Home",
+        "stories": "Stories",
+        "library": "Library",
+        "profile": "Profile"
+    },
+    "dayStreak": {
+        "title": "Day streak!",
+        "days": {
+            "su": "Su",
+            "mo": "Mo",
+            "tu": "Tu",
+            "we": "We",
+            "th": "Th",
+            "fr": "Fr",
+            "sa": "Sa"
+        }
+    },
+    "storyDetails": {
+        "introduction": "Introduction",
+        "saved": "Saved",
+        "removed": "Removed",
+        "storyAddedToLibrary": "The story has been added to your library.",
+        "storyRemovedFromLibrary": "The story has been removed from library.",
+        "wordAddedToLibrary": "The word has been added to the library. Undo",
+        "successfully": "Successfully",
+        "ratingSubmitted": "Your rating has been submitted successfully.",
+        "warning": "Warning",
+        "fillAllFields": "Please fill in all fields.",
+        "messageSent": "Your message has been sent successfully.",
+        "translate": "Translate",
+        "speak": "Speak",
+        "like": "Like",
+        "save": "Save",
+        "feedback": "Feedback",
+        "rating": "Rating",
+        "stop": "Stop",
+        "start": "Start",
+        "listen": "Listen",
+        "translation": "Translation",
+        "translating": "Translating...",
+        "saveToLibrary": "Save to Library",
+        "rateThisStory": "Rate this Story",
+        "enjoyStory": "How much did you enjoy this story?",
+        "send": "Send",
+        "subject": "Subject",
+        "feedbackSubjects": {
+            "bugReport": "Bug Report",
+            "storyContent": "Story Content",
+            "audioIssue": "Audio Issue",
+            "suggestion": "Suggestion",
+            "other": "Other"
+        }
+    },
+    "share": {
+        "title": "Share with Friends",
+        "mainTitle": "Share the Peace",
+        "descriptionPart1": "Invite your friends to breathe together.\nFor every invite, you both get ",
+        "descriptionPart2": "1 week Premium",
+        "descriptionPart3": "",
+        "yourReferralCode": "YOUR REFERRAL CODE",
+        "codeCopied": "Code copied!",
+        "copyCode": "Copy Code",
+        "inviteDescription": "Invite your friends and enjoy\nlearning together",
+        "linkCopied": "Copied",
+        "linkCopiedMessage": "The link has been copied to the clipboard."
+    },
     "editProfile": {
         "title": "Edit Profile",
-        "changePhoto": "Change Photo",
+        "changePhoto": "Change Avatar",
+        "learnLanguage": "Select Learn Language",
         "fullName": "Full Name",
         "email": "E-mail",
         "age": "Age",
@@ -138,16 +322,6 @@
         "premiumBannerTitle": "Don't miss out on\nPremium benefits!",
         "premiumBannerDescription": "Grab the opportunities as a Premium subscriber."
     },
-    "share": {
-        "title": "Share with Friends",
-        "mainTitle": "Share the Peace",
-        "descriptionPart1": "Invite your friends to breathe together.\nFor every invite, you both get ",
-        "descriptionPart2": "1 week Premium",
-        "descriptionPart3": "",
-        "yourReferralCode": "YOUR REFERRAL CODE",
-        "codeCopied": "Code copied!",
-        "copyCode": "Copy Code"
-    },
     "auth": {
         "google": "Continue with Google",
         "facebook": "Continue with Facebook",
@@ -156,6 +330,7 @@
         "signInFailed": "Sign-in failed: $error"
     },
     "cancel": "Cancel",
+    "delete": "Delete",
     "deleteAccount": "Delete Account",
     "deleteDialogTitle": "Are you sure you want to delete your account?",
     "deleteDialogDescription": "This action is irreversible and will permanently delete all your exercise history and data.",

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
@@ -20,6 +21,8 @@ class BottomNavBarWidget extends StatelessWidget {
       onDestinationSelected: onIndexChanged,
       backgroundColor: Colors.white,
       indicatorColor: Colors.transparent,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+
       labelTextStyle: WidgetStateTextStyle.resolveWith((states) {
         if (states.contains(WidgetState.selected)) {
           return AppTextStyles.bottomNavBar(12, color: AppColors.primary);
@@ -33,7 +36,7 @@ class BottomNavBarWidget extends StatelessWidget {
             AppIcons.home,
             colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
           ),
-          label: 'Home',
+          label: context.t.bottomNav.home,
         ),
         NavigationDestination(
           icon: SvgPicture.asset(AppIcons.telescope),
@@ -41,7 +44,7 @@ class BottomNavBarWidget extends StatelessWidget {
             AppIcons.telescope,
             colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
           ),
-          label: 'Stories',
+          label: context.t.bottomNav.stories,
         ),
         NavigationDestination(
           icon: SvgPicture.asset(
@@ -55,7 +58,7 @@ class BottomNavBarWidget extends StatelessWidget {
             AppIcons.library,
             colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
           ),
-          label: 'Library',
+          label: context.t.bottomNav.library,
         ),
         NavigationDestination(
           icon: SvgPicture.asset(AppIcons.profile),
@@ -63,7 +66,7 @@ class BottomNavBarWidget extends StatelessWidget {
             AppIcons.profile,
             colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
           ),
-          label: 'Profile',
+          label: context.t.bottomNav.profile,
         ),
       ],
     );

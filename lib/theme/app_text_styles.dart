@@ -99,24 +99,16 @@ class AppTextStyles {
   static TextStyle body(
     double size, {
     FontWeight weight = FontWeight.w400,
-    double letterSpacing = 0,
-    double height = 0.8,
+    double? letterSpacing,
+    double? height,
     Color? color,
   }) {
     return GoogleFonts.josefinSans(
       fontSize: size,
       fontWeight: weight,
-      letterSpacing: letterSpacing,
-      height: height,
+      letterSpacing: letterSpacing != null ? size * letterSpacing : null,
+      height: height != null ? height / size : null,
       color: color ?? AppColors.black,
     );
   }
-
-  static TextStyle button({Color? color, double? size}) => heading(
-    size ?? 15,
-    FontWeight.w600,
-    letterSpacing: 0.2,
-    height: 1.25,
-    color: color,
-  );
 }

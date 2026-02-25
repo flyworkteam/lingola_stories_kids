@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
@@ -20,26 +21,38 @@ class Step2 extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final selected = useState<Set<String>>({});
-    const List<_StoryCategory> categories = [
-      _StoryCategory(asset: AppIcons.space, label: '🚀 Space Adventures'),
-      _StoryCategory(asset: AppIcons.magic, label: '🦄 Magical Worlds'),
+    List<_StoryCategory> categories = [
+      _StoryCategory(
+        asset: AppIcons.space,
+        label: context.t.onboarding.step2.categories.space,
+      ),
+      _StoryCategory(
+        asset: AppIcons.magic,
+        label: context.t.onboarding.step2.categories.magic,
+      ),
       _StoryCategory(
         asset: AppIcons.detectives,
-        label: '🕵️ Little Detectives',
+        label: context.t.onboarding.step2.categories.detectives,
       ),
-      _StoryCategory(asset: AppIcons.animals, label: '🐾 Lovable Friends'),
+      _StoryCategory(
+        asset: AppIcons.animals,
+        label: context.t.onboarding.step2.categories.animals,
+      ),
       _StoryCategory(
         asset: AppIcons.dinosaurs,
-        label: '🦖 The Age of Dinosaurs',
+        label: context.t.onboarding.step2.categories.dinosaurs,
       ),
-      _StoryCategory(asset: AppIcons.superhero, label: '🦸 Superheroes'),
+      _StoryCategory(
+        asset: AppIcons.superhero,
+        label: context.t.onboarding.step2.categories.superhero,
+      ),
       _StoryCategory(
         asset: AppIcons.underwater,
-        label: '🌊 Underwater Kingdom',
+        label: context.t.onboarding.step2.categories.underwater,
       ),
       _StoryCategory(
         asset: AppIcons.fairytale,
-        label: '🏰 Prince and Princess Fairy Tales',
+        label: context.t.onboarding.step2.categories.fairytale,
       ),
     ];
     void toggle(String label) {
@@ -58,54 +71,45 @@ class Step2 extends HookWidget {
       children: [
         const SizedBox(height: AppSpacing.xl),
         Text(
-          'What kind of stories\ndo you like?',
+          context.t.onboarding.step2.title,
           textAlign: TextAlign.center,
           style: AppTextStyles.body(
             24,
             weight: FontWeight.w700,
-            height: 30 / 24,
+            height: 30,
+            letterSpacing: -0.05,
           ),
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          'Please indicate your preference.',
+          context.t.onboarding.step2.subtitle,
           textAlign: TextAlign.center,
           style: AppTextStyles.body(
             20,
             weight: FontWeight.w300,
-            height: 25 / 20,
+            height: 25,
+            letterSpacing: -0.05,
           ),
         ),
         const SizedBox(height: AppSpacing.xl),
-        Expanded(
-          child: LayoutBuilder(
-            builder: (context, constraints) {
-              final itemWidth = 159.0;
-              const itemHeight = 51.0;
-              return SingleChildScrollView(
-                child: Wrap(
-                  spacing: AppSpacing.sm,
-                  runSpacing: AppSpacing.sm,
-                  alignment: WrapAlignment.center,
-                  children: categories.map((cat) {
-                    final isSelected = selected.value.contains(cat.label);
-                    return Padding(
-                      padding: const EdgeInsets.all(1.0),
-                      child: SizedBox(
-                        width: itemWidth,
-                        height: itemHeight,
-                        child: _CategoryTile(
-                          category: cat,
-                          isSelected: isSelected,
-                          onTap: () => toggle(cat.label),
-                        ),
-                      ),
-                    );
-                  }).toList(),
-                ),
-              );
-            },
-          ),
+        const SizedBox(height: AppSpacing.xxl),
+        const SizedBox(height: AppSpacing.xxl),
+        Wrap(
+          spacing: AppSpacing.md,
+          runSpacing: AppSpacing.md,
+          alignment: WrapAlignment.center,
+          children: categories.map((cat) {
+            final isSelected = selected.value.contains(cat.label);
+            return SizedBox(
+              width: 150,
+              height: 50,
+              child: _CategoryTile(
+                category: cat,
+                isSelected: isSelected,
+                onTap: () => toggle(cat.label),
+              ),
+            );
+          }).toList(),
         ),
       ],
     );
@@ -147,12 +151,20 @@ class _CategoryTile extends StatelessWidget {
           ],
         ),
         child: Center(
-          child: Text(
-            category.label,
-            maxLines: 2,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-            style: AppTextStyles.body(15),
+          child: SizedBox(
+            width: 150,
+            child: Text(
+              category.label,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+              style: AppTextStyles.body(
+                17,
+                weight: FontWeight.w400,
+                height: 18,
+                letterSpacing: -0.05,
+              ),
+            ),
           ),
         ),
       ),

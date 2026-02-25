@@ -20,11 +20,14 @@ class AppIcons {
   static const String apple = 'assets/icons/ic_apple.svg';
   static const String archiveNotification =
       'assets/icons/ic_archive_notification.svg';
+  static const String avatar = 'assets/icons/ic_avatar.svg';
   static const String avatar1 = 'assets/icons/ic_avatar1.svg';
   static const String avatar2 = 'assets/icons/ic_avatar2.svg';
   static const String avatar3 = 'assets/icons/ic_avatar3.svg';
   static const String avatar4 = 'assets/icons/ic_avatar4.svg';
   static const String avatar5 = 'assets/icons/ic_avatar5.svg';
+  static const String avatar6 = 'assets/icons/ic_avatar6.svg';
+  static const String avatar7 = 'assets/icons/ic_avatar7.svg';
   static const String bell = 'assets/icons/ic_bell.svg';
   static const String birth = 'assets/icons/ic_birth.svg';
   static const String bookmark = 'assets/icons/ic_bookmark.svg';
@@ -43,6 +46,7 @@ class AppIcons {
   static const String dummyBook = 'assets/icons/ic_dummybook.svg';
   static const String dummyBook2 = 'assets/icons/ic_dummybook2.svg';
   static const String dummyHistory = 'assets/icons/ic_dummyhistory.svg';
+  static const String editProfile = 'assets/icons/ic_profile.svg';
   static const String fairytale = 'assets/icons/ic_fairytale.png';
   static const String feedback = 'assets/icons/ic_feedback.svg';
   static const String filter = 'assets/icons/ic_filter.svg';
@@ -55,13 +59,16 @@ class AppIcons {
   static const String library = 'assets/icons/ic_library.svg';
   static const String libraryIcon = 'assets/icons/ic_library_icon.svg';
   static const String like = 'assets/icons/ic_like.svg';
+  static const String listenShadow = 'assets/icons/ic_listen_shadow.svg';
   static const String loading = 'assets/icons/ic_loading.svg';
+  static const String loadingShadow = 'assets/icons/ic_loading_shadow.svg';
+  static const String lock = 'assets/icons/ic_lock.svg';
   static const String longLeftArrow = 'assets/icons/ic_long_left_arrow.svg';
   static const String magic = 'assets/icons/ic_magic.png';
   static const String mail = 'assets/icons/ic_mail.svg';
   static const String newNotification = 'assets/icons/ic_new_notification.svg';
-  static const String onboard1 = 'assets/icons/ic_onboard1.svg';
-  static const String onboard2 = 'assets/icons/ic_onboard2.svg';
+  static const String onboard1 = 'assets/icons/splash1.svg';
+  static const String onboard2 = 'assets/icons/splash2.svg';
   static const String play = 'assets/icons/ic_play.svg';
   static const String popular = 'assets/icons/ic_popular.png';
   static const String proBudge = 'assets/icons/ic_pro_budge.svg';
@@ -82,6 +89,7 @@ class AppIcons {
   static const String threedot = 'assets/icons/ic_threedot.svg';
   static const String translate = 'assets/icons/ic_translate.svg';
   static const String underwater = 'assets/icons/ic_underwater.png';
+  static const String verify = 'assets/icons/ic_verify.svg';
   static const String warning = 'assets/icons/ic_warning.svg';
   static const String likeOutline = 'assets/icons/like-1 1.svg';
   static const String logout = 'assets/icons/logout-02 1.svg';

@@ -33,16 +33,16 @@ class SplashWidget extends StatelessWidget {
       body: Column(
         children: [
           Container(
-            height: imageHeight,
             width: double.infinity,
+            height: imageHeight,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(image),
-                fit: BoxFit.cover,
+                fit: BoxFit.fitWidth,
               ),
               borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(32),
-                bottomRight: Radius.circular(32),
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
               ),
             ),
           ),
@@ -52,7 +52,7 @@ class SplashWidget extends StatelessWidget {
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                Positioned(bottom: -190, right: -120, child: CustomBlur()),
+                Positioned(bottom: -250, right: -200, child: CustomBlur()),
                 Container(
                   width: double.infinity,
                   padding: const EdgeInsets.symmetric(horizontal: 24),
@@ -84,8 +84,8 @@ class SplashWidget extends StatelessWidget {
                         title,
                         style: AppTextStyles.body(
                           32,
-                          letterSpacing: 0.2,
-                          height: 1.1,
+                          letterSpacing: -0.05,
+                          height: 30,
                           weight: FontWeight.w700,
                         ),
                         textAlign: TextAlign.left,
@@ -97,8 +97,8 @@ class SplashWidget extends StatelessWidget {
                         subtitle,
                         style: AppTextStyles.body(
                           22,
-                          letterSpacing: 0.1,
-                          height: 1.3,
+                          letterSpacing: -0.05,
+                          height: 24,
                           weight: FontWeight.w300,
                         ),
                         textAlign: TextAlign.left,
@@ -120,6 +120,12 @@ class SplashWidget extends StatelessWidget {
                 borderRadius: 50,
                 fullWidth: true,
                 backgroundColor: AppColors.primary,
+                labelStyle: AppTextStyles.body(
+                  24,
+                  weight: FontWeight.w700,
+                  color: Colors.white,
+                  letterSpacing: -0.05,
+                ),
                 shadow: [
                   BoxShadow(
                     color: AppColors.primaryShadow,

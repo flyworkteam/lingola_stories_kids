@@ -24,7 +24,7 @@ class LogoutButton extends StatelessWidget {
       child: Container(
         width: double.infinity,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Color(0xffFEF2F2),
           borderRadius: AppBorderRadius.lgRadius,
           boxShadow: [
             BoxShadow(
@@ -39,15 +39,28 @@ class LogoutButton extends StatelessWidget {
           vertical: AppSpacing.md + 2,
         ),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            SvgPicture.asset(
-              icon,
-              width: 20,
-              height: 20,
-              colorFilter: const ColorFilter.mode(
-                Color(0xFFE53935),
-                BlendMode.srcIn,
+            Container(
+              width: 38,
+              height: 38,
+              decoration: const BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+              ),
+              child: Center(
+                child: SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: SvgPicture.asset(
+                    icon,
+                    fit: BoxFit.contain,
+                    colorFilter: const ColorFilter.mode(
+                      Color(0xFFE53935),
+                      BlendMode.srcIn,
+                    ),
+                  ),
+                ),
               ),
             ),
             const SizedBox(width: 10),

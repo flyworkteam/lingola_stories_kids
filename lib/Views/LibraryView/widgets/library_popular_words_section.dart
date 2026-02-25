@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/Models/word_model.dart';
 import 'package:lingolakidstories/Riverpod/Controllers/library_controller.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
@@ -23,7 +24,7 @@ class LibraryPopularWordsSection extends ConsumerWidget {
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
           child: Text(
-            'Popular Words',
+            context.t.library.popularWords,
             style: AppTextStyles.heading(
               22,
               FontWeight.w800,
@@ -35,6 +36,7 @@ class LibraryPopularWordsSection extends ConsumerWidget {
         SizedBox(
           height: 80,
           child: ListView.separated(
+            clipBehavior: Clip.none,
             scrollDirection: Axis.horizontal,
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
             itemCount: state.popularWords.length,
@@ -68,7 +70,7 @@ class _PopularWordCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 190,
+      width: 250,
       padding: const EdgeInsets.symmetric(
         horizontal: AppSpacing.lg,
         vertical: AppSpacing.md,
@@ -78,9 +80,9 @@ class _PopularWordCard extends StatelessWidget {
         borderRadius: AppBorderRadius.lgRadius,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withValues(alpha: 0.06),
-            blurRadius: 10,
-            offset: const Offset(0, 3),
+            color: Color(0xffCCDBE8),
+            blurRadius: 4,
+            offset: const Offset(0, 2),
           ),
         ],
       ),
@@ -127,15 +129,13 @@ class _PopularWordCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isSpeaking ? AppColors.primaryShadow : AppColors.primary,
                 shape: BoxShape.circle,
-                boxShadow: isSpeaking
-                    ? [
-                        BoxShadow(
-                          color: AppColors.primary.withValues(alpha: 0.45),
-                          blurRadius: 10,
-                          spreadRadius: 2,
-                        ),
-                      ]
-                    : [],
+                boxShadow: [
+                  BoxShadow(
+                    color: AppColors.primaryShadow,
+                    blurRadius: 0,
+                    offset: const Offset(0, 3),
+                  ),
+                ],
               ),
               child: Center(
                 child: SvgPicture.asset(

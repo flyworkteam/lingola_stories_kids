@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/Models/story_model.dart';
-import 'package:lingolakidstories/shared/story_gradient_card.dart';
+import 'package:lingolakidstories/Views/StoryDetailsView/story_details_view.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
+import 'package:lingolakidstories/shared/custom_button.dart';
+import 'package:lingolakidstories/shared/story_card.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
@@ -57,7 +60,7 @@ class AllStoriesView extends HookWidget {
                   ),
                 ),
                 title: Text(
-                  'All Stories',
+                  context.t.allStories.title,
                   style: AppTextStyles.heading(
                     18,
                     FontWeight.w700,
@@ -123,7 +126,7 @@ class AllStoriesView extends HookWidget {
                                 ),
                                 const SizedBox(height: AppSpacing.md),
                                 Text(
-                                  'No stories found',
+                                  context.t.allStories.noStoriesFound,
                                   style: AppTextStyles.heading(
                                     16,
                                     FontWeight.w600,
@@ -141,14 +144,22 @@ class AllStoriesView extends HookWidget {
                               crossAxisCount: 2,
                               crossAxisSpacing: AppSpacing.md,
                               mainAxisSpacing: AppSpacing.md,
-                              childAspectRatio: 0.82,
+                              childAspectRatio: 0.7,
                             ),
                         itemCount: displayedStories.length,
                         itemBuilder: (context, index) {
                           final story = displayedStories[index];
-                          return StoryGradientCard(
+                          return StoryCard(
                             story: story,
-                            onTap: () => {},
+                            onTap: () => {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (_) =>
+                                      StoryDetailsView(story: story),
+                                ),
+                              ),
+                            },
                           );
                         },
                       ),
@@ -189,9 +200,7 @@ class _FilterOverlay extends HookWidget {
   Widget build(BuildContext context) {
     final localSelected = useState<Set<String>>(Set.from(selectedCategories));
 
-    final allFilterCategories = StoryData.categories
-        .where((c) => c != 'Popular')
-        .toList();
+    final allFilterCategories = StoryData.categories.toList();
 
     return GestureDetector(
       onTap: onClose,
@@ -221,8 +230,8 @@ class _FilterOverlay extends HookWidget {
                   // Drag handle
                   Center(
                     child: Container(
-                      width: 40,
-                      height: 4,
+                      width: 52,
+                      height: 6,
                       decoration: BoxDecoration(
                         color: Colors.black12,
                         borderRadius: AppBorderRadius.pillRadius,
@@ -233,30 +242,23 @@ class _FilterOverlay extends HookWidget {
 
                   // Header
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
+                      Spacer(),
                       Text(
-                        'Select Filter',
+                        context.t.allStories.selectFilter,
                         style: AppTextStyles.heading(
                           18,
                           FontWeight.w700,
                           color: Colors.black,
                         ),
                       ),
+                      Spacer(),
                       GestureDetector(
                         onTap: onClose,
-                        child: Container(
-                          width: 28,
-                          height: 28,
-                          decoration: const BoxDecoration(
-                            color: Colors.black12,
-                            shape: BoxShape.circle,
-                          ),
-                          child: const Icon(
-                            Icons.close,
-                            size: 16,
-                            color: Colors.black54,
-                          ),
+                        child: SvgPicture.asset(
+                          AppIcons.closeCircle,
+                          width: 23,
+                          height: 23,
                         ),
                       ),
                     ],
@@ -265,7 +267,7 @@ class _FilterOverlay extends HookWidget {
                   const SizedBox(height: AppSpacing.lg),
 
                   Text(
-                    'Category',
+                    context.t.allStories.category,
                     style: AppTextStyles.heading(
                       14,
                       FontWeight.w700,
@@ -274,7 +276,7 @@ class _FilterOverlay extends HookWidget {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    'Please select the category you wish to read',
+                    context.t.allStories.categorySubtitle,
                     style: AppTextStyles.body(12, color: Colors.black54),
                   ),
 
@@ -328,25 +330,26 @@ class _FilterOverlay extends HookWidget {
 
                   const SizedBox(height: AppSpacing.xl),
 
-                  // Apply Button
-                  SizedBox(
-                    width: double.infinity,
-                    height: 52,
-                    child: ElevatedButton(
-                      onPressed: () => onApply(localSelected.value),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.primary,
-                        foregroundColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: AppBorderRadius.pillRadius,
-                        ),
-                        elevation: 0,
-                      ),
-                      child: Text(
-                        'Apply',
-                        style: AppTextStyles.button(color: Colors.white),
-                      ),
+                  CustomButton(
+                    label: context.t.allStories.apply,
+                    size: CustomButtonSize.large,
+                    fullWidth: true,
+                    borderRadius: 18,
+                    labelStyle: AppTextStyles.body(
+                      24,
+                      weight: FontWeight.w700,
+                      color: Colors.white,
+                      letterSpacing: -0.05,
                     ),
+                    backgroundColor: AppColors.primary,
+                    shadow: [
+                      BoxShadow(
+                        color: AppColors.primaryShadow,
+                        blurRadius: 0,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                    onPressed: () => onApply(localSelected.value),
                   ),
                 ],
               ),

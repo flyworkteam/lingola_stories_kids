@@ -13,8 +13,8 @@ class CustomBlur extends StatelessWidget {
 
   const CustomBlur({
     super.key,
-    this.sigmaX = 40,
-    this.sigmaY = 40,
+    this.sigmaX = 100,
+    this.sigmaY = 100,
     this.color = const Color(0xFFFA96BA),
     this.blurRadius = 0,
     this.offsetX = 0,
@@ -26,12 +26,12 @@ class CustomBlur extends StatelessWidget {
   Widget build(BuildContext context) {
     return ImageFiltered(
       imageFilter: ImageFilter.blur(sigmaX: sigmaX, sigmaY: sigmaY),
-      child: Container(
-        width: 280,
-        height: 280,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: color.withValues(alpha: alpha),
+      child: Opacity(
+        opacity: alpha,
+        child: Container(
+          width: 464,
+          height: 464,
+          decoration: BoxDecoration(shape: BoxShape.circle, color: color),
         ),
       ),
     );

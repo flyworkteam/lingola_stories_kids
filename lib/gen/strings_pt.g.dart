@@ -48,6 +48,7 @@ class TranslationsPt with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _TranslationsTermOfServicePt termOfService = _TranslationsTermOfServicePt._(_root);
 	@override String get cookies => 'Política de Cookies';
 	@override String get privacy => 'Política de Privacidade';
+	@override late final _TranslationsOnboardingPt onboarding = _TranslationsOnboardingPt._(_root);
 	@override String get pressBackAgainToExit => 'Pressione voltar novamente para sair';
 	@override late final _TranslationsFaqPt faq = _TranslationsFaqPt._(_root);
 	@override String get good_morning => 'Bom dia';
@@ -56,9 +57,16 @@ class TranslationsPt with BaseTranslations<AppLocale, Translations> implements T
 	@override late final _TranslationsSplashPt splash = _TranslationsSplashPt._(_root);
 	@override late final _TranslationsProfilePt profile = _TranslationsProfilePt._(_root);
 	@override late final _TranslationsHomePt home = _TranslationsHomePt._(_root);
+	@override late final _TranslationsAllStoriesPt allStories = _TranslationsAllStoriesPt._(_root);
+	@override late final _TranslationsStoriesPt stories = _TranslationsStoriesPt._(_root);
+	@override late final _TranslationsLibraryPt library = _TranslationsLibraryPt._(_root);
+	@override late final _TranslationsBottomNavPt bottomNav = _TranslationsBottomNavPt._(_root);
+	@override late final _TranslationsDayStreakPt dayStreak = _TranslationsDayStreakPt._(_root);
+	@override late final _TranslationsStoryDetailsPt storyDetails = _TranslationsStoryDetailsPt._(_root);
+	@override late final _TranslationsSharePt share = _TranslationsSharePt._(_root);
+	@override String get delete => 'Excluir';
 	@override late final _TranslationsEditProfilePt editProfile = _TranslationsEditProfilePt._(_root);
 	@override late final _TranslationsNotificationsPt notifications = _TranslationsNotificationsPt._(_root);
-	@override late final _TranslationsSharePt share = _TranslationsSharePt._(_root);
 	@override late final _TranslationsAuthPt auth = _TranslationsAuthPt._(_root);
 	@override String get cancel => 'Cancelar';
 	@override String get deleteAccount => 'Excluir Conta';
@@ -94,6 +102,21 @@ class _TranslationsTermOfServicePt implements TranslationsTermOfServiceEn {
 	@override String get text3 => ' e ';
 	@override String get link3 => 'Política de Cookies';
 	@override String get text4 => '';
+	@override late final _TranslationsTermOfServicePrivacyPolicyPt privacyPolicy = _TranslationsTermOfServicePrivacyPolicyPt._(_root);
+	@override late final _TranslationsTermOfServiceTermsOfServicePt termsOfService = _TranslationsTermOfServiceTermsOfServicePt._(_root);
+	@override late final _TranslationsTermOfServiceCookiePolicyPt cookiePolicy = _TranslationsTermOfServiceCookiePolicyPt._(_root);
+}
+
+// Path: onboarding
+class _TranslationsOnboardingPt implements TranslationsOnboardingEn {
+	_TranslationsOnboardingPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override late final _TranslationsOnboardingStep1Pt step1 = _TranslationsOnboardingStep1Pt._(_root);
+	@override late final _TranslationsOnboardingStep2Pt step2 = _TranslationsOnboardingStep2Pt._(_root);
+	@override late final _TranslationsOnboardingLoadingPt loading = _TranslationsOnboardingLoadingPt._(_root);
 }
 
 // Path: faq
@@ -128,6 +151,7 @@ class _TranslationsProfilePt implements TranslationsProfileEn {
 	@override String get title => 'Perfil';
 	@override String get freeVersion => 'Versão Gratuita';
 	@override String get error => 'Erro';
+	@override String get passive => 'Passivo';
 	@override late final _TranslationsProfileSectionsPt sections = _TranslationsProfileSectionsPt._(_root);
 	@override late final _TranslationsProfileMenuPt menu = _TranslationsProfileMenuPt._(_root);
 	@override String get manage => 'GERENCIAR';
@@ -143,7 +167,139 @@ class _TranslationsHomePt implements TranslationsHomeEn {
 	// Translations
 	@override String get premium => 'Premium!';
 	@override String get seeMore => 'Ver mais';
+	@override String get pickUpWhereYouLeftOff => 'Continue de onde parou';
+	@override String get premiumSection => 'Premium';
+	@override String get history => 'Histórico';
+	@override String get librarySection => 'Biblioteca';
+	@override String get libraryDescription => 'As palavras salvas aparecerão aqui.';
+	@override String get upgradeToPremium => 'Atualizar para Premium';
+	@override String get unlimitedStories => 'Histórias ilimitadas e sem anúncios';
 	@override late final _TranslationsHomePremiumPlanPt premiumPlan = _TranslationsHomePremiumPlanPt._(_root);
+}
+
+// Path: allStories
+class _TranslationsAllStoriesPt implements TranslationsAllStoriesEn {
+	_TranslationsAllStoriesPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Todas as histórias';
+	@override String get noStoriesFound => 'Nenhuma história encontrada';
+	@override String get selectFilter => 'Selecionar filtro';
+	@override String get category => 'Categoria';
+	@override String get categorySubtitle => 'Por favor, selecione a categoria que deseja ler';
+	@override String get apply => 'Aplicar';
+}
+
+// Path: stories
+class _TranslationsStoriesPt implements TranslationsStoriesEn {
+	_TranslationsStoriesPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Histórias';
+	@override String get popularStories => 'Histórias populares';
+	@override String get recommendForYou => 'Recomendado para você';
+	@override String get allStories => 'Todas as histórias';
+	@override String get seeAll => 'Ver tudo';
+}
+
+// Path: library
+class _TranslationsLibraryPt implements TranslationsLibraryEn {
+	_TranslationsLibraryPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Biblioteca';
+	@override String wordCount({required Object count}) => '${count} Palavras';
+	@override String get popularWords => 'Palavras populares';
+	@override String get allWords => 'Todas as palavras';
+	@override String get searchWord => 'Buscar palavra';
+	@override String get searchHint => 'Por favor, digite uma palavra…';
+}
+
+// Path: bottomNav
+class _TranslationsBottomNavPt implements TranslationsBottomNavEn {
+	_TranslationsBottomNavPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get home => 'Início';
+	@override String get stories => 'Histórias';
+	@override String get library => 'Biblioteca';
+	@override String get profile => 'Perfil';
+}
+
+// Path: dayStreak
+class _TranslationsDayStreakPt implements TranslationsDayStreakEn {
+	_TranslationsDayStreakPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Sequência do dia!';
+	@override late final _TranslationsDayStreakDaysPt days = _TranslationsDayStreakDaysPt._(_root);
+}
+
+// Path: storyDetails
+class _TranslationsStoryDetailsPt implements TranslationsStoryDetailsEn {
+	_TranslationsStoryDetailsPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get introduction => 'Introdução';
+	@override String get saved => 'Salvo';
+	@override String get removed => 'Removido';
+	@override String get storyAddedToLibrary => 'A história foi adicionada à sua biblioteca.';
+	@override String get storyRemovedFromLibrary => 'A história foi removida da biblioteca.';
+	@override String get wordAddedToLibrary => 'A palavra foi adicionada à biblioteca. Desfazer';
+	@override String get successfully => 'Com sucesso';
+	@override String get ratingSubmitted => 'Sua avaliação foi enviada com sucesso.';
+	@override String get warning => 'Aviso';
+	@override String get fillAllFields => 'Por favor, preencha todos os campos.';
+	@override String get messageSent => 'Sua mensagem foi enviada com sucesso.';
+	@override String get translate => 'Traduzir';
+	@override String get speak => 'Falar';
+	@override String get like => 'Curtir';
+	@override String get save => 'Salvar';
+	@override String get feedback => 'Feedback';
+	@override String get rating => 'Avaliação';
+	@override String get stop => 'Parar';
+	@override String get start => 'Iniciar';
+	@override String get listen => 'Ouvir';
+	@override String get translation => 'Tradução';
+	@override String get translating => 'Traduzindo...';
+	@override String get saveToLibrary => 'Salvar na biblioteca';
+	@override String get rateThisStory => 'Avaliar esta história';
+	@override String get enjoyStory => 'O quanto você gostou desta história?';
+	@override String get send => 'Enviar';
+	@override String get subject => 'Assunto';
+	@override late final _TranslationsStoryDetailsFeedbackSubjectsPt feedbackSubjects = _TranslationsStoryDetailsFeedbackSubjectsPt._(_root);
+}
+
+// Path: share
+class _TranslationsSharePt implements TranslationsShareEn {
+	_TranslationsSharePt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Compartilhar com Amigos';
+	@override String get mainTitle => 'Compartilhe a Paz';
+	@override String get descriptionPart1 => 'Convide amigos para respirar juntos.\nPara cada convite, ambos ganham ';
+	@override String get descriptionPart2 => '1 semana Premium';
+	@override String get descriptionPart3 => '';
+	@override String get yourReferralCode => 'SEU CÓDIGO DE REFERÊNCIA';
+	@override String get codeCopied => 'Código copiado!';
+	@override String get copyCode => 'Copiar Código';
+	@override String get inviteDescription => 'Convide seus amigos e aprenda\njuntos';
+	@override String get linkCopied => 'Copiado';
+	@override String get linkCopiedMessage => 'O link foi copiado para a área de transferência.';
 }
 
 // Path: editProfile
@@ -154,7 +310,8 @@ class _TranslationsEditProfilePt implements TranslationsEditProfileEn {
 
 	// Translations
 	@override String get title => 'Editar Perfil';
-	@override String get changePhoto => 'Alterar Foto';
+	@override String get changePhoto => 'Alterar Avatar';
+	@override String get learnLanguage => 'Selecionar Idioma de Aprendizado';
 	@override String get fullName => 'Nome Completo';
 	@override String get email => 'E-mail';
 	@override String get age => 'Idade';
@@ -177,23 +334,6 @@ class _TranslationsNotificationsPt implements TranslationsNotificationsEn {
 	@override String get emptyDescription => 'Nós o notificaremos quando houver uma atualização importante sobre sua jornada de aprendizado.';
 	@override String get premiumBannerTitle => 'Não perca os\nbenefícios Premium!';
 	@override String get premiumBannerDescription => 'Aproveite as oportunidades como assinante Premium.';
-}
-
-// Path: share
-class _TranslationsSharePt implements TranslationsShareEn {
-	_TranslationsSharePt._(this._root);
-
-	final TranslationsPt _root; // ignore: unused_field
-
-	// Translations
-	@override String get title => 'Compartilhar com Amigos';
-	@override String get mainTitle => 'Compartilhe a Paz';
-	@override String get descriptionPart1 => 'Convide amigos para respirar juntos.\nPara cada convite, ambos ganham ';
-	@override String get descriptionPart2 => '1 semana Premium';
-	@override String get descriptionPart3 => '';
-	@override String get yourReferralCode => 'SEU CÓDIGO DE REFERÊNCIA';
-	@override String get codeCopied => 'Código copiado!';
-	@override String get copyCode => 'Copiar Código';
 }
 
 // Path: auth
@@ -241,6 +381,123 @@ class _TranslationsLanguageOptionsPt implements TranslationsLanguageOptionsEn {
 	@override String get korean => 'Coreano';
 	@override String get hindi => 'Hindi';
 	@override String get portuguese => 'Português';
+}
+
+// Path: termOfService.privacyPolicy
+class _TranslationsTermOfServicePrivacyPolicyPt implements TranslationsTermOfServicePrivacyPolicyEn {
+	_TranslationsTermOfServicePrivacyPolicyPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Política de Privacidade';
+	@override String get lastUpdated => 'Última atualização: 2025';
+	@override String get intro => 'Lingola Stories Kids adota a privacidade infantil como princípio fundamental.';
+	@override String get section1Title => '1. INFORMAÇÕES COLETADAS';
+	@override String get section1sub1Title => '1.1 Dados fornecidos pelo usuário';
+	@override String get section1sub1Body => 'Apelido ou nome de perfil.\nEmail (conta dos pais e suporte).\nInformações de idade.\nNível de idioma, histórias lidas e palavras aprendidas.\n\nNota: Nunca usados para análise de saúde.';
+	@override String get section1sub2Title => '1.2 Dados coletados automaticamente';
+	@override String get section1sub2Body => 'Tipo de dispositivo, OS e desempenho do app. Localização precisa NÃO é coletada.';
+	@override String get section2Title => '2. FINALIDADES DO TRATAMENTO';
+	@override String get section2Body => 'Seus dados são usados para:\n\n- Fornecer conteúdo seguro por idade.\n- Personalizar o aprendizado.\n- Melhorar o desempenho.\n- Cumprir obrigações legais.';
+	@override String get section3Title => '3. RETENÇÃO E EXCLUSÃO';
+	@override String get section3Body => 'Dados armazenados enquanto a conta estiver ativa. Registros de suporte por 12 meses. Ao excluir conta, dados são apagados irreversivelmente.';
+	@override String get section4Title => '4. DIREITOS DO USUÁRIO';
+	@override String get section4Body => 'Sob o RGPD/LGPD, os pais podem solicitar acesso, correção ou exclusão. Envie para: support@fly-work.com.';
+	@override String get section5Title => '5. PRIVACIDADE INFANTIL';
+	@override String get section5Body => 'Para usuários de 6 anos ou mais. Consentimento parental obrigatório para menores de 13 anos.';
+	@override String get section6Title => '6. CONTATO';
+	@override String get section6Body => 'Dúvidas: support@fly-work.com';
+}
+
+// Path: termOfService.termsOfService
+class _TranslationsTermOfServiceTermsOfServicePt implements TranslationsTermOfServiceTermsOfServiceEn {
+	_TranslationsTermOfServiceTermsOfServicePt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Termos de Serviço';
+	@override String get lastUpdated => 'Última atualização: 2025';
+	@override String get intro => 'Estes Termos regem o uso do Lingola Stories Kids. Ao usar o app, você aceita estes termos.';
+	@override String get disclaimer => 'Aviso: Lingola Stories Kids é uma ferramenta educacional, não fornece certificação acadêmica.';
+	@override String get section1Title => '1. ESCOPO DO SERVIÇO';
+	@override String get section1Body => 'O app oferece aprendizado baseado em histórias:\n\n- Histórias e recomendações com IA.\n- Leitura por idade e nível.\n- Suporte de vocabulário e pronúncia.';
+	@override String get section2Title => '2. CONDIÇÕES DE USO E IDADE';
+	@override String get section2Body => 'Mínimo 6 anos.\nMenores de 18 sob supervisão dos pais.\nInformações da conta precisas e atualizadas.';
+	@override String get section3Title => '3. USOS PROIBIDOS';
+	@override String get section3Body => 'Cópia não autorizada, engenharia reversa e uso comercial são estritamente proibidos.';
+	@override String get section4Title => '4. ASSINATURAS E PAGAMENTOS';
+	@override String get section4Body => 'Recursos premium seguem as políticas da App Store e Google Play.';
+	@override String get section5Title => '5. PROPRIEDADE INTELECTUAL';
+	@override String get section5Body => 'Todo conteúdo pertence à Lingola Stories Kids.';
+	@override String get section6Title => '6. LIMITAÇÃO DE RESPONSABILIDADE';
+	@override String get section6Body => 'O app é fornecido no estado em que se encontra.';
+	@override String get section7Title => '7. LEI APLICÁVEL';
+	@override String get section7Body => 'Regido pelas leis da República da Turquia. Tribunais de Istanbul têm jurisdição.';
+	@override String get section8Title => '8. CONTATO';
+	@override String get section8Body => 'Dúvidas: support@fly-work.com';
+}
+
+// Path: termOfService.cookiePolicy
+class _TranslationsTermOfServiceCookiePolicyPt implements TranslationsTermOfServiceCookiePolicyEn {
+	_TranslationsTermOfServiceCookiePolicyPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Política de Cookies';
+	@override String get lastUpdated => 'Última atualização: 2025';
+	@override String get intro => 'Esta política explica as tecnologias digitais usadas no app.';
+	@override String get important => 'IMPORTANTE: Privacidade infantil é nosso princípio fundamental. App para usuários de 6 anos ou mais.';
+	@override String get section1Title => '1. O QUE SÃO COOKIES?';
+	@override String get section1Body => 'Cookies e tecnologias similares são pequenos componentes digitais que ajudam o app. Não identificam você diretamente.';
+	@override String get section2Title => '2. QUAIS TECNOLOGIAS USAMOS?';
+	@override String get section2Body => 'Necessárias: sessões e segurança.\n\nDesempenho e análise: histórias lidas, dados anônimos.\n\nPersonalização: prefere idioma e nível de leitura.';
+	@override String get section3Title => '3. POR QUE AS USAMOS?';
+	@override String get section3Body => '- Funcionamento seguro.\n- Leitura mais fluida.\n- Lembrar configurações.\n- Identificar recursos futuros.';
+	@override String get section4Title => '4. TECNOLOGIAS DE TERCEIROS';
+	@override String get section4Body => 'Aplicamos uso mínimo de dados com parceiros terceiros.';
+	@override String get section5Title => '5. CONTROLE E GERENCIAMENTO';
+	@override String get section5Body => 'Pais podem limitar essas tecnologias pelas configurações do dispositivo.';
+	@override String get section6Title => '6. CONTATO';
+	@override String get section6Body => 'Dúvidas: support@fly-work.com';
+}
+
+// Path: onboarding.step1
+class _TranslationsOnboardingStep1Pt implements TranslationsOnboardingStep1En {
+	_TranslationsOnboardingStep1Pt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Qual idioma você gostaria\nde aprender?';
+	@override String get subtitle => 'Por favor, selecione o idioma ou idiomas\nque você deseja aprender.';
+}
+
+// Path: onboarding.step2
+class _TranslationsOnboardingStep2Pt implements TranslationsOnboardingStep2En {
+	_TranslationsOnboardingStep2Pt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get title => 'Que tipo de histórias\nvocê gosta?';
+	@override String get subtitle => 'Por favor, indique sua preferência.';
+	@override late final _TranslationsOnboardingStep2CategoriesPt categories = _TranslationsOnboardingStep2CategoriesPt._(_root);
+}
+
+// Path: onboarding.loading
+class _TranslationsOnboardingLoadingPt implements TranslationsOnboardingLoadingEn {
+	_TranslationsOnboardingLoadingPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get titlePart1 => 'Sua conta pessoal está\n';
+	@override String get titlePart2 => 'sendo criada';
+	@override String get subtitle => 'Estamos criando histórias maravilhosas para você';
+	@override String get optimization => 'Otimização';
 }
 
 // Path: faq.questions
@@ -292,7 +549,7 @@ class _TranslationsProfileSectionsPt implements TranslationsProfileSectionsEn {
 
 	// Translations
 	@override String get accountSettings => 'CONFIGURAÇÕES DA CONTA';
-	@override String get supportAndOther => 'SUPORTE E OUTROS';
+	@override String get general => 'GERAL';
 }
 
 // Path: profile.menu
@@ -339,6 +596,36 @@ class _TranslationsHomePremiumPlanPt implements TranslationsHomePremiumPlanEn {
 	@override late final _TranslationsHomePremiumPlanDialogPt dialog = _TranslationsHomePremiumPlanDialogPt._(_root);
 }
 
+// Path: dayStreak.days
+class _TranslationsDayStreakDaysPt implements TranslationsDayStreakDaysEn {
+	_TranslationsDayStreakDaysPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get su => 'Do';
+	@override String get mo => 'Se';
+	@override String get tu => 'Te';
+	@override String get we => 'Qu';
+	@override String get th => 'Qu';
+	@override String get fr => 'Se';
+	@override String get sa => 'Sá';
+}
+
+// Path: storyDetails.feedbackSubjects
+class _TranslationsStoryDetailsFeedbackSubjectsPt implements TranslationsStoryDetailsFeedbackSubjectsEn {
+	_TranslationsStoryDetailsFeedbackSubjectsPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get bugReport => 'Relatório de bug';
+	@override String get storyContent => 'Conteúdo da história';
+	@override String get audioIssue => 'Problema de áudio';
+	@override String get suggestion => 'Sugestão';
+	@override String get other => 'Outro';
+}
+
 // Path: referralCode.success
 class _TranslationsReferralCodeSuccessPt implements TranslationsReferralCodeSuccessEn {
 	_TranslationsReferralCodeSuccessPt._(this._root);
@@ -363,6 +650,23 @@ class _TranslationsReferralCodeErrorsPt implements TranslationsReferralCodeError
 	@override late final _TranslationsReferralCodeErrorsSelfReferralPt selfReferral = _TranslationsReferralCodeErrorsSelfReferralPt._(_root);
 	@override late final _TranslationsReferralCodeErrorsCodeNotFoundPt codeNotFound = _TranslationsReferralCodeErrorsCodeNotFoundPt._(_root);
 	@override late final _TranslationsReferralCodeErrorsGenericErrorPt genericError = _TranslationsReferralCodeErrorsGenericErrorPt._(_root);
+}
+
+// Path: onboarding.step2.categories
+class _TranslationsOnboardingStep2CategoriesPt implements TranslationsOnboardingStep2CategoriesEn {
+	_TranslationsOnboardingStep2CategoriesPt._(this._root);
+
+	final TranslationsPt _root; // ignore: unused_field
+
+	// Translations
+	@override String get space => '🚀 Aventuras Espaciais';
+	@override String get magic => '🦄 Mundos Mágicos';
+	@override String get detectives => '🕵️ Pequenos Detetives';
+	@override String get animals => '🐾 Amigos Adoráveis';
+	@override String get dinosaurs => '🦖 A Era dos Dinossauros';
+	@override String get superhero => '🦸 Super-heróis';
+	@override String get underwater => '🌊 Reino Submarino';
+	@override String get fairytale => '🏰 Contos de Príncipe e Princesa';
 }
 
 // Path: faq.questions.q1
@@ -576,8 +880,78 @@ extension on TranslationsPt {
 			'termOfService.text3' => ' e ',
 			'termOfService.link3' => 'Política de Cookies',
 			'termOfService.text4' => '',
+			'termOfService.privacyPolicy.title' => 'Política de Privacidade',
+			'termOfService.privacyPolicy.lastUpdated' => 'Última atualização: 2025',
+			'termOfService.privacyPolicy.intro' => 'Lingola Stories Kids adota a privacidade infantil como princípio fundamental.',
+			'termOfService.privacyPolicy.section1Title' => '1. INFORMAÇÕES COLETADAS',
+			'termOfService.privacyPolicy.section1sub1Title' => '1.1 Dados fornecidos pelo usuário',
+			'termOfService.privacyPolicy.section1sub1Body' => 'Apelido ou nome de perfil.\nEmail (conta dos pais e suporte).\nInformações de idade.\nNível de idioma, histórias lidas e palavras aprendidas.\n\nNota: Nunca usados para análise de saúde.',
+			'termOfService.privacyPolicy.section1sub2Title' => '1.2 Dados coletados automaticamente',
+			'termOfService.privacyPolicy.section1sub2Body' => 'Tipo de dispositivo, OS e desempenho do app. Localização precisa NÃO é coletada.',
+			'termOfService.privacyPolicy.section2Title' => '2. FINALIDADES DO TRATAMENTO',
+			'termOfService.privacyPolicy.section2Body' => 'Seus dados são usados para:\n\n- Fornecer conteúdo seguro por idade.\n- Personalizar o aprendizado.\n- Melhorar o desempenho.\n- Cumprir obrigações legais.',
+			'termOfService.privacyPolicy.section3Title' => '3. RETENÇÃO E EXCLUSÃO',
+			'termOfService.privacyPolicy.section3Body' => 'Dados armazenados enquanto a conta estiver ativa. Registros de suporte por 12 meses. Ao excluir conta, dados são apagados irreversivelmente.',
+			'termOfService.privacyPolicy.section4Title' => '4. DIREITOS DO USUÁRIO',
+			'termOfService.privacyPolicy.section4Body' => 'Sob o RGPD/LGPD, os pais podem solicitar acesso, correção ou exclusão. Envie para: support@fly-work.com.',
+			'termOfService.privacyPolicy.section5Title' => '5. PRIVACIDADE INFANTIL',
+			'termOfService.privacyPolicy.section5Body' => 'Para usuários de 6 anos ou mais. Consentimento parental obrigatório para menores de 13 anos.',
+			'termOfService.privacyPolicy.section6Title' => '6. CONTATO',
+			'termOfService.privacyPolicy.section6Body' => 'Dúvidas: support@fly-work.com',
+			'termOfService.termsOfService.title' => 'Termos de Serviço',
+			'termOfService.termsOfService.lastUpdated' => 'Última atualização: 2025',
+			'termOfService.termsOfService.intro' => 'Estes Termos regem o uso do Lingola Stories Kids. Ao usar o app, você aceita estes termos.',
+			'termOfService.termsOfService.disclaimer' => 'Aviso: Lingola Stories Kids é uma ferramenta educacional, não fornece certificação acadêmica.',
+			'termOfService.termsOfService.section1Title' => '1. ESCOPO DO SERVIÇO',
+			'termOfService.termsOfService.section1Body' => 'O app oferece aprendizado baseado em histórias:\n\n- Histórias e recomendações com IA.\n- Leitura por idade e nível.\n- Suporte de vocabulário e pronúncia.',
+			'termOfService.termsOfService.section2Title' => '2. CONDIÇÕES DE USO E IDADE',
+			'termOfService.termsOfService.section2Body' => 'Mínimo 6 anos.\nMenores de 18 sob supervisão dos pais.\nInformações da conta precisas e atualizadas.',
+			'termOfService.termsOfService.section3Title' => '3. USOS PROIBIDOS',
+			'termOfService.termsOfService.section3Body' => 'Cópia não autorizada, engenharia reversa e uso comercial são estritamente proibidos.',
+			'termOfService.termsOfService.section4Title' => '4. ASSINATURAS E PAGAMENTOS',
+			'termOfService.termsOfService.section4Body' => 'Recursos premium seguem as políticas da App Store e Google Play.',
+			'termOfService.termsOfService.section5Title' => '5. PROPRIEDADE INTELECTUAL',
+			'termOfService.termsOfService.section5Body' => 'Todo conteúdo pertence à Lingola Stories Kids.',
+			'termOfService.termsOfService.section6Title' => '6. LIMITAÇÃO DE RESPONSABILIDADE',
+			'termOfService.termsOfService.section6Body' => 'O app é fornecido no estado em que se encontra.',
+			'termOfService.termsOfService.section7Title' => '7. LEI APLICÁVEL',
+			'termOfService.termsOfService.section7Body' => 'Regido pelas leis da República da Turquia. Tribunais de Istanbul têm jurisdição.',
+			'termOfService.termsOfService.section8Title' => '8. CONTATO',
+			'termOfService.termsOfService.section8Body' => 'Dúvidas: support@fly-work.com',
+			'termOfService.cookiePolicy.title' => 'Política de Cookies',
+			'termOfService.cookiePolicy.lastUpdated' => 'Última atualização: 2025',
+			'termOfService.cookiePolicy.intro' => 'Esta política explica as tecnologias digitais usadas no app.',
+			'termOfService.cookiePolicy.important' => 'IMPORTANTE: Privacidade infantil é nosso princípio fundamental. App para usuários de 6 anos ou mais.',
+			'termOfService.cookiePolicy.section1Title' => '1. O QUE SÃO COOKIES?',
+			'termOfService.cookiePolicy.section1Body' => 'Cookies e tecnologias similares são pequenos componentes digitais que ajudam o app. Não identificam você diretamente.',
+			'termOfService.cookiePolicy.section2Title' => '2. QUAIS TECNOLOGIAS USAMOS?',
+			'termOfService.cookiePolicy.section2Body' => 'Necessárias: sessões e segurança.\n\nDesempenho e análise: histórias lidas, dados anônimos.\n\nPersonalização: prefere idioma e nível de leitura.',
+			'termOfService.cookiePolicy.section3Title' => '3. POR QUE AS USAMOS?',
+			'termOfService.cookiePolicy.section3Body' => '- Funcionamento seguro.\n- Leitura mais fluida.\n- Lembrar configurações.\n- Identificar recursos futuros.',
+			'termOfService.cookiePolicy.section4Title' => '4. TECNOLOGIAS DE TERCEIROS',
+			'termOfService.cookiePolicy.section4Body' => 'Aplicamos uso mínimo de dados com parceiros terceiros.',
+			'termOfService.cookiePolicy.section5Title' => '5. CONTROLE E GERENCIAMENTO',
+			'termOfService.cookiePolicy.section5Body' => 'Pais podem limitar essas tecnologias pelas configurações do dispositivo.',
+			'termOfService.cookiePolicy.section6Title' => '6. CONTATO',
+			'termOfService.cookiePolicy.section6Body' => 'Dúvidas: support@fly-work.com',
 			'cookies' => 'Política de Cookies',
 			'privacy' => 'Política de Privacidade',
+			'onboarding.step1.title' => 'Qual idioma você gostaria\nde aprender?',
+			'onboarding.step1.subtitle' => 'Por favor, selecione o idioma ou idiomas\nque você deseja aprender.',
+			'onboarding.step2.title' => 'Que tipo de histórias\nvocê gosta?',
+			'onboarding.step2.subtitle' => 'Por favor, indique sua preferência.',
+			'onboarding.step2.categories.space' => '🚀 Aventuras Espaciais',
+			'onboarding.step2.categories.magic' => '🦄 Mundos Mágicos',
+			'onboarding.step2.categories.detectives' => '🕵️ Pequenos Detetives',
+			'onboarding.step2.categories.animals' => '🐾 Amigos Adoráveis',
+			'onboarding.step2.categories.dinosaurs' => '🦖 A Era dos Dinossauros',
+			'onboarding.step2.categories.superhero' => '🦸 Super-heróis',
+			'onboarding.step2.categories.underwater' => '🌊 Reino Submarino',
+			'onboarding.step2.categories.fairytale' => '🏰 Contos de Príncipe e Princesa',
+			'onboarding.loading.titlePart1' => 'Sua conta pessoal está\n',
+			'onboarding.loading.titlePart2' => 'sendo criada',
+			'onboarding.loading.subtitle' => 'Estamos criando histórias maravilhosas para você',
+			'onboarding.loading.optimization' => 'Otimização',
 			'pressBackAgainToExit' => 'Pressione voltar novamente para sair',
 			'faq.title' => 'Perguntas Frequentes',
 			'faq.questions.q1.question' => 'Para que serve este aplicativo?',
@@ -610,8 +984,9 @@ extension on TranslationsPt {
 			'profile.title' => 'Perfil',
 			'profile.freeVersion' => 'Versão Gratuita',
 			'profile.error' => 'Erro',
+			'profile.passive' => 'Passivo',
 			'profile.sections.accountSettings' => 'CONFIGURAÇÕES DA CONTA',
-			'profile.sections.supportAndOther' => 'SUPORTE E OUTROS',
+			'profile.sections.general' => 'GERAL',
 			'profile.menu.editProfile' => 'Editar Perfil',
 			'profile.menu.notifications' => 'Notificações',
 			'profile.menu.premium' => 'Premium',
@@ -628,14 +1003,95 @@ extension on TranslationsPt {
 			'profile.logoutDialog.cancelButton' => 'Cancelar',
 			'home.premium' => 'Premium!',
 			'home.seeMore' => 'Ver mais',
+			'home.pickUpWhereYouLeftOff' => 'Continue de onde parou',
+			'home.premiumSection' => 'Premium',
+			'home.history' => 'Histórico',
+			'home.librarySection' => 'Biblioteca',
+			'home.libraryDescription' => 'As palavras salvas aparecerão aqui.',
+			'home.upgradeToPremium' => 'Atualizar para Premium',
+			'home.unlimitedStories' => 'Histórias ilimitadas e sem anúncios',
 			'home.premiumPlan.title' => 'Plano Premium',
 			'home.premiumPlan.description' => 'Desbloqueie seu chatbot de IA e\nobtenha todos os recursos premium',
 			'home.premiumPlan.button' => 'Obter Premium',
 			'home.premiumPlan.dialog.title' => 'Recurso não disponível',
 			'home.premiumPlan.dialog.message' => 'Este recurso não está disponível no momento.',
 			'home.premiumPlan.dialog.button' => 'OK',
+			'allStories.title' => 'Todas as histórias',
+			'allStories.noStoriesFound' => 'Nenhuma história encontrada',
+			'allStories.selectFilter' => 'Selecionar filtro',
+			'allStories.category' => 'Categoria',
+			'allStories.categorySubtitle' => 'Por favor, selecione a categoria que deseja ler',
+			'allStories.apply' => 'Aplicar',
+			'stories.title' => 'Histórias',
+			'stories.popularStories' => 'Histórias populares',
+			'stories.recommendForYou' => 'Recomendado para você',
+			'stories.allStories' => 'Todas as histórias',
+			'stories.seeAll' => 'Ver tudo',
+			'library.title' => 'Biblioteca',
+			'library.wordCount' => ({required Object count}) => '${count} Palavras',
+			'library.popularWords' => 'Palavras populares',
+			'library.allWords' => 'Todas as palavras',
+			'library.searchWord' => 'Buscar palavra',
+			'library.searchHint' => 'Por favor, digite uma palavra…',
+			'bottomNav.home' => 'Início',
+			'bottomNav.stories' => 'Histórias',
+			'bottomNav.library' => 'Biblioteca',
+			'bottomNav.profile' => 'Perfil',
+			'dayStreak.title' => 'Sequência do dia!',
+			'dayStreak.days.su' => 'Do',
+			'dayStreak.days.mo' => 'Se',
+			'dayStreak.days.tu' => 'Te',
+			'dayStreak.days.we' => 'Qu',
+			'dayStreak.days.th' => 'Qu',
+			'dayStreak.days.fr' => 'Se',
+			'dayStreak.days.sa' => 'Sá',
+			'storyDetails.introduction' => 'Introdução',
+			'storyDetails.saved' => 'Salvo',
+			'storyDetails.removed' => 'Removido',
+			'storyDetails.storyAddedToLibrary' => 'A história foi adicionada à sua biblioteca.',
+			'storyDetails.storyRemovedFromLibrary' => 'A história foi removida da biblioteca.',
+			'storyDetails.wordAddedToLibrary' => 'A palavra foi adicionada à biblioteca. Desfazer',
+			'storyDetails.successfully' => 'Com sucesso',
+			'storyDetails.ratingSubmitted' => 'Sua avaliação foi enviada com sucesso.',
+			'storyDetails.warning' => 'Aviso',
+			'storyDetails.fillAllFields' => 'Por favor, preencha todos os campos.',
+			'storyDetails.messageSent' => 'Sua mensagem foi enviada com sucesso.',
+			'storyDetails.translate' => 'Traduzir',
+			'storyDetails.speak' => 'Falar',
+			'storyDetails.like' => 'Curtir',
+			'storyDetails.save' => 'Salvar',
+			'storyDetails.feedback' => 'Feedback',
+			'storyDetails.rating' => 'Avaliação',
+			'storyDetails.stop' => 'Parar',
+			'storyDetails.start' => 'Iniciar',
+			'storyDetails.listen' => 'Ouvir',
+			'storyDetails.translation' => 'Tradução',
+			'storyDetails.translating' => 'Traduzindo...',
+			'storyDetails.saveToLibrary' => 'Salvar na biblioteca',
+			'storyDetails.rateThisStory' => 'Avaliar esta história',
+			'storyDetails.enjoyStory' => 'O quanto você gostou desta história?',
+			'storyDetails.send' => 'Enviar',
+			'storyDetails.subject' => 'Assunto',
+			'storyDetails.feedbackSubjects.bugReport' => 'Relatório de bug',
+			'storyDetails.feedbackSubjects.storyContent' => 'Conteúdo da história',
+			'storyDetails.feedbackSubjects.audioIssue' => 'Problema de áudio',
+			'storyDetails.feedbackSubjects.suggestion' => 'Sugestão',
+			'storyDetails.feedbackSubjects.other' => 'Outro',
+			'share.title' => 'Compartilhar com Amigos',
+			'share.mainTitle' => 'Compartilhe a Paz',
+			'share.descriptionPart1' => 'Convide amigos para respirar juntos.\nPara cada convite, ambos ganham ',
+			'share.descriptionPart2' => '1 semana Premium',
+			'share.descriptionPart3' => '',
+			'share.yourReferralCode' => 'SEU CÓDIGO DE REFERÊNCIA',
+			'share.codeCopied' => 'Código copiado!',
+			'share.copyCode' => 'Copiar Código',
+			'share.inviteDescription' => 'Convide seus amigos e aprenda\njuntos',
+			'share.linkCopied' => 'Copiado',
+			'share.linkCopiedMessage' => 'O link foi copiado para a área de transferência.',
+			'delete' => 'Excluir',
 			'editProfile.title' => 'Editar Perfil',
-			'editProfile.changePhoto' => 'Alterar Foto',
+			'editProfile.changePhoto' => 'Alterar Avatar',
+			'editProfile.learnLanguage' => 'Selecionar Idioma de Aprendizado',
 			'editProfile.fullName' => 'Nome Completo',
 			'editProfile.email' => 'E-mail',
 			'editProfile.age' => 'Idade',
@@ -649,14 +1105,6 @@ extension on TranslationsPt {
 			'notifications.emptyDescription' => 'Nós o notificaremos quando houver uma atualização importante sobre sua jornada de aprendizado.',
 			'notifications.premiumBannerTitle' => 'Não perca os\nbenefícios Premium!',
 			'notifications.premiumBannerDescription' => 'Aproveite as oportunidades como assinante Premium.',
-			'share.title' => 'Compartilhar com Amigos',
-			'share.mainTitle' => 'Compartilhe a Paz',
-			'share.descriptionPart1' => 'Convide amigos para respirar juntos.\nPara cada convite, ambos ganham ',
-			'share.descriptionPart2' => '1 semana Premium',
-			'share.descriptionPart3' => '',
-			'share.yourReferralCode' => 'SEU CÓDIGO DE REFERÊNCIA',
-			'share.codeCopied' => 'Código copiado!',
-			'share.copyCode' => 'Copiar Código',
 			'auth.google' => 'Google',
 			'auth.facebook' => 'Facebook',
 			'auth.apple' => 'Apple',

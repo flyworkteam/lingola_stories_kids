@@ -3,8 +3,6 @@ class StoryModel {
   final String title;
   final List<String> tags;
   final List<String> categories;
-  final String coverGradientStart;
-  final String coverGradientEnd;
 
   /// Optional local asset path for the cover image (used for palette extraction).
   final String? coverImageAsset;
@@ -21,8 +19,6 @@ class StoryModel {
     required this.title,
     required this.tags,
     required this.categories,
-    required this.coverGradientStart,
-    required this.coverGradientEnd,
     this.coverImageAsset,
     required this.introduction,
     required this.sections,
@@ -54,8 +50,7 @@ class StoryModel {
       title: title ?? this.title,
       tags: tags ?? this.tags,
       categories: categories ?? this.categories,
-      coverGradientStart: coverGradientStart ?? this.coverGradientStart,
-      coverGradientEnd: coverGradientEnd ?? this.coverGradientEnd,
+
       coverImageAsset: coverImageAsset ?? this.coverImageAsset,
       introduction: introduction ?? this.introduction,
       sections: sections ?? this.sections,
@@ -84,8 +79,6 @@ class StoryData {
       title: 'Little Astronaut and\nMeteor Hunt',
       tags: ['Adventure', 'Space'],
       categories: ['Space', 'Adventure'],
-      coverGradientStart: '0xFF1A237E',
-      coverGradientEnd: '0xFF4A148C',
       coverImageAsset: 'assets/images/ic_dummybook1.png',
       isPopular: true,
       rating: 4.8,
@@ -114,8 +107,6 @@ class StoryData {
       title: 'Mysterious City\nExploration',
       tags: ['Adventure', 'Fairy tale'],
       categories: ['Detectives', 'Adventure'],
-      coverGradientStart: '0xFF1B5E20',
-      coverGradientEnd: '0xFF33691E',
       coverImageAsset: 'assets/images/ic_dummybook2.png',
       isPopular: true,
       rating: 4.5,
@@ -139,8 +130,6 @@ class StoryData {
       title: 'The Key To The\nLost City',
       tags: ['Adventure', 'Magic'],
       categories: ['Magic', 'Adventure'],
-      coverGradientStart: '0xFF1A237E',
-      coverGradientEnd: '0xFF4CAF50',
       coverImageAsset: 'assets/images/ic_dummybook3.png',
       rating: 4.2,
       introduction:
@@ -163,8 +152,6 @@ class StoryData {
       title: 'Mysterious Traces',
       tags: ['Adventure', 'Detectives'],
       categories: ['Detectives', 'Adventure'],
-      coverGradientStart: '0xFF4E342E',
-      coverGradientEnd: '0xFF6D4C41',
       coverImageAsset: 'assets/images/ic_dummybook4.png',
       rating: 4.0,
       introduction:
@@ -187,8 +174,6 @@ class StoryData {
       title: 'The Dancing Turtle',
       tags: ['Animal', 'Underwater'],
       categories: ['Animals', 'Underwater'],
-      coverGradientStart: '0xFF006064',
-      coverGradientEnd: '0xFF00838F',
       coverImageAsset: 'assets/images/ic_dummybook5.png',
       rating: 4.7,
       introduction:
@@ -211,8 +196,6 @@ class StoryData {
       title: 'Dinosaur Detective',
       tags: ['Adventure', 'Dinosaurs'],
       categories: ['Dinosaurs', 'Adventure'],
-      coverGradientStart: '0xFF1B5E20',
-      coverGradientEnd: '0xFF388E3C',
       coverImageAsset: 'assets/images/ic_dummybook1.png',
       rating: 4.3,
       introduction:
@@ -235,8 +218,6 @@ class StoryData {
       title: 'The Superhero\nNeighborhood',
       tags: ['Adventure', 'Superhero'],
       categories: ['Superhero', 'Adventure'],
-      coverGradientStart: '0xFF1A237E',
-      coverGradientEnd: '0xFFD32F2F',
       coverImageAsset: 'assets/images/ic_dummybook2.png',
       rating: 4.6,
       introduction:
@@ -259,8 +240,6 @@ class StoryData {
       title: 'The Fairy Tale\nKingdom',
       tags: ['Fairy tale', 'Magic'],
       categories: ['Fairy tale', 'Magic'],
-      coverGradientStart: '0xFF6A1B9A',
-      coverGradientEnd: '0xFF8E24AA',
       coverImageAsset: 'assets/images/ic_dummybook3.png',
       isPopular: true,
       rating: 4.9,
