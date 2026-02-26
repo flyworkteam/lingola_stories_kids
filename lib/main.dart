@@ -10,7 +10,7 @@ import 'package:lingolakidstories/Views/SplashView/splash_view.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/utils/constants.dart';
 import 'package:lingolakidstories/utils/print.dart' hide LogLevel;
-import 'package:onesignal_flutter/onesignal_flutter.dart';
+// import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:purchases_flutter/purchases_flutter.dart';
 
 Future<void> initPlatformState() async {
@@ -40,61 +40,61 @@ void main() async {
 
   FlutterNativeSplash.remove();
   await initPlatformState();
-  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  // OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
 
-  OneSignal.initialize("d5f72260-7b06-436d-8d21-03ac3c99b2cb");
+  // OneSignal.initialize("d5f72260-7b06-436d-8d21-03ac3c99b2cb");
 
   final container = ProviderContainer();
 
-  OneSignal.User.pushSubscription.addObserver((state) {
-    final id = state.current.id;
-    final isOptedIn = state.current.optedIn;
-    Print.info(
-      "📢 OneSignal Subscription Changed - ID: $id, OptedIn: $isOptedIn",
-    );
+  // OneSignal.User.pushSubscription.addObserver((state) {
+  //   final id = state.current.id;
+  //   final isOptedIn = state.current.optedIn;
+  //   Print.info(
+  //     "📢 OneSignal Subscription Changed - ID: $id, OptedIn: $isOptedIn",
+  //   );
 
-    if (id != null && id.isNotEmpty && isOptedIn == true) {
-      try {
-        Print.info("📢 OneSignal id sent to backend: $id (subscribed)");
-      } catch (e) {
-        Print.error('Error saving OneSignal id from observer: $e');
-      }
-    } else if (id != null && isOptedIn != true) {
-      Print.info(
-        "⚠️ OneSignal ID exists but user is not subscribed. Not saving to backend.",
-      );
-    }
-  });
+  //   if (id != null && id.isNotEmpty && isOptedIn == true) {
+  //     try {
+  //       Print.info("📢 OneSignal id sent to backend: $id (subscribed)");
+  //     } catch (e) {
+  //       Print.error('Error saving OneSignal id from observer: $e');
+  //     }
+  //   } else if (id != null && isOptedIn != true) {
+  //     Print.info(
+  //       "⚠️ OneSignal ID exists but user is not subscribed. Not saving to backend.",
+  //     );
+  //   }
+  // });
 
-  final initialId = OneSignal.User.pushSubscription.id;
-  final initialOptedIn = OneSignal.User.pushSubscription.optedIn;
-  Print.info("📢 Initial OneSignal - ID: $initialId, OptedIn: $initialOptedIn");
+  // final initialId = OneSignal.User.pushSubscription.id;
+  // final initialOptedIn = OneSignal.User.pushSubscription.optedIn;
+  // Print.info("📢 Initial OneSignal - ID: $initialId, OptedIn: $initialOptedIn");
 
-  if (initialId != null && initialId.isNotEmpty && initialOptedIn == true) {
-    try {
-      Print.info(
-        '📢 Initial OneSignal id sent to backend: $initialId (subscribed)',
-      );
-    } catch (e) {
-      Print.error('Error sending initial OneSignal id: $e');
-    }
-  } else if (initialId != null && initialOptedIn != true) {
-    Print.info(
-      '⚠️ Initial OneSignal ID exists but user not subscribed. Waiting for opt-in...',
-    );
-  }
+  // if (initialId != null && initialId.isNotEmpty && initialOptedIn == true) {
+  //   try {
+  //     Print.info(
+  //       '📢 Initial OneSignal id sent to backend: $initialId (subscribed)',
+  //     );
+  //   } catch (e) {
+  //     Print.error('Error sending initial OneSignal id: $e');
+  //   }
+  // } else if (initialId != null && initialOptedIn != true) {
+  //   Print.info(
+  //     '⚠️ Initial OneSignal ID exists but user not subscribed. Waiting for opt-in...',
+  //   );
+  // }
 
   final storageService = SecureStorageService();
-  final alreadyAsked = await storageService.getNotificationPermissionAsked();
-  if (!alreadyAsked) {
-    OneSignal.Notifications.requestPermission(true);
-    await storageService.saveNotificationPermissionAsked(true);
-    Print.info('Notification permission requested (first time)');
-  } else {
-    Print.info(
-      'Notification permission already asked previously - skipping prompt',
-    );
-  }
+  // final alreadyAsked = await storageService.getNotificationPermissionAsked();
+  // if (!alreadyAsked) {
+  //   OneSignal.Notifications.requestPermission(true);
+  //   await storageService.saveNotificationPermissionAsked(true);
+  //   Print.info('Notification permission requested (first time)');
+  // } else {
+  //   Print.info(
+  //     'Notification permission already asked previously - skipping prompt',
+  //   );
+  // }
 
   final savedLanguageCode = await storageService.getLanguage();
 
