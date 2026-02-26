@@ -7,6 +7,7 @@ import 'package:lingolakidstories/Views/FaqView/faq_view.dart';
 import 'package:lingolakidstories/Views/HomeView/home_view.dart';
 import 'package:lingolakidstories/Views/LibraryView/library_view.dart';
 import 'package:lingolakidstories/Views/MainView/main_view.dart';
+import 'package:lingolakidstories/Views/NotificationsView/notifications_view.dart';
 import 'package:lingolakidstories/Views/OnboardingView/onboarding_view.dart';
 import 'package:lingolakidstories/Views/ProfileView/profile_view.dart';
 import 'package:lingolakidstories/Views/SplashView/splash_view.dart';
@@ -26,6 +27,7 @@ class AppRoutes {
   static const String editProfile = '/edit-profile';
   static const String appLanguage = '/app-language';
   static const String storyDetails = '/story-details/:storyId';
+  static const String notifications = '/notifications';
 
   static Map<String, WidgetBuilder> getRoutes() {
     return {
@@ -41,6 +43,7 @@ class AppRoutes {
       faq: (context) => const FaqView(),
       editProfile: (context) => const EditProfileView(),
       appLanguage: (context) => const AppLanguageView(),
+      notifications: (context) => const NotificationsView(),
     };
   }
 }

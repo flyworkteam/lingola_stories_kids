@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lingolakidstories/Core/Routes/app_routes.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
@@ -55,28 +56,33 @@ class HeaderWidget extends StatelessWidget {
           ),
           Spacer(),
           // Notification bell
-          Container(
-            width: 40,
-            height: 40,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0xffCCDBE8),
-                  blurRadius: 4,
-                  offset: const Offset(0, 2),
-                ),
-              ],
-            ),
-            child: Center(
-              child: SvgPicture.asset(
-                AppIcons.bell,
-                width: 20,
-                height: 20,
-                colorFilter: const ColorFilter.mode(
-                  AppColors.primary,
-                  BlendMode.srcIn,
+          GestureDetector(
+            onTap: () {
+              Navigator.pushNamed(context, AppRoutes.notifications);
+            },
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.white,
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xffCCDBE8),
+                    blurRadius: 4,
+                    offset: const Offset(0, 2),
+                  ),
+                ],
+              ),
+              child: Center(
+                child: SvgPicture.asset(
+                  AppIcons.bell,
+                  width: 20,
+                  height: 20,
+                  colorFilter: const ColorFilter.mode(
+                    AppColors.primary,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
