@@ -4,7 +4,7 @@
 <dict>
 	<key>com.apple.security.application-groups</key>
 	<array>
-		<string>group.com.flywork.lingolastorieskidsapp.onesignal</string>
+		<string>group.com.flywork.lingolastorieskidsapp.onesignall</string>
 	</array>
 </dict>
 </plist>
