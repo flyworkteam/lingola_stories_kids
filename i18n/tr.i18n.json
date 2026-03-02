@@ -155,12 +155,12 @@
   "good_evening": "İyi akşamlar",
   "splash": {
     "screen1": {
-      "title": "Learn English with Stories",
-      "description": "No boring memorisation. Discover words in their natural flow through short and fun stories."
+      "title": "Hikâyelerle İngilizce Öğrenin",
+      "description": "Sıkıcı ezber yok. Kısa ve eğlenceli hikâyelerle kelimeleri doğal akışları içinde keşfedin."
     },
     "screen2": {
-      "title": "Artificial Intelligence Guides You",
-      "description": "It tracks the words you struggle with, explains their meaning, and suggests new stories tailored to your level."
+      "title": "Yapay Zekâ Size Rehberlik Eder",
+      "description": "Zorlandığınız kelimeleri takip eder, anlamlarını açıklar ve seviyenize uygun yeni hikâyeler önerir."
     }
   },
   "profile": {

@@ -45,6 +45,15 @@ class StoryCard extends StatelessWidget {
     // Cover image in this app is a local asset.
     final String? imageAsset = story.coverImageAsset?.trim();
 
+    /// Use a high-quality render path to avoid blurry scaled assets
+    /// in horizontally scrolling lists.
+    const FilterQuality filterQuality = FilterQuality.high;
+
+    final dpr = MediaQuery.devicePixelRatioOf(context);
+    // Card width is determined by parent; approximate a good decode width.
+    // With aspectRatio ~0.8 and horizontalListHeight 260 => width ~208 logical.
+    final int targetDecodeWidth = (220 * dpr).round().clamp(256, 1024);
+
     final Widget image = (imageAsset == null || imageAsset.isEmpty)
         ? Container(
             color: theme.colorScheme.surfaceContainerHighest,
@@ -55,9 +64,16 @@ class StoryCard extends StatelessWidget {
               size: 28,
             ),
           )
-        : Image.asset(
-            imageAsset,
+        : Image(
+            image: ResizeImage(
+              AssetImage(imageAsset),
+              width: targetDecodeWidth,
+              policy: ResizeImagePolicy.exact,
+            ),
+            // cover prevents odd scaling that can look blurry in a clipped card
             fit: BoxFit.cover,
+            filterQuality: filterQuality,
+            isAntiAlias: true,
             errorBuilder: (_, _, _) => Container(
               color: theme.colorScheme.surfaceContainerHighest,
               alignment: Alignment.center,

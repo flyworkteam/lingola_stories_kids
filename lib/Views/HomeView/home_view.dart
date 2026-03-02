@@ -344,8 +344,8 @@ class _PremiumBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 337,
-      height: 67,
+      width: double.infinity,
+      height: 75,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         gradient: const LinearGradient(

@@ -28,6 +28,12 @@ class SplashWidget extends StatelessWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     final imageHeight = screenHeight * 0.5;
 
+    // StoryCard ile aynı yaklaşım: asset'i ekranda görüneceği genişliğe göre decode et.
+    const filterQuality = FilterQuality.high;
+    final dpr = MediaQuery.devicePixelRatioOf(context);
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final int targetDecodeWidth = (screenWidth * dpr).round().clamp(256, 2048);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
@@ -37,8 +43,13 @@ class SplashWidget extends StatelessWidget {
             height: imageHeight,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(image),
+                image: ResizeImage(
+                  AssetImage(image),
+                  width: targetDecodeWidth,
+                  policy: ResizeImagePolicy.exact,
+                ),
                 fit: BoxFit.fitWidth,
+                filterQuality: filterQuality,
               ),
               borderRadius: const BorderRadius.only(
                 bottomLeft: Radius.circular(30),

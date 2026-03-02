@@ -114,7 +114,33 @@ class SplashView extends HookConsumerWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Image.asset(AppAssets.logo, width: 120, height: 120),
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(36),
+                          child: Builder(
+                            builder: (context) {
+                              const double logoSize = 130;
+                              final dpr = MediaQuery.devicePixelRatioOf(
+                                context,
+                              );
+                              final int targetDecodeWidth = (logoSize * dpr)
+                                  .round()
+                                  .clamp(128, 1024);
+
+                              return Image(
+                                image: ResizeImage(
+                                  const AssetImage(AppAssets.appLogo),
+                                  width: targetDecodeWidth,
+                                  policy: ResizeImagePolicy.exact,
+                                ),
+                                fit: BoxFit.contain,
+                                width: logoSize,
+                                height: logoSize,
+                                filterQuality: FilterQuality.high,
+                                isAntiAlias: true,
+                              );
+                            },
+                          ),
+                        ),
                         const SizedBox(height: 24),
                         Text(
                           Constants.appName,

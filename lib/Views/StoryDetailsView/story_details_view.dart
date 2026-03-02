@@ -19,7 +19,6 @@ import 'widgets/section_title.dart';
 import 'widgets/story_tag.dart';
 import 'widgets/story_text_map.dart';
 import 'widgets/three_dot_menu.dart';
-import 'widgets/translation_sheet.dart';
 
 // ─── Main View ────────────────────────────────────────────────────────────────
 
@@ -34,9 +33,7 @@ class StoryDetailsView extends HookWidget {
     final showMenu = useState(false);
     final showRating = useState(false);
     final showFeedback = useState(false);
-    final currentRating = useState(story.rating.round());
-    final showTranslate = useState('');
-    final translateWord = useState('');
+    final currentRating = useState(4);
 
     // ── Dynamic background color from cover image ─────────────────────────────
     final startColor = Colors.black;
@@ -209,6 +206,19 @@ class StoryDetailsView extends HookWidget {
       };
     }, const []);
 
+    // ── Shared gradient (whole page) ─────────────────────────────────────────
+    // Sol-üst ve sağ-alt koyu, ortada daha açık (0 / 51 / 100)
+    final pageGradient = LinearGradient(
+      begin: Alignment.topLeft,
+      end: Alignment.bottomRight,
+      stops: const [0.0, 0.51, 1.0],
+      colors: [
+        dominantColorDark.value,
+        Color.lerp(dominantColor.value, Colors.white, 0.08)!,
+        dominantColorDark.value,
+      ],
+    );
+
     return Scaffold(
       backgroundColor: dominantColorDark.value,
       body: Stack(
@@ -217,7 +227,7 @@ class StoryDetailsView extends HookWidget {
           AnimatedContainer(
             duration: const Duration(milliseconds: 700),
             curve: Curves.easeInOut,
-            decoration: BoxDecoration(color: dominantColorDark.value),
+            decoration: BoxDecoration(gradient: pageGradient),
             constraints: const BoxConstraints.expand(),
           ),
 
@@ -243,9 +253,9 @@ class StoryDetailsView extends HookWidget {
                 duration: const Duration(milliseconds: 700),
                 curve: Curves.easeInOut,
                 decoration: BoxDecoration(
-                  color: dominantColorDark.value,
+                  gradient: pageGradient,
                   borderRadius: const BorderRadius.vertical(
-                    top: Radius.circular(AppBorderRadius.xl),
+                    top: Radius.circular(50),
                   ),
                 ),
                 child: CustomScrollView(
@@ -342,10 +352,6 @@ class StoryDetailsView extends HookWidget {
                               activeWordEnd: activeWordEnd.value,
                               readUpTo: readUpTo.value,
                               isReadingMode: isReading.value,
-                              onTranslate: (w) {
-                                translateWord.value = w;
-                                showTranslate.value = w;
-                              },
                               onSave: (w) {
                                 CustomOverlay.show(
                                   context,
@@ -378,10 +384,6 @@ class StoryDetailsView extends HookWidget {
                                       activeWordEnd: activeWordEnd.value,
                                       readUpTo: readUpTo.value,
                                       isReadingMode: isReading.value,
-                                      onTranslate: (w) {
-                                        translateWord.value = w;
-                                        showTranslate.value = w;
-                                      },
                                       onSave: (w) {
                                         CustomOverlay.show(
                                           context,
@@ -419,7 +421,8 @@ class StoryDetailsView extends HookWidget {
               isListening: isListening.value,
               onStartStop: () => isReading.value ? stopAll() : startRead(),
               onListen: () => isListening.value ? stopAll() : startListen(),
-              backgroundColor: dominantColorDark.value,
+              backgroundColor: Colors.transparent,
+              backgroundGradient: pageGradient,
             ),
           ),
 
@@ -427,6 +430,7 @@ class StoryDetailsView extends HookWidget {
           if (showRating.value)
             RatingSheet(
               initialRating: currentRating.value,
+              backgroundGradient: pageGradient,
               onClose: () => showRating.value = false,
               onSend: (r) {
                 currentRating.value = r;
@@ -445,6 +449,7 @@ class StoryDetailsView extends HookWidget {
           if (showFeedback.value)
             FeedbackSheet(
               onClose: () => showFeedback.value = false,
+              pageGradient: pageGradient,
               onSend: (subject, msg) {
                 showFeedback.value = false;
                 if (subject.isEmpty || msg.isEmpty) {
@@ -464,24 +469,6 @@ class StoryDetailsView extends HookWidget {
                     type: OverlayType.success,
                   );
                 }
-              },
-            ),
-
-          // ── Translation ──
-          if (showTranslate.value.isNotEmpty)
-            TranslationSheet(
-              word: translateWord.value,
-              onClose: () => showTranslate.value = '',
-              onSpeak: () => tts.speak(translateWord.value),
-              onSave: () {
-                showTranslate.value = '';
-                CustomOverlay.show(
-                  context,
-                  title: context.t.storyDetails.saved,
-                  message: context.t.storyDetails.wordAddedToLibrary,
-                  icon: AppIcons.successToast,
-                  type: OverlayType.success,
-                );
               },
             ),
         ],

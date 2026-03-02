@@ -17,9 +17,10 @@ class _Language {
 }
 
 class Step1 extends HookWidget {
-  const Step1({super.key, this.onLanguageSelected});
+  const Step1({super.key, this.onLanguageSelected, this.bottomPadding = 0});
 
   final ValueChanged<String>? onLanguageSelected;
+  final double bottomPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -112,9 +113,9 @@ class Step1 extends HookWidget {
               final itemWidth = (constraints.maxWidth - AppSpacing.md) / 2;
               const itemHeight = 90.0;
               return SingleChildScrollView(
-                padding: const EdgeInsets.only(
-                  bottom: AppSpacing.xl,
+                padding: EdgeInsets.only(
                   top: AppSpacing.xl,
+                  bottom: bottomPadding,
                 ),
                 child: Wrap(
                   spacing: AppSpacing.md,

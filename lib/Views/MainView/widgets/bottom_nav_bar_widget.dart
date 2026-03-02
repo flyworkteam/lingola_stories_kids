@@ -19,7 +19,7 @@ class BottomNavBarWidget extends StatelessWidget {
     return NavigationBar(
       selectedIndex: currentIndex,
       onDestinationSelected: onIndexChanged,
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.transparent,
       indicatorColor: Colors.transparent,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
 

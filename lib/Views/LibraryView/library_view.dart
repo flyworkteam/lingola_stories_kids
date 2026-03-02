@@ -17,7 +17,6 @@ class LibraryView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       extendBodyBehindAppBar: true,
-      backgroundColor: const Color(0xFFFAF3EC),
       body: Stack(
         children: [
           Positioned(

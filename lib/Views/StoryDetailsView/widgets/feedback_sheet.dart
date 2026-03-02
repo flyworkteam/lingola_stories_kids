@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
+import 'package:lingolakidstories/shared/custom_button.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
@@ -11,10 +12,16 @@ import 'package:lingolakidstories/utils/app_assets.dart';
 import 'blurred_modal_backdrop.dart';
 
 class FeedbackSheet extends HookWidget {
-  const FeedbackSheet({super.key, required this.onClose, required this.onSend});
+  const FeedbackSheet({
+    super.key,
+    required this.onClose,
+    required this.onSend,
+    required this.pageGradient,
+  });
 
   final VoidCallback onClose;
   final void Function(String, String) onSend;
+  final LinearGradient pageGradient;
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +44,8 @@ class FeedbackSheet extends HookWidget {
         child: GestureDetector(
           onTap: () {},
           child: Container(
-            decoration: const BoxDecoration(
-              color: Color(0xFF1E2A3D),
+            decoration: BoxDecoration(
+              gradient: pageGradient,
               borderRadius: BorderRadius.vertical(
                 top: Radius.circular(AppBorderRadius.xl),
               ),
@@ -64,34 +71,34 @@ class FeedbackSheet extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xl),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        context.t.storyDetails.feedback,
-                        style: AppTextStyles.heading(
-                          18,
-                          FontWeight.w700,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    GestureDetector(
-                      onTap: onClose,
-                      child: const Icon(
-                        Icons.close_rounded,
-                        color: Colors.white54,
-                        size: 22,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: AppSpacing.xl),
+                // Row(
+                //   children: [
+                //     Expanded(
+                //       child: Text(
+                //         context.t.storyDetails.feedback,
+                //         style: AppTextStyles.heading(
+                //           18,
+                //           FontWeight.w700,
+                //           color: Colors.white,
+                //         ),
+                //       ),
+                //     ),
+                //     GestureDetector(
+                //       onTap: onClose,
+                //       child: const Icon(
+                //         Icons.close_rounded,
+                //         color: Colors.white54,
+                //         size: 22,
+                //       ),
+                //     ),
+                //   ],
+                // ),
+                // const SizedBox(height: AppSpacing.xl),
                 Text(
                   context.t.storyDetails.subject,
                   style: AppTextStyles.heading(
-                    14,
-                    FontWeight.w700,
+                    16,
+                    FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),
@@ -105,9 +112,8 @@ class FeedbackSheet extends HookWidget {
                       vertical: AppSpacing.md,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.06),
-                      borderRadius: AppBorderRadius.mdRadius,
-                      border: Border.all(color: Colors.white24),
+                      borderRadius: AppBorderRadius.pillRadius,
+                      border: Border.all(color: Color(0xffDFDFDF)),
                     ),
                     child: Row(
                       children: [
@@ -115,10 +121,10 @@ class FeedbackSheet extends HookWidget {
                           child: Text(
                             subject.value ?? 'Please select a subject',
                             style: AppTextStyles.body(
-                              14,
-                              color: subject.value != null
-                                  ? Colors.white
-                                  : Colors.white38,
+                              16,
+                              color: Colors.white,
+                              weight: FontWeight.w300,
+                              letterSpacing: -0.05,
                             ),
                           ),
                         ),
@@ -127,7 +133,7 @@ class FeedbackSheet extends HookWidget {
                           width: 16,
                           height: 16,
                           colorFilter: const ColorFilter.mode(
-                            Colors.white54,
+                            Colors.white,
                             BlendMode.srcIn,
                           ),
                         ),
@@ -176,8 +182,8 @@ class FeedbackSheet extends HookWidget {
                 Text(
                   'Message',
                   style: AppTextStyles.heading(
-                    14,
-                    FontWeight.w700,
+                    16,
+                    FontWeight.w600,
                     color: Colors.white,
                   ),
                 ),
@@ -188,16 +194,15 @@ class FeedbackSheet extends HookWidget {
                   style: AppTextStyles.body(14, color: Colors.white),
                   decoration: InputDecoration(
                     hintText: 'Please enter your message',
-                    hintStyle: AppTextStyles.body(14, color: Colors.white38),
-                    filled: true,
-                    fillColor: Colors.white.withValues(alpha: 0.06),
+                    hintStyle: AppTextStyles.body(14, color: Colors.white),
+
                     border: OutlineInputBorder(
                       borderRadius: AppBorderRadius.mdRadius,
-                      borderSide: const BorderSide(color: Colors.white24),
+                      borderSide: const BorderSide(color: Colors.white),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: AppBorderRadius.mdRadius,
-                      borderSide: const BorderSide(color: Colors.white24),
+                      borderSide: const BorderSide(color: Colors.white),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderRadius: AppBorderRadius.mdRadius,
@@ -207,38 +212,37 @@ class FeedbackSheet extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xl),
-                SizedBox(
-                  width: double.infinity,
-                  height: 52,
-                  child: ElevatedButton(
-                    onPressed: () => onSend(subject.value ?? '', msg.text),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: AppColors.primary,
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: AppBorderRadius.pillRadius,
-                      ),
-                      elevation: 0,
+                CustomButton(
+                  onPressed: () => onSend(subject.value ?? '', msg.text),
+                  type: CustomButtonType.filled,
+                  size: CustomButtonSize.large,
+                  fullWidth: true,
+                  borderRadius: 18,
+                  backgroundColor: AppColors.primary,
+                  foregroundColor: Colors.white,
+                  label: context.t.storyDetails.send,
+                  shadow: [
+                    BoxShadow(
+                      color: AppColors.primaryShadow,
+                      blurRadius: 0,
+                      offset: const Offset(0, 5),
                     ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          context.t.storyDetails.send,
-                          style: AppTextStyles.body(15, color: Colors.white),
-                        ),
-                        const SizedBox(width: AppSpacing.sm),
-                        SvgPicture.asset(
-                          AppIcons.send,
-                          width: 16,
-                          height: 16,
-                          colorFilter: const ColorFilter.mode(
-                            Colors.white,
-                            BlendMode.srcIn,
-                          ),
-                        ),
-                      ],
+                  ],
+                  icon: SvgPicture.asset(
+                    AppIcons.send,
+                    width: 24,
+                    height: 24,
+                    colorFilter: const ColorFilter.mode(
+                      Colors.white,
+                      BlendMode.srcIn,
                     ),
+                  ),
+                  iconPosition: CustomButtonIconPosition.trailing,
+                  labelStyle: AppTextStyles.body(
+                    25,
+                    weight: FontWeight.bold,
+                    letterSpacing: -0.05,
+                    color: Colors.white,
                   ),
                 ),
               ],

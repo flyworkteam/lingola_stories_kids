@@ -14,9 +14,10 @@ class _StoryCategory {
 }
 
 class Step2 extends HookWidget {
-  const Step2({super.key, this.onCategoriesSelected});
+  const Step2({super.key, this.onCategoriesSelected, this.bottomPadding = 0});
 
   final ValueChanged<List<String>>? onCategoriesSelected;
+  final double bottomPadding;
 
   @override
   Widget build(BuildContext context) {
@@ -66,52 +67,56 @@ class Step2 extends HookWidget {
       onCategoriesSelected?.call(next.toList());
     }
 
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        const SizedBox(height: AppSpacing.xl),
-        Text(
-          context.t.onboarding.step2.title,
-          textAlign: TextAlign.center,
-          style: AppTextStyles.body(
-            24,
-            weight: FontWeight.w700,
-            height: 30,
-            letterSpacing: -0.05,
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(bottom: bottomPadding),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          const SizedBox(height: AppSpacing.xl),
+          Text(
+            context.t.onboarding.step2.title,
+            textAlign: TextAlign.center,
+            style: AppTextStyles.body(
+              24,
+              weight: FontWeight.w700,
+              height: 30,
+              letterSpacing: -0.05,
+            ),
           ),
-        ),
-        const SizedBox(height: AppSpacing.sm),
-        Text(
-          context.t.onboarding.step2.subtitle,
-          textAlign: TextAlign.center,
-          style: AppTextStyles.body(
-            20,
-            weight: FontWeight.w300,
-            height: 25,
-            letterSpacing: -0.05,
+          const SizedBox(height: AppSpacing.sm),
+          Text(
+            context.t.onboarding.step2.subtitle,
+            textAlign: TextAlign.center,
+            style: AppTextStyles.body(
+              20,
+              weight: FontWeight.w300,
+              height: 25,
+              letterSpacing: -0.05,
+            ),
           ),
-        ),
-        const SizedBox(height: AppSpacing.xl),
-        const SizedBox(height: AppSpacing.xxl),
-        const SizedBox(height: AppSpacing.xxl),
-        Wrap(
-          spacing: AppSpacing.md,
-          runSpacing: AppSpacing.md,
-          alignment: WrapAlignment.center,
-          children: categories.map((cat) {
-            final isSelected = selected.value.contains(cat.label);
-            return SizedBox(
-              width: 150,
-              height: 50,
-              child: _CategoryTile(
-                category: cat,
-                isSelected: isSelected,
-                onTap: () => toggle(cat.label),
-              ),
-            );
-          }).toList(),
-        ),
-      ],
+          const SizedBox(height: AppSpacing.xl),
+          const SizedBox(height: AppSpacing.xxl),
+          const SizedBox(height: AppSpacing.xxl),
+          Wrap(
+            spacing: AppSpacing.md,
+            runSpacing: AppSpacing.md,
+            alignment: WrapAlignment.center,
+            children: categories.map((cat) {
+              final isSelected = selected.value.contains(cat.label);
+              return SizedBox(
+                width: 150,
+                height: 50,
+                child: _CategoryTile(
+                  category: cat,
+                  isSelected: isSelected,
+                  onTap: () => toggle(cat.label),
+                ),
+              );
+            }).toList(),
+          ),
+          const SizedBox(height: AppSpacing.xl),
+        ],
+      ),
     );
   }
 }

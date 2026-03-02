@@ -24,11 +24,20 @@ class OnboardingView extends HookConsumerWidget {
 
     final loadingProgress = useState<double>(0.0);
 
-    final learningLanguage = useState('en');
+    final learningLanguage = useState<String?>(null);
     final storyPreferences = useState<Map<String, dynamic>>({});
 
     final isLoadingScreen = currentStep.value == 2;
     final isFinalScreen = currentStep.value == 3;
+
+    final hasLanguageSelected = (learningLanguage.value ?? '').isNotEmpty;
+
+    final rawCategories = storyPreferences.value['categories'];
+    final selectedCategories = rawCategories is List
+        ? rawCategories.map((e) => e.toString()).toList()
+        : const <String>[];
+    final hasCategoriesSelected = selectedCategories.isNotEmpty;
+
     // Adımlar: 0=Step1, 1=Step2, 2=LoadingScreen, 3=FinalScreen
     void nextPage() {
       if (currentStep.value < 3) {
@@ -43,13 +52,36 @@ class OnboardingView extends HookConsumerWidget {
     void handleOnPressed() {
       if (isFinalScreen) {
         Navigator.of(context).pushReplacementNamed('/main');
-      } else if (isLoadingScreen) {
-      } else {
-        nextPage();
+        return;
       }
+
+      if (isLoadingScreen) {
+        // buton pasif/pointer ignore
+        return;
+      }
+
+      // Seçim yokken butonu pasifleştir (loading ekrani gibi)
+      if (currentStep.value == 0 && !hasLanguageSelected) return;
+      if (currentStep.value == 1 && !hasCategoriesSelected) return;
+
+      nextPage();
     }
 
     final shouldShowTopBar = !isLoadingScreen && !isFinalScreen;
+
+    final isStepActionDisabled =
+        (currentStep.value == 0 && !hasLanguageSelected) ||
+        (currentStep.value == 1 && !hasCategoriesSelected);
+
+    final horizontalPadding = AppPaddings.horizontalPage;
+
+    // iPhone vb cihazlarda butonun üstüne binmeyi engellemek için
+    final bottomSafe = MediaQuery.of(context).padding.bottom;
+    const buttonHeight = 56.0; // CustomButtonSize.large min height
+    const buttonShadowOffset = 5.0;
+    const buttonVerticalMargin = AppSpacing.xl;
+    final bottomInsetForContent =
+        bottomSafe + buttonHeight + buttonShadowOffset + buttonVerticalMargin;
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -76,7 +108,7 @@ class OnboardingView extends HookConsumerWidget {
             ),
 
           Padding(
-            padding: AppPaddings.horizontalPage,
+            padding: horizontalPadding,
             child: Column(
               children: [
                 if (shouldShowTopBar) const SizedBox(height: AppSpacing.xxxl),
@@ -113,11 +145,13 @@ class OnboardingView extends HookConsumerWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
                       Step1(
+                        bottomPadding: bottomInsetForContent,
                         onLanguageSelected: (code) {
                           learningLanguage.value = code;
                         },
                       ),
                       Step2(
+                        bottomPadding: bottomInsetForContent,
                         onCategoriesSelected: (categories) {
                           storyPreferences.value = {'categories': categories};
                         },
@@ -136,9 +170,25 @@ class OnboardingView extends HookConsumerWidget {
                     ],
                   ),
                 ),
+              ],
+            ),
+          ),
 
-                IgnorePointer(
-                  ignoring: isLoadingScreen,
+          // Bottom pinned button (overlay)
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: SafeArea(
+              top: false,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                  left: AppSpacing.xl,
+                  right: AppSpacing.xl,
+                  bottom: AppSpacing.xl,
+                ),
+                child: IgnorePointer(
+                  ignoring: isLoadingScreen || isStepActionDisabled,
                   child: CustomButton(
                     label: isFinalScreen || isLoadingScreen
                         ? context.t.get_started
@@ -152,12 +202,12 @@ class OnboardingView extends HookConsumerWidget {
                       color: Colors.white,
                       letterSpacing: -0.05,
                     ),
-                    backgroundColor: isLoadingScreen
+                    backgroundColor: (isLoadingScreen || isStepActionDisabled)
                         ? AppColors.secondary
                         : AppColors.primary,
                     shadow: [
                       BoxShadow(
-                        color: isLoadingScreen
+                        color: (isLoadingScreen || isStepActionDisabled)
                             ? AppColors.secondaryShadow
                             : AppColors.primaryShadow,
                         blurRadius: 0,
@@ -167,8 +217,7 @@ class OnboardingView extends HookConsumerWidget {
                     onPressed: handleOnPressed,
                   ),
                 ),
-                const SizedBox(height: AppSpacing.xxxl),
-              ],
+              ),
             ),
           ),
         ],

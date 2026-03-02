@@ -17,6 +17,7 @@ class AppIcons {
 
   static const String animals = 'assets/icons/ic_animals.png';
   static const String appIcon = 'assets/icons/ic_app_icon.svg';
+  static const String appLogo = 'assets/icons/app_logo.png';
   static const String apple = 'assets/icons/ic_apple.svg';
   static const String archiveNotification =
       'assets/icons/ic_archive_notification.svg';
@@ -88,6 +89,7 @@ class AppIcons {
   static const String telescope = 'assets/icons/ic_telescope.svg';
   static const String threedot = 'assets/icons/ic_threedot.svg';
   static const String translate = 'assets/icons/ic_translate.svg';
+  static const String translateBack = 'assets/icons/ic_translate_back.svg';
   static const String underwater = 'assets/icons/ic_underwater.png';
   static const String verify = 'assets/icons/ic_verify.svg';
   static const String warning = 'assets/icons/ic_warning.svg';

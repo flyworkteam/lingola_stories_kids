@@ -21,6 +21,11 @@ class CoverHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final asset = coverImageAsset?.trim();
+    final dpr = MediaQuery.devicePixelRatioOf(context);
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final int targetDecodeWidth = (screenWidth * dpr).round().clamp(512, 2048);
+
     return SizedBox(
       height: height,
       child: Stack(
@@ -44,12 +49,14 @@ class CoverHeader extends StatelessWidget {
           ),
 
           // Cover image
-          if (coverImageAsset != null)
+          if (asset != null && asset.isNotEmpty)
             Positioned.fill(
-              child: Image.asset(
-                coverImageAsset!,
+              child: Image(
+                image: ResizeImage(AssetImage(asset), width: targetDecodeWidth),
                 fit: BoxFit.cover,
                 alignment: Alignment.topCenter,
+                filterQuality: FilterQuality.high,
+                isAntiAlias: true,
               ),
             ),
 

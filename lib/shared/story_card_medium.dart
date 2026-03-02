@@ -12,12 +12,16 @@ class StoryCardMedium extends StatelessWidget {
   final StoryModel story;
   final VoidCallback onTap;
 
+  static const double _thumbSize = 110; // logical px (SizedBox width)
+
   @override
   Widget build(BuildContext context) {
+    final asset = story.coverImageAsset?.trim();
+
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        width: 110,
+        width: _thumbSize,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,23 +31,27 @@ class StoryCardMedium extends StatelessWidget {
               borderRadius: AppBorderRadius.mdRadius,
               child: AspectRatio(
                 aspectRatio: 1 / 1,
-                child: Container(
-                  decoration: BoxDecoration(
-                    image: story.coverImageAsset != null
-                        ? DecorationImage(
-                            image: AssetImage(story.coverImageAsset!),
-                            fit: BoxFit.cover,
-                          )
-                        : null,
-                    gradient: story.coverImageAsset == null
-                        ? const LinearGradient(
+                child: (asset == null || asset.isEmpty)
+                    ? Container(
+                        decoration: const BoxDecoration(
+                          gradient: LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                             colors: [Color(0xFFEEF2FF), Color(0xFFDDE7FF)],
-                          )
-                        : null,
-                  ),
-                ),
+                          ),
+                        ),
+                      )
+                    : Image(
+                        image: ResizeImage(
+                          AssetImage(asset),
+                          // Decode near the needed size to prevent runtime downscale blur.
+                          // 256 keeps it sharp on most DPRs while staying lightweight.
+                          width: 256,
+                        ),
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.high,
+                        isAntiAlias: true,
+                      ),
               ),
             ),
             const SizedBox(height: AppSpacing.xs),

@@ -136,6 +136,15 @@ class LoginView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final localizedWelcome = context.t.welcome2(
+      appName: '\n ${Constants.appName}',
+    );
+    final parts = localizedWelcome.split(Constants.appName);
+    final prefix = parts.isNotEmpty ? parts.first : '';
+    final suffix = parts.length > 1
+        ? parts.sublist(1).join(Constants.appName)
+        : '';
+
     return Scaffold(
       extendBody: true,
       body: Stack(
@@ -157,13 +166,12 @@ class LoginView extends ConsumerWidget {
                   text: TextSpan(
                     children: [
                       TextSpan(
-                        text: context.t.welcome2(appName: '\n'),
+                        text: prefix,
                         style: AppTextStyles.body(
                           36,
                           weight: FontWeight.bold,
                           height: 35,
                           letterSpacing: -0.05,
-
                           color: Colors.black,
                         ),
                       ),
@@ -177,9 +185,22 @@ class LoginView extends ConsumerWidget {
                           color: const Color(0xFF6ED0CF),
                         ),
                       ),
+                      if (suffix.isNotEmpty)
+                        TextSpan(
+                          text: suffix,
+                          style: AppTextStyles.body(
+                            36,
+                            weight: FontWeight.bold,
+                            height: 35,
+                            letterSpacing: -0.05,
+                            color: Colors.black,
+                          ),
+                        ),
                     ],
                   ),
                   textAlign: TextAlign.center,
+                  maxLines: 4,
+                  overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 13),
                 Text(
