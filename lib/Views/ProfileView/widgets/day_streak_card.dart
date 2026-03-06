@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 
-class DayStreakCard extends StatelessWidget {
+class DayStreakCard extends ConsumerWidget {
   const DayStreakCard({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
-    const completedCount = 3;
+
+    final userAsync = ref.watch(userProfileProvider);
+    final streak = userAsync.valueOrNull?.streak;
+    final weekActivity = streak?.weekActivity ?? List.filled(7, false);
 
     return Container(
       width: double.infinity,
@@ -77,7 +82,9 @@ class DayStreakCard extends StatelessWidget {
                         days.length,
                         (i) => DayCell(
                           label: days[i],
-                          isCompleted: i < completedCount,
+                          isCompleted: i < weekActivity.length
+                              ? weekActivity[i]
+                              : false,
                         ),
                       ),
                     ),
@@ -119,10 +126,7 @@ class DayCell extends StatelessWidget {
                 height: 32,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  border: Border.all(
-                    color: Colors.white.withValues(alpha: 0.5),
-                    width: 2,
-                  ),
+                  border: Border.all(color: Color(0xffB8B8B8), width: 2),
                 ),
               ),
       ],

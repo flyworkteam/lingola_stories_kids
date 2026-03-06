@@ -16,10 +16,18 @@ class BottomNavBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Color handleBackgroundColor() {
+      if (currentIndex == 0 || currentIndex == 1) {
+        return Colors.white;
+      } else {
+        return Colors.transparent;
+      }
+    }
+
     return NavigationBar(
       selectedIndex: currentIndex,
       onDestinationSelected: onIndexChanged,
-      backgroundColor: Colors.transparent,
+      backgroundColor: handleBackgroundColor(),
       indicatorColor: Colors.transparent,
       overlayColor: WidgetStateProperty.all(Colors.transparent),
 

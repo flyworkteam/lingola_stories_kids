@@ -1,13 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lingolakidstories/Models/story_model.dart';
+import 'package:lingolakidstories/Riverpod/Controllers/library_controller.dart';
+import 'package:lingolakidstories/Riverpod/Controllers/story_controller.dart';
+import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
+import 'package:lingolakidstories/Services/story_audio_service.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_overlay.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
+import 'package:lingolakidstories/utils/print.dart';
 import 'package:palette_generator/palette_generator.dart';
 
 import 'widgets/bottom_actions_bar.dart';
@@ -15,19 +22,19 @@ import 'widgets/cover_header.dart';
 import 'widgets/feedback_sheet.dart';
 import 'widgets/highlightable_text.dart';
 import 'widgets/rating_sheet.dart';
-import 'widgets/section_title.dart';
 import 'widgets/story_tag.dart';
 import 'widgets/story_text_map.dart';
 import 'widgets/three_dot_menu.dart';
 
 // ─── Main View ────────────────────────────────────────────────────────────────
 
-class StoryDetailsView extends HookWidget {
+class StoryDetailsView extends HookConsumerWidget {
   const StoryDetailsView({super.key, required this.story});
   final StoryModel story;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final storyNotifier = ref.read(storyProvider.notifier);
     final isReading = useState(false);
     final isListening = useState(false);
     final showMenu = useState(false);
@@ -35,106 +42,258 @@ class StoryDetailsView extends HookWidget {
     final showFeedback = useState(false);
     final currentRating = useState(4);
 
+    // ── Story with sections loaded from backend ───────────────────────────────
+    final loadedStory = useState<StoryModel>(story);
+    final sectionsLoaded = useState(false);
+
+    // ── ElevenLabs audio service ──────────────────────────────────────────────
+    final audioService = useMemoized(() => StoryAudioService(), const []);
+    useEffect(() => audioService.dispose, const []);
+
+    // ── Word-level highlight from audio timestamps ───────────────────────────
+    final currentWordState = useState<WordHighlightState?>(null);
+
+    useEffect(() {
+      void listener() {
+        currentWordState.value = audioService.currentWord.value;
+      }
+
+      audioService.currentWord.addListener(listener);
+      return () => audioService.currentWord.removeListener(listener);
+    }, [audioService]);
+
+    // Sync isReading/isListening with audio service
+    useEffect(() {
+      void listener() {
+        final playing = audioService.isPlaying.value;
+        if (!playing) {
+          isReading.value = false;
+          isListening.value = false;
+        }
+      }
+
+      audioService.isPlaying.addListener(listener);
+      return () => audioService.isPlaying.removeListener(listener);
+    }, [audioService]);
+
+    final savedSectionIndex = useState(0);
+    final savedAudioPos = useState<Duration?>(null);
+    final manualProgressSet = useState(false);
+
+    // ── Load sections from backend ───────────────────────────────────────────
+    useEffect(() {
+      bool mounted = true;
+
+      Future<void> initStory() async {
+        try {
+          StoryModel fullStory = story;
+          if (story.sections.isEmpty) {
+            fullStory = await storyNotifier.loadStorySections(story);
+          }
+          if (!mounted) return;
+          loadedStory.value = fullStory;
+          sectionsLoaded.value = true;
+          audioService.loadSections(fullStory.sections);
+
+          final progress = await storyNotifier.getStoryProgress(story.id);
+          if (progress != null && mounted) {
+            final isCompleted =
+                progress['is_completed'] == 1 ||
+                progress['is_completed'] == true;
+            if (!isCompleted) {
+              final int page = progress['current_page'] ?? 0;
+              final rawPos = progress['audio_position'];
+              final double pos = rawPos is String
+                  ? double.tryParse(rawPos) ?? 0.0
+                  : (rawPos as num?)?.toDouble() ?? 0.0;
+
+              savedSectionIndex.value = page;
+              if (pos > 0) {
+                savedAudioPos.value = Duration(
+                  milliseconds: (pos * 1000).toInt(),
+                );
+              }
+            }
+          }
+        } catch (e) {
+          Print.error('Failed to init story: $e');
+        }
+      }
+
+      initStory();
+
+      return () {
+        mounted = false;
+        if (loadedStory.value.sections.isNotEmpty) {
+          int secIdx = audioService.currentSectionIndex.value;
+          double pos = audioService.audioPosition.inMilliseconds / 1000.0;
+          bool hasPlayed = pos > 0 || secIdx > 0;
+
+          if (!hasPlayed || manualProgressSet.value) {
+            secIdx = savedSectionIndex.value;
+            pos = (savedAudioPos.value?.inMilliseconds ?? 0) / 1000.0;
+          }
+
+          final isCompleted = secIdx >= loadedStory.value.sections.length;
+          if (isCompleted) {
+            secIdx = loadedStory.value.sections.length - 1;
+          }
+
+          storyNotifier.saveStoryProgress(
+            storyId: story.id,
+            currentPage: secIdx,
+            audioPosition: pos,
+            isCompleted: isCompleted,
+          );
+        }
+      };
+    }, [story.id]);
+
     // ── Dynamic background color from cover image ─────────────────────────────
     final startColor = Colors.black;
-    // Dominant color extracted from the cover image via palette_generator.
-    // Falls back to startColor if no image or extraction fails.
     final dominantColor = useState<Color>(startColor);
     final dominantColorDark = useState<Color>(
-      // Previously 0.55 blended to black; make it a touch lighter.
       Color.lerp(startColor, Colors.black, 0.40)!,
     );
 
-    // ── Word-level progress tracking ──────────────────────────────────────────
+    // ── Word-level progress tracking (fallback TTS for single-word speak) ────
     final activeWordStart = useState(-1);
     final activeWordEnd = useState(-1);
-    final readUpTo = useState(
-      0,
-    ); // chars already read (persistently highlighted)
+    final readUpTo = useState(0);
 
     final tts = useMemoized(() => FlutterTts());
-    final textMap = useMemoized(() => StoryTextMap.from(story), [story.id]);
+    final textMap = useMemoized(() => StoryTextMap.from(loadedStory.value), [
+      loadedStory.value.sections.length,
+    ]);
 
     // ── Palette extraction from cover image ──────────────────────────────────
     useEffect(() {
+      ImageProvider? provider;
+      final imageUrl = story.coverImageUrl;
       final imageAsset = story.coverImageAsset;
-      // palette_generator only works with raster images; skip SVGs entirely.
-      if (imageAsset == null || imageAsset.toLowerCase().endsWith('.svg')) {
-        return null;
+
+      if (imageUrl != null && imageUrl.isNotEmpty) {
+        provider = NetworkImage(imageUrl);
+      } else if (imageAsset != null &&
+          !imageAsset.toLowerCase().endsWith('.svg')) {
+        provider = AssetImage(imageAsset);
       }
-      PaletteGenerator.fromImageProvider(
-        AssetImage(imageAsset),
-        maximumColorCount: 16,
-      ).then((palette) {
+
+      if (provider == null) return null;
+
+      PaletteGenerator.fromImageProvider(provider, maximumColorCount: 16).then((
+        palette,
+      ) {
         final color =
             palette.dominantColor?.color ??
             palette.vibrantColor?.color ??
             palette.mutedColor?.color ??
             startColor;
-        // Saturate / slightly brighten for a richer (but not too dark) background feel
         final hsl = HSLColor.fromColor(color);
         final richColor = hsl
             .withSaturation((hsl.saturation + 0.15).clamp(0.0, 1.0))
-            // Previously -0.05; darkened too much. Nudge it brighter.
             .withLightness((hsl.lightness + 0.03).clamp(0.10, 0.75))
             .toColor();
         dominantColor.value = richColor;
-        // Previously 0.55 blended to black; make the dark variant lighter.
         dominantColorDark.value = Color.lerp(richColor, Colors.black, 0.42)!;
       });
       return null;
-    }, [story.coverImageAsset]);
+    }, [story.coverImageUrl, story.coverImageAsset]);
 
-    // ── TTS init ──
+    // ── TTS init (only used for single word speak, not story playback) ──
     useEffect(() {
       tts.setLanguage('en-US');
       tts.setSpeechRate(0.42);
       tts.setPitch(1.0);
       tts.setVolume(1.0);
-
-      // Word-level progress callback
-      tts.setProgressHandler((text, start, end, word) {
-        activeWordStart.value = start;
-        activeWordEnd.value = end;
-        if (end > readUpTo.value) readUpTo.value = end;
-      });
-
-      tts.setCompletionHandler(() {
-        activeWordStart.value = -1;
-        activeWordEnd.value = -1;
-        if (!isReading.value && !isListening.value) return;
-        // TTS finished whole text
-        isReading.value = false;
-        isListening.value = false;
-      });
-
       return () => tts.stop();
     }, [tts]);
 
+    // ── Bridge: convert audio word-index to character offsets ──────────────
+    useEffect(() {
+      final ws = currentWordState.value;
+      if (ws == null || !sectionsLoaded.value) {
+        return null;
+      }
+
+      final currentStory = loadedStory.value;
+      int charOffset = 0;
+      final introLen = currentStory.introduction.length;
+
+      if (ws.sectionIndex < 0 ||
+          ws.sectionIndex >= currentStory.sections.length) {
+        return null;
+      }
+
+      // Offset past introduction + space
+      charOffset = introLen + 1;
+
+      // Offset past previous sections
+      for (int i = 0; i < ws.sectionIndex; i++) {
+        charOffset += currentStory.sections[i].content.length + 1;
+      }
+
+      // Find the word position within the section content
+      final sectionContent = currentStory.sections[ws.sectionIndex].content;
+      final wordRe = RegExp(r'\S+');
+      final matches = wordRe.allMatches(sectionContent).toList();
+
+      if (ws.wordIndex < matches.length) {
+        final match = matches[ws.wordIndex];
+        final globalStart = charOffset + match.start;
+        final globalEnd = charOffset + match.end;
+
+        activeWordStart.value = globalStart;
+        activeWordEnd.value = globalEnd;
+        if (globalEnd > readUpTo.value) {
+          readUpTo.value = globalEnd;
+        }
+      }
+
+      return null;
+    }, [currentWordState.value, sectionsLoaded.value]);
+
+    // ── ElevenLabs audio controls ────────────────────────────────────────────
     Future<void> startRead() async {
       isReading.value = true;
       isListening.value = false;
-      readUpTo.value = 0;
-      activeWordStart.value = -1;
-      activeWordEnd.value = -1;
-      await tts.speak(textMap.fullText);
+      if (audioService.audioPosition.inMilliseconds > 0) {
+        await audioService.resume();
+      } else {
+        readUpTo.value = 0;
+        activeWordStart.value = -1;
+        activeWordEnd.value = -1;
+        await audioService.play(
+          fromSection: savedSectionIndex.value,
+          position: savedAudioPos.value,
+        );
+        savedSectionIndex.value = 0;
+        savedAudioPos.value = null;
+      }
     }
 
-    Future<void> stopAll() async {
+    Future<void> pauseAudio() async {
       isReading.value = false;
       isListening.value = false;
-      activeWordStart.value = -1;
-      activeWordEnd.value = -1;
-      await tts.stop();
+      await audioService.pause();
     }
 
     Future<void> startListen() async {
       isListening.value = true;
       isReading.value = false;
-      readUpTo.value = 0;
-      activeWordStart.value = -1;
-      activeWordEnd.value = -1;
-      await tts.speak(textMap.fullText);
+      if (audioService.audioPosition.inMilliseconds > 0) {
+        await audioService.resume();
+      } else {
+        readUpTo.value = 0;
+        activeWordStart.value = -1;
+        activeWordEnd.value = -1;
+        await audioService.play(
+          fromSection: savedSectionIndex.value,
+          position: savedAudioPos.value,
+        );
+        savedSectionIndex.value = 0;
+        savedAudioPos.value = null;
+      }
     }
 
     final menuLink = useMemoized(() => LayerLink());
@@ -207,7 +366,6 @@ class StoryDetailsView extends HookWidget {
     }, const []);
 
     // ── Shared gradient (whole page) ─────────────────────────────────────────
-    // Sol-üst ve sağ-alt koyu, ortada daha açık (0 / 51 / 100)
     final pageGradient = LinearGradient(
       begin: Alignment.topLeft,
       end: Alignment.bottomRight,
@@ -236,6 +394,7 @@ class StoryDetailsView extends HookWidget {
             startColor: dominantColor.value,
             endColor: dominantColorDark.value,
             coverImageAsset: story.coverImageAsset,
+            coverImageUrl: story.coverImageUrl,
             height: 360,
             onBack: () => Navigator.pop(context),
             onMenuTap: () => showMenu.value = !showMenu.value,
@@ -291,7 +450,10 @@ class StoryDetailsView extends HookWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    story.title.replaceAll('\n', ' '),
+                                    loadedStory.value.title.replaceAll(
+                                      '\n',
+                                      ' ',
+                                    ),
                                     style: AppTextStyles.heading(
                                       24,
                                       FontWeight.w700,
@@ -335,71 +497,106 @@ class StoryDetailsView extends HookWidget {
                             Wrap(
                               spacing: AppSpacing.sm,
                               runSpacing: AppSpacing.xs,
-                              children: story.tags
+                              children: loadedStory.value.categories
                                   .map((t) => StoryTag(label: t))
                                   .toList(),
                             ),
 
                             const SizedBox(height: AppSpacing.xl),
-
-                            // Introduction
-                            const SectionTitle(text: 'Introduction'),
-                            const SizedBox(height: AppSpacing.sm),
-                            HighlightableText(
-                              text: story.introduction,
-                              globalOffset: textMap.introOffset,
-                              activeWordStart: activeWordStart.value,
-                              activeWordEnd: activeWordEnd.value,
-                              readUpTo: readUpTo.value,
-                              isReadingMode: isReading.value,
-                              onSave: (w) {
-                                CustomOverlay.show(
-                                  context,
-                                  title: context.t.storyDetails.saved,
-                                  message:
-                                      context.t.storyDetails.wordAddedToLibrary,
-                                  icon: AppIcons.successToast,
-                                  type: OverlayType.success,
-                                );
-                              },
-                              onSpeak: (w) => tts.speak(w),
-                            ),
-
-                            // Sections
-                            ...story.sections.asMap().entries.map(
-                              (e) => Padding(
-                                padding: const EdgeInsets.only(
-                                  top: AppSpacing.xl,
+                            SvgPicture.asset(AppIcons.storyLine),
+                            // Loading indicator for sections
+                            if (!sectionsLoaded.value)
+                              const Center(
+                                child: Padding(
+                                  padding: EdgeInsets.all(AppSpacing.xl),
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white54,
+                                  ),
                                 ),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    SectionTitle(text: e.value.title),
-                                    const SizedBox(height: AppSpacing.sm),
-                                    HighlightableText(
-                                      text: e.value.content,
-                                      globalOffset:
-                                          textMap.sectionOffsets[e.key]!,
-                                      activeWordStart: activeWordStart.value,
-                                      activeWordEnd: activeWordEnd.value,
-                                      readUpTo: readUpTo.value,
-                                      isReadingMode: isReading.value,
-                                      onSave: (w) {
+                              ),
+
+                            // Story content — shown as continuous text (no headings)
+                            if (sectionsLoaded.value) ...[
+                              ...loadedStory.value.sections.asMap().entries.map(
+                                (e) => Padding(
+                                  padding: const EdgeInsets.only(
+                                    top: AppSpacing.lg,
+                                  ),
+                                  child: HighlightableText(
+                                    text: e.value.content,
+                                    globalOffset:
+                                        textMap.sectionOffsets[e.key] ?? 0,
+                                    activeWordStart: activeWordStart.value,
+                                    activeWordEnd: activeWordEnd.value,
+                                    readUpTo: readUpTo.value,
+                                    isReadingMode:
+                                        isReading.value || isListening.value,
+                                    onWhereLeftOff: (int charIndex) {
+                                      final section = e.value;
+                                      final matches = RegExp(
+                                        r'\S+',
+                                      ).allMatches(section.content).toList();
+
+                                      int targetWordIndex = 0;
+                                      for (int i = 0; i < matches.length; i++) {
+                                        if (matches[i].start <= charIndex &&
+                                            matches[i].end >= charIndex) {
+                                          targetWordIndex = i;
+                                          break;
+                                        } else if (matches[i].start >
+                                            charIndex) {
+                                          targetWordIndex = i == 0 ? 0 : i - 1;
+                                          break;
+                                        }
+                                      }
+                                      // fallback if clicked at the very end
+                                      if (targetWordIndex == 0 &&
+                                          matches.isNotEmpty &&
+                                          charIndex >= matches.last.end) {
+                                        targetWordIndex = matches.length - 1;
+                                      }
+
+                                      final timestamps = section.wordTimestamps;
+                                      if (timestamps != null &&
+                                          targetWordIndex <
+                                              timestamps.startTimes.length) {
+                                        final double pos = timestamps
+                                            .startTimes[targetWordIndex];
+                                        savedSectionIndex.value = e.key;
+                                        savedAudioPos.value = Duration(
+                                          milliseconds: (pos * 1000).toInt(),
+                                        );
+                                        manualProgressSet.value = true;
                                         CustomOverlay.show(
                                           context,
-                                          title: 'Saved',
-                                          message:
-                                              'The word has been added to the library. Undo',
+                                          title: context
+                                              .t
+                                              .storyDetails
+                                              .successfully,
+                                          message: context.t.storyDetails.saved,
                                           icon: AppIcons.successToast,
                                           type: OverlayType.success,
                                         );
-                                      },
-                                      onSpeak: (w) => tts.speak(w),
-                                    ),
-                                  ],
+                                      }
+                                    },
+                                    onSave: (w) {
+                                      ref
+                                          .read(libraryProvider.notifier)
+                                          .saveWord(word: w);
+                                      CustomOverlay.show(
+                                        context,
+                                        title: 'Saved',
+                                        message:
+                                            'The word has been added to the library.',
+                                        icon: AppIcons.successToast,
+                                        type: OverlayType.success,
+                                      );
+                                    },
+                                    onSpeak: (w) => tts.speak(w),
+                                  ),
                                 ),
                               ),
-                            ),
+                            ],
                             const SizedBox(height: 140),
                           ],
                         ),
@@ -419,8 +616,8 @@ class StoryDetailsView extends HookWidget {
             child: BottomActionsBar(
               isReading: isReading.value,
               isListening: isListening.value,
-              onStartStop: () => isReading.value ? stopAll() : startRead(),
-              onListen: () => isListening.value ? stopAll() : startListen(),
+              onStartStop: () => isReading.value ? pauseAudio() : startRead(),
+              onListen: () => isListening.value ? pauseAudio() : startListen(),
               backgroundColor: Colors.transparent,
               backgroundGradient: pageGradient,
             ),
@@ -432,16 +629,25 @@ class StoryDetailsView extends HookWidget {
               initialRating: currentRating.value,
               backgroundGradient: pageGradient,
               onClose: () => showRating.value = false,
-              onSend: (r) {
+              onSend: (r) async {
                 currentRating.value = r;
                 showRating.value = false;
-                CustomOverlay.show(
-                  context,
-                  title: context.t.storyDetails.successfully,
-                  message: context.t.storyDetails.ratingSubmitted,
-                  icon: AppIcons.successToast,
-                  type: OverlayType.success,
-                );
+                try {
+                  await ref
+                      .read(AllProviders.storyRepositoryProvider)
+                      .rateStory(storyId: story.id, rating: r.toDouble());
+                } catch (e) {
+                  Print.error('Error submitting rating: $e');
+                }
+                if (context.mounted) {
+                  CustomOverlay.show(
+                    context,
+                    title: context.t.storyDetails.successfully,
+                    message: context.t.storyDetails.ratingSubmitted,
+                    icon: AppIcons.successToast,
+                    type: OverlayType.success,
+                  );
+                }
               },
             ),
 
@@ -450,7 +656,7 @@ class StoryDetailsView extends HookWidget {
             FeedbackSheet(
               onClose: () => showFeedback.value = false,
               pageGradient: pageGradient,
-              onSend: (subject, msg) {
+              onSend: (subject, msg) async {
                 showFeedback.value = false;
                 if (subject.isEmpty || msg.isEmpty) {
                   CustomOverlay.show(
@@ -461,13 +667,22 @@ class StoryDetailsView extends HookWidget {
                     type: OverlayType.error,
                   );
                 } else {
-                  CustomOverlay.show(
-                    context,
-                    title: context.t.storyDetails.successfully,
-                    message: context.t.storyDetails.messageSent,
-                    icon: AppIcons.successToast,
-                    type: OverlayType.success,
-                  );
+                  try {
+                    await ref
+                        .read(AllProviders.feedbackRepositoryProvider)
+                        .submitFeedback(subject: subject, message: msg);
+                  } catch (e) {
+                    Print.error('Error submitting feedback: $e');
+                  }
+                  if (context.mounted) {
+                    CustomOverlay.show(
+                      context,
+                      title: context.t.storyDetails.successfully,
+                      message: context.t.storyDetails.messageSent,
+                      icon: AppIcons.successToast,
+                      type: OverlayType.success,
+                    );
+                  }
                 }
               },
             ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
@@ -47,12 +48,7 @@ class DeleteNotificationsBottomSheet extends StatelessWidget {
                 shape: BoxShape.circle,
               ),
               child: Center(
-                child: Image.asset(
-                  AppIcons.delete,
-                  width: 40,
-                  height: 40,
-                  color: Colors.red,
-                ),
+                child: SvgPicture.asset(AppIcons.delete, width: 40, height: 40),
               ),
             ),
             const SizedBox(height: 16),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lingolakidstories/Models/story_model.dart';
+import 'package:lingolakidstories/shared/custom_cached_network_image.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
@@ -16,7 +17,10 @@ class StoryCardMedium extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final imageUrl = story.coverImageUrl?.trim();
     final asset = story.coverImageAsset?.trim();
+    final hasNetworkImage = imageUrl != null && imageUrl.isNotEmpty;
+    final hasAssetImage = asset != null && asset.isNotEmpty;
 
     return GestureDetector(
       onTap: onTap,
@@ -26,13 +30,24 @@ class StoryCardMedium extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Kapak görselinin boyutu sabit kalsın ve kare (1:1) kalsın
             ClipRRect(
               borderRadius: AppBorderRadius.mdRadius,
               child: AspectRatio(
                 aspectRatio: 1 / 1,
-                child: (asset == null || asset.isEmpty)
-                    ? Container(
+                child: hasNetworkImage
+                    ? CustomCachedNetworkImage(
+                        imageUrl: imageUrl,
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.high,
+                      )
+                    : hasAssetImage
+                    ? Image(
+                        image: ResizeImage(AssetImage(asset), width: 256),
+                        fit: BoxFit.cover,
+                        filterQuality: FilterQuality.high,
+                        isAntiAlias: true,
+                      )
+                    : Container(
                         decoration: const BoxDecoration(
                           gradient: LinearGradient(
                             begin: Alignment.topLeft,
@@ -40,17 +55,6 @@ class StoryCardMedium extends StatelessWidget {
                             colors: [Color(0xFFEEF2FF), Color(0xFFDDE7FF)],
                           ),
                         ),
-                      )
-                    : Image(
-                        image: ResizeImage(
-                          AssetImage(asset),
-                          // Decode near the needed size to prevent runtime downscale blur.
-                          // 256 keeps it sharp on most DPRs while staying lightweight.
-                          width: 256,
-                        ),
-                        fit: BoxFit.cover,
-                        filterQuality: FilterQuality.high,
-                        isAntiAlias: true,
                       ),
               ),
             ),

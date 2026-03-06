@@ -19,12 +19,11 @@ class ThreeDotMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 170, maxWidth: 230),
+      constraints: const BoxConstraints(minWidth: 60, maxWidth: 130),
       child: Container(
         decoration: BoxDecoration(
-          color: const Color(0xFF2A3447).withValues(alpha: 0.72),
+          color: Colors.black.withValues(alpha: 0.60),
           borderRadius: AppBorderRadius.mdRadius,
-          border: Border.all(color: Colors.white10),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withValues(alpha: 0.28),
@@ -41,7 +40,7 @@ class ThreeDotMenu extends StatelessWidget {
               label: context.t.storyDetails.feedback,
               onTap: onFeedback,
             ),
-            const _MenuDivider(),
+            SvgPicture.asset(AppIcons.storyLine),
             _MenuOption(
               icon: AppIcons.ratingStar,
               label: context.t.storyDetails.rating,
@@ -50,19 +49,6 @@ class ThreeDotMenu extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class _MenuDivider extends StatelessWidget {
-  const _MenuDivider();
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 1,
-      margin: const EdgeInsets.symmetric(horizontal: 10),
-      color: Colors.white12,
     );
   }
 }
@@ -97,12 +83,12 @@ class _MenuOption extends StatelessWidget {
               width: 16,
               height: 16,
               colorFilter: const ColorFilter.mode(
-                Colors.white70,
+                Colors.white,
                 BlendMode.srcIn,
               ),
             ),
             const SizedBox(width: 8),
-            Text(label, style: AppTextStyles.body(12, color: Colors.white)),
+            Text(label, style: AppTextStyles.body(14, color: Colors.white)),
             const SizedBox(width: 8),
           ],
         ),

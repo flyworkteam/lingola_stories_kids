@@ -1,3 +1,7 @@
+import 'dart:convert';
+import 'dart:math';
+
+import 'package:crypto/crypto.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lingolakidstories/utils/print.dart';
@@ -46,15 +50,19 @@ class SocialAuthService {
         throw UnsupportedError('Apple Sign-In is not available on this device');
       }
 
+      final rawNonce = generateNonce();
+      final hashedNonce = sha256ofString(rawNonce);
+
       final credential = await SignInWithApple.getAppleIDCredential(
         scopes: [
           AppleIDAuthorizationScopes.email,
           AppleIDAuthorizationScopes.fullName,
         ],
+        nonce: hashedNonce,
         webAuthenticationOptions: WebAuthenticationOptions(
-          clientId: 'com.flywork.yogifaceapp',
+          clientId: 'com.flywork.lingolastorieskidsapp.android.sid',
           redirectUri: Uri.parse(
-            'http://localhost:3000/api/auth/apple/callback',
+            'https://lingola-stories-kids.firebaseapp.com/__/auth/handler',
           ),
         ),
       );
@@ -117,4 +125,21 @@ class SocialAuthService {
       Print.error('Error signing out from Facebook: $e');
     }
   }
+}
+
+// helpers (generateNonce and sha256)
+String generateNonce([int length = 32]) {
+  final charset =
+      '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+  final rand = Random.secure();
+  return Iterable.generate(
+    length,
+    (_) => charset[rand.nextInt(charset.length)],
+  ).join();
+}
+
+String sha256ofString(String input) {
+  final bytes = utf8.encode(input);
+  final digest = sha256.convert(bytes);
+  return digest.toString();
 }

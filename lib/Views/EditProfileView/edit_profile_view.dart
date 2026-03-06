@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/Views/EditProfileView/widgets/avatar_selector.dart';
 import 'package:lingolakidstories/Views/EditProfileView/widgets/delete_profile_bottomsheet.dart';
 import 'package:lingolakidstories/Views/EditProfileView/widgets/profile_text_field.dart';
 import 'package:lingolakidstories/Views/EditProfileView/widgets/select_learn_language.dart';
-import 'package:lingolakidstories/Views/ShareFriendView/widgets/toast.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_button.dart';
+import 'package:lingolakidstories/shared/toast.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 
-class EditProfileView extends HookWidget {
+class EditProfileView extends HookConsumerWidget {
   const EditProfileView({super.key});
 
   void _showDeleteBottomSheet(BuildContext context, VoidCallback onDelete) {
@@ -24,22 +26,66 @@ class EditProfileView extends HookWidget {
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = Translations.of(context);
 
-    final nameController = useTextEditingController(text: 'Henry Johnson');
-    final showSuccess = useState(false);
+    final userAsync = ref.watch(userProfileProvider);
+    final userNotifier = ref.read(userProfileProvider.notifier);
 
-    void save() {
-      showSuccess.value = true;
-      Future.delayed(const Duration(seconds: 3), () {
-        if (context.mounted) showSuccess.value = false;
-      });
+    final user = userAsync.valueOrNull?.user;
+
+    final nameController = useTextEditingController(text: user?.fullName ?? '');
+    final selectedLanguage = useState(user?.preferredLanguage ?? 'en');
+    final selectedAvatar = useState(
+      user?.profilePictureUrl ?? 'ic_avatar3.svg',
+    );
+    final showSuccess = useState(false);
+    final isLoading = useState(false);
+
+    // Update local state when user data loads from backend
+    useEffect(() {
+      if (user?.fullName != null && nameController.text != user!.fullName) {
+        nameController.text = user.fullName!;
+      }
+      if (user?.preferredLanguage != null) {
+        selectedLanguage.value = user!.preferredLanguage;
+      }
+      if (user?.profilePictureUrl != null) {
+        selectedAvatar.value = user!.profilePictureUrl!;
+      }
+      return null;
+    }, [user?.fullName, user?.preferredLanguage, user?.profilePictureUrl]);
+
+    Future<void> save() async {
+      isLoading.value = true;
+      final success = await userNotifier.updateProfile(
+        fullName: nameController.text.trim(),
+        profilePictureUrl: selectedAvatar.value,
+        preferredLanguage: selectedLanguage.value,
+      );
+      isLoading.value = false;
+
+      if (success) {
+        showSuccess.value = true;
+        Future.delayed(const Duration(seconds: 3), () {
+          if (context.mounted) showSuccess.value = false;
+        });
+      }
+    }
+
+    Future<void> deleteAccount() async {
+      isLoading.value = true;
+      final success = await userNotifier.deleteAccount();
+      isLoading.value = false;
+
+      if (success && context.mounted) {
+        Navigator.of(
+          context,
+        ).pushNamedAndRemoveUntil('/login', (route) => false);
+      }
     }
 
     return Scaffold(
-      backgroundColor: Colors.white,
-
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(bottom: 32),
         child: Column(
@@ -65,7 +111,10 @@ class EditProfileView extends HookWidget {
             ),
 
             // Avatar selector
-            const AvatarSelector(),
+            AvatarSelector(
+              selectedAvatar: selectedAvatar.value,
+              onChanged: (key) => selectedAvatar.value = key,
+            ),
             const SizedBox(height: AppSpacing.xxl),
 
             // Form fields
@@ -77,7 +126,7 @@ class EditProfileView extends HookWidget {
                   // Full Name
                   ProfileTextField(
                     label: t.editProfile.fullName,
-                    hint: 'Henry Johnson',
+                    hint: t.editProfile.fullName,
                     icon: AppIcons.editProfile,
                     controller: nameController,
                   ),
@@ -86,26 +135,8 @@ class EditProfileView extends HookWidget {
                   // Email (read-only)
                   ProfileTextField(
                     label: t.editProfile.email,
-                    hint: 'alex.johnson@icloud.com',
+                    hint: user?.email ?? '',
                     icon: AppIcons.mail,
-                    readOnly: true,
-                    trailingSuffix: SvgPicture.asset(
-                      AppIcons.lock,
-                      width: 18,
-                      height: 18,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.grey,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-
-                  // Age (read-only)
-                  ProfileTextField(
-                    label: t.editProfile.age,
-                    hint: '28',
-                    icon: AppIcons.birth,
                     readOnly: true,
                     trailingSuffix: SvgPicture.asset(
                       AppIcons.lock,
@@ -130,7 +161,10 @@ class EditProfileView extends HookWidget {
                     ),
                   ),
                   const SizedBox(height: 8),
-                  SelectLearnLanguage(),
+                  SelectLearnLanguage(
+                    selectedCode: selectedLanguage.value,
+                    onChanged: (code) => selectedLanguage.value = code,
+                  ),
                 ],
               ),
             ),
@@ -169,22 +203,26 @@ class EditProfileView extends HookWidget {
                   color: Colors.white,
                   letterSpacing: -0.05,
                 ),
-                backgroundColor: AppColors.primary,
+                backgroundColor: isLoading.value
+                    ? AppColors.secondary
+                    : AppColors.primary,
                 shadow: [
                   BoxShadow(
-                    color: AppColors.primaryShadow,
+                    color: isLoading.value
+                        ? AppColors.secondaryShadow
+                        : AppColors.primaryShadow,
                     blurRadius: 0,
                     offset: const Offset(0, 5),
                   ),
                 ],
-                onPressed: save,
+                onPressed: isLoading.value ? null : save,
               ),
             ),
             const SizedBox(height: AppSpacing.lg),
 
             // Delete account
             GestureDetector(
-              onTap: () => _showDeleteBottomSheet(context, () {}),
+              onTap: () => _showDeleteBottomSheet(context, deleteAccount),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

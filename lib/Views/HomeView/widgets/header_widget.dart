@@ -1,32 +1,65 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lingolakidstories/Core/Routes/app_routes.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
+import 'package:lingolakidstories/Views/EditProfileView/widgets/avatar_selector.dart';
+import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 
-class HeaderWidget extends StatelessWidget {
+class HeaderWidget extends ConsumerWidget {
   const HeaderWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final userAsync = ref.watch(userProfileProvider);
+    final user = userAsync.valueOrNull?.user;
+
+    final firstName = (user?.fullName ?? '').split(' ').first;
+    final displayName = firstName.isNotEmpty ? firstName : '';
+    final language = user?.preferredLanguage ?? 'en';
+    final avatarFile = user?.profilePictureUrl ?? 'ic_avatar3.svg';
+
+    // Language code → display name
+    String languageDisplayName(String code) {
+      switch (code.toLowerCase()) {
+        case 'en':
+          return 'English';
+        case 'tr':
+          return 'Türkçe';
+        case 'de':
+          return 'Deutsch';
+        case 'fr':
+          return 'Français';
+        case 'es':
+          return 'Español';
+        case 'it':
+          return 'Italiano';
+        case 'pt':
+          return 'Português';
+        case 'ja':
+          return 'Japanese';
+        case 'ko':
+          return 'Korean';
+        case 'zh':
+          return 'Chinese';
+        default:
+          return code.toUpperCase();
+      }
+    }
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
       child: Row(
         children: [
           // Avatar
-          Container(
-            width: 44,
+          SvgPicture.asset(
+            AvatarSelector.assetPath(avatarFile),
             height: 44,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              border: Border.all(color: AppColors.primary, width: 2),
-            ),
-            child: Align(
-              alignment: AlignmentGeometry.bottomCenter,
-              child: SvgPicture.asset(AppIcons.profileIcon, height: 30),
-            ),
+            width: 44,
           ),
           const SizedBox(width: AppSpacing.md),
           Column(
@@ -34,7 +67,9 @@ class HeaderWidget extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Text(
-                'Hello Henry,',
+                displayName.isNotEmpty
+                    ? context.t.welcome(name: displayName)
+                    : context.t.welcome(name: ''),
                 style: AppTextStyles.body(
                   18,
                   color: Colors.black,
@@ -44,7 +79,7 @@ class HeaderWidget extends StatelessWidget {
                 ),
               ),
               Text(
-                'Continue to English',
+                'Continue to ${languageDisplayName(language)}',
                 style: AppTextStyles.heading(
                   20,
                   FontWeight.w700,

@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/Services/social_auth_service.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_blur.dart';
@@ -35,16 +35,19 @@ class LoginView extends ConsumerWidget {
         return;
       }
 
-      final storageService = ref.read(
-        AllProviders.secureStorageServiceProvider,
-      );
-      await storageService.savePendingAuthMethod('google');
-      await storageService.savePendingGoogleIdToken(idToken);
+      final authRepo = ref.read(AllProviders.authRepositoryProvider);
+      final response = await authRepo.signInWithGoogle(idToken: idToken);
 
       if (context.mounted) {
         Navigator.pop(context);
 
-        Navigator.pushReplacementNamed(context, '/onboarding');
+        if (response.user?.onboardingCompleted == true) {
+          await ref.watch(userProfileProvider.notifier).refresh();
+
+          if (context.mounted) Navigator.pushReplacementNamed(context, '/main');
+        } else {
+          Navigator.pushReplacementNamed(context, '/onboarding');
+        }
       }
     } catch (e) {
       if (context.mounted) {
@@ -74,23 +77,21 @@ class LoginView extends ConsumerWidget {
         return;
       }
 
-      final storageService = ref.read(
-        AllProviders.secureStorageServiceProvider,
+      final authRepo = ref.read(AllProviders.authRepositoryProvider);
+      final response = await authRepo.signInWithApple(
+        identityToken: appleCredential['identityToken'] as String,
+        appleUserInfo: appleCredential['user'] as Map<String, dynamic>?,
       );
-      await storageService.savePendingAuthMethod('apple');
-      await storageService.savePendingAppleIdToken(
-        appleCredential['identityToken'] as String,
-      );
-
-      if (appleCredential['user'] != null) {
-        final userInfo = appleCredential['user'] as Map<String, dynamic>;
-        await storageService.savePendingAppleUserInfo(jsonEncode(userInfo));
-      }
 
       if (context.mounted) {
         Navigator.pop(context);
 
-        Navigator.pushReplacementNamed(context, '/onboarding');
+        if (response.user?.onboardingCompleted == true) {
+          await ref.watch(userProfileProvider.notifier).refresh();
+          if (context.mounted) Navigator.pushReplacementNamed(context, '/main');
+        } else {
+          Navigator.pushReplacementNamed(context, '/onboarding');
+        }
       }
     } catch (e) {
       if (context.mounted) {
@@ -112,10 +113,10 @@ class LoginView extends ConsumerWidget {
         builder: (context) => const Center(child: CircularProgressIndicator()),
       );
 
-      final storageService = ref.read(
-        AllProviders.secureStorageServiceProvider,
+      final authRepo = ref.read(AllProviders.authRepositoryProvider);
+      await authRepo.createGuestUser(
+        deviceInfo: {'platform': Platform.operatingSystem},
       );
-      await storageService.savePendingAuthMethod('guest');
 
       if (context.mounted) {
         Navigator.pop(context);

@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lingolakidstories/Models/auth_model.dart';
 import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/Services/dio_service.dart';
 import 'package:lingolakidstories/Services/secure_storage_service.dart';
 import 'package:lingolakidstories/utils/print.dart';
@@ -180,7 +181,7 @@ class AuthRepository {
         data: {'refreshToken': ?refreshToken},
         cancelToken: cancelToken,
       );
-
+      await ref.watch(userProfileProvider.notifier).refresh();
       // Clear local storage
       await _storageService.clearAll();
 

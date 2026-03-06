@@ -90,9 +90,9 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
                 DeleteNotificationsBottomSheet.show(
                   context,
                   onDelete: () async {
-                    // await ref
-                    //     .read(notificationHistoryProvider.notifier)
-                    //     .deleteAll();
+                    await ref
+                        .read(notificationHistoryProvider.notifier)
+                        .deleteAll();
                   },
                 );
               },
@@ -105,8 +105,8 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
       ),
       body: RefreshIndicator(
         onRefresh: () async {
-          // await ref.read(notificationHistoryProvider.notifier).refresh();
-          // ref.invalidate(unreadCountProvider);
+          await ref.read(notificationHistoryProvider.notifier).refresh();
+          ref.invalidate(unreadCountProvider);
         },
         child: notificationHistoryAsync.when(
           data: (notifications) {
@@ -129,7 +129,7 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
                 const SizedBox(height: 8),
                 TextButton(
                   onPressed: () {
-                    // ref.read(notificationHistoryProvider.notifier).refresh();
+                    ref.read(notificationHistoryProvider.notifier).refresh();
                   },
                   child: const Text('Retry'),
                 ),
@@ -194,7 +194,7 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
           PremiumBannerCard(
             title: t.notifications.premiumBannerTitle,
             description: t.notifications.premiumBannerDescription,
-            iconPath: AppIcons.proBudge,
+            iconPath: AppIcons.proNotification,
             onTap: () {
               // Premium sayfasına yönlendir
             },
@@ -214,15 +214,15 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
                   isRead: notification.isRead,
                   onTap: () async {
                     if (!notification.isRead) {
-                      // await ref
-                      //     .read(notificationHistoryProvider.notifier)
-                      //     .markAsRead(notification.id);
+                      await ref
+                          .read(notificationHistoryProvider.notifier)
+                          .markAsRead(notification.id);
                     }
                   },
                   onClose: () async {
-                    // await ref
-                    //     .read(notificationHistoryProvider.notifier)
-                    //     .deleteNotification(notification.id);
+                    await ref
+                        .read(notificationHistoryProvider.notifier)
+                        .deleteNotification(notification.id);
                   },
                 );
               },

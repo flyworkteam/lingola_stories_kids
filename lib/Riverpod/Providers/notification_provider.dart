@@ -22,11 +22,21 @@ class NotificationSettingsNotifier
 
   @override
   Future<NotificationSettings?> build() async {
-    return null;
+    return _fetchSettings();
+  }
+
+  Future<NotificationSettings?> _fetchSettings() async {
+    try {
+      return await _repository.getNotificationSettings();
+    } catch (e) {
+      Print.error('Error loading notification settings: $e');
+      return null;
+    }
   }
 
   Future<void> refresh() async {
     state = const AsyncValue.loading();
+    state = await AsyncValue.guard(() => _fetchSettings());
   }
 
   Future<bool> toggleNotifications(bool enabled) async {

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lingolakidstories/Core/Routes/app_routes.dart';
+import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/Views/ProfileView/widgets/day_streak_card.dart';
 import 'package:lingolakidstories/Views/ProfileView/widgets/logout_bottomsheet.dart';
 import 'package:lingolakidstories/Views/ProfileView/widgets/logout_button.dart';
@@ -13,12 +17,36 @@ import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 import 'package:lingolakidstories/utils/constants.dart';
 
-class ProfileView extends StatelessWidget {
+class ProfileView extends ConsumerWidget {
   const ProfileView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final t = context.t;
+    final userAsync = ref.watch(userProfileProvider);
+    final user = userAsync.valueOrNull?.user;
+    final displayName = user?.fullName ?? '';
+    void showLogoutDialog() {
+      showModalBottomSheet<void>(
+        context: context,
+        isScrollControlled: true,
+        backgroundColor: Colors.white,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        builder: (ctx) {
+          return LogoutBottomSheet(
+            onLogout: () {
+              final authRepo = ref.read(AllProviders.authRepositoryProvider);
+              authRepo.logout();
+              Navigator.of(
+                context,
+              ).pushNamedAndRemoveUntil(AppRoutes.splash, (route) => false);
+            },
+          );
+        },
+      );
+    }
 
     return Scaffold(
       backgroundColor: Colors.white,
@@ -58,8 +86,9 @@ class ProfileView extends StatelessWidget {
                 // Profile header
                 Center(
                   child: ProfileHeaderWidget(
-                    name: 'Henry Jhonson',
+                    name: displayName,
                     subtitle: t.profile.freeVersion,
+                    avatarFile: user?.profilePictureUrl,
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xl),
@@ -146,7 +175,7 @@ class ProfileView extends StatelessWidget {
                 LogoutButton(
                   label: t.profile.menu.logout,
                   icon: AppIcons.logout,
-                  onTap: () => _showLogoutDialog(context, t),
+                  onTap: () => showLogoutDialog(),
                 ),
                 const SizedBox(height: AppSpacing.xxl),
 
@@ -164,20 +193,6 @@ class ProfileView extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-
-  void _showLogoutDialog(BuildContext context, Translations t) {
-    showModalBottomSheet<void>(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: Colors.white,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (ctx) {
-        return LogoutBottomSheet(onLogout: () {});
-      },
     );
   }
 }

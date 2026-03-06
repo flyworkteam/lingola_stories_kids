@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lingolakidstories/Models/story_model.dart';
+import 'package:lingolakidstories/Riverpod/Controllers/story_controller.dart';
 import 'package:lingolakidstories/Views/AllStoriesView/all_stories_view.dart';
 import 'package:lingolakidstories/Views/StoryDetailsView/story_details_view.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
@@ -11,17 +13,50 @@ import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 
-class StoriesView extends HookWidget {
+class StoriesView extends HookConsumerWidget {
   const StoriesView({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final selectedCategory = useState('Popular');
+    final storyState = ref.watch(storyProvider);
 
-    final filteredStories = useMemoized(
-      () => StoryData.getByCategory(selectedCategory.value),
-      [selectedCategory.value],
+    final categories = const [
+      'Popular',
+      'Space',
+      'Magic',
+      'Animals',
+      'Detectives',
+      'Dinosaurs',
+      'Superhero',
+      'Underwater',
+      'Fairy Tale',
+    ];
+    final popularStories = storyState.popularStories;
+    final allStories = storyState.allStories;
+
+    final categoryStoriesFuture = useFuture(
+      useMemoized(
+        () => ref
+            .read(storyProvider.notifier)
+            .fetchPage(
+              limit: 5,
+              isPopular: selectedCategory.value == 'Popular' ? true : null,
+              category: selectedCategory.value == 'Popular'
+                  ? null
+                  : selectedCategory.value,
+            ),
+        [selectedCategory.value],
+      ),
     );
+    final filteredStories = categoryStoriesFuture.data ?? [];
+
+    if (storyState.isLoading) {
+      return const Scaffold(
+        backgroundColor: AppColors.backgroundLight,
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
 
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
@@ -60,9 +95,9 @@ class StoriesView extends HookWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                itemCount: StoryData.categories.length,
+                itemCount: categories.length,
                 itemBuilder: (context, index) {
-                  final cat = StoryData.categories[index];
+                  final cat = categories[index];
                   final isSelected = cat == selectedCategory.value;
                   return CategoryChip(
                     label: cat,
@@ -102,18 +137,18 @@ class StoriesView extends HookWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                itemCount: StoryData.popular.length,
+                itemCount: popularStories.length,
                 itemBuilder: (context, index) {
-                  final story = StoryData.popular[index];
+                  final story = popularStories[index];
                   return Padding(
                     padding: EdgeInsets.only(
-                      right: index < StoryData.popular.length - 1
+                      right: index < popularStories.length - 1
                           ? AppSpacing.md
                           : 0,
                     ),
                     child: StoryCard(
                       story: story,
-                      onTap: () => _openDetails(context, story),
+                      onTap: () => _openDetails(context, ref, story),
                     ),
                   );
                 },
@@ -147,18 +182,16 @@ class StoriesView extends HookWidget {
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                itemCount: StoryData.all.length,
+                itemCount: allStories.length,
                 itemBuilder: (context, index) {
-                  final story = StoryData.all[index];
+                  final story = allStories[index];
                   return Padding(
                     padding: EdgeInsets.only(
-                      right: index < StoryData.all.length - 1
-                          ? AppSpacing.md
-                          : 0,
+                      right: index < allStories.length - 1 ? AppSpacing.md : 0,
                     ),
                     child: StoryCardMedium(
                       story: story,
-                      onTap: () => _openDetails(context, story),
+                      onTap: () => _openDetails(context, ref, story),
                     ),
                   );
                 },
@@ -213,25 +246,31 @@ class StoriesView extends HookWidget {
           SliverToBoxAdapter(
             child: SizedBox(
               height: StoryCard.horizontalListHeight,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                itemCount: filteredStories.length,
-                itemBuilder: (context, index) {
-                  final story = filteredStories[index];
-                  return Padding(
-                    padding: EdgeInsets.only(
-                      right: index < filteredStories.length - 1
-                          ? AppSpacing.md
-                          : 0,
+              child:
+                  categoryStoriesFuture.connectionState ==
+                      ConnectionState.waiting
+                  ? const Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xl,
+                      ),
+                      itemCount: filteredStories.length,
+                      itemBuilder: (context, index) {
+                        final story = filteredStories[index];
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            right: index < filteredStories.length - 1
+                                ? AppSpacing.md
+                                : 0,
+                          ),
+                          child: StoryCard(
+                            story: story,
+                            onTap: () => _openDetails(context, ref, story),
+                          ),
+                        );
+                      },
                     ),
-                    child: StoryCard(
-                      story: story,
-                      onTap: () => _openDetails(context, story),
-                    ),
-                  );
-                },
-              ),
             ),
           ),
 
@@ -243,7 +282,7 @@ class StoriesView extends HookWidget {
     );
   }
 
-  void _openDetails(BuildContext context, StoryModel story) {
+  void _openDetails(BuildContext context, WidgetRef ref, StoryModel story) {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (_) => StoryDetailsView(story: story)),

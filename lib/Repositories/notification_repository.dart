@@ -11,8 +11,26 @@ class NotificationRepository {
   DioService get _dioService => ref.read(AllProviders.dioServiceProvider);
 
   // ============================================
+  // ============================================
   // Notification Settings
   // ============================================
+
+  /// Get notification settings
+  /// GET /api/notifications/settings
+  Future<NotificationSettings?> getNotificationSettings() async {
+    try {
+      final response = await _dioService.get('notifications/settings');
+      if (response.data['success'] == true && response.data['data'] != null) {
+        return NotificationSettings.fromJson(
+          response.data['data'] as Map<String, dynamic>,
+        );
+      }
+      return null;
+    } catch (e) {
+      Print.error('Error fetching notification settings: $e');
+      return null;
+    }
+  }
 
   /// Toggle notifications on/off
   /// POST /api/notifications/toggle

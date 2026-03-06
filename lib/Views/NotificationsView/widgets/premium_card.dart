@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 
 class PremiumBannerCard extends StatelessWidget {
@@ -26,7 +27,7 @@ class PremiumBannerCard extends StatelessWidget {
           gradient: const LinearGradient(
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
-            colors: [Color(0xFFB8A5E3), Color(0xFFE8B5D5), Color(0xFFF5C5D5)],
+            colors: [Color(0xffFFFCE8), Color(0xffFFFFFF)],
           ),
         ),
         child: Row(
@@ -36,7 +37,7 @@ class PremiumBannerCard extends StatelessWidget {
                 color: Colors.white.withValues(alpha: 0.25),
                 shape: BoxShape.circle,
               ),
-              child: Center(child: Image.asset(iconPath, color: Colors.white)),
+              child: Center(child: SvgPicture.asset(iconPath)),
             ),
             const SizedBox(width: 16),
             Expanded(
@@ -47,8 +48,8 @@ class PremiumBannerCard extends StatelessWidget {
                   Text(
                     title,
                     style: AppTextStyles.body(
-                      18,
-                      height: 1.2,
+                      16,
+                      height: 26,
                       weight: FontWeight.w600,
                       color: Color.fromARGB(255, 181, 96, 96),
                     ),
@@ -57,7 +58,9 @@ class PremiumBannerCard extends StatelessWidget {
                   Text(
                     description,
                     style: AppTextStyles.body(
-                      16,
+                      14,
+                      height: 12,
+                      weight: FontWeight.w300,
                       color: Color.fromARGB(255, 14, 21, 63),
                     ),
                   ),

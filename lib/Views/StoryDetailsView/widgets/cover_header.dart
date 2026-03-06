@@ -9,6 +9,7 @@ class CoverHeader extends StatelessWidget {
     required this.onBack,
     required this.onMenuTap,
     this.coverImageAsset,
+    this.coverImageUrl,
     this.height = 360,
   });
 
@@ -17,11 +18,15 @@ class CoverHeader extends StatelessWidget {
   final VoidCallback onBack;
   final VoidCallback onMenuTap;
   final String? coverImageAsset;
+  final String? coverImageUrl;
   final double height;
 
   @override
   Widget build(BuildContext context) {
     final asset = coverImageAsset?.trim();
+    final url = coverImageUrl?.trim();
+    final hasNetworkImage = url != null && url.isNotEmpty;
+    final hasAssetImage = asset != null && asset.isNotEmpty;
     final dpr = MediaQuery.devicePixelRatioOf(context);
     final screenWidth = MediaQuery.sizeOf(context).width;
     final int targetDecodeWidth = (screenWidth * dpr).round().clamp(512, 2048);
@@ -48,8 +53,18 @@ class CoverHeader extends StatelessWidget {
             ),
           ),
 
-          // Cover image
-          if (asset != null && asset.isNotEmpty)
+          // Cover image — prefer network, fallback to asset
+          if (hasNetworkImage)
+            Positioned.fill(
+              child: Image.network(
+                url,
+                fit: BoxFit.cover,
+                alignment: Alignment.topCenter,
+                filterQuality: FilterQuality.high,
+                errorBuilder: (_, _, _) => const SizedBox.shrink(),
+              ),
+            )
+          else if (hasAssetImage)
             Positioned.fill(
               child: Image(
                 image: ResizeImage(AssetImage(asset), width: targetDecodeWidth),

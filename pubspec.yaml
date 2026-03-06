@@ -40,6 +40,9 @@ dependencies:
   flutter_svg: ^2.2.3
   flutter_tts: ^4.2.0
   palette_generator: ^0.3.3+3
+  just_audio: ^0.10.5
+  infinite_scroll_pagination: ^5.1.1
+  crypto: ^3.0.7
 
 dev_dependencies:
   flutter_test:

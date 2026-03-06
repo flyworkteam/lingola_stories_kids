@@ -4,6 +4,7 @@ import 'package:cross_fade/cross_fade.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
 import 'package:lingolakidstories/Views/SplashView/models/splash_info_model.dart';
 import 'package:lingolakidstories/Views/SplashView/widgets/splash_widget.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
@@ -24,17 +25,16 @@ class SplashView extends HookConsumerWidget {
 
     useEffect(() {
       Future.delayed(const Duration(seconds: 2), () async {
-        // final authRepo = ref.read(AllProviders.authRepositoryProvider);
-        // final isLoggedIn = await authRepo.isLoggedIn();
+        final authRepo = ref.read(AllProviders.authRepositoryProvider);
+        final isLoggedIn = await authRepo.isLoggedIn();
 
-        // if (!context.mounted) return;
+        if (!context.mounted) return;
 
-        // if (isLoggedIn) {
-        //   Navigator.of(context).pushReplacementNamed('/main');
-        // } else {
-        //   showInitialSplash.value = false;
-        // }
-        showInitialSplash.value = false;
+        if (isLoggedIn) {
+          Navigator.of(context).pushReplacementNamed('/main');
+        } else {
+          showInitialSplash.value = false;
+        }
       });
       return null;
     }, []);

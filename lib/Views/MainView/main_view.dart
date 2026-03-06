@@ -7,6 +7,7 @@ import 'package:lingolakidstories/Views/MainView/widgets/bottom_nav_bar_widget.d
 import 'package:lingolakidstories/Views/ProfileView/profile_view.dart';
 import 'package:lingolakidstories/Views/StoriesView/stories_view.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
+import 'package:lingolakidstories/shared/custom_blur.dart';
 import 'package:lingolakidstories/shared/custom_overlay.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 
@@ -56,11 +57,16 @@ class MainView extends HookWidget {
       child: Scaffold(
         body: pages[currentIndex.value],
         extendBody: true,
-        bottomNavigationBar: BottomNavBarWidget(
-          currentIndex: currentIndex.value,
-          onIndexChanged: (index) {
-            currentIndex.value = index;
-          },
+        bottomNavigationBar: Stack(
+          children: [
+            Positioned(bottom: -200, right: -300, child: CustomBlur()),
+            BottomNavBarWidget(
+              currentIndex: currentIndex.value,
+              onIndexChanged: (index) {
+                currentIndex.value = index;
+              },
+            ),
+          ],
         ),
       ),
     );

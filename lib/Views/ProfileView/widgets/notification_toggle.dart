@@ -1,30 +1,36 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:lingolakidstories/Riverpod/Providers/notification_provider.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 
-class NotificationToggle extends StatefulWidget {
-  const NotificationToggle({super.key, this.initialValue = true});
-
-  final bool initialValue;
+class NotificationToggle extends ConsumerStatefulWidget {
+  const NotificationToggle({super.key});
 
   @override
-  State<NotificationToggle> createState() => _NotificationToggleState();
+  ConsumerState<NotificationToggle> createState() => _NotificationToggleState();
 }
 
-class _NotificationToggleState extends State<NotificationToggle> {
-  late bool _value;
-
-  @override
-  void initState() {
-    super.initState();
-    _value = widget.initialValue;
-  }
-
+class _NotificationToggleState extends ConsumerState<NotificationToggle> {
   @override
   Widget build(BuildContext context) {
-    return CupertinoSwitch(
-      value: _value,
-      activeTrackColor: AppColors.primary,
-      onChanged: (v) => setState(() => _value = v),
+    final settingsAsync = ref.watch(notificationSettingsProvider);
+
+    return settingsAsync.when(
+      data: (settings) {
+        final isEnabled = settings?.notificationsEnabled ?? false;
+        return CupertinoSwitch(
+          value: isEnabled,
+          activeTrackColor: AppColors.primary,
+          onChanged: (v) async {
+            // Optimistically update or just wait for provider refresh
+            await ref
+                .read(notificationSettingsProvider.notifier)
+                .toggleNotifications(v);
+          },
+        );
+      },
+      loading: () => const CupertinoActivityIndicator(),
+      error: (_, _) => CupertinoSwitch(value: false, onChanged: null),
     );
   }
 }

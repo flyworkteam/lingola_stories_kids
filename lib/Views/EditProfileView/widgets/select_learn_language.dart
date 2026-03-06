@@ -1,22 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 
-class SelectLearnLanguage extends HookWidget {
-  const SelectLearnLanguage({super.key, this.onChanged});
+class SelectLearnLanguage extends StatelessWidget {
+  const SelectLearnLanguage({
+    super.key,
+    required this.selectedCode,
+    this.onChanged,
+  });
 
-  /// Selected learn language code callback (send to backend).
-  /// Examples: "en", "de", "es", "fr", "hi", "it", "ja", "ko", "pt", "ru", "tr".
+  /// Current selected language code.
+  final String selectedCode;
+
+  /// Called when a new language is picked.
   final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
-    // Available languages inferred from i18n files + translation keys.
-    // Keep codes stable for backend.
     final languages = <({String code, String label, String flagAsset})>[
       (
         code: 'en',
@@ -75,10 +78,8 @@ class SelectLearnLanguage extends HookWidget {
       ),
     ];
 
-    final selectedCode = useState<String>('en');
-
     final selected = languages.firstWhere(
-      (l) => l.code == selectedCode.value,
+      (l) => l.code == selectedCode,
       orElse: () => languages.first,
     );
 
@@ -114,7 +115,7 @@ class SelectLearnLanguage extends HookWidget {
                       separatorBuilder: (_, _) => const Divider(height: 1),
                       itemBuilder: (_, index) {
                         final lang = languages[index];
-                        final isSelected = lang.code == selectedCode.value;
+                        final isSelected = lang.code == selectedCode;
                         return ListTile(
                           contentPadding: EdgeInsets.zero,
                           leading: SvgPicture.asset(
@@ -151,7 +152,6 @@ class SelectLearnLanguage extends HookWidget {
       );
 
       if (result == null) return;
-      selectedCode.value = result;
       onChanged?.call(result);
     }
 

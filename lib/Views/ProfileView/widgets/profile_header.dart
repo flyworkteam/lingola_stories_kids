@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:lingolakidstories/Views/EditProfileView/widgets/avatar_selector.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
-import 'package:lingolakidstories/utils/app_assets.dart';
 
 class ProfileHeaderWidget extends StatelessWidget {
   const ProfileHeaderWidget({
     super.key,
     required this.name,
     required this.subtitle,
+    this.avatarFile,
   });
 
   final String name;
   final String subtitle;
+  final String? avatarFile;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,10 @@ class ProfileHeaderWidget extends StatelessWidget {
             border: Border.all(color: AppColors.primary, width: 2),
           ),
           child: ClipOval(
-            child: SvgPicture.asset(AppIcons.profile, fit: BoxFit.cover),
+            child: SvgPicture.asset(
+              AvatarSelector.assetPath(avatarFile ?? 'ic_avatar3.svg'),
+              fit: BoxFit.cover,
+            ),
           ),
         ),
         const SizedBox(height: 12),

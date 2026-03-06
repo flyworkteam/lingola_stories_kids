@@ -84,6 +84,7 @@ class AppIcons {
   static const String space = 'assets/icons/ic_space.png';
   static const String speaker = 'assets/icons/ic_speaker.svg';
   static const String stop = 'assets/icons/ic_stop.svg';
+  static const String storyLine = 'assets/icons/ic_story_line.svg';
   static const String successToast = 'assets/icons/ic_success_toast.svg';
   static const String superhero = 'assets/icons/ic_superhero.png';
   static const String telescope = 'assets/icons/ic_telescope.svg';

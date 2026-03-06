@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:lingolakidstories/Models/story_model.dart';
+import 'package:lingolakidstories/Riverpod/Controllers/story_controller.dart';
 import 'package:lingolakidstories/Views/StoryDetailsView/story_details_view.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_button.dart';
@@ -12,29 +15,102 @@ import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 
-class AllStoriesView extends HookWidget {
+const _pageSize = 20;
+
+const _allCategories = [
+  'Popular',
+  'Space',
+  'Magic',
+  'Animals',
+  'Detectives',
+  'Dinosaurs',
+  'Superhero',
+  'Underwater',
+  'Fairy Tale',
+];
+
+class AllStoriesView extends ConsumerStatefulWidget {
   const AllStoriesView({super.key, this.initialCategory = 'Popular'});
 
   final String initialCategory;
 
   @override
+  ConsumerState<AllStoriesView> createState() => _AllStoriesViewState();
+}
+
+class _AllStoriesViewState extends ConsumerState<AllStoriesView> {
+  final Set<String> _selectedCategories = {};
+  bool _showFilter = false;
+
+  late final PagingController<int, StoryModel> _pagingController;
+
+  @override
+  void initState() {
+    super.initState();
+    _pagingController = PagingController<int, StoryModel>(
+      getNextPageKey: (state) {
+        final pages = state.pages;
+        if (pages == null || pages.isEmpty) return 0;
+        final lastPageItems = pages.last.length;
+        if (lastPageItems < _pageSize) return null;
+        final totalFetched = pages.fold<int>(0, (sum, p) => sum + p.length);
+        return totalFetched;
+      },
+      fetchPage: (pageKey) => _fetchPage(pageKey),
+    );
+    // Fetch first page on init
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _pagingController.fetchNextPage();
+    });
+  }
+
+  @override
+  void dispose() {
+    _pagingController.dispose();
+    super.dispose();
+  }
+
+  Future<List<StoryModel>> _fetchPage(int pageKey) async {
+    final notifier = ref.read(storyProvider.notifier);
+
+    String? categoryFilter;
+    bool? isPopular;
+    if (_selectedCategories.isNotEmpty) {
+      if (_selectedCategories.contains('Popular') &&
+          _selectedCategories.length == 1) {
+        isPopular = true;
+      } else {
+        final nonPopular = _selectedCategories.where((c) => c != 'Popular');
+        if (nonPopular.isNotEmpty) {
+          categoryFilter = nonPopular.first;
+        }
+        if (_selectedCategories.contains('Popular')) {
+          isPopular = true;
+        }
+      }
+    }
+
+    final stories = await notifier.fetchPage(
+      limit: _pageSize,
+      offset: pageKey,
+      category: categoryFilter,
+      isPopular: isPopular,
+    );
+    return stories;
+  }
+
+  void _onCategoryFilterChanged(Set<String> cats) {
+    setState(() {
+      _selectedCategories.clear();
+      _selectedCategories.addAll(cats);
+      _showFilter = false;
+    });
+    _pagingController.refresh();
+    _pagingController.fetchNextPage();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final selectedCategories = useState<Set<String>>({});
-    final showFilter = useState(false);
-
-    final displayedStories = useMemoized(() {
-      if (selectedCategories.value.isEmpty) return StoryData.all;
-      return StoryData.all
-          .where(
-            (s) => s.categories.any(
-              (c) => selectedCategories.value.any(
-                (sel) => sel.toLowerCase() == c.toLowerCase(),
-              ),
-            ),
-          )
-          .toList();
-    }, [selectedCategories.value]);
-
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
       body: Stack(
@@ -69,7 +145,7 @@ class AllStoriesView extends HookWidget {
                 ),
                 actions: [
                   GestureDetector(
-                    onTap: () => showFilter.value = true,
+                    onTap: () => setState(() => _showFilter = true),
                     child: Padding(
                       padding: const EdgeInsets.only(right: AppSpacing.xl),
                       child: Stack(
@@ -84,7 +160,7 @@ class AllStoriesView extends HookWidget {
                               BlendMode.srcIn,
                             ),
                           ),
-                          if (selectedCategories.value.isNotEmpty)
+                          if (_selectedCategories.isNotEmpty)
                             Container(
                               width: 8,
                               height: 8,
@@ -100,7 +176,7 @@ class AllStoriesView extends HookWidget {
                 ],
               ),
 
-              // ─── Story Grid ───────────────────────────────────────────
+              // ─── Paginated Story Grid ──────────────────────────────────
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(
                   AppSpacing.xl,
@@ -108,9 +184,21 @@ class AllStoriesView extends HookWidget {
                   AppSpacing.xl,
                   120,
                 ),
-                sliver: displayedStories.isEmpty
-                    ? SliverToBoxAdapter(
-                        child: Center(
+                sliver: ValueListenableBuilder<PagingState<int, StoryModel>>(
+                  valueListenable: _pagingController,
+                  builder: (context, state, child) {
+                    return PagedSliverGrid<int, StoryModel>(
+                      state: state,
+                      fetchNextPage: _pagingController.fetchNextPage,
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            crossAxisSpacing: AppSpacing.md,
+                            mainAxisSpacing: AppSpacing.md,
+                            childAspectRatio: 0.7,
+                          ),
+                      builderDelegate: PagedChildBuilderDelegate<StoryModel>(
+                        noItemsFoundIndicatorBuilder: (context) => Center(
                           child: Padding(
                             padding: const EdgeInsets.only(top: 80),
                             child: Column(
@@ -119,7 +207,7 @@ class AllStoriesView extends HookWidget {
                                   AppIcons.dummyBook,
                                   width: 80,
                                   height: 80,
-                                  colorFilter: ColorFilter.mode(
+                                  colorFilter: const ColorFilter.mode(
                                     Colors.black26,
                                     BlendMode.srcIn,
                                   ),
@@ -137,45 +225,34 @@ class AllStoriesView extends HookWidget {
                             ),
                           ),
                         ),
-                      )
-                    : SliverGrid.builder(
-                        gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 2,
-                              crossAxisSpacing: AppSpacing.md,
-                              mainAxisSpacing: AppSpacing.md,
-                              childAspectRatio: 0.7,
-                            ),
-                        itemCount: displayedStories.length,
-                        itemBuilder: (context, index) {
-                          final story = displayedStories[index];
+                        itemBuilder: (context, story, index) {
                           return StoryCard(
                             story: story,
-                            onTap: () => {
+                            onTap: () {
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                   builder: (_) =>
                                       StoryDetailsView(story: story),
                                 ),
-                              ),
+                              );
                             },
                           );
                         },
                       ),
+                    );
+                  },
+                ),
               ),
             ],
           ),
 
           // ─── Filter Bottom Sheet Overlay ─────────────────────────────
-          if (showFilter.value)
+          if (_showFilter)
             _FilterOverlay(
-              selectedCategories: selectedCategories.value,
-              onApply: (cats) {
-                selectedCategories.value = cats;
-                showFilter.value = false;
-              },
-              onClose: () => showFilter.value = false,
+              selectedCategories: _selectedCategories,
+              onApply: _onCategoryFilterChanged,
+              onClose: () => setState(() => _showFilter = false),
             ),
         ],
       ),
@@ -199,8 +276,6 @@ class _FilterOverlay extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final localSelected = useState<Set<String>>(Set.from(selectedCategories));
-
-    final allFilterCategories = StoryData.categories.toList();
 
     return GestureDetector(
       onTap: onClose,
@@ -243,7 +318,7 @@ class _FilterOverlay extends HookWidget {
                   // Header
                   Row(
                     children: [
-                      Spacer(),
+                      const Spacer(),
                       Text(
                         context.t.allStories.selectFilter,
                         style: AppTextStyles.heading(
@@ -252,7 +327,7 @@ class _FilterOverlay extends HookWidget {
                           color: Colors.black,
                         ),
                       ),
-                      Spacer(),
+                      const Spacer(),
                       GestureDetector(
                         onTap: onClose,
                         child: SvgPicture.asset(
@@ -286,7 +361,7 @@ class _FilterOverlay extends HookWidget {
                   Wrap(
                     spacing: AppSpacing.sm,
                     runSpacing: AppSpacing.sm,
-                    children: allFilterCategories.map((cat) {
+                    children: _allCategories.map((cat) {
                       final isSelected = localSelected.value.contains(cat);
                       return GestureDetector(
                         onTap: () {

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/Views/ShareFriendView/widgets/share_link_field.dart';
-import 'package:lingolakidstories/Views/ShareFriendView/widgets/toast.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
+import 'package:lingolakidstories/shared/toast.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 
 /// Call [ShareFriendBottomSheet.show] to display this as a modal bottom sheet.
-class ShareFriendBottomSheet extends StatefulWidget {
+class ShareFriendBottomSheet extends ConsumerStatefulWidget {
   const ShareFriendBottomSheet({super.key});
 
   static Future<void> show(BuildContext context) {
@@ -26,14 +28,13 @@ class ShareFriendBottomSheet extends StatefulWidget {
   }
 
   @override
-  State<ShareFriendBottomSheet> createState() => _ShareFriendBottomSheetState();
+  ConsumerState<ShareFriendBottomSheet> createState() =>
+      _ShareFriendBottomSheetState();
 }
 
-class _ShareFriendBottomSheetState extends State<ShareFriendBottomSheet> {
+class _ShareFriendBottomSheetState
+    extends ConsumerState<ShareFriendBottomSheet> {
   bool _showCopied = false;
-
-  static const String _inviteLink =
-      'https://lingolastorieskids.app/invite?friend_id=abc123xyz';
 
   void _onCopy() {
     setState(() => _showCopied = true);
@@ -45,6 +46,10 @@ class _ShareFriendBottomSheetState extends State<ShareFriendBottomSheet> {
   @override
   Widget build(BuildContext context) {
     final t = Translations.of(context);
+    final userAsync = ref.watch(userProfileProvider);
+    final invitationCode = userAsync.valueOrNull?.user.invitationCode ?? '';
+    final inviteLink =
+        'https://lingolastorieskids.app/invite?code=$invitationCode';
 
     return Padding(
       padding: EdgeInsets.only(
@@ -96,7 +101,7 @@ class _ShareFriendBottomSheetState extends State<ShareFriendBottomSheet> {
             const SizedBox(height: AppSpacing.xl),
 
             // Link field
-            ShareLinkField(link: _inviteLink, onCopy: _onCopy),
+            ShareLinkField(link: inviteLink, onCopy: _onCopy),
             const SizedBox(height: AppSpacing.md),
 
             // Copied toast

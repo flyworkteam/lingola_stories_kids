@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lingolakidstories/Services/secure_storage_service.dart';
 import 'package:lingolakidstories/Views/AppLanguageView/widgets/language_grid_item.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_blur.dart';
@@ -12,8 +13,13 @@ import 'package:lingolakidstories/utils/app_assets.dart';
 class _LanguageOption {
   final String flag;
   final String Function(Translations) label;
+  final AppLocale locale;
 
-  const _LanguageOption({required this.flag, required this.label});
+  const _LanguageOption({
+    required this.flag,
+    required this.label,
+    required this.locale,
+  });
 }
 
 class AppLanguageView extends StatefulWidget {
@@ -26,50 +32,70 @@ class AppLanguageView extends StatefulWidget {
 class _AppLanguageViewState extends State<AppLanguageView> {
   int _selectedIndex = 0;
 
+  @override
+  void initState() {
+    super.initState();
+    _selectedIndex = _languages.indexWhere(
+      (lang) => lang.locale == LocaleSettings.currentLocale,
+    );
+    if (_selectedIndex == -1) _selectedIndex = 0;
+  }
+
   final List<_LanguageOption> _languages = [
     _LanguageOption(
       flag: AppFlags.english,
       label: (t) => t.languageOptions.english,
+      locale: AppLocale.en,
     ),
     _LanguageOption(
       flag: AppFlags.turkey,
       label: (t) => t.languageOptions.turkish,
+      locale: AppLocale.tr,
     ),
     _LanguageOption(
       flag: AppFlags.german,
       label: (t) => t.languageOptions.german,
+      locale: AppLocale.de,
     ),
     _LanguageOption(
       flag: AppFlags.italian,
       label: (t) => t.languageOptions.italian,
+      locale: AppLocale.it,
     ),
     _LanguageOption(
       flag: AppFlags.french,
       label: (t) => t.languageOptions.french,
+      locale: AppLocale.fr,
     ),
     _LanguageOption(
       flag: AppFlags.japanese,
       label: (t) => t.languageOptions.japanese,
+      locale: AppLocale.ja,
     ),
     _LanguageOption(
       flag: AppFlags.spanish,
       label: (t) => t.languageOptions.spanish,
+      locale: AppLocale.es,
     ),
     _LanguageOption(
       flag: AppFlags.russian,
       label: (t) => t.languageOptions.russian,
+      locale: AppLocale.ru,
     ),
     _LanguageOption(
       flag: AppFlags.korean,
       label: (t) => t.languageOptions.korean,
+      locale: AppLocale.ko,
     ),
     _LanguageOption(
       flag: AppFlags.hindi,
       label: (t) => t.languageOptions.hindi,
+      locale: AppLocale.hi,
     ),
     _LanguageOption(
       flag: AppFlags.portugal,
       label: (t) => t.languageOptions.portuguese,
+      locale: AppLocale.pt,
     ),
   ];
 
@@ -189,7 +215,19 @@ class _AppLanguageViewState extends State<AppLanguageView> {
                       offset: const Offset(0, 5),
                     ),
                   ],
-                  onPressed: () {},
+                  onPressed: () async {
+                    final selectedLocale = _languages[_selectedIndex].locale;
+
+                    LocaleSettings.setLocale(selectedLocale);
+
+                    await SecureStorageService().saveLanguage(
+                      selectedLocale.languageCode,
+                    );
+
+                    if (mounted && context.mounted) {
+                      Navigator.of(context).pop();
+                    }
+                  },
                 ),
               ),
             ],

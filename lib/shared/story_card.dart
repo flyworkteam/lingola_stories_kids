@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:lingolakidstories/Models/story_model.dart';
+import 'package:lingolakidstories/shared/custom_cached_network_image.dart';
 import 'package:lingolakidstories/shared/story_tag_dot.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 
@@ -39,53 +40,58 @@ class StoryCard extends StatelessWidget {
 
     // Tags shown in the overlay (matches the design: 1 line of small tags under title)
     final List<String> tags = <String>[
-      ...story.tags,
+      ...story.categories,
     ].map((e) => e.trim()).where((e) => e.isNotEmpty).toSet().toList();
 
-    // Cover image in this app is a local asset.
+    // Prefer network URL, fallback to local asset.
+    final String? imageUrl = story.coverImageUrl?.trim();
     final String? imageAsset = story.coverImageAsset?.trim();
+    final bool hasNetworkImage = imageUrl != null && imageUrl.isNotEmpty;
+    final bool hasAssetImage = imageAsset != null && imageAsset.isNotEmpty;
 
-    /// Use a high-quality render path to avoid blurry scaled assets
-    /// in horizontally scrolling lists.
     const FilterQuality filterQuality = FilterQuality.high;
 
     final dpr = MediaQuery.devicePixelRatioOf(context);
-    // Card width is determined by parent; approximate a good decode width.
-    // With aspectRatio ~0.8 and horizontalListHeight 260 => width ~208 logical.
     final int targetDecodeWidth = (220 * dpr).round().clamp(256, 1024);
 
-    final Widget image = (imageAsset == null || imageAsset.isEmpty)
-        ? Container(
-            color: theme.colorScheme.surfaceContainerHighest,
-            alignment: Alignment.center,
-            child: Icon(
-              Icons.auto_stories,
-              color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
-              size: 28,
-            ),
-          )
-        : Image(
-            image: ResizeImage(
-              AssetImage(imageAsset),
-              width: targetDecodeWidth,
-              policy: ResizeImagePolicy.exact,
-            ),
-            // cover prevents odd scaling that can look blurry in a clipped card
-            fit: BoxFit.cover,
-            filterQuality: filterQuality,
-            isAntiAlias: true,
-            errorBuilder: (_, _, _) => Container(
-              color: theme.colorScheme.surfaceContainerHighest,
-              alignment: Alignment.center,
-              child: Icon(
-                Icons.broken_image_outlined,
-                color: theme.colorScheme.onSurfaceVariant.withValues(
-                  alpha: 0.6,
-                ),
-                size: 28,
-              ),
-            ),
-          );
+    final Widget image;
+    if (hasNetworkImage) {
+      image = CustomCachedNetworkImage(
+        imageUrl: imageUrl,
+        fit: BoxFit.cover,
+        filterQuality: filterQuality,
+      );
+    } else if (hasAssetImage) {
+      image = Image(
+        image: ResizeImage(
+          AssetImage(imageAsset),
+          width: targetDecodeWidth,
+          policy: ResizeImagePolicy.exact,
+        ),
+        fit: BoxFit.cover,
+        filterQuality: filterQuality,
+        isAntiAlias: true,
+        errorBuilder: (_, _, _) => Container(
+          color: theme.colorScheme.surfaceContainerHighest,
+          alignment: Alignment.center,
+          child: Icon(
+            Icons.broken_image_outlined,
+            color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
+            size: 28,
+          ),
+        ),
+      );
+    } else {
+      image = Container(
+        color: theme.colorScheme.surfaceContainerHighest,
+        alignment: Alignment.center,
+        child: Icon(
+          Icons.auto_stories,
+          color: theme.colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
+          size: 28,
+        ),
+      );
+    }
 
     return AspectRatio(
       // Default card shape: a bit taller and narrower.

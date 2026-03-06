@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 
 class NotificationsCard extends StatelessWidget {
@@ -47,7 +48,7 @@ class NotificationsCard extends StatelessWidget {
           children: [
             Stack(
               children: [
-                Image.asset(
+                SvgPicture.asset(
                   imagePath,
                   fit: BoxFit.contain,
                   // width: 48,

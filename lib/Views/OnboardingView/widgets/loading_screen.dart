@@ -1,12 +1,13 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/Views/OnboardingView/widgets/floating_icon.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
+import 'package:lingolakidstories/utils/print.dart';
 
 class LoadingScreen extends HookConsumerWidget {
   final VoidCallback onComplete;
@@ -23,27 +24,74 @@ class LoadingScreen extends HookConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final progress = useState<double>(0.0);
-    final hasError = useState<bool>(false);
+    final hasError = useState<String?>(null);
 
     useEffect(() {
-      const totalDuration = Duration(seconds: 4);
-      const tickInterval = Duration(milliseconds: 50);
-      final totalTicks =
-          totalDuration.inMilliseconds / tickInterval.inMilliseconds;
-      final increment = 100.0 / totalTicks;
+      Print.info('🟢 LoadingScreen MOUNTED');
+      bool isCompleted = false;
+      bool hasSubmittedData = false;
 
-      final timer = Timer.periodic(tickInterval, (timer) {
-        progress.value = (progress.value + increment).clamp(0.0, 100.0);
-        onProgressChanged?.call(progress.value);
-        if (progress.value >= 100.0) {
-          timer.cancel();
-          if (!hasError.value) {
-            onComplete();
-          }
-        }
-      });
+      // Start progress animation
+      final timer =
+          Stream.periodic(const Duration(milliseconds: 50), (i) {
+            if (i >= 100) return 1.0;
+            return (i + 1) / 100.0;
+          }).take(101).listen((value) async {
+            progress.value = value;
+            onProgressChanged?.call(value);
 
-      return timer.cancel;
+            // At 50% progress, submit onboarding data
+            if (value >= 0.5 && !hasSubmittedData) {
+              hasSubmittedData = true;
+
+              try {
+                Print.info('🟡 Starting onboarding submission');
+
+                // Submit onboarding preferences (language + categories)
+                final onboardingRepo = ref.read(
+                  AllProviders.onboardingRepositoryProvider,
+                );
+
+                final language = onboardingData['learningLanguage'] as String?;
+                final prefs =
+                    onboardingData['storyPreferences'] as Map<String, dynamic>?;
+                final categories = prefs?['categories'] as List?;
+
+                await onboardingRepo.savePreferences(
+                  preferredLanguage: language,
+                  preferredCategories: categories
+                      ?.map((e) => e.toString())
+                      .toList(),
+                );
+                await ref.read(userProfileProvider.notifier).refresh();
+
+                Print.info('✅ Onboarding completed successfully');
+              } catch (e) {
+                Print.error('❌ Error during onboarding submission: $e');
+                hasError.value = e.toString();
+              }
+            }
+
+            if (value >= 1.0 && !isCompleted) {
+              isCompleted = true;
+              Print.info('🟢 Progress 100% - calling onComplete in 1 second');
+              Future.delayed(const Duration(seconds: 1), () {
+                if (hasError.value == null) {
+                  Print.info('🟢 onComplete NOW');
+                  onComplete();
+                } else {
+                  Print.error(
+                    '❌ Cannot complete - error occurred: ${hasError.value}',
+                  );
+                }
+              });
+            }
+          });
+
+      return () {
+        Print.info('🔴 LoadingScreen DISPOSED');
+        timer.cancel();
+      };
     }, []);
 
     return Column(
@@ -97,7 +145,7 @@ class LoadingScreen extends HookConsumerWidget {
               style: AppTextStyles.body(14, weight: FontWeight.w600),
             ),
             Text(
-              ' ${progress.value.toInt()}%',
+              ' ${(progress.value * 100).toInt()}%',
               style: AppTextStyles.body(14, weight: FontWeight.w600),
             ),
           ],
@@ -106,7 +154,7 @@ class LoadingScreen extends HookConsumerWidget {
         ClipRRect(
           borderRadius: BorderRadius.circular(100),
           child: LinearProgressIndicator(
-            value: progress.value / 100,
+            value: progress.value,
             minHeight: 8,
             backgroundColor: AppColors.secondary.withValues(alpha: 0.5),
             valueColor: const AlwaysStoppedAnimation<Color>(AppColors.primary),

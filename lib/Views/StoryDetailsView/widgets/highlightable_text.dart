@@ -21,6 +21,7 @@ class HighlightableText extends HookWidget {
     required this.isReadingMode,
     required this.onSave,
     required this.onSpeak,
+    required this.onWhereLeftOff,
     this.followReading = true,
 
     this.followAlignment = 0.45,
@@ -33,8 +34,9 @@ class HighlightableText extends HookWidget {
   final int readUpTo;
   final bool isReadingMode;
   final void Function(String) onSave;
-  final void Function(String) onSpeak;
 
+  final void Function(String) onSpeak;
+  final void Function(int) onWhereLeftOff;
   final bool followReading;
 
   final double followAlignment;
@@ -144,6 +146,15 @@ class HighlightableText extends HookWidget {
       ],
     );
 
+    // Shared text style for story content
+    final storyTextStyle = AppTextStyles.body(
+      15,
+      weight: FontWeight.w300,
+      color: Colors.white,
+      letterSpacing: -0.05,
+      height: 15,
+    );
+
     if (isReadingMode) {
       int localPos = 0;
       final spans = <InlineSpan>[];
@@ -169,10 +180,7 @@ class HighlightableText extends HookWidget {
 
         final span = TextSpan(
           text: tok,
-          style: AppTextStyles.body(
-            14,
-            color: Colors.white,
-          ).copyWith(backgroundColor: bgColor),
+          style: storyTextStyle.copyWith(backgroundColor: bgColor),
         );
 
         if (isActive) {
@@ -193,17 +201,24 @@ class HighlightableText extends HookWidget {
         localPos += tok.length;
       }
 
-      return RichText(text: TextSpan(children: spans));
+      return RichText(
+        textAlign: TextAlign.justify,
+        strutStyle: StrutStyle.fromTextStyle(
+          storyTextStyle,
+          forceStrutHeight: true,
+        ),
+        text: TextSpan(children: spans),
+      );
     }
 
     return SelectableText.rich(
       TextSpan(
-        children: [
-          TextSpan(
-            text: text,
-            style: AppTextStyles.body(14, color: Colors.white70),
-          ),
-        ],
+        children: [TextSpan(text: text, style: storyTextStyle)],
+      ),
+      textAlign: TextAlign.justify,
+      strutStyle: StrutStyle.fromTextStyle(
+        storyTextStyle,
+        forceStrutHeight: true,
       ),
       focusNode: focusNode,
       contextMenuBuilder: (ctx, state) {
@@ -245,6 +260,10 @@ class HighlightableText extends HookWidget {
             if (word.isEmpty) return;
 
             showInlineTranslation(word);
+          },
+          onWhereLeftOff: () {
+            clearSelection();
+            onWhereLeftOff(sel.start);
           },
           onSpeak: () {
             final word = selected.trim();
@@ -293,6 +312,7 @@ class _WordActionMenu extends StatelessWidget {
     required this.onTranslate,
     required this.onSpeak,
     required this.onSave,
+    required this.onWhereLeftOff,
     required this.translateState,
   });
 
@@ -300,6 +320,7 @@ class _WordActionMenu extends StatelessWidget {
   final VoidCallback onTranslate;
   final VoidCallback onSpeak;
   final VoidCallback onSave;
+  final VoidCallback onWhereLeftOff;
   final _TranslatePopupState translateState;
 
   @override
@@ -351,9 +372,16 @@ class _WordActionMenu extends StatelessWidget {
                     onTap: onSpeak,
                   ),
                   _ActionBtn(
-                    icon: AppIcons.bookmark,
+                    icon: AppIcons.like,
                     label: context.t.storyDetails.save,
                     onTap: onSave,
+                  ),
+                  _ActionBtn(
+                    icon: AppIcons.bookmark,
+                    label: context.t.home.pickUpWhereYouLeftOff
+                        .split(' ')
+                        .first,
+                    onTap: onWhereLeftOff,
                   ),
                 ],
               ),

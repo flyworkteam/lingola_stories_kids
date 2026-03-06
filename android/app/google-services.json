@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "513540790841",
+    "project_id": "lingola-stories-kids",
+    "storage_bucket": "lingola-stories-kids.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:513540790841:android:afe82907ed7db52bf8cbe8",
+        "android_client_info": {
+          "package_name": "com.flywork.lingolastorieskidsapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "513540790841-73pf8ektsgjun9lgb5010fepth26kebs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.flywork.lingolastorieskidsapp",
+            "certificate_hash": "c955b9c2767ad8ef67db3bf149e8ed6ec394467b"
+          }
+        },
+        {
+          "client_id": "513540790841-g09vbbc7qv139jjfdm99i9ml6eac9d4g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANxebcMvhxjNGAbF6kEJK9J9fxSVGiDr0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "513540790841-g09vbbc7qv139jjfdm99i9ml6eac9d4g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "513540790841-6cp5skhbd31chbcqpbph7gnghljtqspi.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.flywork.lingolastorieskidsapp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

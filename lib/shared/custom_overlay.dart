@@ -1,3 +1,5 @@
+// ignore_for_file: use_full_hex_values_for_flutter_colors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -15,6 +17,7 @@ class CustomOverlay {
     String? title,
     OverlayType type = OverlayType.info,
     Duration duration = const Duration(seconds: 3),
+    VoidCallback? undoAction,
   }) {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
@@ -24,6 +27,7 @@ class CustomOverlay {
         type: type,
         duration: duration,
         title: title,
+        undoAction: undoAction,
       ),
     );
 
@@ -39,6 +43,7 @@ class _OverlayContent extends HookWidget {
   final OverlayType type;
   final Duration duration;
   final String icon;
+  final VoidCallback? undoAction;
 
   const _OverlayContent({
     required this.message,
@@ -46,16 +51,17 @@ class _OverlayContent extends HookWidget {
     required this.icon,
     this.title,
     this.duration = const Duration(seconds: 3),
+    this.undoAction,
   });
 
   Color _backgroundColor() {
     switch (type) {
       case OverlayType.success:
-        return AppColors.success.withValues(alpha: 0.92);
+        return Color(0xffe6f7f1cc).withValues(alpha: 0.8);
       case OverlayType.error:
         return AppColors.danger.withValues(alpha: 0.92);
       case OverlayType.info:
-        return AppColors.info.withValues(alpha: 0.92);
+        return Color(0xfffff3e7cc).withValues(alpha: 0.8);
       case OverlayType.favoriteRemoved:
         return Colors.white;
     }
@@ -110,51 +116,75 @@ class _OverlayContent extends HookWidget {
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
+                  Container(
                     width: 36,
                     height: 36,
-                    child: icon.endsWith('.svg')
-                        ? SvgPicture.asset(icon)
-                        : Image.asset(icon),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.white,
+                    ),
+                    child: Center(
+                      child: icon.endsWith('.svg')
+                          ? SvgPicture.asset(icon, width: 24, height: 24)
+                          : Image.asset(icon),
+                    ),
                   ),
                   const SizedBox(width: AppSpacing.md),
-                  Expanded(
-                    child: title != null && title!.isNotEmpty
-                        ? Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                title!,
-                                style: AppTextStyles.body(
-                                  16,
-                                  weight: FontWeight.w600,
-                                  color: OverlayType.favoriteRemoved == type
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                              ),
-                              const SizedBox(height: 4),
-                              Text(
+                  Row(
+                    children: [
+                      Expanded(
+                        child: title != null && title!.isNotEmpty
+                            ? Column(
+                                mainAxisSize: MainAxisSize.min,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    title!,
+                                    style: AppTextStyles.body(
+                                      16,
+                                      weight: FontWeight.w600,
+                                      color: OverlayType.favoriteRemoved == type
+                                          ? Colors.black
+                                          : Colors.white,
+                                    ),
+                                  ),
+                                  const SizedBox(height: 4),
+                                  Text(
+                                    message,
+                                    style: AppTextStyles.body(
+                                      14,
+                                      color: OverlayType.favoriteRemoved == type
+                                          ? Colors.black
+                                          : Colors.white,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            : Text(
                                 message,
                                 style: AppTextStyles.body(
-                                  14,
+                                  16,
                                   color: OverlayType.favoriteRemoved == type
                                       ? Colors.black
                                       : Colors.white,
                                 ),
                               ),
-                            ],
-                          )
-                        : Text(
-                            message,
+                      ),
+                      if (undoAction != null)
+                        TextButton(
+                          onPressed: undoAction,
+                          child: Text(
+                            'Undo',
                             style: AppTextStyles.body(
                               16,
+                              weight: FontWeight.w600,
                               color: OverlayType.favoriteRemoved == type
                                   ? Colors.black
                                   : Colors.white,
                             ),
                           ),
+                        ),
+                    ],
                   ),
                 ],
               ),
