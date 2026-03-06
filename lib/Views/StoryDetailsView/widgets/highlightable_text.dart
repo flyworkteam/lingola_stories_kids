@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lingolakidstories/Models/word_model.dart';
 import 'package:lingolakidstories/Services/translation_service.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
@@ -22,8 +23,9 @@ class HighlightableText extends HookWidget {
     required this.onSave,
     required this.onSpeak,
     required this.onWhereLeftOff,
+    required this.libraryWords,
+    required this.onDelete,
     this.followReading = true,
-
     this.followAlignment = 0.45,
   });
 
@@ -34,11 +36,11 @@ class HighlightableText extends HookWidget {
   final int readUpTo;
   final bool isReadingMode;
   final void Function(String) onSave;
-
   final void Function(String) onSpeak;
   final void Function(int) onWhereLeftOff;
+  final List<WordModel> libraryWords;
+  final void Function(int) onDelete;
   final bool followReading;
-
   final double followAlignment;
 
   @override
@@ -231,6 +233,16 @@ class HighlightableText extends HookWidget {
               );
 
         final selectedWord = selected.trim();
+        final selectedWordLower = selectedWord.toLowerCase();
+
+        // Check if word is already saved
+        final savedWordIndex = libraryWords.indexWhere(
+          (w) => w.word.toLowerCase() == selectedWordLower,
+        );
+        final bool isSaved = savedWordIndex != -1;
+        final int? savedWordId = isSaved
+            ? libraryWords[savedWordIndex].id
+            : null;
 
         // If user changes selection to another word, ensure we don't show the
         // previous translation automatically.
@@ -250,6 +262,7 @@ class HighlightableText extends HookWidget {
 
         return _WordActionMenu(
           anchors: state.contextMenuAnchors,
+          isSaved: isSaved,
           translateState: _TranslatePopupState(
             word: popupWord.value,
             loading: popupLoading.value,
@@ -276,6 +289,12 @@ class HighlightableText extends HookWidget {
             if (word.isEmpty) return;
             clearSelection();
             onSave(word);
+          },
+          onDelete: () {
+            if (savedWordId != null) {
+              clearSelection();
+              onDelete(savedWordId);
+            }
           },
         );
       },
@@ -312,16 +331,20 @@ class _WordActionMenu extends StatelessWidget {
     required this.onTranslate,
     required this.onSpeak,
     required this.onSave,
+    required this.onDelete,
     required this.onWhereLeftOff,
     required this.translateState,
+    required this.isSaved,
   });
 
   final TextSelectionToolbarAnchors anchors;
   final VoidCallback onTranslate;
   final VoidCallback onSpeak;
   final VoidCallback onSave;
+  final VoidCallback onDelete;
   final VoidCallback onWhereLeftOff;
   final _TranslatePopupState translateState;
+  final bool isSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -373,8 +396,11 @@ class _WordActionMenu extends StatelessWidget {
                   ),
                   _ActionBtn(
                     icon: AppIcons.like,
-                    label: context.t.storyDetails.save,
-                    onTap: onSave,
+                    label: isSaved
+                        ? context.t.delete
+                        : context.t.storyDetails.save,
+                    onTap: isSaved ? onDelete : onSave,
+                    isSaved: isSaved,
                   ),
                   _ActionBtn(
                     icon: AppIcons.bookmark,
@@ -408,37 +434,40 @@ class _InlineTranslationCard extends StatelessWidget {
           Positioned.fill(
             child: Align(
               alignment: Alignment.topCenter,
-              child: DefaultTextStyle(
-                style: AppTextStyles.body(13, color: Colors.white70),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    if (state.loading)
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
-                            width: 14,
-                            height: 14,
-                            child: CircularProgressIndicator(
-                              strokeWidth: 2,
-                              color: AppColors.primary,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 2.0),
+                child: DefaultTextStyle(
+                  style: AppTextStyles.body(13, color: Colors.white70),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      if (state.loading)
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 14,
+                              height: 14,
+                              child: CircularProgressIndicator(
+                                strokeWidth: 2,
+                                color: AppColors.primary,
+                              ),
                             ),
-                          ),
-                          const SizedBox(width: 8),
-                          Text(context.t.storyDetails.translating),
-                        ],
-                      )
-                    else
-                      Text(
-                        state.translation,
-                        style: AppTextStyles.body(
-                          13,
-                          color: AppColors.primary,
-                        ).copyWith(fontWeight: FontWeight.w600),
-                      ),
-                  ],
+                            const SizedBox(width: 8),
+                            Text(context.t.storyDetails.translating),
+                          ],
+                        )
+                      else
+                        Text(
+                          state.translation,
+                          style: AppTextStyles.body(
+                            13,
+                            color: Colors.black,
+                          ).copyWith(fontWeight: FontWeight.w600),
+                        ),
+                    ],
+                  ),
                 ),
               ),
             ),
@@ -454,10 +483,12 @@ class _ActionBtn extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.onTap,
+    this.isSaved = false,
   });
   final String icon;
   final String label;
   final VoidCallback onTap;
+  final bool isSaved;
 
   @override
   Widget build(BuildContext context) {
@@ -467,7 +498,10 @@ class _ActionBtn extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          border: Border.all(color: Colors.white, width: 2),
+          border: Border.all(
+            color: isSaved ? AppColors.primary : Colors.white,
+            width: 2,
+          ),
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(
@@ -478,7 +512,10 @@ class _ActionBtn extends StatelessWidget {
             icon,
             width: 20,
             height: 20,
-            colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+            colorFilter: ColorFilter.mode(
+              isSaved ? AppColors.primary : Colors.white,
+              BlendMode.srcIn,
+            ),
           ),
         ),
       ),

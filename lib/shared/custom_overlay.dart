@@ -130,62 +130,58 @@ class _OverlayContent extends HookWidget {
                     ),
                   ),
                   const SizedBox(width: AppSpacing.md),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: title != null && title!.isNotEmpty
-                            ? Column(
-                                mainAxisSize: MainAxisSize.min,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    title!,
-                                    style: AppTextStyles.body(
-                                      16,
-                                      weight: FontWeight.w600,
-                                      color: OverlayType.favoriteRemoved == type
-                                          ? Colors.black
-                                          : Colors.white,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    message,
-                                    style: AppTextStyles.body(
-                                      14,
-                                      color: OverlayType.favoriteRemoved == type
-                                          ? Colors.black
-                                          : Colors.white,
-                                    ),
-                                  ),
-                                ],
-                              )
-                            : Text(
-                                message,
+                  Expanded(
+                    child: title != null && title!.isNotEmpty
+                        ? Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                title!,
                                 style: AppTextStyles.body(
                                   16,
+                                  weight: FontWeight.w600,
                                   color: OverlayType.favoriteRemoved == type
                                       ? Colors.black
                                       : Colors.white,
                                 ),
                               ),
-                      ),
-                      if (undoAction != null)
-                        TextButton(
-                          onPressed: undoAction,
-                          child: Text(
-                            'Undo',
+                              const SizedBox(height: 4),
+                              Text(
+                                message,
+                                style: AppTextStyles.body(
+                                  14,
+                                  color: OverlayType.favoriteRemoved == type
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Text(
+                            message,
                             style: AppTextStyles.body(
                               16,
-                              weight: FontWeight.w600,
                               color: OverlayType.favoriteRemoved == type
                                   ? Colors.black
                                   : Colors.white,
                             ),
                           ),
-                        ),
-                    ],
                   ),
+                  if (undoAction != null)
+                    TextButton(
+                      onPressed: undoAction,
+                      child: Text(
+                        'Undo',
+                        style: AppTextStyles.body(
+                          16,
+                          weight: FontWeight.w600,
+                          color: OverlayType.favoriteRemoved == type
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

@@ -531,6 +531,9 @@ class StoryDetailsView extends HookConsumerWidget {
                                     readUpTo: readUpTo.value,
                                     isReadingMode:
                                         isReading.value || isListening.value,
+                                    libraryWords: ref
+                                        .watch(libraryProvider)
+                                        .allWords,
                                     onWhereLeftOff: (int charIndex) {
                                       final section = e.value;
                                       final matches = RegExp(
@@ -585,9 +588,23 @@ class StoryDetailsView extends HookConsumerWidget {
                                           .saveWord(word: w);
                                       CustomOverlay.show(
                                         context,
-                                        title: 'Saved',
-                                        message:
-                                            'The word has been added to the library.',
+                                        title: context.t.storyDetails.saved,
+                                        message: context
+                                            .t
+                                            .storyDetails
+                                            .wordAddedToLibrary,
+                                        icon: AppIcons.successToast,
+                                        type: OverlayType.success,
+                                      );
+                                    },
+                                    onDelete: (id) {
+                                      ref
+                                          .read(libraryProvider.notifier)
+                                          .deleteWord(id);
+                                      CustomOverlay.show(
+                                        context,
+                                        title: context.t.storyDetails.removed,
+                                        message: context.t.storyDetails.removed,
                                         icon: AppIcons.successToast,
                                         type: OverlayType.success,
                                       );
