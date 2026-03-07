@@ -22,6 +22,8 @@ class UserRepository {
         cancelToken: cancelToken,
       );
 
+      Print.info('User profile response: ${response.data}');
+
       return UserProfileResponse.fromJson(
         response.data as Map<String, dynamic>,
       );

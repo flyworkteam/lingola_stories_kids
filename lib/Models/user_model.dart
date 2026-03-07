@@ -41,6 +41,7 @@ class UserProfile {
   final String? fullName;
   final String? authProvider;
   final bool isGuest;
+  final bool isPremium;
   final bool onboardingCompleted;
   final String preferredLanguage;
   final String? profilePictureUrl;
@@ -55,6 +56,7 @@ class UserProfile {
     this.fullName,
     this.authProvider,
     required this.isGuest,
+    required this.isPremium,
     required this.onboardingCompleted,
     this.preferredLanguage = 'en',
     this.profilePictureUrl,
@@ -72,6 +74,7 @@ class UserProfile {
       authProvider:
           json['authProvider'] as String? ?? json['auth_provider'] as String?,
       isGuest: _parseBool(json['isGuest'] ?? json['is_guest']),
+      isPremium: _parseBool(json['isPremium'] ?? json['is_premium']),
       onboardingCompleted: _parseBool(
         json['onboardingCompleted'] ?? json['onboarding_completed'],
       ),
@@ -97,6 +100,7 @@ class UserProfile {
     String? fullName,
     String? authProvider,
     bool? isGuest,
+    bool? isPremium,
     bool? onboardingCompleted,
     String? preferredLanguage,
     String? profilePictureUrl,
@@ -111,6 +115,7 @@ class UserProfile {
       fullName: fullName ?? this.fullName,
       authProvider: authProvider ?? this.authProvider,
       isGuest: isGuest ?? this.isGuest,
+      isPremium: isPremium ?? this.isPremium,
       onboardingCompleted: onboardingCompleted ?? this.onboardingCompleted,
       preferredLanguage: preferredLanguage ?? this.preferredLanguage,
       profilePictureUrl: profilePictureUrl ?? this.profilePictureUrl,

@@ -38,7 +38,11 @@ class HomeView extends HookConsumerWidget {
     }, const []);
 
     final selectedCategory = useState<String>('Popular');
-
+    final isPremium = ref.watch(
+      userProfileProvider.select(
+        (data) => data.valueOrNull?.user.isPremium ?? false,
+      ),
+    );
     String categoryIcon(String category) {
       switch (category.toLowerCase()) {
         case 'popular':
@@ -207,23 +211,28 @@ class HomeView extends HookConsumerWidget {
               ],
 
               // Premium banner
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                child: Text(
-                  context.t.home.premiumSection,
-                  style: AppTextStyles.heading(
-                    17,
-                    FontWeight.w700,
-                    color: Colors.black,
+              if (!isPremium) ...[
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.xl,
+                  ),
+                  child: Text(
+                    context.t.home.premiumSection,
+                    style: AppTextStyles.heading(
+                      17,
+                      FontWeight.w700,
+                      color: Colors.black,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: AppSpacing.md),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                child: const PremiumBanner(),
-              ),
-
+                const SizedBox(height: AppSpacing.md),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: AppSpacing.xl,
+                  ),
+                  child: const PremiumBanner(),
+                ),
+              ],
               const SizedBox(height: AppSpacing.xl),
 
               if (historyStories.isNotEmpty) ...[

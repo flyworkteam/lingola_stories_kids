@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:lingolakidstories/Core/Routes/app_routes.dart';
 import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
@@ -16,8 +17,11 @@ import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
 import 'package:lingolakidstories/utils/constants.dart';
+import 'package:lingolakidstories/utils/print.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
-class ProfileView extends ConsumerWidget {
+class ProfileView extends HookConsumerWidget {
   const ProfileView({super.key});
 
   @override
@@ -48,6 +52,24 @@ class ProfileView extends ConsumerWidget {
       );
     }
 
+    Offerings? offerings0;
+
+    Future<void> fetchOfferings() async {
+      try {
+        final offerings = await Purchases.getOfferings();
+        Print.info(offerings);
+        if (context.mounted) {
+          offerings0 = offerings;
+        }
+      } catch (e) {
+        debugPrint('Error fetching offerings: $e');
+      }
+    }
+
+    useEffect(() {
+      fetchOfferings();
+      return null;
+    }, []);
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
@@ -87,7 +109,9 @@ class ProfileView extends ConsumerWidget {
                 Center(
                   child: ProfileHeaderWidget(
                     name: displayName,
-                    subtitle: t.profile.freeVersion,
+                    subtitle: user?.isPremium == true
+                        ? t.profile.menu.premium
+                        : t.profile.freeVersion,
                     avatarFile: user?.profilePictureUrl,
                   ),
                 ),
@@ -122,10 +146,30 @@ class ProfileView extends ConsumerWidget {
                       icon: AppIcons.proBudge,
                       iconColor: Color(0xffF59E0B),
                       label: t.profile.menu.premium,
-                      trailingLabel: 'Passive',
+                      trailingLabel: user?.isPremium == true
+                          ? t.profile.menu.premium
+                          : t.profile.passive,
                       iconBackgroundColor: Color(0xffFFFBEB),
                       trailingLabelColor: const Color(0xFFF5A524),
-                      onTap: () {},
+                      onTap: () async {
+                        if (user?.isPremium == true) {
+                        } else {
+                          final paywallresult =
+                              await RevenueCatUI.presentPaywall(
+                                offering: offerings0?.current,
+                              );
+
+                          if (paywallresult == PaywallResult.purchased) {
+                            await ref
+                                .read(userProfileProvider.notifier)
+                                .refresh();
+
+                            if (context.mounted) {
+                              Navigator.pop(context);
+                            }
+                          }
+                        }
+                      },
                     ),
                   ],
                 ),

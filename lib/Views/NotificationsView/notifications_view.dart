@@ -4,12 +4,15 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:lingolakidstories/Models/notification_model.dart';
 import 'package:lingolakidstories/Riverpod/Providers/notification_provider.dart';
+import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/Views/NotificationsView/widgets/deletebottomsheet.dart';
 import 'package:lingolakidstories/Views/NotificationsView/widgets/notifications_card.dart';
 import 'package:lingolakidstories/Views/NotificationsView/widgets/premium_card.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/app_assets.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
+import 'package:purchases_ui_flutter/purchases_ui_flutter.dart';
 
 class NotificationsView extends ConsumerStatefulWidget {
   const NotificationsView({super.key});
@@ -19,13 +22,49 @@ class NotificationsView extends ConsumerStatefulWidget {
 }
 
 class _NotificationsViewState extends ConsumerState<NotificationsView> {
+  Offerings? _offerings;
+  bool _isFetchingOfferings = false;
+
   @override
   void initState() {
     super.initState();
     // Mark all notifications as read when view opens
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ref.read(notificationHistoryProvider.notifier).markAllAsRead();
+      _fetchOfferings();
     });
+  }
+
+  Future<void> _fetchOfferings() async {
+    if (_isFetchingOfferings) return;
+    _isFetchingOfferings = true;
+    try {
+      final offerings = await Purchases.getOfferings();
+      if (!mounted) return;
+      setState(() {
+        _offerings = offerings;
+      });
+    } catch (_) {
+      // Intentionally ignored: paywall can still be shown with default offerings.
+    } finally {
+      _isFetchingOfferings = false;
+    }
+  }
+
+  Future<void> _handlePremiumBannerTap({required bool isPremium}) async {
+    if (isPremium) return;
+
+    if (_offerings == null) {
+      await _fetchOfferings();
+    }
+
+    final paywallResult = await RevenueCatUI.presentPaywall(
+      offering: _offerings?.current,
+    );
+
+    if (paywallResult == PaywallResult.purchased) {
+      await ref.read(userProfileProvider.notifier).refresh();
+    }
   }
 
   String _getRelativeTime(DateTime dateTime) {
@@ -54,6 +93,11 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
   Widget build(BuildContext context) {
     final notificationHistoryAsync = ref.watch(notificationHistoryProvider);
     final unreadCountAsync = ref.watch(unreadCountProvider);
+    final isPremium = ref.watch(
+      userProfileProvider.select(
+        (data) => data.valueOrNull?.user.isPremium ?? false,
+      ),
+    );
 
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
@@ -113,7 +157,11 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
             if (notifications.isEmpty) {
               return _buildEmptyState();
             }
-            return _buildNotificationsList(context, notifications);
+            return _buildNotificationsList(
+              context,
+              notifications,
+              isPremium: isPremium,
+            );
           },
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (error, stack) => Center(
@@ -185,21 +233,22 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
 
   Widget _buildNotificationsList(
     BuildContext context,
-    List<NotificationHistory> notifications,
-  ) {
+    List<NotificationHistory> notifications, {
+    required bool isPremium,
+  }) {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
-          PremiumBannerCard(
-            title: t.notifications.premiumBannerTitle,
-            description: t.notifications.premiumBannerDescription,
-            iconPath: AppIcons.proNotification,
-            onTap: () {
-              // Premium sayfasına yönlendir
-            },
-          ),
-          const SizedBox(height: 16),
+          if (!isPremium) ...[
+            PremiumBannerCard(
+              title: t.notifications.premiumBannerTitle,
+              description: t.notifications.premiumBannerDescription,
+              iconPath: AppIcons.proNotification,
+              onTap: () => _handlePremiumBannerTap(isPremium: isPremium),
+            ),
+            const SizedBox(height: 16),
+          ],
           Expanded(
             child: ListView.separated(
               itemCount: notifications.length,

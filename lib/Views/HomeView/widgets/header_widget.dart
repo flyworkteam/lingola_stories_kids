@@ -56,10 +56,46 @@ class HeaderWidget extends ConsumerWidget {
       child: Row(
         children: [
           // Avatar
-          SvgPicture.asset(
-            AvatarSelector.assetPath(avatarFile),
-            height: 44,
-            width: 44,
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              SvgPicture.asset(
+                AvatarSelector.assetPath(avatarFile),
+                height: 44,
+                width: 44,
+              ),
+              if (user?.isPremium ?? false)
+                Positioned(
+                  left: -10,
+                  top: -5,
+                  child: Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0xffCCDBE8),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: SvgPicture.asset(
+                        AppIcons.proBudge,
+                        height: 16,
+                        width: 16,
+                        colorFilter: const ColorFilter.mode(
+                          Color(0xffFF8D28),
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
           ),
           const SizedBox(width: AppSpacing.md),
           Column(
