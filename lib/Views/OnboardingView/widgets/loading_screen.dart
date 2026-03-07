@@ -8,6 +8,7 @@ import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/theme/app_colors.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 import 'package:lingolakidstories/utils/print.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class LoadingScreen extends HookConsumerWidget {
   final VoidCallback onComplete;
@@ -63,6 +64,28 @@ class LoadingScreen extends HookConsumerWidget {
                       ?.map((e) => e.toString())
                       .toList(),
                 );
+                // Save OneSignal player id to backend right after preferences.
+                final oneSignalPlayerId = OneSignal.User.pushSubscription.id;
+                if (oneSignalPlayerId != null && oneSignalPlayerId.isNotEmpty) {
+                  try {
+                    await ref
+                        .read(userRepositoryProvider)
+                        .saveOneSignalPlayerId(playerId: oneSignalPlayerId);
+                    Print.info(
+                      '✅ OneSignal player id saved after onboarding: $oneSignalPlayerId',
+                    );
+                  } catch (e) {
+                    // Non-blocking: onboarding can complete even if this sync fails.
+                    Print.error(
+                      '⚠️ Failed to save OneSignal player id after onboarding: $e',
+                    );
+                  }
+                } else {
+                  Print.info(
+                    'ℹ️ OneSignal player id not available during onboarding completion',
+                  );
+                }
+
                 await ref.read(userProfileProvider.notifier).refresh();
 
                 Print.info('✅ Onboarding completed successfully');
