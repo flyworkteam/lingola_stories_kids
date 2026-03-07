@@ -6,6 +6,7 @@ import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
 import 'package:lingolakidstories/Services/dio_service.dart';
 import 'package:lingolakidstories/Services/secure_storage_service.dart';
 import 'package:lingolakidstories/utils/print.dart';
+import 'package:purchases_flutter/purchases_flutter.dart';
 
 /// Provider for AuthRepository
 
@@ -46,7 +47,12 @@ class AuthRepository {
         await _storageService.saveUserId(authResponse.user!.id);
         await _storageService.saveIsGuest(authResponse.user!.isGuest);
       }
-
+      try {
+        await Purchases.logIn(authResponse.user!.id.toString());
+        Print.info('RevenueCat: Logged in as user ${authResponse.user!.id}');
+      } catch (e) {
+        Print.error('RevenueCat login error: $e');
+      }
       Print.info('Guest user created successfully');
       return authResponse;
     } catch (e) {
@@ -84,7 +90,12 @@ class AuthRepository {
         await _storageService.saveUserId(authResponse.user!.id);
         await _storageService.saveIsGuest(authResponse.user!.isGuest);
       }
-
+      try {
+        await Purchases.logIn(authResponse.user!.id.toString());
+        Print.info('RevenueCat: Logged in as user ${authResponse.user!.id}');
+      } catch (e) {
+        Print.error('RevenueCat login error: $e');
+      }
       Print.info('Google sign-in successful');
       return authResponse;
     } catch (e) {
@@ -123,7 +134,12 @@ class AuthRepository {
         await _storageService.saveUserId(authResponse.user!.id);
         await _storageService.saveIsGuest(authResponse.user!.isGuest);
       }
-
+      try {
+        await Purchases.logIn(authResponse.user!.id.toString());
+        Print.info('RevenueCat: Logged in as user ${authResponse.user!.id}');
+      } catch (e) {
+        Print.error('RevenueCat login error: $e');
+      }
       Print.info('Apple sign-in successful');
       return authResponse;
     } catch (e) {
@@ -182,6 +198,12 @@ class AuthRepository {
         cancelToken: cancelToken,
       );
       await ref.watch(userProfileProvider.notifier).refresh();
+      try {
+        await Purchases.logOut();
+        Print.info('RevenueCat: Logged out successfully');
+      } catch (e) {
+        Print.error('RevenueCat logout error: $e');
+      }
       // Clear local storage
       await _storageService.clearAll();
 
