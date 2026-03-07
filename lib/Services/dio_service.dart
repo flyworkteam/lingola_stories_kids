@@ -20,17 +20,7 @@ class DioService {
     // For iOS simulator: use localhost
     // For real device: use your computer's IP address
 
-    if (kDebugMode) {
-      if (Platform.isAndroid) {
-        // Android emulator uses 10.0.2.2 to access host machine's localhost
-        return 'http://10.0.2.2:3000/api/';
-      } else {
-        // iOS simulator can use localhost
-        return 'http://localhost:3000/api/';
-      }
-    } else {
-      return 'http://localhost:3000/api/';
-    }
+    return 'https://lingolastorieskids.fly-work.com/api/';
   }
 
   static final _headers = <String, Object?>{
