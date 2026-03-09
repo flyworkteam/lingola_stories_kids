@@ -132,7 +132,7 @@ class StoriesView extends HookConsumerWidget {
                       context,
                       MaterialPageRoute(
                         builder: (_) => AllStoriesView(
-                          initialCategory: _apiCategory(selectedCategory.value),
+                          initialCategory: selectedCategory.value,
                         ),
                       ),
                     ),

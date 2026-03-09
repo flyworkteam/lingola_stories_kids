@@ -18,19 +18,19 @@ import 'package:lingolakidstories/utils/app_assets.dart';
 const _pageSize = 20;
 
 const _allCategories = [
-  'Popular',
-  'Space',
-  'Magic',
-  'Animals',
-  'Detectives',
-  'Dinosaurs',
-  'Superhero',
-  'Underwater',
-  'Fairy Tale',
+  'popular',
+  'space',
+  'magic',
+  'animals',
+  'detectives',
+  'dinosaurs',
+  'superhero',
+  'underwater',
+  'fairytale',
 ];
 
 class AllStoriesView extends ConsumerStatefulWidget {
-  const AllStoriesView({super.key, this.initialCategory = 'Popular'});
+  const AllStoriesView({super.key, this.initialCategory = 'popular'});
 
   final String initialCategory;
 
@@ -47,6 +47,10 @@ class _AllStoriesViewState extends ConsumerState<AllStoriesView> {
   @override
   void initState() {
     super.initState();
+
+    // Accept both key values (popular) and legacy API/display values (Popular).
+    _selectedCategories.add(_normalizeCategoryKey(widget.initialCategory));
+
     _pagingController = PagingController<int, StoryModel>(
       getNextPageKey: (state) {
         final pages = state.pages;
@@ -76,15 +80,15 @@ class _AllStoriesViewState extends ConsumerState<AllStoriesView> {
     String? categoryFilter;
     bool? isPopular;
     if (_selectedCategories.isNotEmpty) {
-      if (_selectedCategories.contains('Popular') &&
+      if (_selectedCategories.contains('popular') &&
           _selectedCategories.length == 1) {
         isPopular = true;
       } else {
-        final nonPopular = _selectedCategories.where((c) => c != 'Popular');
+        final nonPopular = _selectedCategories.where((c) => c != 'popular');
         if (nonPopular.isNotEmpty) {
-          categoryFilter = nonPopular.first;
+          categoryFilter = _apiCategory(nonPopular.first);
         }
-        if (_selectedCategories.contains('Popular')) {
+        if (_selectedCategories.contains('popular')) {
           isPopular = true;
         }
       }
@@ -438,25 +442,76 @@ class _FilterOverlay extends HookWidget {
 
 String _categoryLabel(BuildContext context, String category) {
   switch (category) {
-    case 'Popular':
+    case 'popular':
       return context.t.stories.categories.popular;
-    case 'Space':
+    case 'space':
       return context.t.stories.categories.space;
-    case 'Magic':
+    case 'magic':
       return context.t.stories.categories.magic;
-    case 'Animals':
+    case 'animals':
       return context.t.stories.categories.animals;
-    case 'Detectives':
+    case 'detectives':
       return context.t.stories.categories.detectives;
-    case 'Dinosaurs':
+    case 'dinosaurs':
       return context.t.stories.categories.dinosaurs;
-    case 'Superhero':
+    case 'superhero':
       return context.t.stories.categories.superhero;
-    case 'Underwater':
+    case 'underwater':
       return context.t.stories.categories.underwater;
-    case 'Fairy Tale':
+    case 'fairytale':
       return context.t.stories.categories.fairytale;
     default:
-      return category;
+      return context.t.stories.categories.popular;
+  }
+}
+
+String _apiCategory(String categoryKey) {
+  switch (categoryKey) {
+    case 'popular':
+      return 'Popular';
+    case 'space':
+      return 'Space';
+    case 'magic':
+      return 'Magic';
+    case 'animals':
+      return 'Animals';
+    case 'detectives':
+      return 'Detectives';
+    case 'dinosaurs':
+      return 'Dinosaurs';
+    case 'superhero':
+      return 'Superhero';
+    case 'underwater':
+      return 'Underwater';
+    case 'fairytale':
+      return 'Fairy Tale';
+    default:
+      return 'Popular';
+  }
+}
+
+String _normalizeCategoryKey(String category) {
+  switch (category.toLowerCase()) {
+    case 'popular':
+      return 'popular';
+    case 'space':
+      return 'space';
+    case 'magic':
+      return 'magic';
+    case 'animals':
+      return 'animals';
+    case 'detectives':
+      return 'detectives';
+    case 'dinosaurs':
+      return 'dinosaurs';
+    case 'superhero':
+      return 'superhero';
+    case 'underwater':
+      return 'underwater';
+    case 'fairytale':
+    case 'fairy tale':
+      return 'fairytale';
+    default:
+      return 'popular';
   }
 }
