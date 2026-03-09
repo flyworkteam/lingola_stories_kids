@@ -1,6 +1,7 @@
 {
   "welcome": "Добро пожаловать $name",
   "welcome2": "Добро пожаловать в $appName",
+  "continue_to": "Продолжить на $language",
   "get_started": "Начать",
   "next": "Далее",
   "back": "Назад",
@@ -225,7 +226,18 @@
     "popularStories": "Популярные истории",
     "recommendForYou": "Рекомендуем для вас",
     "allStories": "Все истории",
-    "seeAll": "Смотреть все"
+    "seeAll": "Смотреть все",
+    "categories": {
+      "popular": "Популярные",
+      "space": "Космические приключения",
+      "magic": "Волшебные миры",
+      "animals": "Добрые друзья",
+      "detectives": "Маленькие детективы",
+      "dinosaurs": "Эпоха динозавров",
+      "superhero": "Супергерои",
+      "underwater": "Подводное царство",
+      "fairytale": "Сказки о принцах и принцессах"
+    }
   },
   "library": {
     "title": "Библиотека",

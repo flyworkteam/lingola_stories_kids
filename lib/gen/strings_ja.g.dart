@@ -39,6 +39,7 @@ class TranslationsJa with BaseTranslations<AppLocale, Translations> implements T
 	// Translations
 	@override String welcome({required Object name}) => 'ようこそ ${name}';
 	@override String welcome2({required Object appName}) => 'ようこそ ${appName}';
+	@override String continue_to({required Object language}) => '${language} に進む';
 	@override String get get_started => '始める';
 	@override String get next => '次へ';
 	@override String get back => '戻る';
@@ -204,6 +205,7 @@ class _TranslationsStoriesJa implements TranslationsStoriesEn {
 	@override String get recommendForYou => 'あなたへのおすすめ';
 	@override String get allStories => 'すべての物語';
 	@override String get seeAll => 'すべて見る';
+	@override late final _TranslationsStoriesCategoriesJa categories = _TranslationsStoriesCategoriesJa._(_root);
 }
 
 // Path: library
@@ -596,6 +598,24 @@ class _TranslationsHomePremiumPlanJa implements TranslationsHomePremiumPlanEn {
 	@override late final _TranslationsHomePremiumPlanDialogJa dialog = _TranslationsHomePremiumPlanDialogJa._(_root);
 }
 
+// Path: stories.categories
+class _TranslationsStoriesCategoriesJa implements TranslationsStoriesCategoriesEn {
+	_TranslationsStoriesCategoriesJa._(this._root);
+
+	final TranslationsJa _root; // ignore: unused_field
+
+	// Translations
+	@override String get popular => '人気';
+	@override String get space => '宇宙';
+	@override String get magic => '魔法';
+	@override String get animals => '動物';
+	@override String get detectives => '探偵';
+	@override String get dinosaurs => '恐竜';
+	@override String get superhero => 'スーパーヒーロー';
+	@override String get underwater => '水中王国';
+	@override String get fairytale => 'おとぎ話';
+}
+
 // Path: dayStreak.days
 class _TranslationsDayStreakDaysJa implements TranslationsDayStreakDaysEn {
 	_TranslationsDayStreakDaysJa._(this._root);
@@ -867,6 +887,7 @@ extension on TranslationsJa {
 		return switch (path) {
 			'welcome' => ({required Object name}) => 'ようこそ ${name}',
 			'welcome2' => ({required Object appName}) => 'ようこそ ${appName}',
+			'continue_to' => ({required Object language}) => '${language} に進む',
 			'get_started' => '始める',
 			'next' => '次へ',
 			'back' => '戻る',
@@ -1027,6 +1048,15 @@ extension on TranslationsJa {
 			'stories.recommendForYou' => 'あなたへのおすすめ',
 			'stories.allStories' => 'すべての物語',
 			'stories.seeAll' => 'すべて見る',
+			'stories.categories.popular' => '人気',
+			'stories.categories.space' => '宇宙',
+			'stories.categories.magic' => '魔法',
+			'stories.categories.animals' => '動物',
+			'stories.categories.detectives' => '探偵',
+			'stories.categories.dinosaurs' => '恐竜',
+			'stories.categories.superhero' => 'スーパーヒーロー',
+			'stories.categories.underwater' => '水中王国',
+			'stories.categories.fairytale' => 'おとぎ話',
 			'library.title' => 'ライブラリ',
 			'library.wordCount' => ({required Object count}) => '${count} 語',
 			'library.popularWords' => '人気の単語',

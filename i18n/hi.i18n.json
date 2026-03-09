@@ -1,6 +1,7 @@
 {
   "welcome": "स्वागत है $name",
   "welcome2": "स्वागत है $appName",
+  "continue_to": "$language पर जारी रखें",
   "get_started": "शुरू करें",
   "next": "अगला",
   "back": "पीछे",
@@ -225,7 +226,18 @@
     "popularStories": "लोकप्रिय कहानियाँ",
     "recommendForYou": "आपके लिए अनुशंसित",
     "allStories": "सभी कहानियाँ",
-    "seeAll": "सभी देखें"
+    "seeAll": "सभी देखें",
+    "categories": {
+      "popular": "लोकप्रिय",
+      "space": "अंतरिक्ष रोमांच",
+      "magic": "जादुई दुनिया",
+      "animals": "प्यारे दोस्त",
+      "detectives": "छोटे जासूस",
+      "dinosaurs": "डायनासोर",
+      "superhero": "सुपरहीरो",
+      "underwater": "पानी के नीचे",
+      "fairytale": "परीकथाएँ"
+    }
   },
   "library": {
     "title": "पुस्तकालय",

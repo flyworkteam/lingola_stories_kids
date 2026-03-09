@@ -1,6 +1,7 @@
 {
   "welcome": "ようこそ $name",
   "welcome2": "ようこそ $appName",
+  "continue_to": "$language に進む",
   "get_started": "始める",
   "next": "次へ",
   "back": "戻る",
@@ -225,7 +226,18 @@
     "popularStories": "人気の物語",
     "recommendForYou": "あなたへのおすすめ",
     "allStories": "すべての物語",
-    "seeAll": "すべて見る"
+    "seeAll": "すべて見る",
+    "categories": {
+      "popular": "人気",
+      "space": "宇宙",
+      "magic": "魔法",
+      "animals": "動物",
+      "detectives": "探偵",
+      "dinosaurs": "恐竜",
+      "superhero": "スーパーヒーロー",
+      "underwater": "水中王国",
+      "fairytale": "おとぎ話"
+    }
   },
   "library": {
     "title": "ライブラリ",

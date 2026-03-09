@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 
@@ -15,11 +14,10 @@ class StoryTag extends StatelessWidget {
         vertical: AppSpacing.xs,
       ),
       decoration: BoxDecoration(
-        color: Colors.white.withValues(alpha: 0.1),
-        borderRadius: AppBorderRadius.pillRadius,
-        border: Border.all(color: Colors.white24),
+        color: Colors.white.withValues(alpha: 0.2),
+        borderRadius: BorderRadius.circular(5),
       ),
-      child: Text(label, style: AppTextStyles.body(12, color: Colors.white70)),
+      child: Text(label, style: AppTextStyles.body(12, color: Colors.white)),
     );
   }
 }

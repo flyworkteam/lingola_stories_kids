@@ -54,6 +54,7 @@ class AppIcons {
   static const String flag = 'assets/icons/ic_flag.svg';
   static const String google = 'assets/icons/ic_google.svg';
   static const String home = 'assets/icons/ic_home.svg';
+  static const String homelibrary = 'assets/icons/home_library_icon.svg';
   static const String kindofPageIcon = 'assets/icons/ic_kindof_page_icon.svg';
   static const String langPageIcon = 'assets/icons/ic_lang_page_icon.svg';
   static const String leftArrow = 'assets/icons/ic_left_arrow.svg';
@@ -71,6 +72,7 @@ class AppIcons {
   static const String onboard1 = 'assets/icons/splash1.svg';
   static const String onboard2 = 'assets/icons/splash2.svg';
   static const String play = 'assets/icons/ic_play.svg';
+  static const String playStory = 'assets/icons/play.svg';
   static const String popular = 'assets/icons/ic_popular.png';
   static const String proBudge = 'assets/icons/ic_pro_budge.svg';
   static const String proNotification = 'assets/icons/ic_pro_notification.svg';
@@ -78,6 +80,7 @@ class AppIcons {
   static const String profileIcon = 'assets/icons/ic_profile_icon.svg';
   static const String questionMark = 'assets/icons/ic_question_mark.svg';
   static const String rating = 'assets/icons/ic_rating.svg';
+  static const String ratingListen = 'assets/icons/rating_listen.svg';
   static const String ratingStar = 'assets/icons/ic_rating_star.svg';
   static const String search = 'assets/icons/ic_search.svg';
   static const String send = 'assets/icons/ic_send.svg';

@@ -75,27 +75,30 @@ class PremiumBanner extends HookConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(width: AppSpacing.md),
-                Container(
-                  width: 42,
-                  height: 42,
-                  decoration: BoxDecoration(
-                    color: Colors.white.withValues(alpha: 0.5),
-                    shape: BoxShape.circle,
-                  ),
-                  child: Center(
-                    child: SvgPicture.asset(
-                      AppIcons.proBudge,
-                      width: 22,
-                      height: 22,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.white,
-                        BlendMode.srcIn,
+                Row(
+                  children: [
+                    SizedBox(width: AppSpacing.md),
+                    Container(
+                      width: 42,
+                      height: 42,
+                      decoration: BoxDecoration(
+                        color: Colors.white.withValues(alpha: 0.5),
+                        shape: BoxShape.circle,
+                      ),
+                      child: Center(
+                        child: SvgPicture.asset(
+                          AppIcons.proBudge,
+                          width: 27,
+                          height: 27,
+                          colorFilter: const ColorFilter.mode(
+                            Colors.white,
+                            BlendMode.srcIn,
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-                SizedBox(width: AppSpacing.xs),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -103,7 +106,7 @@ class PremiumBanner extends HookConsumerWidget {
                     Text(
                       context.t.home.upgradeToPremium,
                       style: AppTextStyles.heading(
-                        18,
+                        19,
                         FontWeight.w700,
                         letterSpacing: -0.05,
                         color: Colors.white,
@@ -112,14 +115,14 @@ class PremiumBanner extends HookConsumerWidget {
                     Text(
                       context.t.home.unlimitedStories,
                       style: AppTextStyles.body(
-                        12,
+                        13,
                         letterSpacing: -0.05,
                         color: Colors.white,
                       ),
                     ),
                   ],
                 ),
-                SizedBox(width: AppSpacing.md),
+                SizedBox(width: AppSpacing.xs),
                 SvgPicture.asset(AppIcons.leftArrow),
                 SizedBox(width: AppSpacing.xs),
               ],

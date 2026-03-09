@@ -19,7 +19,7 @@ class ThreeDotMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 60, maxWidth: 130),
+      constraints: const BoxConstraints(minWidth: 130, maxWidth: 130),
       child: Container(
         decoration: BoxDecoration(
           color: Colors.black.withValues(alpha: 0.60),
@@ -33,6 +33,7 @@ class ThreeDotMenu extends StatelessWidget {
           ],
         ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
             _MenuOption(
@@ -42,7 +43,7 @@ class ThreeDotMenu extends StatelessWidget {
             ),
             SvgPicture.asset(AppIcons.storyLine),
             _MenuOption(
-              icon: AppIcons.ratingStar,
+              icon: AppIcons.ratingListen,
               label: context.t.storyDetails.rating,
               onTap: onRating,
             ),
@@ -75,21 +76,20 @@ class _MenuOption extends StatelessWidget {
           vertical: 10,
         ),
         child: Row(
-          // Make the whole row a reliable hit target
           mainAxisSize: MainAxisSize.min,
           children: [
             SvgPicture.asset(
               icon,
-              width: 16,
-              height: 16,
+              width: 20,
+              height: 24,
               colorFilter: const ColorFilter.mode(
                 Colors.white,
                 BlendMode.srcIn,
               ),
             ),
-            const SizedBox(width: 8),
+            Spacer(),
             Text(label, style: AppTextStyles.body(14, color: Colors.white)),
-            const SizedBox(width: 8),
+            Spacer(),
           ],
         ),
       ),

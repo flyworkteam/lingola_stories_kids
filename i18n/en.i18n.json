@@ -1,6 +1,7 @@
 {
     "welcome": "Welcome $name",
     "welcome2": "Welcome to $appName",
+    "continue_to": "Continue to $language",
     "get_started": "Get Started",
     "next": "Next",
     "back": "Back",
@@ -225,7 +226,18 @@
         "popularStories": "Popular Stories",
         "recommendForYou": "Recommend For You",
         "allStories": "All Stories",
-        "seeAll": "See all"
+        "seeAll": "See all",
+        "categories": {
+            "popular": "Popular",
+            "space": "Space",
+            "magic": "Magic",
+            "animals": "Animals",
+            "detectives": "Detectives",
+            "dinosaurs": "Dinosaurs",
+            "superhero": "Superhero",
+            "underwater": "Underwater",
+            "fairytale": "Fairy Tale"
+        }
     },
     "library": {
         "title": "Library",

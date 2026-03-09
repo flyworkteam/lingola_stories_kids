@@ -47,6 +47,9 @@ class Translations with BaseTranslations<AppLocale, Translations> {
 	/// en: 'Welcome to $appName'
 	String welcome2({required Object appName}) => 'Welcome to ${appName}';
 
+	/// en: 'Continue to $language'
+	String continue_to({required Object language}) => 'Continue to ${language}';
+
 	/// en: 'Get Started'
 	String get get_started => 'Get Started';
 
@@ -346,6 +349,8 @@ class TranslationsStoriesEn {
 
 	/// en: 'See all'
 	String get seeAll => 'See all';
+
+	late final TranslationsStoriesCategoriesEn categories = TranslationsStoriesCategoriesEn._(_root);
 }
 
 // Path: library
@@ -1077,6 +1082,42 @@ class TranslationsHomePremiumPlanEn {
 	late final TranslationsHomePremiumPlanDialogEn dialog = TranslationsHomePremiumPlanDialogEn._(_root);
 }
 
+// Path: stories.categories
+class TranslationsStoriesCategoriesEn {
+	TranslationsStoriesCategoriesEn._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+
+	/// en: 'Popular'
+	String get popular => 'Popular';
+
+	/// en: 'Space'
+	String get space => 'Space';
+
+	/// en: 'Magic'
+	String get magic => 'Magic';
+
+	/// en: 'Animals'
+	String get animals => 'Animals';
+
+	/// en: 'Detectives'
+	String get detectives => 'Detectives';
+
+	/// en: 'Dinosaurs'
+	String get dinosaurs => 'Dinosaurs';
+
+	/// en: 'Superhero'
+	String get superhero => 'Superhero';
+
+	/// en: 'Underwater'
+	String get underwater => 'Underwater';
+
+	/// en: 'Fairy Tale'
+	String get fairytale => 'Fairy Tale';
+}
+
 // Path: dayStreak.days
 class TranslationsDayStreakDaysEn {
 	TranslationsDayStreakDaysEn._(this._root);
@@ -1462,6 +1503,7 @@ extension on Translations {
 		return switch (path) {
 			'welcome' => ({required Object name}) => 'Welcome ${name}',
 			'welcome2' => ({required Object appName}) => 'Welcome to ${appName}',
+			'continue_to' => ({required Object language}) => 'Continue to ${language}',
 			'get_started' => 'Get Started',
 			'next' => 'Next',
 			'back' => 'Back',
@@ -1622,6 +1664,15 @@ extension on Translations {
 			'stories.recommendForYou' => 'Recommend For You',
 			'stories.allStories' => 'All Stories',
 			'stories.seeAll' => 'See all',
+			'stories.categories.popular' => 'Popular',
+			'stories.categories.space' => 'Space',
+			'stories.categories.magic' => 'Magic',
+			'stories.categories.animals' => 'Animals',
+			'stories.categories.detectives' => 'Detectives',
+			'stories.categories.dinosaurs' => 'Dinosaurs',
+			'stories.categories.superhero' => 'Superhero',
+			'stories.categories.underwater' => 'Underwater',
+			'stories.categories.fairytale' => 'Fairy Tale',
 			'library.title' => 'Library',
 			'library.wordCount' => ({required Object count}) => '${count} Words',
 			'library.popularWords' => 'Popular Words',

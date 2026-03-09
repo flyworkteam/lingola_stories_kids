@@ -39,6 +39,7 @@ class TranslationsHi with BaseTranslations<AppLocale, Translations> implements T
 	// Translations
 	@override String welcome({required Object name}) => 'स्वागत है ${name}';
 	@override String welcome2({required Object appName}) => 'स्वागत है ${appName}';
+	@override String continue_to({required Object language}) => '${language} पर जारी रखें';
 	@override String get get_started => 'शुरू करें';
 	@override String get next => 'अगला';
 	@override String get back => 'पीछे';
@@ -204,6 +205,7 @@ class _TranslationsStoriesHi implements TranslationsStoriesEn {
 	@override String get recommendForYou => 'आपके लिए अनुशंसित';
 	@override String get allStories => 'सभी कहानियाँ';
 	@override String get seeAll => 'सभी देखें';
+	@override late final _TranslationsStoriesCategoriesHi categories = _TranslationsStoriesCategoriesHi._(_root);
 }
 
 // Path: library
@@ -596,6 +598,24 @@ class _TranslationsHomePremiumPlanHi implements TranslationsHomePremiumPlanEn {
 	@override late final _TranslationsHomePremiumPlanDialogHi dialog = _TranslationsHomePremiumPlanDialogHi._(_root);
 }
 
+// Path: stories.categories
+class _TranslationsStoriesCategoriesHi implements TranslationsStoriesCategoriesEn {
+	_TranslationsStoriesCategoriesHi._(this._root);
+
+	final TranslationsHi _root; // ignore: unused_field
+
+	// Translations
+	@override String get popular => 'लोकप्रिय';
+	@override String get space => 'अंतरिक्ष रोमांच';
+	@override String get magic => 'जादुई दुनिया';
+	@override String get animals => 'प्यारे दोस्त';
+	@override String get detectives => 'छोटे जासूस';
+	@override String get dinosaurs => 'डायनासोर';
+	@override String get superhero => 'सुपरहीरो';
+	@override String get underwater => 'पानी के नीचे';
+	@override String get fairytale => 'परीकथाएँ';
+}
+
 // Path: dayStreak.days
 class _TranslationsDayStreakDaysHi implements TranslationsDayStreakDaysEn {
 	_TranslationsDayStreakDaysHi._(this._root);
@@ -867,6 +887,7 @@ extension on TranslationsHi {
 		return switch (path) {
 			'welcome' => ({required Object name}) => 'स्वागत है ${name}',
 			'welcome2' => ({required Object appName}) => 'स्वागत है ${appName}',
+			'continue_to' => ({required Object language}) => '${language} पर जारी रखें',
 			'get_started' => 'शुरू करें',
 			'next' => 'अगला',
 			'back' => 'पीछे',
@@ -1027,6 +1048,15 @@ extension on TranslationsHi {
 			'stories.recommendForYou' => 'आपके लिए अनुशंसित',
 			'stories.allStories' => 'सभी कहानियाँ',
 			'stories.seeAll' => 'सभी देखें',
+			'stories.categories.popular' => 'लोकप्रिय',
+			'stories.categories.space' => 'अंतरिक्ष रोमांच',
+			'stories.categories.magic' => 'जादुई दुनिया',
+			'stories.categories.animals' => 'प्यारे दोस्त',
+			'stories.categories.detectives' => 'छोटे जासूस',
+			'stories.categories.dinosaurs' => 'डायनासोर',
+			'stories.categories.superhero' => 'सुपरहीरो',
+			'stories.categories.underwater' => 'पानी के नीचे',
+			'stories.categories.fairytale' => 'परीकथाएँ',
 			'library.title' => 'पुस्तकालय',
 			'library.wordCount' => ({required Object count}) => '${count} शब्द',
 			'library.popularWords' => 'लोकप्रिय शब्द',

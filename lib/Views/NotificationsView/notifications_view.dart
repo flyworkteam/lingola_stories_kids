@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:lingolakidstories/Models/notification_model.dart';
 import 'package:lingolakidstories/Riverpod/Providers/notification_provider.dart';
 import 'package:lingolakidstories/Riverpod/Providers/user_provider.dart';
-import 'package:lingolakidstories/Views/NotificationsView/widgets/deletebottomsheet.dart';
 import 'package:lingolakidstories/Views/NotificationsView/widgets/notifications_card.dart';
 import 'package:lingolakidstories/Views/NotificationsView/widgets/premium_card.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
@@ -101,90 +100,150 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
 
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
-      appBar: AppBar(
-        title: Row(
+      body: SafeArea(
+        child: Column(
           children: [
-            Text(t.notifications.title),
-            if (unreadCountAsync.hasValue && (unreadCountAsync.value ?? 0) > 0)
-              Container(
-                margin: const EdgeInsets.only(left: 8),
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                decoration: BoxDecoration(
-                  color: Colors.red,
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Text(
-                  '${unreadCountAsync.value}',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
+            _buildHeader(
+              context,
+              unreadCount: unreadCountAsync.valueOrNull ?? 0,
+              hasNotifications:
+                  notificationHistoryAsync.valueOrNull?.isNotEmpty ?? false,
+            ),
+            Expanded(
+              child: RefreshIndicator(
+                onRefresh: () async {
+                  await ref
+                      .read(notificationHistoryProvider.notifier)
+                      .refresh();
+                  ref.invalidate(unreadCountProvider);
+                },
+                child: notificationHistoryAsync.when(
+                  data: (notifications) {
+                    if (notifications.isEmpty) {
+                      return _buildEmptyState();
+                    }
+                    return _buildNotificationsList(
+                      context,
+                      notifications,
+                      isPremium: isPremium,
+                    );
+                  },
+                  loading: () =>
+                      const Center(child: CircularProgressIndicator()),
+                  error: (error, stack) => Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.error_outline,
+                          size: 48,
+                          color: Colors.red,
+                        ),
+                        const SizedBox(height: 16),
+                        Text(
+                          'Error loading notifications',
+                          style: AppTextStyles.body(16),
+                        ),
+                        const SizedBox(height: 8),
+                        TextButton(
+                          onPressed: () {
+                            ref
+                                .read(notificationHistoryProvider.notifier)
+                                .refresh();
+                          },
+                          child: const Text('Retry'),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
+            ),
           ],
         ),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        actions: [
-          if (notificationHistoryAsync.hasValue &&
-              (notificationHistoryAsync.value?.isNotEmpty ?? false))
-            GestureDetector(
-              onTap: () {
-                DeleteNotificationsBottomSheet.show(
-                  context,
-                  onDelete: () async {
-                    await ref
-                        .read(notificationHistoryProvider.notifier)
-                        .deleteAll();
-                  },
-                );
-              },
-              child: Padding(
-                padding: const EdgeInsets.only(right: 16),
-                child: SvgPicture.asset(AppIcons.delete, width: 24, height: 24),
+      ),
+    );
+  }
+
+  Widget _buildHeader(
+    BuildContext context, {
+    required int unreadCount,
+    required bool hasNotifications,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+      child: Row(
+        children: [
+          GestureDetector(
+            onTap: () => Navigator.pop(context),
+            child: SvgPicture.asset(
+              AppIcons.longLeftArrow,
+              width: 24,
+              colorFilter: const ColorFilter.mode(
+                Colors.black87,
+                BlendMode.srcIn,
               ),
             ),
-        ],
-      ),
-      body: RefreshIndicator(
-        onRefresh: () async {
-          await ref.read(notificationHistoryProvider.notifier).refresh();
-          ref.invalidate(unreadCountProvider);
-        },
-        child: notificationHistoryAsync.when(
-          data: (notifications) {
-            if (notifications.isEmpty) {
-              return _buildEmptyState();
-            }
-            return _buildNotificationsList(
-              context,
-              notifications,
-              isPremium: isPremium,
-            );
-          },
-          loading: () => const Center(child: CircularProgressIndicator()),
-          error: (error, stack) => Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(Icons.error_outline, size: 48, color: Colors.red),
-                const SizedBox(height: 16),
-                Text(
-                  'Error loading notifications',
-                  style: AppTextStyles.body(16),
-                ),
-                const SizedBox(height: 8),
-                TextButton(
-                  onPressed: () {
-                    ref.read(notificationHistoryProvider.notifier).refresh();
-                  },
-                  child: const Text('Retry'),
-                ),
-              ],
-            ),
           ),
-        ),
+          const SizedBox(width: 12),
+          Text(
+            t.notifications.title,
+            style: AppTextStyles.body(22, weight: FontWeight.w700, height: 30),
+          ),
+          if (unreadCount > 0)
+            Container(
+              margin: const EdgeInsets.only(left: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Text(
+                '$unreadCount',
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          const Spacer(),
+          PopupMenuButton<String>(
+            color: Colors.white,
+            elevation: 4,
+            offset: const Offset(0, 46),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
+            icon: SvgPicture.asset(AppIcons.threedot, width: 24, height: 24),
+            onSelected: (value) async {
+              if (value == 'delete_all') {
+                await ref
+                    .read(notificationHistoryProvider.notifier)
+                    .deleteAll();
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem<String>(
+                value: 'delete_all',
+                child: Row(
+                  children: [
+                    SvgPicture.asset(AppIcons.delete, width: 18, height: 18),
+                    const SizedBox(width: 8),
+                    Text(
+                      t.deleteAll,
+                      style: AppTextStyles.body(
+                        14,
+                        weight: FontWeight.w600,
+                        color: Colors.red,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -192,38 +251,43 @@ class _NotificationsViewState extends ConsumerState<NotificationsView> {
   Widget _buildEmptyState() {
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
+        padding: const EdgeInsets.symmetric(horizontal: 36),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 115,
-              height: 115,
-              decoration: const BoxDecoration(
-                color: Color(0xFFF5F5F5),
-                shape: BoxShape.circle,
-              ),
-              child: Center(child: SvgPicture.asset(AppIcons.notification)),
-            ),
-            const SizedBox(height: 24),
-            Text(
-              t.notifications.emptyTitle,
-              textAlign: TextAlign.center,
-              style: AppTextStyles.body(
-                20,
-                weight: FontWeight.w600,
-                height: 22,
-              ),
-            ),
-            const SizedBox(height: 12),
-            Text(
-              t.notifications.emptyDescription,
-              textAlign: TextAlign.center,
-              style: AppTextStyles.body(
-                14,
-                weight: FontWeight.w400,
-                height: 16,
-              ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Center(
+                  child: SvgPicture.asset(
+                    AppIcons.bell,
+                    width: 100,
+                    height: 100,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  t.notifications.emptyTitle,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.body(
+                    22,
+                    weight: FontWeight.w600,
+                    letterSpacing: -0.05,
+                    height: 22,
+                  ),
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  t.notifications.emptyDescription,
+                  textAlign: TextAlign.center,
+                  style: AppTextStyles.body(
+                    16,
+                    letterSpacing: -0.05,
+                    weight: FontWeight.w300,
+                    height: 16,
+                  ),
+                ),
+              ],
             ),
           ],
         ),

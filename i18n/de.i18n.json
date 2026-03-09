@@ -1,6 +1,7 @@
 {
   "welcome": "Willkommen $name",
   "welcome2": "Willkommen bei $appName",
+  "continue_to": "Weiter zu $language",
   "get_started": "Loslegen",
   "next": "Weiter",
   "back": "Zurück",
@@ -225,7 +226,18 @@
     "popularStories": "Beliebte Geschichten",
     "recommendForYou": "Empfohlen für dich",
     "allStories": "Alle Geschichten",
-    "seeAll": "Alle sehen"
+    "seeAll": "Alle sehen",
+    "categories": {
+      "popular": "Beliebt",
+      "space": "Weltraumabenteuer",
+      "magic": "Magische Welten",
+      "animals": "Tiere",
+      "detectives": "Detektive",
+      "dinosaurs": "Dinosaurier",
+      "superhero": "Superhelden",
+      "underwater": "Unterwasserkönigreich",
+      "fairytale": "Märchen"
+    }
   },
   "library": {
     "title": "Bibliothek",

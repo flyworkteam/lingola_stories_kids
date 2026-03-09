@@ -157,7 +157,7 @@ class HighlightableText extends HookWidget {
       height: 15,
     );
 
-    if (isReadingMode) {
+    List<InlineSpan> buildHighlightedSpans({required bool includeActiveWord}) {
       int localPos = 0;
       final spans = <InlineSpan>[];
 
@@ -168,6 +168,7 @@ class HighlightableText extends HookWidget {
         late Color bgColor;
 
         final bool isActive =
+            includeActiveWord &&
             tok.trim().isNotEmpty &&
             activeWordStart >= 0 &&
             globalStart == activeWordStart;
@@ -203,6 +204,12 @@ class HighlightableText extends HookWidget {
         localPos += tok.length;
       }
 
+      return spans;
+    }
+
+    if (isReadingMode) {
+      final spans = buildHighlightedSpans(includeActiveWord: true);
+
       return RichText(
         textAlign: TextAlign.justify,
         strutStyle: StrutStyle.fromTextStyle(
@@ -214,9 +221,7 @@ class HighlightableText extends HookWidget {
     }
 
     return SelectableText.rich(
-      TextSpan(
-        children: [TextSpan(text: text, style: storyTextStyle)],
-      ),
+      TextSpan(children: buildHighlightedSpans(includeActiveWord: false)),
       textAlign: TextAlign.justify,
       strutStyle: StrutStyle.fromTextStyle(
         storyTextStyle,
@@ -225,14 +230,32 @@ class HighlightableText extends HookWidget {
       focusNode: focusNode,
       contextMenuBuilder: (ctx, state) {
         final sel = state.textEditingValue.selection;
-        final selected = sel.isCollapsed
+        final selectedWordRange = _resolveSingleWordRange(text, sel.start);
+
+        if (selectedWordRange != null &&
+            (sel.start != selectedWordRange.start ||
+                sel.end != selectedWordRange.end)) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            final current = state.textEditingValue.selection;
+            if (current.start == selectedWordRange.start &&
+                current.end == selectedWordRange.end) {
+              return;
+            }
+
+            state.userUpdateTextEditingValue(
+              state.textEditingValue.copyWith(selection: selectedWordRange),
+              SelectionChangedCause.toolbar,
+            );
+          });
+        }
+
+        final effectiveSelection = selectedWordRange ?? sel;
+        final selectedWord = effectiveSelection.isCollapsed
             ? ''
             : text.substring(
-                sel.start.clamp(0, text.length),
-                sel.end.clamp(0, text.length),
+                effectiveSelection.start.clamp(0, text.length),
+                effectiveSelection.end.clamp(0, text.length),
               );
-
-        final selectedWord = selected.trim();
         final selectedWordLower = selectedWord.toLowerCase();
 
         // Check if word is already saved
@@ -276,16 +299,16 @@ class HighlightableText extends HookWidget {
           },
           onWhereLeftOff: () {
             clearSelection();
-            onWhereLeftOff(sel.start);
+            onWhereLeftOff(effectiveSelection.start);
           },
           onSpeak: () {
-            final word = selected.trim();
+            final word = selectedWord;
             if (word.isEmpty) return;
             clearSelection();
             onSpeak(word);
           },
           onSave: () {
-            final word = selected.trim();
+            final word = selectedWord;
             if (word.isEmpty) return;
             clearSelection();
             onSave(word);
@@ -308,6 +331,31 @@ class HighlightableText extends HookWidget {
       tokens.add(m.group(0)!);
     }
     return tokens;
+  }
+
+  static TextSelection? _resolveSingleWordRange(String text, int rawIndex) {
+    if (text.isEmpty) return null;
+
+    final maxIndex = text.length - 1;
+    int index = rawIndex.clamp(0, maxIndex);
+    final wordRe = RegExp(r'\S+');
+    final matches = wordRe.allMatches(text).toList();
+    if (matches.isEmpty) return null;
+
+    for (final m in matches) {
+      if (index >= m.start && index < m.end) {
+        return TextSelection(baseOffset: m.start, extentOffset: m.end);
+      }
+    }
+
+    for (final m in matches) {
+      if (index < m.start) {
+        return TextSelection(baseOffset: m.start, extentOffset: m.end);
+      }
+    }
+
+    final last = matches.last;
+    return TextSelection(baseOffset: last.start, extentOffset: last.end);
   }
 }
 

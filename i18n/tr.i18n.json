@@ -1,6 +1,7 @@
 {
   "welcome": "Hoşgeldiniz $name",
   "welcome2": "$appName'e hoşgeldiniz",
+  "continue_to": "$language diline devam et",
   "get_started": "Başlayın",
   "next": "Sonraki",
   "back": "Geri",
@@ -225,7 +226,18 @@
     "popularStories": "Popüler Hikayeler",
     "recommendForYou": "Size Özel Öneriler",
     "allStories": "Tüm Hikayeler",
-    "seeAll": "Tümünü gör"
+    "seeAll": "Tümünü gör",
+    "categories": {
+      "popular": "Popüler",
+      "space": "Uzay",
+      "magic": "Sihir",
+      "animals": "Hayvanlar",
+      "detectives": "Dedektifler",
+      "dinosaurs": "Dinozorlar",
+      "superhero": "Süper Kahraman",
+      "underwater": "Su Altı",
+      "fairytale": "Masal"
+    }
   },
   "library": {
     "title": "Kütüphane",

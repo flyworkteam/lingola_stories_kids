@@ -43,16 +43,16 @@ class LibraryBanner extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: BoxDecoration(
-                color: AppColors.primary.withValues(alpha: 0.15),
+                color: AppColors.primary,
                 borderRadius: AppBorderRadius.smRadius,
               ),
               child: Center(
                 child: SvgPicture.asset(
-                  AppIcons.libraryIcon,
-                  width: 26,
-                  height: 26,
+                  AppIcons.homelibrary,
+                  width: 32,
+                  height: 32,
                   colorFilter: const ColorFilter.mode(
-                    AppColors.primary,
+                    Colors.white,
                     BlendMode.srcIn,
                   ),
                 ),
@@ -73,15 +73,18 @@ class LibraryBanner extends StatelessWidget {
                   ),
                   Text(
                     context.t.home.libraryDescription,
-                    style: AppTextStyles.body(11, color: Colors.black54),
+                    style: AppTextStyles.body(
+                      13,
+                      letterSpacing: -0.05,
+                      color: Colors.black.withValues(alpha: 0.6),
+                    ),
                   ),
                 ],
               ),
             ),
-            const Icon(
-              Icons.chevron_right_rounded,
-              color: Colors.black38,
-              size: 22,
+            SvgPicture.asset(
+              AppIcons.leftArrow,
+              colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
             ),
           ],
         ),

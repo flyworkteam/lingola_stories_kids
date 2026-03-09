@@ -95,6 +95,8 @@ class _PopularWordCard extends StatelessWidget {
               children: [
                 Text(
                   item.word,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                   style: AppTextStyles.heading(
                     15,
                     FontWeight.w700,
@@ -115,6 +117,7 @@ class _PopularWordCard extends StatelessWidget {
                         item.translation ?? item.word,
                         style: AppTextStyles.body(12, color: Colors.black54),
                         overflow: TextOverflow.ellipsis,
+                        maxLines: 1,
                       ),
               ],
             ),

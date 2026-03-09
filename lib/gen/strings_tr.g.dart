@@ -39,6 +39,7 @@ class TranslationsTr with BaseTranslations<AppLocale, Translations> implements T
 	// Translations
 	@override String welcome({required Object name}) => 'Hoşgeldiniz ${name}';
 	@override String welcome2({required Object appName}) => '${appName}\'e hoşgeldiniz';
+	@override String continue_to({required Object language}) => '${language} diline devam et';
 	@override String get get_started => 'Başlayın';
 	@override String get next => 'Sonraki';
 	@override String get back => 'Geri';
@@ -204,6 +205,7 @@ class _TranslationsStoriesTr implements TranslationsStoriesEn {
 	@override String get recommendForYou => 'Size Özel Öneriler';
 	@override String get allStories => 'Tüm Hikayeler';
 	@override String get seeAll => 'Tümünü gör';
+	@override late final _TranslationsStoriesCategoriesTr categories = _TranslationsStoriesCategoriesTr._(_root);
 }
 
 // Path: library
@@ -526,8 +528,8 @@ class _TranslationsSplashScreen1Tr implements TranslationsSplashScreen1En {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Learn English with Stories';
-	@override String get description => 'No boring memorisation. Discover words in their natural flow through short and fun stories.';
+	@override String get title => 'Hikâyelerle İngilizce Öğrenin';
+	@override String get description => 'Sıkıcı ezber yok. Kısa ve eğlenceli hikâyelerle kelimeleri doğal akışları içinde keşfedin.';
 }
 
 // Path: splash.screen2
@@ -537,8 +539,8 @@ class _TranslationsSplashScreen2Tr implements TranslationsSplashScreen2En {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Artificial Intelligence Guides You';
-	@override String get description => 'It tracks the words you struggle with, explains their meaning, and suggests new stories tailored to your level.';
+	@override String get title => 'Yapay Zekâ Size Rehberlik Eder';
+	@override String get description => 'Zorlandığınız kelimeleri takip eder, anlamlarını açıklar ve seviyenize uygun yeni hikâyeler önerir.';
 }
 
 // Path: profile.sections
@@ -594,6 +596,24 @@ class _TranslationsHomePremiumPlanTr implements TranslationsHomePremiumPlanEn {
 	@override String get description => 'AI asistanının kilidini aç &\ntüm premium özellikleri edin';
 	@override String get button => 'Premium Al';
 	@override late final _TranslationsHomePremiumPlanDialogTr dialog = _TranslationsHomePremiumPlanDialogTr._(_root);
+}
+
+// Path: stories.categories
+class _TranslationsStoriesCategoriesTr implements TranslationsStoriesCategoriesEn {
+	_TranslationsStoriesCategoriesTr._(this._root);
+
+	final TranslationsTr _root; // ignore: unused_field
+
+	// Translations
+	@override String get popular => 'Popüler';
+	@override String get space => 'Uzay';
+	@override String get magic => 'Sihir';
+	@override String get animals => 'Hayvanlar';
+	@override String get detectives => 'Dedektifler';
+	@override String get dinosaurs => 'Dinozorlar';
+	@override String get superhero => 'Süper Kahraman';
+	@override String get underwater => 'Su Altı';
+	@override String get fairytale => 'Masal';
 }
 
 // Path: dayStreak.days
@@ -867,6 +887,7 @@ extension on TranslationsTr {
 		return switch (path) {
 			'welcome' => ({required Object name}) => 'Hoşgeldiniz ${name}',
 			'welcome2' => ({required Object appName}) => '${appName}\'e hoşgeldiniz',
+			'continue_to' => ({required Object language}) => '${language} diline devam et',
 			'get_started' => 'Başlayın',
 			'next' => 'Sonraki',
 			'back' => 'Geri',
@@ -977,10 +998,10 @@ extension on TranslationsTr {
 			'good_morning' => 'Günaydın',
 			'good_afternoon' => 'İyi günler',
 			'good_evening' => 'İyi akşamlar',
-			'splash.screen1.title' => 'Learn English with Stories',
-			'splash.screen1.description' => 'No boring memorisation. Discover words in their natural flow through short and fun stories.',
-			'splash.screen2.title' => 'Artificial Intelligence Guides You',
-			'splash.screen2.description' => 'It tracks the words you struggle with, explains their meaning, and suggests new stories tailored to your level.',
+			'splash.screen1.title' => 'Hikâyelerle İngilizce Öğrenin',
+			'splash.screen1.description' => 'Sıkıcı ezber yok. Kısa ve eğlenceli hikâyelerle kelimeleri doğal akışları içinde keşfedin.',
+			'splash.screen2.title' => 'Yapay Zekâ Size Rehberlik Eder',
+			'splash.screen2.description' => 'Zorlandığınız kelimeleri takip eder, anlamlarını açıklar ve seviyenize uygun yeni hikâyeler önerir.',
 			'profile.title' => 'Profil',
 			'profile.freeVersion' => 'Ücretsiz Versiyon',
 			'profile.error' => 'Hata',
@@ -1027,6 +1048,15 @@ extension on TranslationsTr {
 			'stories.recommendForYou' => 'Size Özel Öneriler',
 			'stories.allStories' => 'Tüm Hikayeler',
 			'stories.seeAll' => 'Tümünü gör',
+			'stories.categories.popular' => 'Popüler',
+			'stories.categories.space' => 'Uzay',
+			'stories.categories.magic' => 'Sihir',
+			'stories.categories.animals' => 'Hayvanlar',
+			'stories.categories.detectives' => 'Dedektifler',
+			'stories.categories.dinosaurs' => 'Dinozorlar',
+			'stories.categories.superhero' => 'Süper Kahraman',
+			'stories.categories.underwater' => 'Su Altı',
+			'stories.categories.fairytale' => 'Masal',
 			'library.title' => 'Kütüphane',
 			'library.wordCount' => ({required Object count}) => '${count} Kelime',
 			'library.popularWords' => 'Popüler Kelimeler',

@@ -39,6 +39,7 @@ class UserProfile {
   final int id;
   final String? email;
   final String? fullName;
+  final String? age;
   final String? authProvider;
   final bool isGuest;
   final bool isPremium;
@@ -54,6 +55,7 @@ class UserProfile {
     required this.id,
     this.email,
     this.fullName,
+    this.age,
     this.authProvider,
     required this.isGuest,
     required this.isPremium,
@@ -71,6 +73,7 @@ class UserProfile {
       id: json['id'] as int? ?? 0,
       email: json['email'] as String?,
       fullName: json['fullName'] as String? ?? json['full_name'] as String?,
+      age: json['age'] as String?,
       authProvider:
           json['authProvider'] as String? ?? json['auth_provider'] as String?,
       isGuest: _parseBool(json['isGuest'] ?? json['is_guest']),
@@ -98,6 +101,7 @@ class UserProfile {
     int? id,
     String? email,
     String? fullName,
+    String? age,
     String? authProvider,
     bool? isGuest,
     bool? isPremium,
@@ -113,6 +117,7 @@ class UserProfile {
       id: id ?? this.id,
       email: email ?? this.email,
       fullName: fullName ?? this.fullName,
+      age: age ?? this.age,
       authProvider: authProvider ?? this.authProvider,
       isGuest: isGuest ?? this.isGuest,
       isPremium: isPremium ?? this.isPremium,

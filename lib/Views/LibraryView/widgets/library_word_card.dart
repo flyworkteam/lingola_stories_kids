@@ -72,6 +72,8 @@ class LibraryWordCard extends StatelessWidget {
           const SizedBox(height: AppSpacing.sm),
           Text(
             word,
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
             style: AppTextStyles.heading(
               18,
               FontWeight.w600,
@@ -92,7 +94,7 @@ class LibraryWordCard extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                   overflow: TextOverflow.ellipsis,
-                  maxLines: 2,
+                  maxLines: 1,
                 ),
         ],
       ),

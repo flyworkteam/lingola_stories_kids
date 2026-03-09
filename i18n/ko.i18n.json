@@ -1,6 +1,7 @@
 {
   "welcome": "환영합니다 $name",
   "welcome2": "$appName에 오신 것을 환영합니다",
+  "continue_to": "$language 로 계속하기",
   "get_started": "시작하기",
   "next": "다음",
   "back": "뒤로",
@@ -225,7 +226,18 @@
     "popularStories": "인기 이야기",
     "recommendForYou": "추천 이야기",
     "allStories": "모든 이야기",
-    "seeAll": "전체 보기"
+    "seeAll": "전체 보기",
+    "categories": {
+      "popular": "인기",
+      "space": "우주",
+      "magic": "마법",
+      "animals": "동물",
+      "detectives": "탐정",
+      "dinosaurs": "공룡",
+      "superhero": "슈퍼히어로",
+      "underwater": "수중",
+      "fairytale": "동화"
+    }
   },
   "library": {
     "title": "라이브러리",

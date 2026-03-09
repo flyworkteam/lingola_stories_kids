@@ -35,26 +35,57 @@ class EditProfileView extends HookConsumerWidget {
     final user = userAsync.valueOrNull?.user;
 
     final nameController = useTextEditingController(text: user?.fullName ?? '');
+    final ageController = useTextEditingController(text: user?.age ?? '');
     final selectedLanguage = useState(user?.preferredLanguage ?? 'en');
     final selectedAvatar = useState(
       user?.profilePictureUrl ?? 'ic_avatar3.svg',
     );
     final showSuccess = useState(false);
     final isLoading = useState(false);
+    final successToastKey = useMemoized(GlobalKey.new);
 
     // Update local state when user data loads from backend
+    useEffect(
+      () {
+        if (user?.fullName != null && nameController.text != user!.fullName) {
+          nameController.text = user.fullName!;
+        }
+        if (user?.age != null && ageController.text != user!.age) {
+          ageController.text = user.age!;
+        }
+        if (user?.preferredLanguage != null) {
+          selectedLanguage.value = user!.preferredLanguage;
+        }
+        if (user?.profilePictureUrl != null) {
+          selectedAvatar.value = user!.profilePictureUrl!;
+        }
+        return null;
+      },
+      [
+        user?.fullName,
+        user?.age,
+        user?.preferredLanguage,
+        user?.profilePictureUrl,
+      ],
+    );
+
     useEffect(() {
-      if (user?.fullName != null && nameController.text != user!.fullName) {
-        nameController.text = user.fullName!;
-      }
-      if (user?.preferredLanguage != null) {
-        selectedLanguage.value = user!.preferredLanguage;
-      }
-      if (user?.profilePictureUrl != null) {
-        selectedAvatar.value = user!.profilePictureUrl!;
-      }
+      if (!showSuccess.value) return null;
+
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        final toastContext = successToastKey.currentContext;
+        if (toastContext == null) return;
+
+        Scrollable.ensureVisible(
+          toastContext,
+          duration: const Duration(milliseconds: 320),
+          curve: Curves.easeOut,
+          alignment: 0.9,
+        );
+      });
+
       return null;
-    }, [user?.fullName, user?.preferredLanguage, user?.profilePictureUrl]);
+    }, [showSuccess.value]);
 
     Future<void> save() async {
       isLoading.value = true;
@@ -62,6 +93,7 @@ class EditProfileView extends HookConsumerWidget {
         fullName: nameController.text.trim(),
         profilePictureUrl: selectedAvatar.value,
         preferredLanguage: selectedLanguage.value,
+        age: ageController.text.trim(),
       );
       isLoading.value = false;
 
@@ -86,169 +118,177 @@ class EditProfileView extends HookConsumerWidget {
     }
 
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.only(bottom: 32),
-        child: Column(
-          children: [
-            const SizedBox(height: kToolbarHeight),
-            Row(
-              children: [
-                SizedBox(width: AppSpacing.xl),
-                GestureDetector(
-                  onTap: () => Navigator.of(context).pop(),
-                  child: SvgPicture.asset(AppIcons.longLeftArrow),
+      body: Column(
+        children: [
+          const SizedBox(height: kToolbarHeight),
+          Row(
+            children: [
+              SizedBox(width: AppSpacing.xl),
+              GestureDetector(
+                onTap: () => Navigator.of(context).pop(),
+                child: SvgPicture.asset(AppIcons.longLeftArrow),
+              ),
+              const SizedBox(width: AppSpacing.sm),
+              Text(
+                t.editProfile.title,
+                style: AppTextStyles.heading(
+                  18,
+                  FontWeight.w700,
+                  color: Colors.black,
                 ),
-                const SizedBox(width: AppSpacing.sm),
+              ),
+            ],
+          ),
+
+          // Avatar selector
+          AvatarSelector(
+            selectedAvatar: selectedAvatar.value,
+            onChanged: (key) => selectedAvatar.value = key,
+          ),
+          const SizedBox(height: AppSpacing.xxl),
+
+          // Form fields
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Full Name
+                    ProfileTextField(
+                      label: t.editProfile.fullName,
+                      hint: t.editProfile.fullName,
+                      icon: AppIcons.editProfile,
+                      controller: nameController,
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+
+                    // Email (read-only)
+                    ProfileTextField(
+                      label: t.editProfile.email,
+                      hint: user?.email ?? '',
+                      icon: AppIcons.mail,
+                      readOnly: true,
+                      trailingSuffix: SvgPicture.asset(
+                        AppIcons.lock,
+                        width: 18,
+                        height: 18,
+                        colorFilter: const ColorFilter.mode(
+                          Colors.grey,
+                          BlendMode.srcIn,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+
+                    ProfileTextField(
+                      label: t.editProfile.age,
+                      hint: user?.age ?? '',
+                      controller: ageController,
+                      icon: AppIcons.birth,
+                    ),
+                    const SizedBox(height: AppSpacing.lg),
+
+                    // Select Learn Language
+                    Text(
+                      context.t.editProfile.learnLanguage,
+                      style: AppTextStyles.body(
+                        14,
+                        weight: FontWeight.w700,
+                        letterSpacing: -0.05,
+                        color: const Color(0xFF5F8486),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    SelectLearnLanguage(
+                      selectedCode: selectedLanguage.value,
+                      onChanged: (code) => selectedLanguage.value = code,
+                    ),
+                    // Success toast
+                    if (showSuccess.value) ...[
+                      const SizedBox(height: AppSpacing.lg),
+                      Container(
+                        key: successToastKey,
+                        child: Toast(
+                          title: t.storyDetails.successfully,
+                          message: t.editProfile.updateSuccess,
+                          onDismiss: () => showSuccess.value = false,
+                          icon: AppIcons.successToast,
+                          backgroundColor: const Color(
+                            0xFFE6F7F1,
+                          ).withValues(alpha: 0.8),
+                          appIconColor: const Color(0xFF43A047),
+                        ),
+                      ),
+                      const SizedBox(height: AppSpacing.lg),
+                    ],
+                  ],
+                ),
+              ),
+            ),
+          ),
+
+          // Save button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+            child: CustomButton(
+              label: context.t.save,
+              size: CustomButtonSize.large,
+              fullWidth: true,
+              borderRadius: 18,
+              labelStyle: AppTextStyles.body(
+                24,
+                weight: FontWeight.w700,
+                color: Colors.white,
+                letterSpacing: -0.05,
+              ),
+              backgroundColor: isLoading.value
+                  ? AppColors.secondary
+                  : AppColors.primary,
+              shadow: [
+                BoxShadow(
+                  color: isLoading.value
+                      ? AppColors.secondaryShadow
+                      : AppColors.primaryShadow,
+                  blurRadius: 0,
+                  offset: const Offset(0, 5),
+                ),
+              ],
+              onPressed: isLoading.value ? null : save,
+            ),
+          ),
+          const SizedBox(height: AppSpacing.lg),
+
+          // Delete account
+          GestureDetector(
+            onTap: () => _showDeleteBottomSheet(context, deleteAccount),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  AppIcons.delete,
+                  width: 18,
+                  height: 18,
+                  colorFilter: const ColorFilter.mode(
+                    Color(0xFFE53935),
+                    BlendMode.srcIn,
+                  ),
+                ),
+                const SizedBox(width: 6),
                 Text(
-                  t.editProfile.title,
-                  style: AppTextStyles.heading(
-                    18,
-                    FontWeight.w700,
-                    color: Colors.black,
+                  t.editProfile.deleteAccount,
+                  style: AppTextStyles.body(
+                    14,
+                    weight: FontWeight.w600,
+                    color: const Color(0xFFE53935),
                   ),
                 ),
               ],
             ),
-
-            // Avatar selector
-            AvatarSelector(
-              selectedAvatar: selectedAvatar.value,
-              onChanged: (key) => selectedAvatar.value = key,
-            ),
-            const SizedBox(height: AppSpacing.xxl),
-
-            // Form fields
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Full Name
-                  ProfileTextField(
-                    label: t.editProfile.fullName,
-                    hint: t.editProfile.fullName,
-                    icon: AppIcons.editProfile,
-                    controller: nameController,
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-
-                  // Email (read-only)
-                  ProfileTextField(
-                    label: t.editProfile.email,
-                    hint: user?.email ?? '',
-                    icon: AppIcons.mail,
-                    readOnly: true,
-                    trailingSuffix: SvgPicture.asset(
-                      AppIcons.lock,
-                      width: 18,
-                      height: 18,
-                      colorFilter: const ColorFilter.mode(
-                        Colors.grey,
-                        BlendMode.srcIn,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: AppSpacing.lg),
-
-                  // Select Learn Language
-                  Text(
-                    context.t.editProfile.learnLanguage,
-                    style: AppTextStyles.body(
-                      14,
-                      weight: FontWeight.w700,
-                      letterSpacing: -0.05,
-                      color: const Color(0xFF5F8486),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  SelectLearnLanguage(
-                    selectedCode: selectedLanguage.value,
-                    onChanged: (code) => selectedLanguage.value = code,
-                  ),
-                ],
-              ),
-            ),
-
-            const SizedBox(height: AppSpacing.xxl),
-
-            // Success toast
-            if (showSuccess.value) ...[
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-                child: Toast(
-                  title: t.storyDetails.successfully,
-                  message: t.editProfile.updateSuccess,
-                  onDismiss: () => showSuccess.value = false,
-                  icon: AppIcons.successToast,
-                  backgroundColor: const Color(
-                    0xFFE6F7F1,
-                  ).withValues(alpha: 0.8),
-                  appIconColor: const Color(0xFF43A047),
-                ),
-              ),
-              const SizedBox(height: AppSpacing.lg),
-            ],
-
-            // Save button
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-              child: CustomButton(
-                label: context.t.save,
-                size: CustomButtonSize.large,
-                fullWidth: true,
-                borderRadius: 18,
-                labelStyle: AppTextStyles.body(
-                  24,
-                  weight: FontWeight.w700,
-                  color: Colors.white,
-                  letterSpacing: -0.05,
-                ),
-                backgroundColor: isLoading.value
-                    ? AppColors.secondary
-                    : AppColors.primary,
-                shadow: [
-                  BoxShadow(
-                    color: isLoading.value
-                        ? AppColors.secondaryShadow
-                        : AppColors.primaryShadow,
-                    blurRadius: 0,
-                    offset: const Offset(0, 5),
-                  ),
-                ],
-                onPressed: isLoading.value ? null : save,
-              ),
-            ),
-            const SizedBox(height: AppSpacing.lg),
-
-            // Delete account
-            GestureDetector(
-              onTap: () => _showDeleteBottomSheet(context, deleteAccount),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(
-                    AppIcons.delete,
-                    width: 18,
-                    height: 18,
-                    colorFilter: const ColorFilter.mode(
-                      Color(0xFFE53935),
-                      BlendMode.srcIn,
-                    ),
-                  ),
-                  const SizedBox(width: 6),
-                  Text(
-                    t.editProfile.deleteAccount,
-                    style: AppTextStyles.body(
-                      14,
-                      weight: FontWeight.w600,
-                      color: const Color(0xFFE53935),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          ),
+          SafeArea(top: false, child: const SizedBox(height: AppSpacing.sm)),
+        ],
       ),
     );
   }

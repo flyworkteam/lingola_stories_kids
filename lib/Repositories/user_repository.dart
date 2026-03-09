@@ -39,6 +39,7 @@ class UserRepository {
     String? fullName,
     String? preferredLanguage,
     String? profilePictureUrl,
+    String? age,
     CancelToken? cancelToken,
   }) async {
     try {
@@ -49,6 +50,9 @@ class UserRepository {
       }
       if (profilePictureUrl != null) {
         data['profile_picture_url'] = profilePictureUrl;
+      }
+      if (age != null) {
+        data['age'] = age;
       }
 
       final response = await _dioService.put(

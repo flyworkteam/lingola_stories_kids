@@ -39,6 +39,7 @@ class TranslationsRu with BaseTranslations<AppLocale, Translations> implements T
 	// Translations
 	@override String welcome({required Object name}) => 'Добро пожаловать ${name}';
 	@override String welcome2({required Object appName}) => 'Добро пожаловать в ${appName}';
+	@override String continue_to({required Object language}) => 'Продолжить на ${language}';
 	@override String get get_started => 'Начать';
 	@override String get next => 'Далее';
 	@override String get back => 'Назад';
@@ -204,6 +205,7 @@ class _TranslationsStoriesRu implements TranslationsStoriesEn {
 	@override String get recommendForYou => 'Рекомендуем для вас';
 	@override String get allStories => 'Все истории';
 	@override String get seeAll => 'Смотреть все';
+	@override late final _TranslationsStoriesCategoriesRu categories = _TranslationsStoriesCategoriesRu._(_root);
 }
 
 // Path: library
@@ -596,6 +598,24 @@ class _TranslationsHomePremiumPlanRu implements TranslationsHomePremiumPlanEn {
 	@override late final _TranslationsHomePremiumPlanDialogRu dialog = _TranslationsHomePremiumPlanDialogRu._(_root);
 }
 
+// Path: stories.categories
+class _TranslationsStoriesCategoriesRu implements TranslationsStoriesCategoriesEn {
+	_TranslationsStoriesCategoriesRu._(this._root);
+
+	final TranslationsRu _root; // ignore: unused_field
+
+	// Translations
+	@override String get popular => 'Популярные';
+	@override String get space => 'Космические приключения';
+	@override String get magic => 'Волшебные миры';
+	@override String get animals => 'Добрые друзья';
+	@override String get detectives => 'Маленькие детективы';
+	@override String get dinosaurs => 'Эпоха динозавров';
+	@override String get superhero => 'Супергерои';
+	@override String get underwater => 'Подводное царство';
+	@override String get fairytale => 'Сказки о принцах и принцессах';
+}
+
 // Path: dayStreak.days
 class _TranslationsDayStreakDaysRu implements TranslationsDayStreakDaysEn {
 	_TranslationsDayStreakDaysRu._(this._root);
@@ -867,6 +887,7 @@ extension on TranslationsRu {
 		return switch (path) {
 			'welcome' => ({required Object name}) => 'Добро пожаловать ${name}',
 			'welcome2' => ({required Object appName}) => 'Добро пожаловать в ${appName}',
+			'continue_to' => ({required Object language}) => 'Продолжить на ${language}',
 			'get_started' => 'Начать',
 			'next' => 'Далее',
 			'back' => 'Назад',
@@ -1027,6 +1048,15 @@ extension on TranslationsRu {
 			'stories.recommendForYou' => 'Рекомендуем для вас',
 			'stories.allStories' => 'Все истории',
 			'stories.seeAll' => 'Смотреть все',
+			'stories.categories.popular' => 'Популярные',
+			'stories.categories.space' => 'Космические приключения',
+			'stories.categories.magic' => 'Волшебные миры',
+			'stories.categories.animals' => 'Добрые друзья',
+			'stories.categories.detectives' => 'Маленькие детективы',
+			'stories.categories.dinosaurs' => 'Эпоха динозавров',
+			'stories.categories.superhero' => 'Супергерои',
+			'stories.categories.underwater' => 'Подводное царство',
+			'stories.categories.fairytale' => 'Сказки о принцах и принцессах',
 			'library.title' => 'Библиотека',
 			'library.wordCount' => ({required Object count}) => '${count} Слов',
 			'library.popularWords' => 'Популярные слова',

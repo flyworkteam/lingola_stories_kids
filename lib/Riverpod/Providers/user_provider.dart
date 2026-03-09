@@ -49,12 +49,14 @@ class UserNotifier extends AsyncNotifier<UserProfileData?> {
     String? fullName,
     String? profilePictureUrl,
     String? preferredLanguage,
+    String? age,
   }) async {
     try {
       final success = await _repository.updateUserProfile(
         fullName: fullName,
         profilePictureUrl: profilePictureUrl,
         preferredLanguage: preferredLanguage,
+        age: age,
       );
       if (success) {
         await refresh();

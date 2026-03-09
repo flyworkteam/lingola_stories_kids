@@ -37,14 +37,64 @@ class HomeView extends HookConsumerWidget {
       return null;
     }, const []);
 
-    final selectedCategory = useState<String>('Popular');
+    final selectedCategory = useState<String>('popular');
     final isPremium = ref.watch(
       userProfileProvider.select(
         (data) => data.valueOrNull?.user.isPremium ?? false,
       ),
     );
-    String categoryIcon(String category) {
-      switch (category.toLowerCase()) {
+    String categoryLabel(BuildContext context, String categoryKey) {
+      switch (categoryKey) {
+        case 'popular':
+          return context.t.stories.categories.popular;
+        case 'space':
+          return context.t.stories.categories.space;
+        case 'magic':
+          return context.t.stories.categories.magic;
+        case 'animals':
+          return context.t.stories.categories.animals;
+        case 'detectives':
+          return context.t.stories.categories.detectives;
+        case 'dinosaurs':
+          return context.t.stories.categories.dinosaurs;
+        case 'superhero':
+          return context.t.stories.categories.superhero;
+        case 'underwater':
+          return context.t.stories.categories.underwater;
+        case 'fairytale':
+          return context.t.stories.categories.fairytale;
+        default:
+          return context.t.stories.categories.popular;
+      }
+    }
+
+    String apiCategory(String categoryKey) {
+      switch (categoryKey) {
+        case 'popular':
+          return 'Popular';
+        case 'space':
+          return 'Space';
+        case 'magic':
+          return 'Magic';
+        case 'animals':
+          return 'Animals';
+        case 'detectives':
+          return 'Detectives';
+        case 'dinosaurs':
+          return 'Dinosaurs';
+        case 'superhero':
+          return 'Superhero';
+        case 'underwater':
+          return 'Underwater';
+        case 'fairytale':
+          return 'Fairy Tale';
+        default:
+          return 'Popular';
+      }
+    }
+
+    String categoryIcon(String categoryKey) {
+      switch (categoryKey) {
         case 'popular':
           return '⭐';
         case 'space':
@@ -61,7 +111,7 @@ class HomeView extends HookConsumerWidget {
           return '🦸';
         case 'underwater':
           return '🌊';
-        case 'fairy tale':
+        case 'fairytale':
           return '🏰';
         default:
           return '⭐';
@@ -69,15 +119,15 @@ class HomeView extends HookConsumerWidget {
     }
 
     final categories = const [
-      'Popular',
-      'Space',
-      'Magic',
-      'Animals',
-      'Detectives',
-      'Dinosaurs',
-      'Superhero',
-      'Underwater',
-      'Fairy Tale',
+      'popular',
+      'space',
+      'magic',
+      'animals',
+      'detectives',
+      'dinosaurs',
+      'superhero',
+      'underwater',
+      'fairytale',
     ];
     final featuredStoriesFuture = useFuture(
       useMemoized(
@@ -85,10 +135,10 @@ class HomeView extends HookConsumerWidget {
             .read(storyProvider.notifier)
             .fetchPage(
               limit: 5,
-              isPopular: selectedCategory.value == 'Popular' ? true : null,
-              category: selectedCategory.value == 'Popular'
+              isPopular: selectedCategory.value == 'popular' ? true : null,
+              category: selectedCategory.value == 'popular'
                   ? null
-                  : selectedCategory.value,
+                  : apiCategory(selectedCategory.value),
             ),
         [selectedCategory.value],
       ),
@@ -138,7 +188,7 @@ class HomeView extends HookConsumerWidget {
                     final cat = categories[index];
                     final isSelected = cat == selectedCategory.value;
                     return CategoryChip(
-                      label: cat,
+                      label: categoryLabel(context, cat),
                       icon: categoryIcon(cat),
                       isPng: true,
                       isSelected: isSelected,
@@ -280,6 +330,7 @@ class HomeView extends HookConsumerWidget {
 
               // Library banner
               SafeArea(
+                top: false,
                 child: Padding(
                   padding: const EdgeInsets.symmetric(
                     horizontal: AppSpacing.xl,

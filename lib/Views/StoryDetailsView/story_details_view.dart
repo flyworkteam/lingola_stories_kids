@@ -79,6 +79,111 @@ class StoryDetailsView extends HookConsumerWidget {
     final savedSectionIndex = useState(0);
     final savedAudioPos = useState<Duration?>(null);
     final manualProgressSet = useState(false);
+    final forceStartFromSavedProgress = useState(false);
+
+    // ── Word-level progress tracking (fallback TTS for single-word speak) ────
+    final activeWordStart = useState(-1);
+    final activeWordEnd = useState(-1);
+    final readUpTo = useState(0);
+
+    final tts = useMemoized(() => FlutterTts());
+    final textMap = useMemoized(() => StoryTextMap.from(loadedStory.value), [
+      loadedStory.value.sections.length,
+    ]);
+
+    int resolveSectionStartOffset({
+      required StoryModel storyData,
+      required int sectionIndex,
+    }) {
+      if (storyData.sections.isEmpty) return 0;
+      final int safeSection = sectionIndex.clamp(
+        0,
+        storyData.sections.length - 1,
+      );
+      int offset = storyData.introduction.length + 1;
+      for (int i = 0; i < safeSection; i++) {
+        offset += storyData.sections[i].content.length + 1;
+      }
+      return offset;
+    }
+
+    int resolveReadUpToForPosition({
+      required StoryModel storyData,
+      required int sectionIndex,
+      required Duration? position,
+    }) {
+      if (storyData.sections.isEmpty) return 0;
+
+      final int safeSection = sectionIndex.clamp(
+        0,
+        storyData.sections.length - 1,
+      );
+      int sectionReadUpTo = resolveSectionStartOffset(
+        storyData: storyData,
+        sectionIndex: safeSection,
+      );
+      final section = storyData.sections[safeSection];
+      final double posSeconds = (position?.inMilliseconds ?? 0) / 1000.0;
+
+      if (posSeconds <= 0) {
+        return sectionReadUpTo;
+      }
+
+      final timestamps = section.wordTimestamps;
+      if (timestamps == null || timestamps.startTimes.isEmpty) {
+        return sectionReadUpTo;
+      }
+
+      int? activeWordIndex;
+      for (int i = 0; i < timestamps.startTimes.length; i++) {
+        if (posSeconds >= timestamps.startTimes[i]) {
+          activeWordIndex = i;
+        } else {
+          break;
+        }
+      }
+
+      if (activeWordIndex == null) {
+        return sectionReadUpTo;
+      }
+
+      final matches = RegExp(r'\S+').allMatches(section.content).toList();
+      if (matches.isEmpty) {
+        return sectionReadUpTo;
+      }
+
+      final int safeWordIndex = activeWordIndex.clamp(0, matches.length - 1);
+      sectionReadUpTo += matches[safeWordIndex].end;
+      return sectionReadUpTo;
+    }
+
+    Future<void> refreshProgressFromBackend({
+      required StoryModel storyData,
+    }) async {
+      final progress = await storyNotifier.getStoryProgress(story.id);
+      if (progress == null) return;
+
+      final isCompleted =
+          progress['is_completed'] == 1 || progress['is_completed'] == true;
+      if (isCompleted) return;
+
+      final int page = progress['current_page'] ?? 0;
+      final rawPos = progress['audio_position'];
+      final double pos = rawPos is String
+          ? double.tryParse(rawPos) ?? 0.0
+          : (rawPos as num?)?.toDouble() ?? 0.0;
+
+      savedSectionIndex.value = page;
+      savedAudioPos.value = pos > 0
+          ? Duration(milliseconds: (pos * 1000).toInt())
+          : null;
+      readUpTo.value = resolveReadUpToForPosition(
+        storyData: storyData,
+        sectionIndex: savedSectionIndex.value,
+        position: savedAudioPos.value,
+      );
+      forceStartFromSavedProgress.value = true;
+    }
 
     // ── Load sections from backend ───────────────────────────────────────────
     useEffect(() {
@@ -113,6 +218,12 @@ class StoryDetailsView extends HookConsumerWidget {
                   milliseconds: (pos * 1000).toInt(),
                 );
               }
+
+              readUpTo.value = resolveReadUpToForPosition(
+                storyData: fullStory,
+                sectionIndex: savedSectionIndex.value,
+                position: savedAudioPos.value,
+              );
             }
           }
         } catch (e) {
@@ -155,16 +266,6 @@ class StoryDetailsView extends HookConsumerWidget {
     final dominantColorDark = useState<Color>(
       Color.lerp(startColor, Colors.black, 0.40)!,
     );
-
-    // ── Word-level progress tracking (fallback TTS for single-word speak) ────
-    final activeWordStart = useState(-1);
-    final activeWordEnd = useState(-1);
-    final readUpTo = useState(0);
-
-    final tts = useMemoized(() => FlutterTts());
-    final textMap = useMemoized(() => StoryTextMap.from(loadedStory.value), [
-      loadedStory.value.sections.length,
-    ]);
 
     // ── Palette extraction from cover image ──────────────────────────────────
     useEffect(() {
@@ -257,7 +358,14 @@ class StoryDetailsView extends HookConsumerWidget {
     Future<void> startRead() async {
       isReading.value = true;
       isListening.value = false;
-      if (audioService.audioPosition.inMilliseconds > 0) {
+      if (forceStartFromSavedProgress.value) {
+        await audioService.stop();
+        forceStartFromSavedProgress.value = false;
+        await audioService.play(
+          fromSection: savedSectionIndex.value,
+          position: savedAudioPos.value,
+        );
+      } else if (audioService.audioPosition.inMilliseconds > 0) {
         await audioService.resume();
       } else {
         readUpTo.value = 0;
@@ -281,7 +389,14 @@ class StoryDetailsView extends HookConsumerWidget {
     Future<void> startListen() async {
       isListening.value = true;
       isReading.value = false;
-      if (audioService.audioPosition.inMilliseconds > 0) {
+      if (forceStartFromSavedProgress.value) {
+        await audioService.stop();
+        forceStartFromSavedProgress.value = false;
+        await audioService.play(
+          fromSection: savedSectionIndex.value,
+          position: savedAudioPos.value,
+        );
+      } else if (audioService.audioPosition.inMilliseconds > 0) {
         await audioService.resume();
       } else {
         readUpTo.value = 0;
@@ -446,7 +561,7 @@ class StoryDetailsView extends HookConsumerWidget {
 
                             // Title + actions (bookmark + 3-dot)
                             Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Expanded(
                                   child: Text(
@@ -469,20 +584,19 @@ class StoryDetailsView extends HookConsumerWidget {
                                   child: GestureDetector(
                                     behavior: HitTestBehavior.opaque,
                                     onTap: toggleMenu,
-                                    child: Container(
+                                    child: SizedBox(
                                       width: 36,
                                       height: 36,
-                                      decoration: BoxDecoration(
-                                        color: Colors.white.withValues(
-                                          alpha: 0.08,
-                                        ),
-                                        shape: BoxShape.circle,
-                                      ),
-                                      child: const Center(
-                                        child: Icon(
-                                          Icons.more_vert_rounded,
-                                          color: Colors.white70,
-                                          size: 20,
+
+                                      child: Center(
+                                        child: SvgPicture.asset(
+                                          AppIcons.threedot,
+                                          width: 30,
+                                          height: 30,
+                                          colorFilter: const ColorFilter.mode(
+                                            Colors.white,
+                                            BlendMode.srcIn,
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -534,7 +648,7 @@ class StoryDetailsView extends HookConsumerWidget {
                                     libraryWords: ref
                                         .watch(libraryProvider)
                                         .allWords,
-                                    onWhereLeftOff: (int charIndex) {
+                                    onWhereLeftOff: (int charIndex) async {
                                       final section = e.value;
                                       final matches = RegExp(
                                         r'\S+',
@@ -559,28 +673,67 @@ class StoryDetailsView extends HookConsumerWidget {
                                         targetWordIndex = matches.length - 1;
                                       }
 
+                                      final clampedCharIndex = charIndex.clamp(
+                                        0,
+                                        section.content.length,
+                                      );
+                                      savedSectionIndex.value = e.key;
+                                      readUpTo.value =
+                                          resolveSectionStartOffset(
+                                            storyData: loadedStory.value,
+                                            sectionIndex: e.key,
+                                          ) +
+                                          clampedCharIndex;
+                                      activeWordStart.value = -1;
+                                      activeWordEnd.value = -1;
+
                                       final timestamps = section.wordTimestamps;
                                       if (timestamps != null &&
                                           targetWordIndex <
                                               timestamps.startTimes.length) {
                                         final double pos = timestamps
                                             .startTimes[targetWordIndex];
-                                        savedSectionIndex.value = e.key;
                                         savedAudioPos.value = Duration(
                                           milliseconds: (pos * 1000).toInt(),
                                         );
-                                        manualProgressSet.value = true;
-                                        CustomOverlay.show(
-                                          context,
-                                          title: context
-                                              .t
-                                              .storyDetails
-                                              .successfully,
-                                          message: context.t.storyDetails.saved,
-                                          icon: AppIcons.successToast,
-                                          type: OverlayType.success,
+                                        readUpTo
+                                            .value = resolveReadUpToForPosition(
+                                          storyData: loadedStory.value,
+                                          sectionIndex: savedSectionIndex.value,
+                                          position: savedAudioPos.value,
                                         );
+                                      } else {
+                                        savedAudioPos.value = null;
                                       }
+
+                                      forceStartFromSavedProgress.value = true;
+
+                                      // Persist immediately and then refresh from backend so
+                                      // the next playback starts from the server-authoritative point.
+                                      await storyNotifier.saveStoryProgress(
+                                        storyId: story.id,
+                                        currentPage: savedSectionIndex.value,
+                                        audioPosition:
+                                            (savedAudioPos
+                                                    .value
+                                                    ?.inMilliseconds ??
+                                                0) /
+                                            1000.0,
+                                        isCompleted: false,
+                                      );
+                                      await refreshProgressFromBackend(
+                                        storyData: loadedStory.value,
+                                      );
+
+                                      manualProgressSet.value = true;
+                                      CustomOverlay.show(
+                                        context,
+                                        title:
+                                            context.t.storyDetails.successfully,
+                                        message: context.t.storyDetails.saved,
+                                        icon: AppIcons.successToast,
+                                        type: OverlayType.success,
+                                      );
                                     },
                                     onSave: (w) {
                                       ref

@@ -73,6 +73,7 @@ class ProfileView extends HookConsumerWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       extendBodyBehindAppBar: true,
+      extendBody: true,
       body: Stack(
         children: [
           // Blur blobs

@@ -391,7 +391,7 @@ class _FilterOverlay extends HookWidget {
                             ),
                           ),
                           child: Text(
-                            cat,
+                            _categoryLabel(context, cat),
                             style: AppTextStyles.body(
                               13,
                               weight: FontWeight.w600,
@@ -433,5 +433,30 @@ class _FilterOverlay extends HookWidget {
         ),
       ),
     );
+  }
+}
+
+String _categoryLabel(BuildContext context, String category) {
+  switch (category) {
+    case 'Popular':
+      return context.t.stories.categories.popular;
+    case 'Space':
+      return context.t.stories.categories.space;
+    case 'Magic':
+      return context.t.stories.categories.magic;
+    case 'Animals':
+      return context.t.stories.categories.animals;
+    case 'Detectives':
+      return context.t.stories.categories.detectives;
+    case 'Dinosaurs':
+      return context.t.stories.categories.dinosaurs;
+    case 'Superhero':
+      return context.t.stories.categories.superhero;
+    case 'Underwater':
+      return context.t.stories.categories.underwater;
+    case 'Fairy Tale':
+      return context.t.stories.categories.fairytale;
+    default:
+      return category;
   }
 }

@@ -39,6 +39,7 @@ class TranslationsKo with BaseTranslations<AppLocale, Translations> implements T
 	// Translations
 	@override String welcome({required Object name}) => '환영합니다 ${name}';
 	@override String welcome2({required Object appName}) => '${appName}에 오신 것을 환영합니다';
+	@override String continue_to({required Object language}) => '${language} 로 계속하기';
 	@override String get get_started => '시작하기';
 	@override String get next => '다음';
 	@override String get back => '뒤로';
@@ -204,6 +205,7 @@ class _TranslationsStoriesKo implements TranslationsStoriesEn {
 	@override String get recommendForYou => '추천 이야기';
 	@override String get allStories => '모든 이야기';
 	@override String get seeAll => '전체 보기';
+	@override late final _TranslationsStoriesCategoriesKo categories = _TranslationsStoriesCategoriesKo._(_root);
 }
 
 // Path: library
@@ -596,6 +598,24 @@ class _TranslationsHomePremiumPlanKo implements TranslationsHomePremiumPlanEn {
 	@override late final _TranslationsHomePremiumPlanDialogKo dialog = _TranslationsHomePremiumPlanDialogKo._(_root);
 }
 
+// Path: stories.categories
+class _TranslationsStoriesCategoriesKo implements TranslationsStoriesCategoriesEn {
+	_TranslationsStoriesCategoriesKo._(this._root);
+
+	final TranslationsKo _root; // ignore: unused_field
+
+	// Translations
+	@override String get popular => '인기';
+	@override String get space => '우주';
+	@override String get magic => '마법';
+	@override String get animals => '동물';
+	@override String get detectives => '탐정';
+	@override String get dinosaurs => '공룡';
+	@override String get superhero => '슈퍼히어로';
+	@override String get underwater => '수중';
+	@override String get fairytale => '동화';
+}
+
 // Path: dayStreak.days
 class _TranslationsDayStreakDaysKo implements TranslationsDayStreakDaysEn {
 	_TranslationsDayStreakDaysKo._(this._root);
@@ -867,6 +887,7 @@ extension on TranslationsKo {
 		return switch (path) {
 			'welcome' => ({required Object name}) => '환영합니다 ${name}',
 			'welcome2' => ({required Object appName}) => '${appName}에 오신 것을 환영합니다',
+			'continue_to' => ({required Object language}) => '${language} 로 계속하기',
 			'get_started' => '시작하기',
 			'next' => '다음',
 			'back' => '뒤로',
@@ -1027,6 +1048,15 @@ extension on TranslationsKo {
 			'stories.recommendForYou' => '추천 이야기',
 			'stories.allStories' => '모든 이야기',
 			'stories.seeAll' => '전체 보기',
+			'stories.categories.popular' => '인기',
+			'stories.categories.space' => '우주',
+			'stories.categories.magic' => '마법',
+			'stories.categories.animals' => '동물',
+			'stories.categories.detectives' => '탐정',
+			'stories.categories.dinosaurs' => '공룡',
+			'stories.categories.superhero' => '슈퍼히어로',
+			'stories.categories.underwater' => '수중',
+			'stories.categories.fairytale' => '동화',
 			'library.title' => '라이브러리',
 			'library.wordCount' => ({required Object count}) => '${count} 단어',
 			'library.popularWords' => '인기 단어',

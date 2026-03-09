@@ -63,9 +63,9 @@ class BottomActionsBar extends StatelessWidget {
                       ),
                     ],
                     icon: SvgPicture.asset(
-                      isReading ? AppIcons.stop : AppIcons.play,
-                      width: 18,
-                      height: 18,
+                      isReading ? AppIcons.stop : AppIcons.playStory,
+                      width: 24,
+                      height: 24,
                       colorFilter: const ColorFilter.mode(
                         Colors.white,
                         BlendMode.srcIn,
@@ -85,49 +85,37 @@ class BottomActionsBar extends StatelessWidget {
                 const SizedBox(width: AppSpacing.md),
 
                 Expanded(
-                  child: SizedBox(
-                    height: 56,
-                    child: Stack(
-                      alignment: Alignment.center,
-                      children: [
-                        Positioned.fill(
-                          child: SvgPicture.asset(
-                            AppIcons.listenShadow,
-                            width: 160,
-                            height: 230,
-                            fit: BoxFit.contain,
-                          ),
-                        ),
-                        InkWell(
-                          onTap: onListen,
-                          borderRadius: BorderRadius.circular(18),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              SvgPicture.asset(
-                                AppIcons.speaker,
-                                width: 18,
-                                height: 18,
-                                colorFilter: ColorFilter.mode(
-                                  isListening
-                                      ? AppColors.primary
-                                      : Colors.white,
-                                  BlendMode.srcIn,
-                                ),
-                              ),
-                              const SizedBox(width: AppSpacing.sm),
-                              Text(
-                                context.t.storyDetails.listen,
-                                style: AppTextStyles.body(
-                                  24,
-                                  color: Colors.white,
-                                  letterSpacing: -0.05,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                  child: CustomButton(
+                    onPressed: onListen,
+                    type: CustomButtonType.filled,
+                    backgroundColor: Colors.transparent.withValues(alpha: 0.3),
+                    size: CustomButtonSize.small,
+                    fullWidth: true,
+                    borderRadius: 18,
+                    shadow: [
+                      BoxShadow(
+                        color: Colors.transparent.withValues(alpha: 0.2),
+                        blurRadius: 0,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                    icon: SvgPicture.asset(
+                      AppIcons.speaker,
+                      width: 24,
+                      height: 24,
+                      colorFilter: const ColorFilter.mode(
+                        Colors.white,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                    iconPadding: AppSpacing.sm,
+                    label: isReading
+                        ? context.t.storyDetails.stop
+                        : context.t.storyDetails.listen,
+                    labelStyle: AppTextStyles.body(
+                      24,
+                      color: Colors.white,
+                      letterSpacing: -0.05,
                     ),
                   ),
                 ),

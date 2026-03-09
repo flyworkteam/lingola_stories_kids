@@ -1,6 +1,7 @@
 {
   "welcome": "Bienvenue $name",
   "welcome2": "Bienvenue à $appName",
+  "continue_to": "Continuer en $language",
   "get_started": "Commencer",
   "next": "Suivant",
   "back": "Retour",
@@ -225,7 +226,18 @@
     "popularStories": "Histoires populaires",
     "recommendForYou": "Recommandé pour vous",
     "allStories": "Toutes les histoires",
-    "seeAll": "Tout voir"
+    "seeAll": "Tout voir",
+    "categories": {
+      "popular": "Populaire",
+      "space": "Aventures spatiales",
+      "magic": "Mondes magiques",
+      "animals": "Animaux",
+      "detectives": "Petits détectives",
+      "dinosaurs": "Dinosaures",
+      "superhero": "Super-héros",
+      "underwater": "Royaume sous-marin",
+      "fairytale": "Contes de fées"
+    }
   },
   "library": {
     "title": "Bibliothèque",

@@ -18,19 +18,19 @@ class StoriesView extends HookConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final selectedCategory = useState('Popular');
+    final selectedCategory = useState('popular');
     final storyState = ref.watch(storyProvider);
 
     final categories = const [
-      'Popular',
-      'Space',
-      'Magic',
-      'Animals',
-      'Detectives',
-      'Dinosaurs',
-      'Superhero',
-      'Underwater',
-      'Fairy Tale',
+      'popular',
+      'space',
+      'magic',
+      'animals',
+      'detectives',
+      'dinosaurs',
+      'superhero',
+      'underwater',
+      'fairytale',
     ];
     final popularStories = storyState.popularStories;
     final allStories = storyState.allStories;
@@ -41,10 +41,10 @@ class StoriesView extends HookConsumerWidget {
             .read(storyProvider.notifier)
             .fetchPage(
               limit: 5,
-              isPopular: selectedCategory.value == 'Popular' ? true : null,
-              category: selectedCategory.value == 'Popular'
+              isPopular: selectedCategory.value == 'popular' ? true : null,
+              category: selectedCategory.value == 'popular'
                   ? null
-                  : selectedCategory.value,
+                  : _apiCategory(selectedCategory.value),
             ),
         [selectedCategory.value],
       ),
@@ -100,7 +100,7 @@ class StoriesView extends HookConsumerWidget {
                   final cat = categories[index];
                   final isSelected = cat == selectedCategory.value;
                   return CategoryChip(
-                    label: cat,
+                    label: _categoryLabel(context, cat),
                     icon: _categoryIcon(cat),
                     isPng: true,
                     isSelected: isSelected,
@@ -111,7 +111,79 @@ class StoriesView extends HookConsumerWidget {
             ),
           ),
 
-          const SliverToBoxAdapter(child: SizedBox(height: AppSpacing.lg)),
+          // ─── All Stories ───────────────────────────────────────────
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    context.t.stories.allStories,
+                    style: AppTextStyles.heading(
+                      20,
+                      FontWeight.w700,
+                      color: Colors.black,
+                      letterSpacing: -0.05,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => AllStoriesView(
+                          initialCategory: _apiCategory(selectedCategory.value),
+                        ),
+                      ),
+                    ),
+                    child: Text(
+                      context.t.stories.seeAll,
+                      style: AppTextStyles.body(
+                        16,
+                        color: AppColors.primary,
+                        weight: FontWeight.w400,
+                        letterSpacing: -0.05,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+
+          const SliverToBoxAdapter(child: SizedBox(height: AppSpacing.md)),
+
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: StoryCard.horizontalListHeight,
+              child:
+                  categoryStoriesFuture.connectionState ==
+                      ConnectionState.waiting
+                  ? const Center(child: CircularProgressIndicator())
+                  : ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.xl,
+                      ),
+                      itemCount: filteredStories.length,
+                      itemBuilder: (context, index) {
+                        final story = filteredStories[index];
+                        return Padding(
+                          padding: EdgeInsets.only(
+                            right: index < filteredStories.length - 1
+                                ? AppSpacing.md
+                                : 0,
+                          ),
+                          child: StoryCard(
+                            story: story,
+                            onTap: () => _openDetails(context, ref, story),
+                          ),
+                        );
+                      },
+                    ),
+            ),
+          ),
+          const SliverToBoxAdapter(child: SizedBox(height: AppSpacing.md)),
 
           // ─── Popular Stories ───────────────────────────────────────
           SliverToBoxAdapter(
@@ -201,79 +273,6 @@ class StoriesView extends HookConsumerWidget {
 
           const SliverToBoxAdapter(child: SizedBox(height: AppSpacing.xl)),
 
-          // ─── All Stories ───────────────────────────────────────────
-          SliverToBoxAdapter(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xl),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    context.t.stories.allStories,
-                    style: AppTextStyles.heading(
-                      20,
-                      FontWeight.w700,
-                      color: Colors.black,
-                      letterSpacing: -0.05,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (_) => AllStoriesView(
-                          initialCategory: selectedCategory.value,
-                        ),
-                      ),
-                    ),
-                    child: Text(
-                      context.t.stories.seeAll,
-                      style: AppTextStyles.body(
-                        16,
-                        color: AppColors.primary,
-                        weight: FontWeight.w400,
-                        letterSpacing: -0.05,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-
-          const SliverToBoxAdapter(child: SizedBox(height: AppSpacing.md)),
-
-          SliverToBoxAdapter(
-            child: SizedBox(
-              height: StoryCard.horizontalListHeight,
-              child:
-                  categoryStoriesFuture.connectionState ==
-                      ConnectionState.waiting
-                  ? const Center(child: CircularProgressIndicator())
-                  : ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: AppSpacing.xl,
-                      ),
-                      itemCount: filteredStories.length,
-                      itemBuilder: (context, index) {
-                        final story = filteredStories[index];
-                        return Padding(
-                          padding: EdgeInsets.only(
-                            right: index < filteredStories.length - 1
-                                ? AppSpacing.md
-                                : 0,
-                          ),
-                          child: StoryCard(
-                            story: story,
-                            onTap: () => _openDetails(context, ref, story),
-                          ),
-                        );
-                      },
-                    ),
-            ),
-          ),
-
           const SliverToBoxAdapter(
             child: SafeArea(child: SizedBox(height: 20)),
           ),
@@ -289,8 +288,58 @@ class StoriesView extends HookConsumerWidget {
     );
   }
 
+  String _categoryLabel(BuildContext context, String categoryKey) {
+    switch (categoryKey) {
+      case 'popular':
+        return context.t.stories.categories.popular;
+      case 'space':
+        return context.t.stories.categories.space;
+      case 'magic':
+        return context.t.stories.categories.magic;
+      case 'animals':
+        return context.t.stories.categories.animals;
+      case 'detectives':
+        return context.t.stories.categories.detectives;
+      case 'dinosaurs':
+        return context.t.stories.categories.dinosaurs;
+      case 'superhero':
+        return context.t.stories.categories.superhero;
+      case 'underwater':
+        return context.t.stories.categories.underwater;
+      case 'fairytale':
+        return context.t.stories.categories.fairytale;
+      default:
+        return context.t.stories.categories.popular;
+    }
+  }
+
+  String _apiCategory(String categoryKey) {
+    switch (categoryKey) {
+      case 'popular':
+        return 'Popular';
+      case 'space':
+        return 'Space';
+      case 'magic':
+        return 'Magic';
+      case 'animals':
+        return 'Animals';
+      case 'detectives':
+        return 'Detectives';
+      case 'dinosaurs':
+        return 'Dinosaurs';
+      case 'superhero':
+        return 'Superhero';
+      case 'underwater':
+        return 'Underwater';
+      case 'fairytale':
+        return 'Fairy Tale';
+      default:
+        return 'Popular';
+    }
+  }
+
   String _categoryIcon(String category) {
-    switch (category.toLowerCase()) {
+    switch (category) {
       case 'popular':
         return '⭐';
       case 'space':
@@ -307,7 +356,7 @@ class StoriesView extends HookConsumerWidget {
         return '🦸';
       case 'underwater':
         return '🌊';
-      case 'fairy tale':
+      case 'fairytale':
         return '🏰';
       default:
         return '⭐';

@@ -39,6 +39,7 @@ class TranslationsDe with BaseTranslations<AppLocale, Translations> implements T
 	// Translations
 	@override String welcome({required Object name}) => 'Willkommen ${name}';
 	@override String welcome2({required Object appName}) => 'Willkommen bei ${appName}';
+	@override String continue_to({required Object language}) => 'Weiter zu ${language}';
 	@override String get get_started => 'Loslegen';
 	@override String get next => 'Weiter';
 	@override String get back => 'Zurück';
@@ -204,6 +205,7 @@ class _TranslationsStoriesDe implements TranslationsStoriesEn {
 	@override String get recommendForYou => 'Empfohlen für dich';
 	@override String get allStories => 'Alle Geschichten';
 	@override String get seeAll => 'Alle sehen';
+	@override late final _TranslationsStoriesCategoriesDe categories = _TranslationsStoriesCategoriesDe._(_root);
 }
 
 // Path: library
@@ -596,6 +598,24 @@ class _TranslationsHomePremiumPlanDe implements TranslationsHomePremiumPlanEn {
 	@override late final _TranslationsHomePremiumPlanDialogDe dialog = _TranslationsHomePremiumPlanDialogDe._(_root);
 }
 
+// Path: stories.categories
+class _TranslationsStoriesCategoriesDe implements TranslationsStoriesCategoriesEn {
+	_TranslationsStoriesCategoriesDe._(this._root);
+
+	final TranslationsDe _root; // ignore: unused_field
+
+	// Translations
+	@override String get popular => 'Beliebt';
+	@override String get space => 'Weltraumabenteuer';
+	@override String get magic => 'Magische Welten';
+	@override String get animals => 'Tiere';
+	@override String get detectives => 'Detektive';
+	@override String get dinosaurs => 'Dinosaurier';
+	@override String get superhero => 'Superhelden';
+	@override String get underwater => 'Unterwasserkönigreich';
+	@override String get fairytale => 'Märchen';
+}
+
 // Path: dayStreak.days
 class _TranslationsDayStreakDaysDe implements TranslationsDayStreakDaysEn {
 	_TranslationsDayStreakDaysDe._(this._root);
@@ -867,6 +887,7 @@ extension on TranslationsDe {
 		return switch (path) {
 			'welcome' => ({required Object name}) => 'Willkommen ${name}',
 			'welcome2' => ({required Object appName}) => 'Willkommen bei ${appName}',
+			'continue_to' => ({required Object language}) => 'Weiter zu ${language}',
 			'get_started' => 'Loslegen',
 			'next' => 'Weiter',
 			'back' => 'Zurück',
@@ -1027,6 +1048,15 @@ extension on TranslationsDe {
 			'stories.recommendForYou' => 'Empfohlen für dich',
 			'stories.allStories' => 'Alle Geschichten',
 			'stories.seeAll' => 'Alle sehen',
+			'stories.categories.popular' => 'Beliebt',
+			'stories.categories.space' => 'Weltraumabenteuer',
+			'stories.categories.magic' => 'Magische Welten',
+			'stories.categories.animals' => 'Tiere',
+			'stories.categories.detectives' => 'Detektive',
+			'stories.categories.dinosaurs' => 'Dinosaurier',
+			'stories.categories.superhero' => 'Superhelden',
+			'stories.categories.underwater' => 'Unterwasserkönigreich',
+			'stories.categories.fairytale' => 'Märchen',
 			'library.title' => 'Bibliothek',
 			'library.wordCount' => ({required Object count}) => '${count} Wörter',
 			'library.popularWords' => 'Beliebte Wörter',
