@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:lingolakidstories/Models/user_model.dart';
 import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
 import 'package:lingolakidstories/Services/dio_service.dart';
+import 'package:lingolakidstories/Services/secure_storage_service.dart';
 import 'package:lingolakidstories/utils/print.dart';
 
 class UserRepository {
@@ -12,6 +13,8 @@ class UserRepository {
   final Ref ref;
 
   DioService get _dioService => ref.read(AllProviders.dioServiceProvider);
+  SecureStorageService get _storageService =>
+      ref.read(AllProviders.secureStorageServiceProvider);
 
   /// Get user profile
   /// GET /api/user/profile
@@ -143,7 +146,12 @@ class UserRepository {
         cancelToken: cancelToken,
       );
 
-      return response.data['success'] == true;
+      final success = response.data['success'] == true;
+      if (success) {
+        await _storageService.clearAll();
+      }
+
+      return success;
     } catch (e) {
       Print.error('Error deleting account: $e');
       rethrow;

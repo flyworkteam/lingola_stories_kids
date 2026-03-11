@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lingolakidstories/Models/story_model.dart';
 import 'package:lingolakidstories/shared/custom_cached_network_image.dart';
+import 'package:lingolakidstories/shared/translated_story_title.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
@@ -59,8 +60,8 @@ class StoryCardMedium extends StatelessWidget {
               ),
             ),
             const SizedBox(height: AppSpacing.xs),
-            Text(
-              story.title.replaceAll('\n', ' '),
+            TranslatedStoryTitle(
+              title: story.title,
               maxLines: 2,
               textAlign: TextAlign.center,
               overflow: TextOverflow.ellipsis,

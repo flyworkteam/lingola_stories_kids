@@ -473,8 +473,8 @@ class _TranslationsOnboardingStep1Ja implements TranslationsOnboardingStep1En {
 	final TranslationsJa _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'どの言語を\n学びたいですか？';
-	@override String get subtitle => '学びたい言語を\n選択してください。';
+	@override String get title => '英語をどの言語に翻訳して学びたいですか？';
+	@override String get subtitle => '英語を翻訳して学びたい言語を選択してください。';
 }
 
 // Path: onboarding.step2
@@ -957,8 +957,8 @@ extension on TranslationsJa {
 			'termOfService.cookiePolicy.section6Body' => '📩 問い合わせ：support@fly-work.com',
 			'cookies' => 'クッキーポリシー',
 			'privacy' => 'プライバシーポリシー',
-			'onboarding.step1.title' => 'どの言語を\n学びたいですか？',
-			'onboarding.step1.subtitle' => '学びたい言語を\n選択してください。',
+			'onboarding.step1.title' => '英語をどの言語に翻訳して学びたいですか？',
+			'onboarding.step1.subtitle' => '英語を翻訳して学びたい言語を選択してください。',
 			'onboarding.step2.title' => 'どんな種類の物語が\n好きですか？',
 			'onboarding.step2.subtitle' => '好みを教えてください。',
 			'onboarding.step2.categories.space' => '🚀 宇宙の冒険',

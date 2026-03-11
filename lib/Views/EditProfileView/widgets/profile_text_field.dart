@@ -12,6 +12,7 @@ class ProfileTextField extends StatelessWidget {
     this.controller,
     this.readOnly = false,
     this.trailingSuffix,
+    this.maxLength,
     this.keyboardType,
   });
 
@@ -22,6 +23,7 @@ class ProfileTextField extends StatelessWidget {
   final bool readOnly;
   final Widget? trailingSuffix;
   final TextInputType? keyboardType;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +51,8 @@ class ProfileTextField extends StatelessWidget {
             controller: controller,
             readOnly: readOnly,
             keyboardType: keyboardType,
+            maxLength: maxLength,
+
             textAlignVertical: TextAlignVertical.center,
             style: AppTextStyles.body(
               14,
@@ -57,6 +61,7 @@ class ProfileTextField extends StatelessWidget {
             ),
             decoration: InputDecoration(
               hintText: hint,
+              counterText: '',
               hintStyle: AppTextStyles.body(
                 14,
                 weight: FontWeight.bold,

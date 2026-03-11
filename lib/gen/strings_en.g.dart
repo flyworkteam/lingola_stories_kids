@@ -896,11 +896,11 @@ class TranslationsOnboardingStep1En {
 
 	// Translations
 
-	/// en: 'Which language would you like to learn?'
-	String get title => 'Which language would you\nlike to learn?';
+	/// en: 'Which language would you like to translate English into to learn?'
+	String get title => 'Which language would you like to translate English into to learn?';
 
-	/// en: 'Please select the language or languages you wish to learn.'
-	String get subtitle => 'Please select the language or languages\nyou wish to learn.';
+	/// en: 'Please select the language you want to learn English by translating into.'
+	String get subtitle => 'Please select the language you want to learn English by translating into.';
 }
 
 // Path: onboarding.step2
@@ -1573,8 +1573,8 @@ extension on Translations {
 			'termOfService.cookiePolicy.section6Body' => '📩 For inquiries: support@fly-work.com',
 			'cookies' => 'Cookies Policy',
 			'privacy' => 'Privacy Policy',
-			'onboarding.step1.title' => 'Which language would you\nlike to learn?',
-			'onboarding.step1.subtitle' => 'Please select the language or languages\nyou wish to learn.',
+			'onboarding.step1.title' => 'Which language would you like to translate English into to learn?',
+			'onboarding.step1.subtitle' => 'Please select the language you want to learn English by translating into.',
 			'onboarding.step2.title' => 'What kind of stories\ndo you like?',
 			'onboarding.step2.subtitle' => 'Please indicate your preference.',
 			'onboarding.step2.categories.space' => '🚀 Space Adventures',

@@ -161,6 +161,7 @@ class EditProfileView extends HookConsumerWidget {
                       hint: t.editProfile.fullName,
                       icon: AppIcons.editProfile,
                       controller: nameController,
+                      maxLength: 25,
                     ),
                     const SizedBox(height: AppSpacing.lg),
 
@@ -187,6 +188,8 @@ class EditProfileView extends HookConsumerWidget {
                       hint: user?.age ?? '',
                       controller: ageController,
                       icon: AppIcons.birth,
+                      keyboardType: TextInputType.number,
+                      maxLength: 3,
                     ),
                     const SizedBox(height: AppSpacing.lg),
 

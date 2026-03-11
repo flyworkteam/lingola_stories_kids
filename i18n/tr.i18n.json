@@ -81,8 +81,8 @@
   "privacy": "Gizlilik Politikası",
   "onboarding": {
     "step1": {
-      "title": "Hangi dili\nöğrenmek istiyorsunuz?",
-      "subtitle": "Lütfen öğrenmek istediğiniz\ndil veya dilleri seçin."
+      "title": "İngilizceyi hangi dile çevirerek öğrenmek istiyorsunuz?",
+      "subtitle": "Lütfen İngilizceyi çevirerek öğrenmek istediğiniz dili seçin."
     },
     "step2": {
       "title": "Ne tür hikayeleri\nseversiniz?",

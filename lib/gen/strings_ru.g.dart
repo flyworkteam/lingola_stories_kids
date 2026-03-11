@@ -473,8 +473,8 @@ class _TranslationsOnboardingStep1Ru implements TranslationsOnboardingStep1En {
 	final TranslationsRu _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Какой язык вы хотите\nизучить?';
-	@override String get subtitle => 'Пожалуйста, выберите язык или языки,\nкоторые вы хотите изучить.';
+	@override String get title => 'На какой язык вы хотите переводить английский?';
+	@override String get subtitle => 'Пожалуйста, выберите язык, на который вы хотите переводить английский.';
 }
 
 // Path: onboarding.step2
@@ -957,8 +957,8 @@ extension on TranslationsRu {
 			'termOfService.cookiePolicy.section6Body' => '📩 По вопросам: support@fly-work.com',
 			'cookies' => 'Политика использования файлов cookie',
 			'privacy' => 'Политика конфиденциальности',
-			'onboarding.step1.title' => 'Какой язык вы хотите\nизучить?',
-			'onboarding.step1.subtitle' => 'Пожалуйста, выберите язык или языки,\nкоторые вы хотите изучить.',
+			'onboarding.step1.title' => 'На какой язык вы хотите переводить английский?',
+			'onboarding.step1.subtitle' => 'Пожалуйста, выберите язык, на который вы хотите переводить английский.',
 			'onboarding.step2.title' => 'Какие истории вам\nнравятся?',
 			'onboarding.step2.subtitle' => 'Пожалуйста, укажите свои предпочтения.',
 			'onboarding.step2.categories.space' => '🚀 Космические приключения',

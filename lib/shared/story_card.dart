@@ -3,7 +3,9 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:lingolakidstories/Models/story_model.dart';
 import 'package:lingolakidstories/shared/custom_cached_network_image.dart';
+import 'package:lingolakidstories/shared/story_localization.dart';
 import 'package:lingolakidstories/shared/story_tag_dot.dart';
+import 'package:lingolakidstories/shared/translated_story_title.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
 
 class StoryCard extends StatelessWidget {
@@ -36,12 +38,12 @@ class StoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
-    final String title = story.title.trim();
-
     // Tags shown in the overlay (matches the design: 1 line of small tags under title)
-    final List<String> tags = <String>[
-      ...story.categories,
-    ].map((e) => e.trim()).where((e) => e.isNotEmpty).toSet().toList();
+    final List<String> tags = <String>[...story.categories]
+        .map((e) => StoryLocalization.localizedCategory(context, e))
+        .where((e) => e.isNotEmpty)
+        .toSet()
+        .toList();
 
     // Prefer network URL, fallback to local asset.
     final String? imageUrl = story.coverImageUrl?.trim();
@@ -131,7 +133,7 @@ class StoryCard extends StatelessWidget {
                           ),
                         ),
                         child: _OverlayContent(
-                          title: title,
+                          title: story.title,
                           tags: tags,
                           titleSize: titleSize,
                           tagSize: tagSize,
@@ -177,8 +179,8 @@ class _OverlayContent extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         if (title.isNotEmpty)
-          Text(
-            title,
+          TranslatedStoryTitle(
+            title: title,
             maxLines: 2,
             overflow: TextOverflow.ellipsis,
             style: titleStyle,

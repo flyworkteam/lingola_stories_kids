@@ -473,8 +473,8 @@ class _TranslationsOnboardingStep1Tr implements TranslationsOnboardingStep1En {
 	final TranslationsTr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Hangi dili\nöğrenmek istiyorsunuz?';
-	@override String get subtitle => 'Lütfen öğrenmek istediğiniz\ndil veya dilleri seçin.';
+	@override String get title => 'İngilizceyi hangi dile çevirerek öğrenmek istiyorsunuz?';
+	@override String get subtitle => 'Lütfen İngilizceyi çevirerek öğrenmek istediğiniz dili seçin.';
 }
 
 // Path: onboarding.step2
@@ -957,8 +957,8 @@ extension on TranslationsTr {
 			'termOfService.cookiePolicy.section6Body' => 'Sorular: support@fly-work.com',
 			'cookies' => 'Çerez Politikası',
 			'privacy' => 'Gizlilik Politikası',
-			'onboarding.step1.title' => 'Hangi dili\nöğrenmek istiyorsunuz?',
-			'onboarding.step1.subtitle' => 'Lütfen öğrenmek istediğiniz\ndil veya dilleri seçin.',
+			'onboarding.step1.title' => 'İngilizceyi hangi dile çevirerek öğrenmek istiyorsunuz?',
+			'onboarding.step1.subtitle' => 'Lütfen İngilizceyi çevirerek öğrenmek istediğiniz dili seçin.',
 			'onboarding.step2.title' => 'Ne tür hikayeleri\nseversiniz?',
 			'onboarding.step2.subtitle' => 'Lütfen tercihinizi belirtin.',
 			'onboarding.step2.categories.space' => '🚀 Uzay Maceraları',

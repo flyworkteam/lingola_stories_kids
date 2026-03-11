@@ -473,8 +473,8 @@ class _TranslationsOnboardingStep1Fr implements TranslationsOnboardingStep1En {
 	final TranslationsFr _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'Quelle langue voudrais-tu\napprendre ?';
-	@override String get subtitle => 'Veuillez sélectionner la langue ou les langues\nque vous souhaitez apprendre.';
+	@override String get title => 'Dans quelle langue souhaitez-vous apprendre l\'anglais ?';
+	@override String get subtitle => 'Veuillez sélectionner la langue dans laquelle vous souhaitez apprendre l\'anglais.';
 }
 
 // Path: onboarding.step2
@@ -957,8 +957,8 @@ extension on TranslationsFr {
 			'termOfService.cookiePolicy.section6Body' => 'Demandes : support@fly-work.com',
 			'cookies' => 'Politique relative aux cookies',
 			'privacy' => 'Politique de confidentialité',
-			'onboarding.step1.title' => 'Quelle langue voudrais-tu\napprendre ?',
-			'onboarding.step1.subtitle' => 'Veuillez sélectionner la langue ou les langues\nque vous souhaitez apprendre.',
+			'onboarding.step1.title' => 'Dans quelle langue souhaitez-vous apprendre l\'anglais ?',
+			'onboarding.step1.subtitle' => 'Veuillez sélectionner la langue dans laquelle vous souhaitez apprendre l\'anglais.',
 			'onboarding.step2.title' => 'Quel type d\'histoires\ntu aimes ?',
 			'onboarding.step2.subtitle' => 'Veuillez indiquer votre préférence.',
 			'onboarding.step2.categories.space' => '🚀 Aventures Spatiales',

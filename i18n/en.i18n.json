@@ -81,8 +81,8 @@
     "privacy": "Privacy Policy",
     "onboarding": {
         "step1": {
-            "title": "Which language would you\nlike to learn?",
-            "subtitle": "Please select the language or languages\nyou wish to learn."
+            "title": "Which language would you like to translate English into to learn?",
+            "subtitle": "Please select the language you want to learn English by translating into."
         },
         "step2": {
             "title": "What kind of stories\ndo you like?",

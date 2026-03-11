@@ -10,6 +10,8 @@ import 'package:lingolakidstories/Riverpod/Providers/all_providers.dart';
 import 'package:lingolakidstories/Services/story_audio_service.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_overlay.dart';
+import 'package:lingolakidstories/shared/story_localization.dart';
+import 'package:lingolakidstories/shared/translated_story_title.dart';
 import 'package:lingolakidstories/theme/app_border_radius.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
 import 'package:lingolakidstories/theme/app_text_styles.dart';
@@ -564,11 +566,8 @@ class StoryDetailsView extends HookConsumerWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    loadedStory.value.title.replaceAll(
-                                      '\n',
-                                      ' ',
-                                    ),
+                                  child: TranslatedStoryTitle(
+                                    title: loadedStory.value.title,
                                     style: AppTextStyles.heading(
                                       24,
                                       FontWeight.w700,
@@ -612,7 +611,15 @@ class StoryDetailsView extends HookConsumerWidget {
                               spacing: AppSpacing.sm,
                               runSpacing: AppSpacing.xs,
                               children: loadedStory.value.categories
-                                  .map((t) => StoryTag(label: t))
+                                  .map(
+                                    (t) => StoryTag(
+                                      label:
+                                          StoryLocalization.localizedCategory(
+                                            context,
+                                            t,
+                                          ),
+                                    ),
+                                  )
                                   .toList(),
                             ),
 

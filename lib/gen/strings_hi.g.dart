@@ -473,8 +473,8 @@ class _TranslationsOnboardingStep1Hi implements TranslationsOnboardingStep1En {
 	final TranslationsHi _root; // ignore: unused_field
 
 	// Translations
-	@override String get title => 'आप कौन सी भाषा\nसीखना चाहते हैं?';
-	@override String get subtitle => 'कृपया वह भाषा या भाषाएँ चुनें\nजो आप सीखना चाहते हैं।';
+	@override String get title => 'आप अंग्रेज़ी किस भाषा में अनुवाद करके सीखना चाहते हैं?';
+	@override String get subtitle => 'कृपया वह भाषा चुनें जिसमें आप अंग्रेज़ी को अनुवाद करके सीखना चाहते हैं।';
 }
 
 // Path: onboarding.step2
@@ -957,8 +957,8 @@ extension on TranslationsHi {
 			'termOfService.cookiePolicy.section6Body' => '📩 पूछताछ: support@fly-work.com',
 			'cookies' => 'कुकी नीति',
 			'privacy' => 'गोपनीयता नीति',
-			'onboarding.step1.title' => 'आप कौन सी भाषा\nसीखना चाहते हैं?',
-			'onboarding.step1.subtitle' => 'कृपया वह भाषा या भाषाएँ चुनें\nजो आप सीखना चाहते हैं।',
+			'onboarding.step1.title' => 'आप अंग्रेज़ी किस भाषा में अनुवाद करके सीखना चाहते हैं?',
+			'onboarding.step1.subtitle' => 'कृपया वह भाषा चुनें जिसमें आप अंग्रेज़ी को अनुवाद करके सीखना चाहते हैं।',
 			'onboarding.step2.title' => 'आपको किस तरह की कहानियाँ\nपसंद हैं?',
 			'onboarding.step2.subtitle' => 'कृपया अपनी पसंद बताएं।',
 			'onboarding.step2.categories.space' => '🚀 अंतरिक्ष रोमांच',

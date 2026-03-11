@@ -8,6 +8,9 @@ class TranslationService {
   TranslationService._();
   static final TranslationService instance = TranslationService._();
 
+  final Map<String, Future<String>> _translationCache =
+      <String, Future<String>>{};
+
   final Dio _dio = Dio(
     BaseOptions(
       baseUrl: 'https://translate.googleapis.com',
@@ -34,17 +37,34 @@ class TranslationService {
     String? targetLang,
   }) async {
     final target = targetLang ?? deviceLanguageCode;
+    final normalizedText = text.trim();
 
     // If source == target, no need to call the API.
-    if (sourceLang == target) return text;
+    if (normalizedText.isEmpty || sourceLang == target) return normalizedText;
 
+    final cacheKey = '$sourceLang|$target|$normalizedText';
+    return _translationCache.putIfAbsent(
+      cacheKey,
+      () => _translateInternal(
+        normalizedText,
+        sourceLang: sourceLang,
+        targetLang: target,
+      ),
+    );
+  }
+
+  Future<String> _translateInternal(
+    String text, {
+    required String sourceLang,
+    required String targetLang,
+  }) async {
     try {
       final response = await _dio.get(
         '/translate_a/single',
         queryParameters: {
           'client': 'gtx',
           'sl': sourceLang,
-          'tl': target,
+          'tl': targetLang,
           'dt': 't',
           'q': text,
         },

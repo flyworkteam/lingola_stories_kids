@@ -81,8 +81,8 @@
   "privacy": "Datenschutzrichtlinie",
   "onboarding": {
     "step1": {
-      "title": "Welche Sprache möchtest du\nlernen?",
-      "subtitle": "Bitte wähle die Sprache oder Sprachen\ndie du lernen möchtest."
+      "title": "In welche Sprache möchtest du Englisch übersetzen, um es zu lernen?",
+      "subtitle": "Bitte wähle die Sprache, in die du Englisch übersetzen möchtest."
     },
     "step2": {
       "title": "Welche Art von Geschichten\nmöchtest du?",
