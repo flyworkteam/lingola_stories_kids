@@ -221,6 +221,8 @@ class _TranslationsLibraryKo implements TranslationsLibraryEn {
 	@override String get allWords => '모든 단어';
 	@override String get searchWord => '단어 검색';
 	@override String get searchHint => '단어를 입력하세요…';
+	@override String get noWordsFound => '단어를 찾을 수 없습니다';
+	@override String get noSavedWords => '저장된 단어가 없습니다';
 }
 
 // Path: bottomNav
@@ -1063,6 +1065,8 @@ extension on TranslationsKo {
 			'library.allWords' => '모든 단어',
 			'library.searchWord' => '단어 검색',
 			'library.searchHint' => '단어를 입력하세요…',
+			'library.noWordsFound' => '단어를 찾을 수 없습니다',
+			'library.noSavedWords' => '저장된 단어가 없습니다',
 			'bottomNav.home' => '홈',
 			'bottomNav.stories' => '이야기',
 			'bottomNav.library' => '라이브러리',

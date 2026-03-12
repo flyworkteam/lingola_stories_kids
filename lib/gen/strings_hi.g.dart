@@ -221,6 +221,8 @@ class _TranslationsLibraryHi implements TranslationsLibraryEn {
 	@override String get allWords => 'सभी शब्द';
 	@override String get searchWord => 'शब्द खोजें';
 	@override String get searchHint => 'कृपया शब्द दर्ज करें…';
+	@override String get noWordsFound => 'कोई शब्द नहीं मिला';
+	@override String get noSavedWords => 'अभी तक कोई सहेजा गया शब्द नहीं है';
 }
 
 // Path: bottomNav
@@ -1063,6 +1065,8 @@ extension on TranslationsHi {
 			'library.allWords' => 'सभी शब्द',
 			'library.searchWord' => 'शब्द खोजें',
 			'library.searchHint' => 'कृपया शब्द दर्ज करें…',
+			'library.noWordsFound' => 'कोई शब्द नहीं मिला',
+			'library.noSavedWords' => 'अभी तक कोई सहेजा गया शब्द नहीं है',
 			'bottomNav.home' => 'होम',
 			'bottomNav.stories' => 'कहानियाँ',
 			'bottomNav.library' => 'पुस्तकालय',

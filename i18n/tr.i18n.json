@@ -64,15 +64,15 @@
       "intro": "Bu politika, uygulamayı kullandığınızda hangi dijital teknolojilerin kullanıldığını açıklar.",
       "important": "ÖNEMLİ: Çocuk gizliliği temel ilkemizdir. 6 yaş ve üzeri için tasarım.",
       "section1Title": "1. ÇEREZLER NELİKTİR?",
-      "section1Body": "Cookies and similar technologies (SDKs, identifiers) are small digital components that help the app function correctly. They do not directly identify you.",
+      "section1Body": "Çerezler ve benzeri teknolojiler (SDK'lar, tanımlayıcılar), uygulamanın doğru çalışmasına yardımcı olan küçük dijital bileşenlerdir. Doğrudan sizi tanımlamazlar.",
       "section2Title": "2. HANGİ TEKNOLOJİLERİ KULLANIYORUZ?",
-      "section2Body": "Strictly Necessary: For session management and security.\n\nPerformance and Analytics: Understand which stories are read, data evaluated anonymously.\n\nPersonalization: Remembers language preference and reading level.",
+      "section2Body": "Kesinlikle Gerekliler: Oturum yönetimi ve güvenlik için.\n\nPerformans ve Analitik: Hangi hikayelerin okunduğunu anlamak; veriler anonim şekilde değerlendirilir.\n\nKişiselleştirme: Dil tercihlerini ve okuma seviyesini hatırlar.",
       "section3Title": "3. NEDEN KULLANIYORUZ?",
-      "section3Body": "- To ensure the app runs safely.\n- To make the reading experience more fluid.\n- To remember settings.\n- To identify features for future development.",
+      "section3Body": "- Uygulamanın güvenli çalışmasını sağlamak.\n- Okuma deneyimini daha akıcı hale getirmek.\n- Ayarları hatırlamak.\n- Gelecekte geliştirilecek özellikleri belirlemek.",
       "section4Title": "4. ÜÇÜNCÜ TARAF TEKNOLOJİLER",
-      "section4Body": "We apply minimum data usage when working with third-party partners.",
+      "section4Body": "Üçüncü taraf ortaklarla çalışırken en az veri kullanımını uygularız.",
       "section5Title": "5. KONTROL VE YÖNETİM",
-      "section5Body": "Parents can limit these technologies via device settings. Disabling necessary technologies may affect functionality.",
+      "section5Body": "Ebeveynler bu teknolojileri cihaz ayarları aracılığıyla sınırlayabilir. Gerekli teknolojilerin devre dışı bırakılması işlevselliği etkileyebilir.",
       "section6Title": "6. İLETİŞİM",
       "section6Body": "Sorular: support@fly-work.com"
     }
@@ -245,7 +245,9 @@
     "popularWords": "Popüler Kelimeler",
     "allWords": "Tüm Kelimeler",
     "searchWord": "Kelime Ara",
-    "searchHint": "Lütfen kelime girin…"
+    "searchHint": "Lütfen kelime girin…",
+    "noWordsFound": "Kelime bulunamadı",
+    "noSavedWords": "Henüz kaydedilmiş kelime yok"
   },
   "bottomNav": {
     "home": "Ana Sayfa",

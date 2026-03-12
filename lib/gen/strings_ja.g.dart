@@ -221,6 +221,8 @@ class _TranslationsLibraryJa implements TranslationsLibraryEn {
 	@override String get allWords => 'すべての単語';
 	@override String get searchWord => '単語検索';
 	@override String get searchHint => '単語を入力してください…';
+	@override String get noWordsFound => '単語が見つかりません';
+	@override String get noSavedWords => '保存された単語がありません';
 }
 
 // Path: bottomNav
@@ -1063,6 +1065,8 @@ extension on TranslationsJa {
 			'library.allWords' => 'すべての単語',
 			'library.searchWord' => '単語検索',
 			'library.searchHint' => '単語を入力してください…',
+			'library.noWordsFound' => '単語が見つかりません',
+			'library.noSavedWords' => '保存された単語がありません',
 			'bottomNav.home' => 'ホーム',
 			'bottomNav.stories' => '物語',
 			'bottomNav.library' => 'ライブラリ',

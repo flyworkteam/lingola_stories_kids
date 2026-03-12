@@ -378,6 +378,12 @@ class TranslationsLibraryEn {
 
 	/// en: 'Please enter word…'
 	String get searchHint => 'Please enter word…';
+
+	/// en: 'No words found'
+	String get noWordsFound => 'No words found';
+
+	/// en: 'No saved words yet'
+	String get noSavedWords => 'No saved words yet';
 }
 
 // Path: bottomNav
@@ -1679,6 +1685,8 @@ extension on Translations {
 			'library.allWords' => 'All Words',
 			'library.searchWord' => 'Search Word',
 			'library.searchHint' => 'Please enter word…',
+			'library.noWordsFound' => 'No words found',
+			'library.noSavedWords' => 'No saved words yet',
 			'bottomNav.home' => 'Home',
 			'bottomNav.stories' => 'Stories',
 			'bottomNav.library' => 'Library',

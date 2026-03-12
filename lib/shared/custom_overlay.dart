@@ -18,6 +18,7 @@ class CustomOverlay {
     OverlayType type = OverlayType.info,
     Duration duration = const Duration(seconds: 3),
     VoidCallback? undoAction,
+    String? undoLabel,
   }) {
     final overlay = Overlay.of(context);
     final overlayEntry = OverlayEntry(
@@ -28,6 +29,7 @@ class CustomOverlay {
         duration: duration,
         title: title,
         undoAction: undoAction,
+        undoLabel: undoLabel,
       ),
     );
 
@@ -44,6 +46,7 @@ class _OverlayContent extends HookWidget {
   final Duration duration;
   final String icon;
   final VoidCallback? undoAction;
+  final String? undoLabel;
 
   const _OverlayContent({
     required this.message,
@@ -52,6 +55,7 @@ class _OverlayContent extends HookWidget {
     this.title,
     this.duration = const Duration(seconds: 3),
     this.undoAction,
+    this.undoLabel,
   });
 
   Color _backgroundColor() {
@@ -172,7 +176,9 @@ class _OverlayContent extends HookWidget {
                     TextButton(
                       onPressed: undoAction,
                       child: Text(
-                        'Undo',
+                        (undoLabel == null || undoLabel!.trim().isEmpty)
+                            ? 'Undo'
+                            : undoLabel!,
                         style: AppTextStyles.body(
                           16,
                           weight: FontWeight.w600,

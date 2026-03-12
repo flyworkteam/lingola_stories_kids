@@ -88,6 +88,7 @@ class EditProfileView extends HookConsumerWidget {
     }, [showSuccess.value]);
 
     Future<void> save() async {
+      FocusScope.of(context).unfocus();
       isLoading.value = true;
       final success = await userNotifier.updateProfile(
         fullName: nameController.text.trim(),

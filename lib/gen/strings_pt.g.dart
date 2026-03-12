@@ -221,6 +221,8 @@ class _TranslationsLibraryPt implements TranslationsLibraryEn {
 	@override String get allWords => 'Todas as palavras';
 	@override String get searchWord => 'Buscar palavra';
 	@override String get searchHint => 'Por favor, digite uma palavra…';
+	@override String get noWordsFound => 'Nenhuma palavra encontrada';
+	@override String get noSavedWords => 'Nenhuma palavra salva ainda';
 }
 
 // Path: bottomNav
@@ -1063,6 +1065,8 @@ extension on TranslationsPt {
 			'library.allWords' => 'Todas as palavras',
 			'library.searchWord' => 'Buscar palavra',
 			'library.searchHint' => 'Por favor, digite uma palavra…',
+			'library.noWordsFound' => 'Nenhuma palavra encontrada',
+			'library.noSavedWords' => 'Nenhuma palavra salva ainda',
 			'bottomNav.home' => 'Início',
 			'bottomNav.stories' => 'Histórias',
 			'bottomNav.library' => 'Biblioteca',

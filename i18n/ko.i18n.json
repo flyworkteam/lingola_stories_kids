@@ -245,7 +245,9 @@
     "popularWords": "인기 단어",
     "allWords": "모든 단어",
     "searchWord": "단어 검색",
-    "searchHint": "단어를 입력하세요…"
+    "searchHint": "단어를 입력하세요…",
+    "noWordsFound": "단어를 찾을 수 없습니다",
+    "noSavedWords": "저장된 단어가 없습니다"
   },
   "bottomNav": {
     "home": "홈",

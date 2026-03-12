@@ -221,6 +221,8 @@ class _TranslationsLibraryEs implements TranslationsLibraryEn {
 	@override String get allWords => 'Todas las palabras';
 	@override String get searchWord => 'Buscar palabra';
 	@override String get searchHint => 'Por favor, ingresa una palabra…';
+	@override String get noWordsFound => 'No se encontraron palabras';
+	@override String get noSavedWords => 'Aún no hay palabras guardadas';
 }
 
 // Path: bottomNav
@@ -1063,6 +1065,8 @@ extension on TranslationsEs {
 			'library.allWords' => 'Todas las palabras',
 			'library.searchWord' => 'Buscar palabra',
 			'library.searchHint' => 'Por favor, ingresa una palabra…',
+			'library.noWordsFound' => 'No se encontraron palabras',
+			'library.noSavedWords' => 'Aún no hay palabras guardadas',
 			'bottomNav.home' => 'Inicio',
 			'bottomNav.stories' => 'Historias',
 			'bottomNav.library' => 'Biblioteca',

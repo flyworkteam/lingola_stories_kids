@@ -221,6 +221,8 @@ class _TranslationsLibraryTr implements TranslationsLibraryEn {
 	@override String get allWords => 'Tüm Kelimeler';
 	@override String get searchWord => 'Kelime Ara';
 	@override String get searchHint => 'Lütfen kelime girin…';
+	@override String get noWordsFound => 'Kelime bulunamadı';
+	@override String get noSavedWords => 'Henüz kaydedilmiş kelime yok';
 }
 
 // Path: bottomNav
@@ -453,15 +455,15 @@ class _TranslationsTermOfServiceCookiePolicyTr implements TranslationsTermOfServ
 	@override String get intro => 'Bu politika, uygulamayı kullandığınızda hangi dijital teknolojilerin kullanıldığını açıklar.';
 	@override String get important => 'ÖNEMLİ: Çocuk gizliliği temel ilkemizdir. 6 yaş ve üzeri için tasarım.';
 	@override String get section1Title => '1. ÇEREZLER NELİKTİR?';
-	@override String get section1Body => 'Cookies and similar technologies (SDKs, identifiers) are small digital components that help the app function correctly. They do not directly identify you.';
+	@override String get section1Body => 'Çerezler ve benzeri teknolojiler (SDK\'lar, tanımlayıcılar), uygulamanın doğru çalışmasına yardımcı olan küçük dijital bileşenlerdir. Doğrudan sizi tanımlamazlar.';
 	@override String get section2Title => '2. HANGİ TEKNOLOJİLERİ KULLANIYORUZ?';
-	@override String get section2Body => 'Strictly Necessary: For session management and security.\n\nPerformance and Analytics: Understand which stories are read, data evaluated anonymously.\n\nPersonalization: Remembers language preference and reading level.';
+	@override String get section2Body => 'Kesinlikle Gerekliler: Oturum yönetimi ve güvenlik için.\n\nPerformans ve Analitik: Hangi hikayelerin okunduğunu anlamak; veriler anonim şekilde değerlendirilir.\n\nKişiselleştirme: Dil tercihlerini ve okuma seviyesini hatırlar.';
 	@override String get section3Title => '3. NEDEN KULLANIYORUZ?';
-	@override String get section3Body => '- To ensure the app runs safely.\n- To make the reading experience more fluid.\n- To remember settings.\n- To identify features for future development.';
+	@override String get section3Body => '- Uygulamanın güvenli çalışmasını sağlamak.\n- Okuma deneyimini daha akıcı hale getirmek.\n- Ayarları hatırlamak.\n- Gelecekte geliştirilecek özellikleri belirlemek.';
 	@override String get section4Title => '4. ÜÇÜNCÜ TARAF TEKNOLOJİLER';
-	@override String get section4Body => 'We apply minimum data usage when working with third-party partners.';
+	@override String get section4Body => 'Üçüncü taraf ortaklarla çalışırken en az veri kullanımını uygularız.';
 	@override String get section5Title => '5. KONTROL VE YÖNETİM';
-	@override String get section5Body => 'Parents can limit these technologies via device settings. Disabling necessary technologies may affect functionality.';
+	@override String get section5Body => 'Ebeveynler bu teknolojileri cihaz ayarları aracılığıyla sınırlayabilir. Gerekli teknolojilerin devre dışı bırakılması işlevselliği etkileyebilir.';
 	@override String get section6Title => '6. İLETİŞİM';
 	@override String get section6Body => 'Sorular: support@fly-work.com';
 }
@@ -944,15 +946,15 @@ extension on TranslationsTr {
 			'termOfService.cookiePolicy.intro' => 'Bu politika, uygulamayı kullandığınızda hangi dijital teknolojilerin kullanıldığını açıklar.',
 			'termOfService.cookiePolicy.important' => 'ÖNEMLİ: Çocuk gizliliği temel ilkemizdir. 6 yaş ve üzeri için tasarım.',
 			'termOfService.cookiePolicy.section1Title' => '1. ÇEREZLER NELİKTİR?',
-			'termOfService.cookiePolicy.section1Body' => 'Cookies and similar technologies (SDKs, identifiers) are small digital components that help the app function correctly. They do not directly identify you.',
+			'termOfService.cookiePolicy.section1Body' => 'Çerezler ve benzeri teknolojiler (SDK\'lar, tanımlayıcılar), uygulamanın doğru çalışmasına yardımcı olan küçük dijital bileşenlerdir. Doğrudan sizi tanımlamazlar.',
 			'termOfService.cookiePolicy.section2Title' => '2. HANGİ TEKNOLOJİLERİ KULLANIYORUZ?',
-			'termOfService.cookiePolicy.section2Body' => 'Strictly Necessary: For session management and security.\n\nPerformance and Analytics: Understand which stories are read, data evaluated anonymously.\n\nPersonalization: Remembers language preference and reading level.',
+			'termOfService.cookiePolicy.section2Body' => 'Kesinlikle Gerekliler: Oturum yönetimi ve güvenlik için.\n\nPerformans ve Analitik: Hangi hikayelerin okunduğunu anlamak; veriler anonim şekilde değerlendirilir.\n\nKişiselleştirme: Dil tercihlerini ve okuma seviyesini hatırlar.',
 			'termOfService.cookiePolicy.section3Title' => '3. NEDEN KULLANIYORUZ?',
-			'termOfService.cookiePolicy.section3Body' => '- To ensure the app runs safely.\n- To make the reading experience more fluid.\n- To remember settings.\n- To identify features for future development.',
+			'termOfService.cookiePolicy.section3Body' => '- Uygulamanın güvenli çalışmasını sağlamak.\n- Okuma deneyimini daha akıcı hale getirmek.\n- Ayarları hatırlamak.\n- Gelecekte geliştirilecek özellikleri belirlemek.',
 			'termOfService.cookiePolicy.section4Title' => '4. ÜÇÜNCÜ TARAF TEKNOLOJİLER',
-			'termOfService.cookiePolicy.section4Body' => 'We apply minimum data usage when working with third-party partners.',
+			'termOfService.cookiePolicy.section4Body' => 'Üçüncü taraf ortaklarla çalışırken en az veri kullanımını uygularız.',
 			'termOfService.cookiePolicy.section5Title' => '5. KONTROL VE YÖNETİM',
-			'termOfService.cookiePolicy.section5Body' => 'Parents can limit these technologies via device settings. Disabling necessary technologies may affect functionality.',
+			'termOfService.cookiePolicy.section5Body' => 'Ebeveynler bu teknolojileri cihaz ayarları aracılığıyla sınırlayabilir. Gerekli teknolojilerin devre dışı bırakılması işlevselliği etkileyebilir.',
 			'termOfService.cookiePolicy.section6Title' => '6. İLETİŞİM',
 			'termOfService.cookiePolicy.section6Body' => 'Sorular: support@fly-work.com',
 			'cookies' => 'Çerez Politikası',
@@ -1063,6 +1065,8 @@ extension on TranslationsTr {
 			'library.allWords' => 'Tüm Kelimeler',
 			'library.searchWord' => 'Kelime Ara',
 			'library.searchHint' => 'Lütfen kelime girin…',
+			'library.noWordsFound' => 'Kelime bulunamadı',
+			'library.noSavedWords' => 'Henüz kaydedilmiş kelime yok',
 			'bottomNav.home' => 'Ana Sayfa',
 			'bottomNav.stories' => 'Hikayeler',
 			'bottomNav.library' => 'Kütüphane',

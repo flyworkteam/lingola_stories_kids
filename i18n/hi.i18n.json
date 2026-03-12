@@ -245,7 +245,9 @@
     "popularWords": "लोकप्रिय शब्द",
     "allWords": "सभी शब्द",
     "searchWord": "शब्द खोजें",
-    "searchHint": "कृपया शब्द दर्ज करें…"
+    "searchHint": "कृपया शब्द दर्ज करें…",
+    "noWordsFound": "कोई शब्द नहीं मिला",
+    "noSavedWords": "अभी तक कोई सहेजा गया शब्द नहीं है"
   },
   "bottomNav": {
     "home": "होम",

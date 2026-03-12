@@ -221,6 +221,8 @@ class _TranslationsLibraryRu implements TranslationsLibraryEn {
 	@override String get allWords => 'Все слова';
 	@override String get searchWord => 'Поиск слов';
 	@override String get searchHint => 'Введите слово…';
+	@override String get noWordsFound => 'Слова не найдены';
+	@override String get noSavedWords => 'Сохраненных слов пока нет';
 }
 
 // Path: bottomNav
@@ -1063,6 +1065,8 @@ extension on TranslationsRu {
 			'library.allWords' => 'Все слова',
 			'library.searchWord' => 'Поиск слов',
 			'library.searchHint' => 'Введите слово…',
+			'library.noWordsFound' => 'Слова не найдены',
+			'library.noSavedWords' => 'Сохраненных слов пока нет',
 			'bottomNav.home' => 'Главная',
 			'bottomNav.stories' => 'Истории',
 			'bottomNav.library' => 'Библиотека',

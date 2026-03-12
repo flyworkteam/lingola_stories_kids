@@ -36,7 +36,7 @@ class LibrarySearchBar extends StatelessWidget {
         decoration: InputDecoration(
           hintText: context.t.library.searchHint,
 
-          hintStyle: AppTextStyles.body(14, color: Colors.black38),
+          hintStyle: AppTextStyles.body(13, color: Colors.black38),
           contentPadding: const EdgeInsets.symmetric(
             horizontal: AppSpacing.lg,
             vertical: AppSpacing.md,

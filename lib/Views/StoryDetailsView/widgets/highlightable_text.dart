@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lingolakidstories/Models/word_model.dart';
@@ -49,13 +48,22 @@ class HighlightableText extends HookWidget {
 
     final focusNode = useFocusNode();
 
-    final activeWordKey = useMemoized(() => GlobalKey(), const []);
+    final richTextKey = useMemoized(() => GlobalKey(), const []);
     final lastFollowedGlobalStart = useRef<int?>(null);
 
     final popupWord = useState<String>('');
     final popupLoading = useState<bool>(false);
     final popupTranslation = useState<String>('');
     final translateReqId = useRef<int>(0);
+
+    // Shared text style for story content
+    final storyTextStyle = AppTextStyles.body(
+      15,
+      weight: FontWeight.w300,
+      color: Colors.white,
+      letterSpacing: -0.05,
+      height: 15,
+    );
 
     Future<void> showInlineTranslation(String word) async {
       // bump request id so older requests can't win
@@ -104,24 +112,40 @@ class HighlightableText extends HookWidget {
         lastFollowedGlobalStart.value = activeWordStart;
 
         WidgetsBinding.instance.addPostFrameCallback((_) {
-          final ctx = activeWordKey.currentContext;
+          final ctx = richTextKey.currentContext;
           if (ctx == null) return;
 
           final scrollable = Scrollable.maybeOf(ctx);
           if (scrollable == null) return;
 
+          final textRender = ctx.findRenderObject();
+          final scrollRender = scrollable.context.findRenderObject();
+          if (textRender is! RenderBox || scrollRender is! RenderBox) return;
+
+          final localActiveOffset = activeWordStart - globalOffset;
+          if (localActiveOffset < 0 || localActiveOffset > text.length) return;
+
+          final painter = TextPainter(
+            textDirection: Directionality.of(context),
+            text: TextSpan(text: text, style: storyTextStyle),
+          )..layout(maxWidth: textRender.size.width);
+
+          final caretOffset = painter.getOffsetForCaret(
+            TextPosition(offset: localActiveOffset),
+            Rect.zero,
+          );
+
+          final topInScroll = textRender.localToGlobal(
+            Offset.zero,
+            ancestor: scrollRender,
+          );
+
           final position = scrollable.position;
-          final viewport = RenderAbstractViewport.maybeOf(
-            ctx.findRenderObject()!,
-          );
-          if (viewport == null) return;
-
-          final reveal = viewport.getOffsetToReveal(
-            ctx.findRenderObject()!,
-            followAlignment,
-          );
-
-          double target = reveal.offset;
+          double target =
+              position.pixels +
+              topInScroll.dy +
+              caretOffset.dy -
+              (position.viewportDimension * followAlignment);
 
           target = target.clamp(
             position.minScrollExtent,
@@ -145,16 +169,9 @@ class HighlightableText extends HookWidget {
         followAlignment,
         activeWordStart,
         globalOffset,
+        text,
+        storyTextStyle,
       ],
-    );
-
-    // Shared text style for story content
-    final storyTextStyle = AppTextStyles.body(
-      15,
-      weight: FontWeight.w300,
-      color: Colors.white,
-      letterSpacing: -0.05,
-      height: 15,
     );
 
     List<InlineSpan> buildHighlightedSpans({required bool includeActiveWord}) {
@@ -181,25 +198,12 @@ class HighlightableText extends HookWidget {
           bgColor = Colors.transparent;
         }
 
-        final span = TextSpan(
-          text: tok,
-          style: storyTextStyle.copyWith(backgroundColor: bgColor),
+        spans.add(
+          TextSpan(
+            text: tok,
+            style: storyTextStyle.copyWith(backgroundColor: bgColor),
+          ),
         );
-
-        if (isActive) {
-          spans.add(
-            WidgetSpan(
-              alignment: PlaceholderAlignment.baseline,
-              baseline: TextBaseline.alphabetic,
-              child: KeyedSubtree(
-                key: activeWordKey,
-                child: Text(tok, style: span.style),
-              ),
-            ),
-          );
-        } else {
-          spans.add(span);
-        }
 
         localPos += tok.length;
       }
@@ -207,22 +211,13 @@ class HighlightableText extends HookWidget {
       return spans;
     }
 
-    if (isReadingMode) {
-      final spans = buildHighlightedSpans(includeActiveWord: true);
-
-      return RichText(
-        textAlign: TextAlign.justify,
-        strutStyle: StrutStyle.fromTextStyle(
-          storyTextStyle,
-          forceStrutHeight: true,
-        ),
-        text: TextSpan(children: spans),
-      );
-    }
-
     return SelectableText.rich(
-      TextSpan(children: buildHighlightedSpans(includeActiveWord: false)),
+      key: richTextKey,
+      TextSpan(
+        children: buildHighlightedSpans(includeActiveWord: isReadingMode),
+      ),
       textAlign: TextAlign.justify,
+      enableInteractiveSelection: !isReadingMode,
       strutStyle: StrutStyle.fromTextStyle(
         storyTextStyle,
         forceStrutHeight: true,
@@ -310,7 +305,6 @@ class HighlightableText extends HookWidget {
           onSave: () {
             final word = selectedWord;
             if (word.isEmpty) return;
-            clearSelection();
             onSave(word);
           },
           onDelete: () {

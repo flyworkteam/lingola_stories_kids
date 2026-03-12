@@ -245,7 +245,9 @@
     "popularWords": "人気の単語",
     "allWords": "すべての単語",
     "searchWord": "単語検索",
-    "searchHint": "単語を入力してください…"
+    "searchHint": "単語を入力してください…",
+    "noWordsFound": "単語が見つかりません",
+    "noSavedWords": "保存された単語がありません"
   },
   "bottomNav": {
     "home": "ホーム",

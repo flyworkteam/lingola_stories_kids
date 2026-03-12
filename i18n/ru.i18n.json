@@ -245,7 +245,9 @@
     "popularWords": "Популярные слова",
     "allWords": "Все слова",
     "searchWord": "Поиск слов",
-    "searchHint": "Введите слово…"
+    "searchHint": "Введите слово…",
+    "noWordsFound": "Слова не найдены",
+    "noSavedWords": "Сохраненных слов пока нет"
   },
   "bottomNav": {
     "home": "Главная",

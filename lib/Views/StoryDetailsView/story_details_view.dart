@@ -742,19 +742,68 @@ class StoryDetailsView extends HookConsumerWidget {
                                         type: OverlayType.success,
                                       );
                                     },
-                                    onSave: (w) {
-                                      ref
-                                          .read(libraryProvider.notifier)
+                                    onSave: (w) async {
+                                      final libraryNotifier = ref.read(
+                                        libraryProvider.notifier,
+                                      );
+                                      final existingIds = ref
+                                          .read(libraryProvider)
+                                          .allWords
+                                          .map((word) => word.id)
+                                          .whereType<int>()
+                                          .toSet();
+
+                                      final saved = await libraryNotifier
                                           .saveWord(word: w);
+                                      if (!saved) return;
+
+                                      final savedWords = ref
+                                          .read(libraryProvider)
+                                          .allWords;
+                                      int? insertedWordId;
+                                      for (final savedWord in savedWords) {
+                                        final id = savedWord.id;
+                                        if (id == null) continue;
+                                        if (!existingIds.contains(id) &&
+                                            savedWord.word.toLowerCase() ==
+                                                w.toLowerCase()) {
+                                          insertedWordId = id;
+                                          break;
+                                        }
+                                      }
+
+                                      final wordAddedText = context
+                                          .t
+                                          .storyDetails
+                                          .wordAddedToLibrary;
+                                      final match = RegExp(
+                                        r'^(.*?)[.!?。]\s*([^.!?。]+)$',
+                                      ).firstMatch(wordAddedText);
+                                      final overlayMessage =
+                                          match?.group(1)?.trim().isNotEmpty ==
+                                              true
+                                          ? match!.group(1)!.trim()
+                                          : wordAddedText;
+                                      final undoLabel = match?.group(2)?.trim();
+
                                       CustomOverlay.show(
                                         context,
                                         title: context.t.storyDetails.saved,
-                                        message: context
-                                            .t
-                                            .storyDetails
-                                            .wordAddedToLibrary,
+                                        message: overlayMessage,
                                         icon: AppIcons.successToast,
                                         type: OverlayType.success,
+                                        undoLabel: undoLabel,
+                                        undoAction: insertedWordId == null
+                                            ? null
+                                            : () {
+                                                ref
+                                                    .read(
+                                                      libraryProvider.notifier,
+                                                    )
+                                                    .deleteWord(
+                                                      insertedWordId!,
+                                                    );
+                                              },
                                       );
                                     },
                                     onDelete: (id) {
@@ -763,7 +812,7 @@ class StoryDetailsView extends HookConsumerWidget {
                                           .deleteWord(id);
                                       CustomOverlay.show(
                                         context,
-                                        title: context.t.storyDetails.removed,
+                                        title: '',
                                         message: context.t.storyDetails.removed,
                                         icon: AppIcons.successToast,
                                         type: OverlayType.success,

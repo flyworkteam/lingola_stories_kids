@@ -10,7 +10,6 @@ import 'package:lingolakidstories/Views/ProfileView/widgets/logout_button.dart';
 import 'package:lingolakidstories/Views/ProfileView/widgets/notification_toggle.dart';
 import 'package:lingolakidstories/Views/ProfileView/widgets/profile_header.dart';
 import 'package:lingolakidstories/Views/ProfileView/widgets/profile_settings_card.dart';
-import 'package:lingolakidstories/Views/ShareFriendView/share_friend_view.dart';
 import 'package:lingolakidstories/gen/strings.g.dart';
 import 'package:lingolakidstories/shared/custom_blur.dart';
 import 'package:lingolakidstories/theme/app_paddings.dart';
@@ -190,20 +189,20 @@ class ProfileView extends HookConsumerWidget {
                         Navigator.pushNamed(context, '/app-language');
                       },
                     ),
-                    ProfileSettingsItem(
-                      icon: AppIcons.profileUsers,
-                      label: t.profile.menu.shareWithFriends,
-                      iconBackgroundColor: Color(0xffEEF2FF),
-                      onTap: () {
-                        ShareFriendBottomSheet.show(context);
-                      },
-                    ),
-                    ProfileSettingsItem(
-                      icon: AppIcons.likeOutline,
-                      label: t.profile.menu.rateUs,
-                      iconBackgroundColor: Color(0xffFFF7ED),
-                      onTap: () {},
-                    ),
+                    // ProfileSettingsItem(
+                    //   icon: AppIcons.profileUsers,
+                    //   label: t.profile.menu.shareWithFriends,
+                    //   iconBackgroundColor: Color(0xffEEF2FF),
+                    //   onTap: () {
+                    //     ShareFriendBottomSheet.show(context);
+                    //   },
+                    // ),
+                    // ProfileSettingsItem(
+                    //   icon: AppIcons.likeOutline,
+                    //   label: t.profile.menu.rateUs,
+                    //   iconBackgroundColor: Color(0xffFFF7ED),
+                    //   onTap: () {},
+                    // ),
                     ProfileSettingsItem(
                       icon: AppIcons.questionMark,
                       label: t.profile.menu.faq,
@@ -231,8 +230,7 @@ class ProfileView extends HookConsumerWidget {
                     style: AppTextStyles.body(12, color: Colors.grey),
                   ),
                 ),
-                const SizedBox(height: AppSpacing.xxxl),
-                const SizedBox(height: AppSpacing.xxxl),
+                SafeArea(child: const SizedBox(height: AppSpacing.md)),
               ],
             ),
           ),

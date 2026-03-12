@@ -245,7 +245,9 @@
     "popularWords": "Beliebte Wörter",
     "allWords": "Alle Wörter",
     "searchWord": "Wort suchen",
-    "searchHint": "Bitte Wort eingeben…"
+    "searchHint": "Bitte Wort eingeben…",
+    "noWordsFound": "Keine Wörter gefunden",
+    "noSavedWords": "Noch keine gespeicherten Wörter"
   },
   "bottomNav": {
     "home": "Startseite",

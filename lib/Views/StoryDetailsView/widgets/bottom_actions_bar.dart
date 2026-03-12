@@ -109,7 +109,7 @@ class BottomActionsBar extends StatelessWidget {
                       ),
                     ),
                     iconPadding: AppSpacing.sm,
-                    label: isReading
+                    label: isListening
                         ? context.t.storyDetails.stop
                         : context.t.storyDetails.listen,
                     labelStyle: AppTextStyles.body(

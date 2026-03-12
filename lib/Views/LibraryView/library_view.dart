@@ -36,7 +36,7 @@ class LibraryView extends ConsumerWidget {
             child: SingleChildScrollView(
               physics: const AlwaysScrollableScrollPhysics(),
               padding: const EdgeInsets.only(
-                bottom: kBottomNavigationBarHeight + AppSpacing.xl,
+                bottom: kBottomNavigationBarHeight * 3,
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,

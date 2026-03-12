@@ -71,29 +71,7 @@ class FeedbackSheet extends HookWidget {
                   ),
                 ),
                 const SizedBox(height: AppSpacing.xl),
-                // Row(
-                //   children: [
-                //     Expanded(
-                //       child: Text(
-                //         context.t.storyDetails.feedback,
-                //         style: AppTextStyles.heading(
-                //           18,
-                //           FontWeight.w700,
-                //           color: Colors.white,
-                //         ),
-                //       ),
-                //     ),
-                //     GestureDetector(
-                //       onTap: onClose,
-                //       child: const Icon(
-                //         Icons.close_rounded,
-                //         color: Colors.white54,
-                //         size: 22,
-                //       ),
-                //     ),
-                //   ],
-                // ),
-                // const SizedBox(height: AppSpacing.xl),
+
                 Text(
                   context.t.storyDetails.subject,
                   style: AppTextStyles.heading(
@@ -119,7 +97,7 @@ class FeedbackSheet extends HookWidget {
                       children: [
                         Expanded(
                           child: Text(
-                            subject.value ?? 'Please select a subject',
+                            subject.value ?? context.t.storyDetails.subject,
                             style: AppTextStyles.body(
                               16,
                               color: Colors.white,
@@ -180,7 +158,7 @@ class FeedbackSheet extends HookWidget {
                   ),
                 const SizedBox(height: AppSpacing.lg),
                 Text(
-                  'Message',
+                  context.t.storyDetails.feedback,
                   style: AppTextStyles.heading(
                     16,
                     FontWeight.w600,
@@ -193,7 +171,7 @@ class FeedbackSheet extends HookWidget {
                   maxLines: 4,
                   style: AppTextStyles.body(14, color: Colors.white),
                   decoration: InputDecoration(
-                    hintText: 'Please enter your message',
+                    hintText: context.t.storyDetails.feedback,
                     hintStyle: AppTextStyles.body(14, color: Colors.white),
 
                     border: OutlineInputBorder(
