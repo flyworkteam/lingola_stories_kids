@@ -72,6 +72,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We use your location to personalize your story experience and recommend content relevant to your region.</string>
 	<key>GIDClientID</key>
 	<string>513540790841-6cp5skhbd31chbcqpbph7gnghljtqspi.apps.googleusercontent.com</string>
 	<key>CFBundleURLTypes</key>
